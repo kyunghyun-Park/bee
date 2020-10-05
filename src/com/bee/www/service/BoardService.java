@@ -62,7 +62,7 @@ public class BoardService {
         boolean isSucess=false;
 
         int result=dao.updateLoginState(memberVo);
-        if(result==1){
+        if(result>0){
             commit(con);
             isSucess=true;
         }else{

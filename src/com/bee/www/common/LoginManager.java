@@ -36,6 +36,7 @@ public class LoginManager implements HttpSessionBindingListener {
     public void valueUnbound(HttpSessionBindingEvent event) {
         Action action = new MemberLogoutAction();
         ((MemberLogoutAction)action).logoutProc(getMemberId(event.getSession()));
+        loginUsers.remove(event.getSession()); //오류고침
     }
 
     //로그아웃 버튼 눌렀을 때, 해쉬테이블 순차적으로 배치시킴,while 키 값이 존재하는동안,ession에 키 값 받아옴
