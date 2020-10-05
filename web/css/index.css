@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+/* 공통 css*/
+body {
+    margin: 0 0 0 0;
+    font-family: "Rubik",sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 16px;
+}
+*, *::after, *::before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+html * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+div {
+    display: block;
+}
+a {
+    outline: medium none;
+    color: #fff;
+    text-decoration: none;
+}
+ul {
+    margin: 0px;
+    padding: 0px;
+}
+li {
+    list-style: none;
+}
+main{
+    margin: 0 0 0 0;
+}
+/* 공통 css*/
+
