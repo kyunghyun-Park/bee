@@ -46,4 +46,45 @@ public class BoardDAO {
         }
         return count;
     }
+    //로그인할 때 입력한 아이디에 해당하는 비번 갖고오기
+    public MemberVo getMember(String id){
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        MemberVo vo = null;
+
+        try{
+            pstmt=con.prepareStatement("select mem_sq,id,pwd from member where binary(id)=?");
+            pstmt.setString(1,id);
+            rs=pstmt.executeQuery();
+            while (rs.next()){
+                vo=new MemberVo();
+                vo.setMem_sq(rs.getInt("mem_sq"));
+                vo.setId(rs.getString("id"));
+                vo.setPwd(rs.getString("pwd"));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(rs);
+            close(pstmt);
+        }
+        return vo;
+    }
+
+    //getMember메소드에서 받은 mem_sq번호로 로그인상태로 변경
+    public int updateLoginState(MemberVo vo){
+        PreparedStatement pstmt=null;
+        int count=0;
+        try{
+            pstmt = con.prepareStatement("update member set lgn_fl=? where mem_sq=?");
+            pstmt.setBoolean(1,vo.isLgn_fl());
+            pstmt.setInt(2,vo.getMem_sq());
+            count=pstmt.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(pstmt);
+        }
+        return count;
+    }
 }

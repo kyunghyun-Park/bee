@@ -1,9 +1,6 @@
 package com.bee.www.controller;
 
-import com.bee.www.action.HomeAction;
-import com.bee.www.action.MemberJoinAction;
-import com.bee.www.action.MemberJoinProcAction;
-import com.bee.www.action.MemberLoginAction;
+import com.bee.www.action.*;
 import com.bee.www.common.Action;
 import com.bee.www.common.ActionForward;
 
@@ -20,7 +17,8 @@ public class BoardController extends HttpServlet {
     public BoardController() {
         super();
     }
-    protected void doProcess(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+
+    protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 
         String RequestURI = request.getRequestURI();
@@ -37,6 +35,13 @@ public class BoardController extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        } else if (command.equals("/joinProc.do")) {
+            action = new MemberJoinProcAction();
+            try {
+                forward = action.execute(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else if (command.equals("/login.do")) {
             action = new MemberLoginAction();
             try {
@@ -44,8 +49,15 @@ public class BoardController extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else if (command.equals("/joinProc.do")) {
-            action = new MemberJoinProcAction();
+        } else if (command.equals("/loginProc.do")) {
+            action = new MemberLoginProcAction();
+            try {
+                forward = action.execute(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }else if (command.equals("/logout.do")) {
+            action = new MemberLogoutAction();
             try {
                 forward = action.execute(request, response);
             } catch (Exception e) {
@@ -63,6 +75,7 @@ public class BoardController extends HttpServlet {
             }
         }
     }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doProcess(request, response);
     }
