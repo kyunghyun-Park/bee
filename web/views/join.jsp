@@ -95,7 +95,7 @@
     <div class="header-area">
         <div class="header-main">
             <div class="logo">
-                <a href="index.jsp">
+                <a href="/">
                     <h3>Good Bee</h3>
                 </a>
             </div>
