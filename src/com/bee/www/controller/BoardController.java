@@ -2,6 +2,8 @@ package com.bee.www.controller;
 
 import com.bee.www.action.HomeAction;
 import com.bee.www.action.MemberJoinAction;
+import com.bee.www.action.MemberJoinProcAction;
+import com.bee.www.action.MemberLoginAction;
 import com.bee.www.common.Action;
 import com.bee.www.common.ActionForward;
 
@@ -26,7 +28,7 @@ public class BoardController extends HttpServlet {
         String command = RequestURI.substring(contextPath.length());
 
         ActionForward forward = null;
-        Action action = new HomeAction();
+        Action action = null;
 
         if (command.equals("/join.do")) {
             action = new MemberJoinAction();
@@ -36,7 +38,14 @@ public class BoardController extends HttpServlet {
                 e.printStackTrace();
             }
         } else if (command.equals("/login.do")) {
-//            action = new ArticleListAction();
+            action = new MemberLoginAction();
+            try {
+                forward = action.execute(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }else if (command.equals("/joinProc.do")) {
+            action = new MemberJoinProcAction();
             try {
                 forward = action.execute(request, response);
             } catch (Exception e) {

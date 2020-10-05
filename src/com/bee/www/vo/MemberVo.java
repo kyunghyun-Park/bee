@@ -1,6 +1,6 @@
 package com.bee.www.vo;
 
-public class memberVo {
+public class MemberVo {
     private int mem_sq;
     private String id;
     private String pwd;

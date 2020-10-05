@@ -13,7 +13,10 @@
         <div class="header-area">
             <div class="header-main">
                 <div class="logo">
-                    <a href="login.jsp">
+                    <a href="/join.do">
+                        <h3>회원가입</h3>
+                    </a>
+                    <a href="/login.do">
                         <h3>로그인</h3>
                     </a>
                 </div>

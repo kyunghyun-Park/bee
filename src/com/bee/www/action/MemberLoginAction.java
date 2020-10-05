@@ -6,11 +6,12 @@ import com.bee.www.common.ActionForward;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class HomeAction implements Action {
+public class MemberLoginAction implements Action {
     @Override
-    public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ActionForward execute
+            (HttpServletRequest request, HttpServletResponse response) {
         ActionForward forward = new ActionForward();
-        forward.setPath("/views/index.jsp");
+        forward.setPath("/views/login.jsp");
         return forward;
     }
 }
