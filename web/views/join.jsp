@@ -17,12 +17,18 @@
             integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
             crossorigin="anonymous"></script>
     <script>
+        //중복확인 메소드
+        function idCheck() {
+            window.open("/idCheckForm.do","idwin","width=400,height=350");
+        }
+
         function validateCheck() {
             var id = $('#id').val();
             var pwd = $('#pwd').val();
             var pwd_confirm = $('#pwd_confirm').val();
             var email = $('#email').val();
             var nick = $('#nick').val();
+            var id_check = $('#idDuplication').val();
 
             if (!id) {
                 alert("아이디를 입력해 주세요.");
@@ -40,19 +46,25 @@
                 return false;
             }
             if (pwd != pwd_confirm) {
+                alert("비밀번호가 일치하지 않습니다.");
                 $('#pwd').val("");
                 $('#pwd_confirm').val("");
                 $('#pwd').focus();
                 return false;
             }
-            if(!email){
+            if (!email) {
                 alert("이메일을 입력해 주세요");
                 $('#email').focus();
                 return false;
             }
-            if(!nick){
+            if (!nick) {
                 alert("닉네임을 입력해 주세요");
                 $('#nick').focus();
+                return false;
+            }
+
+            if(id_check!="idCheck"){
+                alert("아이디 중복확인을 해주세요.");
                 return false;
             }
 
@@ -126,9 +138,12 @@
                                 </div>
                                 <div class="content">
                                     <section class="signin-cont cont">
-                                        <form action="/joinProc.do" method="post" onsubmit="return validateCheck()">
+                                        <form name="joinForm" action="/joinProc.do" method="post" onsubmit="return validateCheck()">
                                             <input id="id" name="id" type="text" class="inpt" minlength="4"
                                                    maxlength="20" placeholder="Your Id"/>
+                                            <input type="button" value="ID중복확인" onclick="idCheck()">
+                                            <input type="hidden" id="idDuplication" name="idDuplication" value="idUncheck">
+
                                             <input id="pwd" name="pwd" type="password" class="inpt" minlength="4"
                                                    maxlength="30" placeholder="Your Password"/>
                                             <input id="pwd_confirm" name="pwd_confirm" type="password" minlength="4"

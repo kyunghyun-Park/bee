@@ -87,4 +87,26 @@ public class BoardDAO {
         }
         return count;
     }
+
+    //아이디 중복검사
+    public int checkId(String id){
+        PreparedStatement pstmt=null;
+        ResultSet rs = null;
+        int count=0;
+
+        try{
+            pstmt=con.prepareStatement("select count(id) as cnt from member where id=?");
+            pstmt.setString(1,id);
+            rs=pstmt.executeQuery();
+            while(rs.next()){
+                count=rs.getInt("cnt");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(rs);
+            close(pstmt);
+        }
+        return count;
+    }
 }

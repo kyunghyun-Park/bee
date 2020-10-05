@@ -63,6 +63,20 @@ public class BoardController extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }else if (command.equals("/idCheckForm.do")) {
+            action = new MemberJoinIdCheckAction();
+            try {
+                forward = action.execute(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }else if (command.equals("/idCheckProc.do")) {
+            action = new JoinIdCheckProcAction();
+            try {
+                forward = action.execute(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         if (forward != null) {
