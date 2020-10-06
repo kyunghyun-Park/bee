@@ -72,9 +72,9 @@
                                 <div class="content">
                                     <section class="signin-cont cont">
                                         <form action="/loginProc.do" method="post" onsubmit="validateCheck()">
-                                            <input id="id" name="id" type="text" class="inpt" placeholder="Your Id"
+                                            <input id="id" name="id" type="text" class="inpt" placeholder="아이디 입력"
                                                    style="margin-bottom: 25px;"/>
-                                            <input id="pwd" name="pwd" type="password" class="inpt" placeholder="Your Password"
+                                            <input id="pwd" name="pwd" type="password" class="inpt" placeholder="비밀번호 입력"
                                                    style="margin-bottom: 25px;"/>
                                             <h4>forget your Id ?
                                                 <br/><a href="#">클릭</a>

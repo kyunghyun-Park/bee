@@ -99,7 +99,7 @@ public class BoardDAO {
             pstmt.setString(1,id);
             rs=pstmt.executeQuery();
             while(rs.next()){
-                count=rs.getInt("cnt");
+                count=rs.getInt("cnt"); //0이면 미중복
             }
         }catch (Exception e){
             e.printStackTrace();

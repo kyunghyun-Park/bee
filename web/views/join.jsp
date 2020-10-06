@@ -14,10 +14,29 @@
             crossorigin="anonymous"></script>
 
     <script>
-        var count = 0;
+        var result = 1;
 
         function checkId() {
             var id = $('#id').val();
+            if(id==''){     //아이디 미입력
+                alert('아이디를 입력하세요!');
+                $('#id').focus();
+                return;
+            }
+           /* if(id.length>20){       //아이디 길이 초과
+                $('#id_check').html('20자 이내로 작성해 주세요.').css('color', 'red');
+                $('#id').val("");
+                $('#id').focus();
+                return false;
+            }*/
+
+            var regExpId = new RegExp("^[a-z0-9]{4,20}$", "g");
+            if (regExpId.exec(id) == null) {
+                $('#id_check').html('아이디 형식이 맞지 않습니다.').css('color', 'red');
+                $('#id').val("");
+                $('#id').focus();
+                return false;
+            }
 
             //아이디 중복확인
             $.ajax({
@@ -26,16 +45,18 @@
                 data: {id: id},
                 dataType: "json",
                 error: function () {
-                    alert('서버 통신 실패');
+                    console.log("서버 통신 실패");
                 },
                 success: function (data) {
-                    alert('서버 통신 성공');
+                    console.log("서버 통신 성공");
 
                     if (data.count == 0) {      //0 id미중복
-                        count = 1;
+                        result = 0;
+                        console.log("success if result = "+result);
                         $('#id_check').html('사용 가능한 아이디').css('color', 'blue');
                     } else {                    //1 중복
-                        count = 0;
+                        result = 1;
+                        console.log("success else result = "+result);
                         $('#id_check').html('사용 불가능한 아이디').css('color', 'red');
                         $('#id').val('');
                         $('#id').focus();
@@ -45,18 +66,26 @@
         }
 
         $('#id').keyup(function (){
-            count = 0;  //id 칸에 다시 입력할 때 count 초기화
+            result = 1;  //id 칸에 다시 입력할 때 count 1로 초기화
+            console.log("keyup result = "+result);
             $('#id_check').html('20자 이내의 아이디 입력').css('color', '#9aa8d0');
         });
 
-
+        //form submit시
         function validateCheck() {
-            var id = $('#id').val();
+            // var id = $('#id').val();
             var pwd = $('#pwd').val();
             var pwd_confirm = $('#pwd_confirm').val();
             var email = $('#email').val();
             var nick = $('#nick').val();
-            var id_check = $('#idDuplication').val();
+
+            if(count==1){
+                alert('아이디 중복체크 하세요');
+                if($('#id').val()==''){
+                    $('#id').focus();
+                }
+                return false;
+            }
 
             if (!id) {
                 alert("아이디를 입력해 주세요.");
@@ -90,11 +119,6 @@
                 $('#nick').focus();
                 return false;
             }
-
-          /*  if (id_check != "idCheck") {
-                alert("아이디 중복확인을 해주세요.");
-                return false;
-            }*/
 
             var regExpId = new RegExp("^[a-z0-9]{4,20}$", "g");
             if (regExpId.exec(id) == null) {
@@ -171,10 +195,8 @@
                                             <input id="id" name="id" type="text" class="inpt" minlength="4"
                                                    maxlength="20" placeholder="아이디 "/>
                                             <input type="button" value="ID중복확인" name="confirmId" id="confirmId" onclick="checkId()">
-                                            <input type="submit" value="회원가입" class="submit"/>
+<%--                                            <input type="submit" value="회원가입" class="submit"/>--%>
                                             <div class="check_id" id="id_check"></div>
-                                            <%--<input type="hidden" id="idDuplication" name="idDuplication" value="idUncheck">--%>
-
                                             <input id="pwd" name="pwd" type="password" class="inpt" minlength="4"
                                                    maxlength="30" placeholder="비밀번호"/>
                                             <input id="pwd_confirm" name="pwd_confirm" type="password" minlength="4"
@@ -184,10 +206,10 @@
                                             <%--<input id="name" name="name" type="text" class="inpt" placeholder="Your Name"/>--%>
                                             <input id="nick" name="nick" type="text" class="inpt"
                                                    placeholder="닉네임"/>
-                                           <%-- 안보여서 일단 주석
+                                           <%-- 안보여서 일단 주석--%>
                                             <div class="submit-wrap">
                                                 <input type="submit" value="회원가입" class="submit"/>
-                                            </div>--%>
+                                            </div>
                                         </form>
                                     </section>
                                 </div>

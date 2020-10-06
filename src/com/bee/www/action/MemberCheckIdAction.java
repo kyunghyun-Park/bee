@@ -25,6 +25,7 @@ public class MemberCheckIdAction implements Action {
         }*/
 
         BoardService service = new BoardService();
+        //0이면 미중복 1이면 중복
         request.setAttribute("count", service.idCheck(id));
 
 //        if(!service.idCheck(id)){ //service 호출(아이디 중복시)
