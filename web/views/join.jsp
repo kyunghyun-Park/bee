@@ -91,10 +91,10 @@
                 return false;
             }
 
-            if (id_check != "idCheck") {
+          /*  if (id_check != "idCheck") {
                 alert("아이디 중복확인을 해주세요.");
                 return false;
-            }
+            }*/
 
             var regExpId = new RegExp("^[a-z0-9]{4,20}$", "g");
             if (regExpId.exec(id) == null) {
@@ -169,23 +169,25 @@
                                         <form name="joinForm" id="joinForm" action="/joinProc.do" method="post"
                                               onsubmit="return validateCheck()">
                                             <input id="id" name="id" type="text" class="inpt" minlength="4"
-                                                   maxlength="20" placeholder="Your Id"/>
+                                                   maxlength="20" placeholder="아이디 "/>
                                             <input type="button" value="ID중복확인" name="confirmId" id="confirmId" onclick="checkId()">
+                                            <input type="submit" value="회원가입" class="submit"/>
                                             <div class="check_id" id="id_check"></div>
                                             <%--<input type="hidden" id="idDuplication" name="idDuplication" value="idUncheck">--%>
 
                                             <input id="pwd" name="pwd" type="password" class="inpt" minlength="4"
-                                                   maxlength="30" placeholder="Your Password"/>
+                                                   maxlength="30" placeholder="비밀번호"/>
                                             <input id="pwd_confirm" name="pwd_confirm" type="password" minlength="4"
-                                                   maxlength="30" class="inpt" placeholder="Your Password2"/>
+                                                   maxlength="30" class="inpt" placeholder="비밀번호 확인"/>
                                             <input id="email" name="email" type="email" class="inpt"
-                                                   placeholder="Your Email"/>
+                                                   placeholder="이메일"/>
                                             <%--<input id="name" name="name" type="text" class="inpt" placeholder="Your Name"/>--%>
                                             <input id="nick" name="nick" type="text" class="inpt"
-                                                   placeholder="Your nickName"/>
+                                                   placeholder="닉네임"/>
+                                           <%-- 안보여서 일단 주석
                                             <div class="submit-wrap">
                                                 <input type="submit" value="회원가입" class="submit"/>
-                                            </div>
+                                            </div>--%>
                                         </form>
                                     </section>
                                 </div>

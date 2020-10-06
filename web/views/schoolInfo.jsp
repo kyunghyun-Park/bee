@@ -17,7 +17,8 @@
                 <input type="text" placeholder="검색할 내용.."/>
             </div>
             <div class="header-login">
-                <a href="login.jsp">
+
+                <a href="/login.do">
                     <h3>로그인</h3>
                 </a>
             </div>
@@ -38,10 +39,10 @@
     <section class="nav-section">
         <nav>
             <ul>
-                <li><a href="schoolInfo.jsp" style="color: rgb(12, 167, 179);">학원정보</a></li>
+                <li><a href="/schBoard.do" style="color: rgb(12, 167, 179);">학원정보</a></li>
                 <li><a href="#">수강후기</a></li>
                 <li><a href="#">오늘의 공부</a></li>
-                <li><a href="freeBoard.jsp">자유게시판</a></li>
+                <li><a href="/freeBoard.do">자유게시판</a></li>
             </ul>
         </nav>
     </section>
@@ -65,7 +66,7 @@
                                         </select>
                                     </form>
                                     <div class="control">
-                                        <a href="schoolInfo-write.jsp" class="searchADNcontrol">글쓰기</a>
+                                        <a href="/schBoardWrite.do" class="searchADNcontrol">글쓰기</a>
                                     </div>
                                 </div>
                             </div>
