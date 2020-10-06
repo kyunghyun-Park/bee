@@ -5,22 +5,50 @@
 <head>
     <meta charset="UTF-8">
     <title>회원 가입</title>
-    <%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index_header.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">--%>
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/index_header.css">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/css/index_header.css">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
     <!--jquery cdn -->
-    <script
-            src="https://code.jquery.com/jquery-3.5.1.slim.js"
-            integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
             crossorigin="anonymous"></script>
+
     <script>
-        //중복확인 메소드
-        function idCheck() {
-            window.open("/idCheckForm.do","idwin","width=400,height=350");
+        var count = 0;
+
+        function checkId() {
+            var id = $('#id').val();
+
+            //아이디 중복확인
+            $.ajax({
+                url: "/checkId.do",
+                type: "post",
+                data: {id: id},
+                dataType: "json",
+                error: function () {
+                    alert('서버 통신 실패');
+                },
+                success: function (data) {
+                    alert('서버 통신 성공');
+
+                    if (data.count == 0) {      //0 id미중복
+                        count = 1;
+                        $('#id_check').html('사용 가능한 아이디').css('color', 'blue');
+                    } else {                    //1 중복
+                        count = 0;
+                        $('#id_check').html('사용 불가능한 아이디').css('color', 'red');
+                        $('#id').val('');
+                        $('#id').focus();
+                    }
+                }
+            });
         }
+
+        $('#id').keyup(function (){
+            count = 0;  //id 칸에 다시 입력할 때 count 초기화
+            $('#id_check').html('20자 이내의 아이디 입력').css('color', '#9aa8d0');
+        });
+
 
         function validateCheck() {
             var id = $('#id').val();
@@ -63,7 +91,7 @@
                 return false;
             }
 
-            if(id_check!="idCheck"){
+            if (id_check != "idCheck") {
                 alert("아이디 중복확인을 해주세요.");
                 return false;
             }
@@ -95,8 +123,8 @@
             var regExpEmail = new RegExp("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$", "g");
             if (regExpEmail.exec(email) == null) {
                 alert("잘못된 이메일 형식입니다.");
-                $('#pwd').val("");
-                $('#pwd').focus();
+                $('#email').val("");
+                $('#email').focus();
                 return false;
             }
         }
@@ -138,11 +166,13 @@
                                 </div>
                                 <div class="content">
                                     <section class="signin-cont cont">
-                                        <form name="joinForm" action="/joinProc.do" method="post" onsubmit="return validateCheck()">
+                                        <form name="joinForm" id="joinForm" action="/joinProc.do" method="post"
+                                              onsubmit="return validateCheck()">
                                             <input id="id" name="id" type="text" class="inpt" minlength="4"
                                                    maxlength="20" placeholder="Your Id"/>
-                                            <input type="button" value="ID중복확인" onclick="idCheck()">
-                                            <input type="hidden" id="idDuplication" name="idDuplication" value="idUncheck">
+                                            <input type="button" value="ID중복확인" name="confirmId" id="confirmId" onclick="checkId()">
+                                            <div class="check_id" id="id_check"></div>
+                                            <%--<input type="hidden" id="idDuplication" name="idDuplication" value="idUncheck">--%>
 
                                             <input id="pwd" name="pwd" type="password" class="inpt" minlength="4"
                                                    maxlength="30" placeholder="Your Password"/>

@@ -20,7 +20,7 @@ public class MemberJoinProcAction implements Action {
             throws Exception {
 
         //view에서 값 받아오기
-        String id = request.getParameter("id");
+        String id = request.getParameter("Id");
         String pwd = request.getParameter("pwd");
         String pwd_confirm = request.getParameter("pwd_confirm");
         String email = request.getParameter("email");

@@ -71,4 +71,14 @@ public class BoardService {
         close(con);
         return isSucess;
     }
+
+    //아이디 중복검사 메소드
+    public int idCheck(String id){
+        BoardDAO dao = BoardDAO.getInstance();
+        Connection con = getConnection();
+        dao.setConnection(con);
+        int count=dao.checkId(id); //dao호출
+        close(con);
+        return count;
+    }
 }

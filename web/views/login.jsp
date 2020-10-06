@@ -6,9 +6,11 @@
     <meta charset="UTF-8">
     <title>로그인</title>
     <!-- css -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index_header.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/css/index_header.css">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+
+
     <!-- jqeury cdn -->
     <script
             src="https://code.jquery.com/jquery-3.5.1.slim.js"
