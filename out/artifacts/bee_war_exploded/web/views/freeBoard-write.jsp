@@ -10,6 +10,23 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
             crossorigin="anonymous"></script>
+    <script>
+        function checkData() {
+            var title=$('#title').val();
+            var content=$('#content').val();
+
+            if(!title){
+                alert("제목을 입력하세요");
+                $('#title').focus();
+                return false;
+            }
+            if(!content){
+                alert("제목을 입력하세요");
+                $('#content').focus();
+                return false;
+            }
+        }
+    </script>
 </head>
 <body>
 <header>
@@ -42,7 +59,8 @@
                     </svg>
                     <img id="image_section" alt=""/>
                 </div>
-                <textarea name="content" it="content" class="post-textarea" placeholder="내용을 입력하세요"></textarea>
+                <textarea name="content" id="content" class="post-textarea"
+                          placeholder="내용을 입력하세요"></textarea>
             </div>
             <footer class="post-comment">
                 <a class="exit-btn transparent-btn" href="/freeBoard.do">✔ 나가기</a>

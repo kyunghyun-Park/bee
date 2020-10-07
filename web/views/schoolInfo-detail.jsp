@@ -1,3 +1,11 @@
+<%@ page import="com.bee.www.vo.ArticleVo" %>
+<%@ page import="com.bee.www.common.LoginManager" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    ArticleVo vo = (ArticleVo) request.getAttribute("vo");
+    LoginManager lm=LoginManager.getInstance();
+    String id=lm.getMemberId(session);
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,9 +51,9 @@
     <section class="nav-section">
         <nav>
             <ul>
-                <li><a href="/schoolBoard.do" style="color: rgb(12, 167, 179);">학원정보</a></li>
-                <li><a href="/reviews/do">오늘의 공부</a></li>
-                <li><a href="freeBoard.html">자유게시판</a></li>
+                <li><a href="/schBoard.do" style="color: rgb(12, 167, 179);">학원정보</a></li>
+                <li><a href="/reviews/do">학원후기</a></li>
+                <li><a href="/freeBoard.do">자유게시판</a></li>
             </ul>
         </nav>
     </section>

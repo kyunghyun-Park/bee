@@ -59,7 +59,8 @@
                     </svg>
                     <img id="image_section" alt=""/>
                 </div>
-                <textarea name="content" id="content" class="post-textarea" placeholder="내용을 입력하세요"></textarea>
+                <textarea name="content" id="content" class="post-textarea"
+                          placeholder="내용을 입력하세요"></textarea>
             </div>
             <footer class="post-comment">
                 <a class="exit-btn transparent-btn" href="/freeBoard.do">✔ 나가기</a>

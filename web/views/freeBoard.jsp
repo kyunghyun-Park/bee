@@ -1,8 +1,11 @@
 <%@ page import="com.bee.www.common.LoginManager" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.bee.www.vo.ArticleVo" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     LoginManager lm = LoginManager.getInstance();
     String id = lm.getMemberId(session);
+    ArrayList<ArticleVo> list = (ArrayList<ArticleVo>) request.getAttribute("list");
 %>
 <html>
 <head>
@@ -13,6 +16,11 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/index_header.css">
     <link rel="stylesheet" href="css/schoolInfo.css">
+    <script>
+        function showDetail(num){
+            location.href="/freeDetail.do?num="+num;
+        }
+    </script>
 </head>
 <body>
 <header>
@@ -103,13 +111,17 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <%
+                                        for(int i=0;i<list.size();i++) {
+                                    %>
                                     <tr>
-                                        <td class="num">1</td>
-                                        <td class="title"><a href="schoolInfo-detail.html">테스트 제목입니다.</a></td>
-                                        <td class="user">kim</td>
-                                        <td class="date">2020-10-05</td>
-                                        <td class="view">10</td>
+                                        <td class="num"><%=list.get(i).getB_sq()%></td>
+                                        <td onclick="showDetail(<%=list.get(i).getB_sq()%>)" class="title"><%=list.get(i).getTitle()%></td>
+                                        <td class="user"><%=list.get(i).getNickname()%></td>
+                                        <td class="date"><%=list.get(i).getWriteDate()%></td>
+                                        <td class="view"><%=list.get(i).getHit()%></td>
                                     </tr>
+                                    <% } %>
                                     </tbody>
                                 </table>
                             </div>

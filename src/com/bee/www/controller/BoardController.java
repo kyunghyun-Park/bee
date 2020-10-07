@@ -3,6 +3,7 @@ package com.bee.www.controller;
 import com.bee.www.action.Member.*;
 import com.bee.www.action.freeboard.FreeBoardAction;
 import com.bee.www.action.freeboard.FreeBoardWriteAction;
+import com.bee.www.action.freeboard.FreeDetailAction;
 import com.bee.www.action.freeboard.FreeRegisterAction;
 import com.bee.www.action.review.ReviewsAction;
 import com.bee.www.action.schoolinfo.SchoolInfoAction;
@@ -108,10 +109,17 @@ public class BoardController extends HttpServlet {
             action = new FreeRegisterAction();
             try{
                 forward = action.execute(request,response);
-            }catch (Exception e){
+            }catch (Exception e) {
                 e.printStackTrace();
             }
-        }else if(command.equals("/reviews.do")){
+        }else if(command.equals("/freeDetail.do")) {
+            action = new FreeDetailAction();
+            try{
+                forward = action.execute(request,response);
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if(command.equals("/reviews.do")){
             action = new ReviewsAction();
             try{
                 forward = action.execute(request,response);

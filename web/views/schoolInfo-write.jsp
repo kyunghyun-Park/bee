@@ -22,7 +22,7 @@
         <div class="file-">
             <button class="upButton">
                 <label htmlFor="file" class="img-up">
-                    <input type="file" id="file" accept=".jpg, .png, .jpeg, .gif"></input>이미지 업로드
+                    <input type="file" id="file" accept=".jpg, .png, .jpeg, .gif"/>이미지 업로드
                 </label>
             </button>
         </div>
@@ -30,7 +30,7 @@
             <textarea name="content" it="content" class="post-textarea" placeholder="내용을 입력하세요"></textarea>
         </div>
         <footer class="post-comment">
-            <a class="exit-btn transparent-btn" href="schoolInfo.html">✔ 나가기</a>
+            <a class="exit-btn transparent-btn" href="/schBoard.do">✔ 나가기</a>
             <button class="transparent-btn">등록</button>
         </footer>
     </article>

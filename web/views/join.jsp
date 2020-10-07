@@ -189,7 +189,7 @@
                                     <section class="signin-cont cont">
                                         <form name="joinForm" id="joinForm" action="/joinProc.do" method="post"
                                               onsubmit="return validateCheck()">
-                                            <p>아이디 중복확인 텍스트 자리</p>
+                                            <p id="id_check">아이디 중복확인 텍스트 자리</p>
                                             <!-- <p>가능한 아이디입니다.</p> -->
                                             <div class="checkBlock">
                                                 <input id="id" name="id" type="text" class="inpt" minlength="4"
@@ -197,7 +197,7 @@
                                                 <button class="checkButton" type="button" value="ID중복확인"
                                                         name="confirmId" id="confirmId" onclick="checkId()">중복확인</button>
                                             </div>
-                                            <p>이메일 중복확인 텍스트 자리</p>
+                                            <p id="">이메일 중복확인 텍스트 자리</p>
                                             <!-- <p>가능한 이메일입니다.</p> -->
                                             <div class="checkBlock">
                                                 <input id="email" name="email" type="email" class="inpt" placeholder="이메일 입력"/>

@@ -9,6 +9,15 @@ public class ArticleVo {
     private String writeDate;
 
     private String id; //member id
+    private String nickname;
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
 
     public int getB_sq() {
         return b_sq;

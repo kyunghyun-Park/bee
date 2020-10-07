@@ -1,9 +1,14 @@
 package com.bee.www.dao;
 
+import com.bee.www.vo.ArticleVo;
 import com.bee.www.vo.MemberVo;
+
+import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
+
 import static com.bee.www.common.JdbcUtil.close;
 
 public class BoardDAO {
@@ -53,12 +58,12 @@ public class BoardDAO {
         MemberVo vo = null;
 
         try{
-            pstmt=con.prepareStatement("select mem_sq,id,pwd from member where binary(id)=?");
+            pstmt=con.prepareStatement("select sq,id,pwd from member where binary(id)=?");
             pstmt.setString(1,id);
             rs=pstmt.executeQuery();
             while (rs.next()){
                 vo=new MemberVo();
-                vo.setMem_sq(rs.getInt("mem_sq"));
+                vo.setMem_sq(rs.getInt("sq"));
                 vo.setId(rs.getString("id"));
                 vo.setPwd(rs.getString("pwd"));
             }
@@ -76,7 +81,7 @@ public class BoardDAO {
         PreparedStatement pstmt=null;
         int count=0;
         try{
-            pstmt = con.prepareStatement("update member set lgn_fl=? where mem_sq=?");
+            pstmt = con.prepareStatement("update member set lgn_fl=? where sq=?");
             pstmt.setBoolean(1,vo.isLgn_fl());
             pstmt.setInt(2,vo.getMem_sq());
             count=pstmt.executeUpdate();
@@ -108,5 +113,110 @@ public class BoardDAO {
             close(pstmt);
         }
         return count;
+    }
+
+    //로그인 된 유저 시퀀스 조회
+    public int getMemberSequence(String id){
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        int sq = 0;
+        try{
+            //현재 로그인된 id에 해당하는 고유번호 조회
+            pstmt = con.prepareStatement("select sq from member where id=?");
+            pstmt.setString(1,id);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                sq=rs.getInt("sq");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(rs);
+            close(pstmt);
+        }
+        return sq;
+    }
+
+    //글 목록 띄우기
+    public ArrayList<ArticleVo> getArticleList() {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        ArrayList<ArticleVo> list = new ArrayList<>();
+
+        try{
+           pstmt = con.prepareStatement("select b.b_sq, m.nickname, " +
+                                           "b.title,b.content," +
+                                           "b.hit,b.writeDate " +
+                                           "from board b inner join member m on b.m_sq = m.sq " +
+                                            "order by b_sq desc");
+           rs=pstmt.executeQuery();
+           while(rs.next()){
+               ArticleVo vo = new ArticleVo();
+               vo.setB_sq(rs.getInt("b_sq"));
+               vo.setNickname(rs.getString("nickname"));
+               vo.setTitle(rs.getString("title"));
+               vo.setContent(rs.getString("content"));
+               vo.setHit(10);
+               vo.setWriteDate(rs.getString("writeDate"));
+               list.add(vo);
+           }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(rs);
+            close(pstmt);
+        }
+        return list;
+    }
+    //글 등록
+    public int insertArticle(ArticleVo vo){
+        PreparedStatement pstmt = null;
+        int count = 0;
+        try{
+            //현재 로그인된 id에 해당하는 고유번호 조회
+            pstmt = con.prepareStatement("insert into board(m_sq, title, content) value(?, ?, ?)");
+            pstmt.setInt(1,vo.getM_sq());
+            pstmt.setString(2,vo.getTitle());
+            pstmt.setString(3,vo.getContent());
+            count=pstmt.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(pstmt);
+        }
+        return count;
+    }
+
+    public ArticleVo getArticleDetail(int num){
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        ArticleVo vo = null;
+        //데이터 담기
+        try{
+            //현재 로그인된 id에 해당하는 고유번호 조회
+            pstmt = con.prepareStatement("select b.b_sq, b.m_sq, m.id, " +
+                                                "b.title, b.content, " +
+                                                "b.hit, b.writeDate, m.nickname " +
+                                                "from board b inner join member m on b.m_sq = m.sq " +
+                                                "where b_sq=? ");
+            pstmt.setInt(1,num);
+            rs=pstmt.executeQuery();
+            while(rs.next()){
+                vo = new ArticleVo();   //글 조회 돼야 인스턴스 생성
+                vo.setB_sq(rs.getInt("b_sq"));
+                vo.setId(rs.getString("id"));
+                vo.setTitle(rs.getString("title"));
+                vo.setContent(rs.getString("content"));
+                vo.setHit(10);
+                vo.setWriteDate(rs.getString("writeDate"));
+                vo.setNickname(rs.getString("nickname"));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(rs);
+            close(pstmt);
+        }
+        return vo;
     }
 }
