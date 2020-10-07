@@ -19,20 +19,21 @@
         function checkId() {
             var id = $('#id').val();
             if(id==''){     //아이디 미입력
-                alert('아이디를 입력하세요!');
+                $('#id_check').html('아이디를 입력해 주세요!').css('color', 'red');
                 $('#id').focus();
                 return;
             }
-           /* if(id.length>20){       //아이디 길이 초과
+
+            if(id.length>20){       //아이디 길이 초과
                 $('#id_check').html('20자 이내로 작성해 주세요.').css('color', 'red');
                 $('#id').val("");
                 $('#id').focus();
                 return false;
-            }*/
+            }
 
             var regExpId = new RegExp("^[a-z0-9]{4,20}$", "g");
             if (regExpId.exec(id) == null) {
-                $('#id_check').html('아이디 형식이 맞지 않습니다.').css('color', 'red');
+                $('#id_check').html('아이디는 4자 이상 영소문자와 숫자를 혼합해 주세요.').css('color', 'red');
                 $('#id').val("");
                 $('#id').focus();
                 return false;
@@ -72,8 +73,8 @@
         });
 
         //form submit시
-        function validateCheck() {
-            // var id = $('#id').val();
+        function joinSubmit() {
+            var id = $('#id').val();
             var pwd = $('#pwd').val();
             var pwd_confirm = $('#pwd_confirm').val();
             var email = $('#email').val();
@@ -158,7 +159,7 @@
 <header>
     <div class="header-area">
         <div class="header-main">
-            <div class="logo">
+            <div class="header-login">
                 <a href="/">
                     <h3>Good Bee</h3>
                 </a>
@@ -175,38 +176,41 @@
                     <div class="main-section">
                         <section class="container">
                             <article class="modal">
-                                <a href="index.jsp">
-                                    <div class="exit-wrapper">
-                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                             viewBox="0 0 24 24" tabindex="1" height="1em" width="1em"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
-                                        </svg>
-                                    </div>
-                                </a>
+                                <a href="index.html"><div class="exit-wrapper">
+                                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" tabindex="1" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+                                    </svg>
+                                </div></a>
                                 <div class="tabs">
                                     <span class="tab signin"><a href="/login.do">로그인</a></span>
-                                    <span class="tab signup active"><a href="/join.do">회원가입</a></span>
+                                    <span class="tab signup active"><a href="#">회원가입</a></span>
                                 </div>
                                 <div class="content">
                                     <section class="signin-cont cont">
                                         <form name="joinForm" id="joinForm" action="/joinProc.do" method="post"
                                               onsubmit="return validateCheck()">
-                                            <input id="id" name="id" type="text" class="inpt" minlength="4"
-                                                   maxlength="20" placeholder="아이디 "/>
-                                            <input type="button" value="ID중복확인" name="confirmId" id="confirmId" onclick="checkId()">
-<%--                                            <input type="submit" value="회원가입" class="submit"/>--%>
-                                            <div class="check_id" id="id_check"></div>
-                                            <input id="pwd" name="pwd" type="password" class="inpt" minlength="4"
-                                                   maxlength="30" placeholder="비밀번호"/>
-                                            <input id="pwd_confirm" name="pwd_confirm" type="password" minlength="4"
-                                                   maxlength="30" class="inpt" placeholder="비밀번호 확인"/>
-                                            <input id="email" name="email" type="email" class="inpt"
-                                                   placeholder="이메일"/>
-                                            <%--<input id="name" name="name" type="text" class="inpt" placeholder="Your Name"/>--%>
-                                            <input id="nick" name="nick" type="text" class="inpt"
-                                                   placeholder="닉네임"/>
-                                           <%-- 안보여서 일단 주석--%>
+                                            <p>아이디 중복확인 텍스트 자리</p>
+                                            <!-- <p>가능한 아이디입니다.</p> -->
+                                            <div class="checkBlock">
+                                                <input id="id" name="id" type="text" class="inpt" minlength="4"
+                                                       maxlength="20" placeholder="아이디 입력"/>
+                                                <button class="checkButton" type="button" value="ID중복확인"
+                                                        name="confirmId" id="confirmId" onclick="checkId()">중복확인</button>
+                                            </div>
+                                            <p>이메일 중복확인 텍스트 자리</p>
+                                            <!-- <p>가능한 이메일입니다.</p> -->
+                                            <div class="checkBlock">
+                                                <input id="email" name="email" type="email" class="inpt" placeholder="이메일 입력"/>
+                                                <button class="checkButton">중복확인</button>
+                                            </div>
+                                            <div class="otherinput">
+                                                <input name="pwd" id="pwd" minlength="4" maxlength="30" type="password" class="inpt2"
+                                                       placeholder="비밀번호 입력"/>
+                                                <input name="pwd_confirm" id="pwd_confirm" minlength="4" maxlength="30"
+                                                       type="password" class="inpt2" placeholder="비밀번호 확인"/>
+                                                <input name="nick" id="nick" type="text" class="inpt2"
+                                                       placeholder="닉네임 입력"/>
+                                            </div>
                                             <div class="submit-wrap">
                                                 <input type="submit" value="회원가입" class="submit"/>
                                             </div>

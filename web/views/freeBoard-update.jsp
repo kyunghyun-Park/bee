@@ -31,7 +31,7 @@
         </div>
         <footer class="post-comment">
             <a class="exit-btn transparent-btn" href="schoolInfo.html">✔ 나가기</a>
-            <button class="transparent-btn">등록</button>
+            <button class="transparent-btn">발행</button>
         </footer>
     </article>
 </section>

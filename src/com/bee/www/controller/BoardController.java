@@ -1,6 +1,11 @@
 package com.bee.www.controller;
 
-import com.bee.www.action.*;
+import com.bee.www.action.Member.*;
+import com.bee.www.action.freeboard.FreeBoardAction;
+import com.bee.www.action.freeboard.FreeBoardWriteAction;
+import com.bee.www.action.review.ReviewsAction;
+import com.bee.www.action.schoolinfo.SchoolInfoAction;
+import com.bee.www.action.schoolinfo.SchoolWriteAction;
 import com.bee.www.common.Action;
 import com.bee.www.common.ActionForward;
 
@@ -78,7 +83,7 @@ public class BoardController extends HttpServlet {
                 e.printStackTrace();
             }
         }else if(command.equals("/schBoardWrite.do")){
-            action = new SchoolInfoWriteAction();
+            action = new SchoolWriteAction();
             try{
                 forward = action.execute(request,response);
             }catch (Exception e){
@@ -92,7 +97,28 @@ public class BoardController extends HttpServlet {
                 e.printStackTrace();
             }
         }else if(command.equals("/freeBoardWrite.do")){
-            action = new SchoolInfoWriteAction();
+            action = new FreeBoardWriteAction();
+            try{
+                forward = action.execute(request,response);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }else if(command.equals("/reviews.do")){
+            action = new ReviewsAction();
+            try{
+                forward = action.execute(request,response);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }else if(command.equals("/profile.do")){
+            action = new ProfileAction();
+            try{
+                forward = action.execute(request,response);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }else if(command.equals("/profileUpdate.do")){
+            action = new ProfileUpdateAction();
             try{
                 forward = action.execute(request,response);
             }catch (Exception e){

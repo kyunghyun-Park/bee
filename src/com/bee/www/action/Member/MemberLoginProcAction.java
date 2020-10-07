@@ -1,9 +1,6 @@
-package com.bee.www.action;
+package com.bee.www.action.Member;
 
-import com.bee.www.common.Action;
-import com.bee.www.common.ActionForward;
-import com.bee.www.common.BCrypt;
-import com.bee.www.common.RegExp;
+import com.bee.www.common.*;
 import com.bee.www.service.BoardService;
 import com.bee.www.vo.MemberVo;
 
@@ -13,7 +10,7 @@ import java.io.PrintWriter;
 
 import static com.bee.www.common.RegExp.*;
 
-public class MemberJoinProcAction implements Action {
+public class MemberLoginProcAction implements Action {
     @Override
     public ActionForward execute
             (HttpServletRequest request, HttpServletResponse response)
@@ -22,47 +19,43 @@ public class MemberJoinProcAction implements Action {
         //view에서 값 받아오기
         String id = request.getParameter("id");
         String pwd = request.getParameter("pwd");
-        String pwd_confirm = request.getParameter("pwd_confirm");
-        String email = request.getParameter("email");
-        String nick = request.getParameter("nick");
 
         //값 비어있는지,형식(정규식) 검사
         if (id == null || id.equals("") || !RegExp.checkString(MEMBER_ID, id)
-                || pwd == null || pwd.equals("") || !RegExp.checkString(MEMBER_PWD, pwd)
-                || nick == null || nick.equals("") || !RegExp.checkString(MEMBER_NICK, nick)
-                || email == null || email.equals("") || !RegExp.checkString(MEMBER_EMAIL, email)) {
+                || pwd == null || pwd.equals("") || !RegExp.checkString(MEMBER_PWD, pwd)) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
             out.println("<script>alert('잘못된 접근입니다');location.href='/';</script>");
             out.close();
             return null;
         }
-
-        //pwd,pwd확인 일치하는지 검사
-        if (!pwd.equals(pwd_confirm)) {
-            response.setContentType("text/html;charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            out.println("<script>alert('두 비밀번호가 일치하지 않습니다.');location.href='/';</script>");
-            out.close();
-            return null;
-        }
-
-        //memberVo에 값 set
-        MemberVo memberVo = new MemberVo();
-        memberVo.setId(id);
-        memberVo.setPwd(BCrypt.hashpw(pwd, BCrypt.gensalt(12)));
-        memberVo.setEmail(email);
-        memberVo.setNickname(nick);
-
-        //service 호출
+        
         BoardService service = new BoardService();
-        if (!service.joinMember(memberVo)) {
+        
+        //memberVo에 값 set
+        MemberVo memberVo = service.getMember(id); //service에서 sq,id,pwd가져오기
+
+        //비번 비교 후 불일치할 때
+        if(memberVo==null||!BCrypt.checkpw(pwd,memberVo.getPwd())){
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            out.println("<script>alert('회원 가입에 실패하였습니다.');location.href='/';</script>");
+            out.println("<script>alert('로그인 정보를 확인해 주세요.');history.back();</script>");
             out.close();
             return null;
         }
+
+        memberVo.setLgn_fl(true);   //로그인 상태로 변경
+
+        if(!service.loginMember(memberVo)){ //service에서 로그인처리 호출(isSucess받아옴)
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('로그인 처리에 실패하였습니다.');location.href='/';</script>");
+            out.close();
+            return null;
+        }
+
+        LoginManager lm = LoginManager.getInstance();
+        lm.setSession(request.getSession(),memberVo.getId()); //유저 id이름으로 세션등록,valueBound()호출
 
         //메인페이지로 이동
         ActionForward forward = new ActionForward();

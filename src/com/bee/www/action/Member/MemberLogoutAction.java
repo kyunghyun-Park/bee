@@ -1,4 +1,4 @@
-package com.bee.www.action;
+package com.bee.www.action.Member;
 
 import com.bee.www.common.*;
 import com.bee.www.service.BoardService;

@@ -1,6 +1,6 @@
 package com.bee.www.common;
 
-import com.bee.www.action.MemberLogoutAction;
+import com.bee.www.action.Member.MemberLogoutAction;
 
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionBindingEvent;

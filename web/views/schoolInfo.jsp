@@ -1,7 +1,14 @@
+<%@ page import="com.bee.www.common.LoginManager" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%
+    LoginManager lm = LoginManager.getInstance();
+    String id = lm.getMemberId(session);
+%>
+<!DOCTYPE html>
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/index_header.css">
     <link rel="stylesheet" href="css/schoolInfo.css">
@@ -17,10 +24,24 @@
                 <input type="text" placeholder="검색할 내용.."/>
             </div>
             <div class="header-login">
-
-                <a href="/login.do">
-                    <h3>로그인</h3>
+                <%
+                    //로그인 상태
+                    if(id==null){
+                %>
+                <a href="/join.do">
+                    <h3 class="join">회원가입</h3>
                 </a>
+                <a href="/login.do">
+                    <h3>로그인</h3></a>
+                <% } //로그아웃 상태
+                else { %>
+                <a href="/profile.do">
+                    <h3 class="join">회원정보</h3>
+                </a>
+                <a href="/logout.do">
+                    <h3>로그아웃</h3>
+                </a>
+                <% }  %>
             </div>
 
         </div>
@@ -29,7 +50,7 @@
 
 <section class="title-section">
     <div class="title-logo">
-        <a href="index.jsp">
+        <a href="/">
             <h1>Good Bee</h1>
         </a>
     </div>
@@ -40,8 +61,7 @@
         <nav>
             <ul>
                 <li><a href="/schBoard.do" style="color: rgb(12, 167, 179);">학원정보</a></li>
-                <li><a href="#">수강후기</a></li>
-                <li><a href="#">오늘의 공부</a></li>
+                <li><a href="/reviews.do">학원후기</a></li>
                 <li><a href="/freeBoard.do">자유게시판</a></li>
             </ul>
         </nav>
@@ -66,7 +86,7 @@
                                         </select>
                                     </form>
                                     <div class="control">
-                                        <a href="/schBoardWrite.do" class="searchADNcontrol">글쓰기</a>
+                                        <a href="schBoardWrite.do" class="searchADNcontrol">글쓰기</a>
                                     </div>
                                 </div>
                             </div>
@@ -84,7 +104,7 @@
                                     <tbody>
                                     <tr>
                                         <td name="" id="" class="num"></td>
-                                        <td name="title" id="title" class="title"></td>
+                                        <td name="title" id="title" class="title"><a href="schoolInfo-detail.html"></a></td>
                                         <td name="" id="" class="user"></td>
                                         <td name="writeDate" id="writeDate" class="date"></td>
                                         <td name="hit" id="hit" class="view"></td>
@@ -92,7 +112,7 @@
                                     <!-- 지워도되는 테스트 -->
                                     <tr>
                                         <td class="num">1</td>
-                                        <td class="title">테스트 제목입니다.</td>
+                                        <td class="title"><a href="schoolInfo-detail.html">테스트 제목입니다.</a></td>
                                         <td class="user">kim</td>
                                         <td class="date">2020-10-05</td>
                                         <td class="view">10</td>

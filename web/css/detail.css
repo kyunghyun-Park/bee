@@ -1,0 +1,97 @@
+.detail-container{
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid rgba(128, 127, 127, 0.534);
+    margin: 10px 10px 10px 10px;
+}
+.detail-title{
+    max-height: 100px;
+    background-color: #fff;
+}
+.title-h2{
+    text-align: center;
+    font-size: 22px;
+    margin-top: 25px;
+}
+hr{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+.detail-userInfo{
+    color: #333;
+    border-color: #ddd;
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    background-color: #fff;
+}
+.detail-userInfo .userName{
+    font-size: 14px;
+    color: #2a6496;
+}
+.detail-userInfo p{
+    margin-top: 0;
+    margin-bottom: 3px;
+    display: block;
+    color: #ccc;
+    font-size: 12px;
+}
+.detail-userInfo svg{
+    width: 22px;
+    height: 22px;
+}
+.pull-right{
+    text-align: right;
+    float: right !important;
+    background-color: #fff;
+}
+.content-count{
+    float: left;
+    width: 50px;
+    text-align: right;
+    display: block;
+}
+.content-count p{
+    text-align: center;
+}
+.detail-dec{
+    padding: 15px;
+    width: 100%;
+    margin: 0;
+    background-color: #fff;
+}
+.detail-button{
+    padding: 10px;
+    height: 100%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+.detail-button button{
+    position: relative;
+    display: inline-block;
+    zoom: 1;
+    margin: 0;
+    padding: 0 10px;
+    height: 28px;
+    line-height: 28px;
+    font-size: 13px;
+    font-weight: normal;
+    letter-spacing: normal;
+    color: white !important;
+    background: #8bd6f1 !important;
+    border: none;
+    border-radius: 0;
+    text-decoration: none !important;
+    cursor: pointer;
+    vertical-align: middle;
+    text-shadow: none;
+    box-shadow: none;
+    transition-duration: 0.3s;
+    box-sizing: content-box;
+}

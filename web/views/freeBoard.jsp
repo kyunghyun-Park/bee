@@ -2,6 +2,9 @@
 <html>
 <head>
     <title>Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/index_header.css">
     <link rel="stylesheet" href="css/schoolInfo.css">
@@ -17,18 +20,20 @@
                 <input type="text" placeholder="검색할 내용.."/>
             </div>
             <div class="header-login">
-                <a href="/login.do">
-                    <h3>로그인</h3>
+                <a href="profile-info.html">
+                    <h3 class="join">회원정보</h3>
+                </a>
+                <a href="index.html">
+                    <h3>로그아웃</h3>
                 </a>
             </div>
-
         </div>
     </div>
 </header>
 
 <section class="title-section">
     <div class="title-logo">
-        <a href="index.jsp">
+        <a href="/">
             <h1>Good Bee</h1>
         </a>
     </div>
@@ -39,8 +44,7 @@
         <nav>
             <ul>
                 <li><a href="/schBoard.do">학원정보</a></li>
-                <li><a href="#">수강후기</a></li>
-                <li><a href="#">오늘의 공부</a></li>
+                <li><a href="/reviews.do">학원후기</a></li>
                 <li><a href="/freeBoard.do" style="color: rgb(12, 167, 179);">자유게시판</a></li>
             </ul>
         </nav>
@@ -82,7 +86,8 @@
                                     <tbody>
                                     <tr>
                                         <td name="" id="" class="num"></td>
-                                        <td name="title" id="title" class="title"></td>
+                                        <!--경로 num값에 따라 url 매핑필요 -->
+                                        <td name="title" id="title" class="title"><a href="freeBoard-detail.html"></a></td>
                                         <td name="" id="" class="user"></td>
                                         <td name="writeDate" id="writeDate" class="date"></td>
                                         <td name="hit" id="hit" class="view"></td>

@@ -9,6 +9,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>메인 화면</title>
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     <link rel="stylesheet" type="text/css" href="/css/index_header.css">
@@ -24,11 +25,25 @@
                 <input type="text" placeholder="검색할 내용.."/>
             </div>
             <div class="header-login">
-                <a href="/login.do">
-                    <h3>로그인</h3>
+                <%
+                    //로그인 상태
+                    if(id==null){
+                %>
+                <a href="/join.do">
+                    <h3 class="join">회원가입</h3>
                 </a>
+                <a href="/login.do">
+                    <h3>로그인</h3></a>
+                <% } //로그아웃 상태
+                else { %>
+                <a href="/profile.do">
+                    <h3 class="join">회원정보</h3>
+                </a>
+                <a href="/logout.do">
+                    <h3>로그아웃</h3>
+                </a>
+                <% }  %>
             </div>
-
         </div>
     </div>
 </header>
@@ -45,10 +60,9 @@
     <section class="nav-section">
         <nav>
             <ul>
-                <li><a href="schoolInfo.jsp">학원정보</a></li>
-                <li><a href="#">수강후기</a></li>
-                <li><a href="#">오늘의 공부</a></li>
-                <li><a href="freeBoard.jsp">자유게시판</a></li>
+                <li><a href="/schBoard.do">학원정보</a></li>
+                <li><a href="/reviews.do">학원후기</a></li>
+                <li><a href="/freeBoard.do">자유게시판</a></li>
             </ul>
         </nav>
     </section>
@@ -117,6 +131,5 @@
         </article>
     </div>
 </div>
-
 </body>
 </html>

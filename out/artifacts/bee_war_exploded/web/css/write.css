@@ -78,12 +78,38 @@ article > div.post-title > textarea {
 .post-textarea{
     display: block;
     width: 90%;
-    height: 622px;
+    height: 321px;
     font-size: 20px;
     border: none;
     outline: 0 none;
     resize: none;
     padding: 15px 10px 50px 10px;
+}
+.upButton{
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: #8bd6f1;
+    color: white;
+    border-radius: 4px;
+    padding: 0px 1.125rem;
+    height: 2.5rem;
+    font-size: 1.125rem;
+    width: 100%;
+}
+.img-up input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
 }
 /* write */
 
@@ -111,3 +137,23 @@ footer.post-comment{
     transform: translateY(-50%);
 }
 /* footer */
+
+.img-preview{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+.img-preview img{
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+.img-preview svg{
+    position: absolute;
+}
