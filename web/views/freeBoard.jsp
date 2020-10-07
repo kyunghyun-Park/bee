@@ -1,4 +1,9 @@
+<%@ page import="com.bee.www.common.LoginManager" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    LoginManager lm = LoginManager.getInstance();
+    String id = lm.getMemberId(session);
+%>
 <html>
 <head>
     <title>Title</title>
@@ -14,18 +19,32 @@
     <div class="header-area">
         <div class="header-main">
             <svg width="17" height="17" viewBox="0 0 17 17">
-                <path fill-rule="evenodd" d="M13.66 7.36a6.3 6.3 0 1 1-12.598 0 6.3 6.3 0 0 1 12.598 0zm-1.73 5.772a7.36 7.36 0 1 1 1.201-1.201l3.636 3.635c.31.31.31.815 0 1.126l-.075.075a.796.796 0 0 1-1.126 0l-3.636-3.635z" clip-rule="evenodd"></path>
+                <path fill-rule="evenodd"
+                      d="M13.66 7.36a6.3 6.3 0 1 1-12.598 0 6.3 6.3 0 0 1 12.598 0zm-1.73 5.772a7.36 7.36 0 1 1 1.201-1.201l3.636 3.635c.31.31.31.815 0 1.126l-.075.075a.796.796 0 0 1-1.126 0l-3.636-3.635z"
+                      clip-rule="evenodd"></path>
             </svg>
             <div class="header-filter">
                 <input type="text" placeholder="검색할 내용.."/>
             </div>
             <div class="header-login">
-                <a href="profile-info.html">
+                <%
+                    //로그인 상태
+                    if(id==null){
+                %>
+                <a href="/join.do">
+                    <h3 class="join">회원가입</h3>
+                </a>
+                <a href="/login.do">
+                    <h3>로그인</h3></a>
+                <% } //로그아웃 상태
+                else { %>
+                <a href="/profile.do">
                     <h3 class="join">회원정보</h3>
                 </a>
-                <a href="index.html">
+                <a href="/logout.do">
                     <h3>로그아웃</h3>
                 </a>
+                <% }  %>
             </div>
         </div>
     </div>
@@ -85,12 +104,11 @@
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td name="" id="" class="num"></td>
-                                        <!--경로 num값에 따라 url 매핑필요 -->
-                                        <td name="title" id="title" class="title"><a href="freeBoard-detail.html"></a></td>
-                                        <td name="" id="" class="user"></td>
-                                        <td name="writeDate" id="writeDate" class="date"></td>
-                                        <td name="hit" id="hit" class="view"></td>
+                                        <td class="num">1</td>
+                                        <td class="title"><a href="schoolInfo-detail.html">테스트 제목입니다.</a></td>
+                                        <td class="user">kim</td>
+                                        <td class="date">2020-10-05</td>
+                                        <td class="view">10</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -125,9 +143,9 @@
 
 <script src="http://code.jquery.com/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
 <script>
-    $(function(){
+    $(function () {
         var sBtn = $(".pagination ul > li");    //  ul > li 이를 sBtn으로 칭한다. (클릭이벤트는 li에 적용 된다.)
-        sBtn.find("a").click(function(){   // sBtn에 속해 있는  a 찾아 클릭 하면.
+        sBtn.find("a").click(function () {   // sBtn에 속해 있는  a 찾아 클릭 하면.
             sBtn.removeClass("active");     // sBtn 속에 (active) 클래스를 삭제 한다.
             $(this).parent().addClass("active"); // 클릭한 a에 (active)클래스를 넣는다.
         })
