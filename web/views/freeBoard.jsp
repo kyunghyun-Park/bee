@@ -87,13 +87,13 @@
                         <div class="content-list">
                             <div class="list-header">
                                 <div class="board-sort">
-                                    <form>
+                                <%--    <form>
                                         <select class="list-sort">
                                             <option value="newest">최신순</option>
                                             <option value="best">추천순</option>
                                             <option value="viewed">조회순</option>
                                         </select>
-                                    </form>
+                                    </form>--%>
                                     <div class="control">
                                         <a href="/freeBoardWrite.do" class="searchADNcontrol">글쓰기</a>
                                     </div>
@@ -118,7 +118,7 @@
                                         <td class="num"><%=list.get(i).getB_sq()%></td>
                                         <td onclick="showDetail(<%=list.get(i).getB_sq()%>)" class="title"><%=list.get(i).getTitle()%></td>
                                         <td class="user"><%=list.get(i).getNickname()%></td>
-                                        <td class="date"><%=list.get(i).getWriteDate()%></td>
+                                        <td class="date"><%=list.get(i).getWriteDate().substring(0, 11)%></td>
                                         <td class="view"><%=list.get(i).getHit()%></td>
                                     </tr>
                                     <% } %>

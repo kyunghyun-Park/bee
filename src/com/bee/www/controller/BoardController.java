@@ -6,6 +6,7 @@ import com.bee.www.action.freeboard.FreeBoardWriteAction;
 import com.bee.www.action.freeboard.FreeDetailAction;
 import com.bee.www.action.freeboard.FreeRegisterAction;
 import com.bee.www.action.review.ReviewsAction;
+import com.bee.www.action.review.ReviewsRegisterAction;
 import com.bee.www.action.schoolinfo.SchoolDetailAction;
 import com.bee.www.action.schoolinfo.SchoolInfoAction;
 import com.bee.www.action.schoolinfo.SchoolRegisterAction;
@@ -137,6 +138,13 @@ public class BoardController extends HttpServlet {
             }
         } else if(command.equals("/reviews.do")){
             action = new ReviewsAction();
+            try{
+                forward = action.execute(request,response);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        } else if(command.equals("/reviewsRegister.do")){
+            action = new ReviewsRegisterAction();
             try{
                 forward = action.execute(request,response);
             }catch (Exception e){

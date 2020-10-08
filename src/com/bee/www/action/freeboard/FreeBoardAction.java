@@ -17,8 +17,6 @@ public class FreeBoardAction implements Action {
         String query="c_sq=7";
 
         ArrayList<ArticleVo> articleList = service.getArticleList(query);
-
-
         request.setAttribute("list",articleList);
 
         ActionForward forward = new ActionForward();

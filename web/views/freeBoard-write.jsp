@@ -41,12 +41,12 @@
         <form action="/freeRegister.do" method="post" onsubmit="return checkData()">
 
             <div class="post-title">
-                <textarea name="title" id="title" placeholder="제목을 입력하세요"></textarea>
+                <input type="text" name="title" id="title" placeholder="제목을 입력하세요"/>
             </div>
             <div class="file-">
                 <button class="upButton">
                     <label htmlFor="file" class="img-up">
-                        <input type="file" id="imgInput" accept=".jpg, .png, .jpeg, .gif"></input>이미지 업로드
+                        <input type="file" id="imgInput" accept=".jpg, .png, .jpeg, .gif"/>이미지 업로드
                     </label>
                 </button>
             </div>

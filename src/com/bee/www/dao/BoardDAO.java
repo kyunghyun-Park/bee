@@ -191,6 +191,33 @@ public class BoardDAO {
         }
         return list;
     }
+    public ArrayList<ArticleVo> getReviewsList() {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        ArrayList<ArticleVo> list = new ArrayList<>();
+
+        try{
+            pstmt = con.prepareStatement("select m.nickname, r.content, r.writeDate " +
+                                            "from board_review r " +
+                                            "inner join member m on r.m_sq = m.sq " +
+                                            "order by writeDate desc");
+            rs=pstmt.executeQuery();
+            while(rs.next()){
+                ArticleVo vo = new ArticleVo();
+                vo.setNickname(rs.getString("nickname"));
+                vo.setContent(rs.getString("content"));
+                vo.setWriteDate(rs.getString("writeDate"));
+                list.add(vo);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(rs);
+            close(pstmt);
+        }
+        return list;
+    }
+
     //글 등록
     public int insertArticle(ArticleVo vo){
         PreparedStatement pstmt = null;
@@ -210,7 +237,26 @@ public class BoardDAO {
         }
         return count;
     }
-
+    
+    //리뷰 등록
+    public int insertReviews(ArticleVo vo){
+        PreparedStatement pstmt = null;
+        int count = 0;
+        try{
+            //현재 로그인된 id에 해당하는 고유번호 조회
+            pstmt = con.prepareStatement("insert into board_review(m_sq, content) value(?, ?)");
+            pstmt.setInt(1,vo.getM_sq());
+            pstmt.setString(2,vo.getContent());
+            count=pstmt.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(pstmt);
+        }
+        return count;
+    }
+    
+    //글 내용보기
     public ArticleVo getArticleDetail(int num){
         PreparedStatement pstmt = null;
         ResultSet rs = null;

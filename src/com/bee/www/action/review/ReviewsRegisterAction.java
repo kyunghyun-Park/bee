@@ -1,4 +1,4 @@
-package com.bee.www.action.schoolinfo;
+package com.bee.www.action.review;
 
 import com.bee.www.common.Action;
 import com.bee.www.common.ActionForward;
@@ -6,17 +6,15 @@ import com.bee.www.common.LoginManager;
 import com.bee.www.common.RegExp;
 import com.bee.www.service.BoardService;
 import com.bee.www.vo.ArticleVo;
-import com.bee.www.vo.CategoryVo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
-import java.util.logging.Logger;
 
 import static com.bee.www.common.RegExp.ARTICLE_CONTENT;
 import static com.bee.www.common.RegExp.ARTICLE_TITLE;
 
-public class SchoolRegisterAction implements Action {
+public class ReviewsRegisterAction implements Action {
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -30,21 +28,10 @@ public class SchoolRegisterAction implements Action {
             out.close();
             return null;
         }
-
         //write에서 데이터받아오기
-        String job=request.getParameter("choose_region"); //지역
-        String query="";
-        String title = request.getParameter("title");
         String content = request.getParameter("content");
-        //지역선택 검사
-        if (job== null || job.equals("")) {
-            job = "seoul";
-        }
-
         //글 번호 유효성검사,RegExp = 글 번호 유효성 검사
-        if (title == null || content == null
-                || title.equals("") || content.equals("")
-                || !RegExp.checkString(ARTICLE_TITLE, title) || !RegExp.checkString(ARTICLE_CONTENT, content)) {
+        if (content == null || content.equals("") || !RegExp.checkString(ARTICLE_CONTENT, content)) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
             out.println("<script>alert('잘못된 접근입니다.');history.back();</script>");
@@ -55,12 +42,10 @@ public class SchoolRegisterAction implements Action {
         BoardService service = new BoardService();
         //vo에 담음
         ArticleVo vo = new ArticleVo();
-        vo.setTitle(title);
         vo.setContent(content);
-        vo.setC_sq(Integer.parseInt(job));   //서울이면 1들어옴
         vo.setM_sq(service.getMemberSequence(id));
 
-        if(!service.insertArticle(vo)){ //글 저장 service 호출
+        if(!service.insertReviews(vo)){ //글 저장 service 호출
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
             out.println("<script>alert('글 저장에 실패했습니다.');history.back();</script>");
@@ -69,7 +54,7 @@ public class SchoolRegisterAction implements Action {
         }
 
         ActionForward forward = new ActionForward();
-        forward.setPath("/schBoard.do");
+        forward.setPath("/reviews.do");
         forward.setRedirect(true);
         return forward;
     }

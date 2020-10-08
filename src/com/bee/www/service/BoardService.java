@@ -123,6 +123,25 @@ public class BoardService {
         close(con);
         return isSucess;
     }
+    //리뷰쓰기 메소드
+    public boolean insertReviews(ArticleVo vo) {
+        //세팅
+        BoardDAO dao = BoardDAO.getInstance();
+        Connection con = getConnection();
+        dao.setConnection(con);
+        //그냥 count넘겨도 되지만 boolean으로 함
+        boolean isSucess = false;
+
+        int count = dao.insertReviews(vo);
+        if (count > 0) {    //성공
+            commit(con);
+            isSucess = true;
+        } else {          //실패
+            rollback(con);
+        }
+        close(con);
+        return isSucess;
+    }
 
     public ArrayList<ArticleVo> getArticleList(String query){
         BoardDAO dao = BoardDAO.getInstance();
@@ -134,13 +153,22 @@ public class BoardService {
 
         return list;
     }
+    public ArrayList<ArticleVo> getReviewsList(){
+        BoardDAO dao = BoardDAO.getInstance();
+        Connection con = getConnection();
+        dao.setConnection(con);
+
+        ArrayList<ArticleVo> list = dao.getReviewsList();
+        close(con);
+
+        return list;
+    }
     public ArticleVo getArticleDetail(int num){
         BoardDAO dao = BoardDAO.getInstance();
         Connection con = getConnection();
         dao.setConnection(con);
 
-        ArticleVo vo = null;
-        vo=dao.getArticleDetail(num);
+        ArticleVo vo=dao.getArticleDetail(num);
         close(con);
 
         return vo;

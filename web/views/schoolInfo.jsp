@@ -103,6 +103,7 @@
                                     <thead>
                                     <tr>
                                         <th class="num">번호</th>
+                                        <th class="num">지역번호</th> <!--임시로 제가 추가한 부분-->
                                         <th class="title" style="min-width: 120px;">제목</th>
                                         <th class="user">작성자</th>
                                         <th class="date">작성일</th>
@@ -117,7 +118,7 @@
                                         <td class="num"><%=list.get(i).getB_sq()%></td>
                                         <td onclick="showDetail(<%=list.get(i).getB_sq()%>)" class="title"><%=list.get(i).getTitle()%></td>
                                         <td class="user"><%=list.get(i).getNickname()%></td>
-                                        <td class="date"><%=list.get(i).getWriteDate()%></td>
+                                        <td class="date"><%=list.get(i).getWriteDate().substring(0, 11)%></td>
                                         <td class="view"><%=list.get(i).getHit()%></td>
                                     </tr>
                                     <% } %>
@@ -141,7 +142,7 @@
                                         <option value="title">제목</option>
                                         <option value="username">작성자</option>
                                     </select>
-                                    <input type="text"></input>
+                                    <input type="text"/>
                                     <button type="submit" class="searchADNcontrol">검색</button>
                                 </form>
                             </div>
