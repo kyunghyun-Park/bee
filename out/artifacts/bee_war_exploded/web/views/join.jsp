@@ -188,7 +188,7 @@
                                 <div class="content">
                                     <section class="signin-cont cont">
                                         <form name="joinForm" id="joinForm" action="/joinProc.do" method="post"
-                                              onsubmit="return validateCheck()">
+                                              onsubmit="return joinSubmit()">
                                             <p id="id_check">아이디 중복확인 텍스트 자리</p>
                                             <!-- <p>가능한 아이디입니다.</p> -->
                                             <div class="checkBlock">

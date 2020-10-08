@@ -124,12 +124,12 @@ public class BoardService {
         return isSucess;
     }
 
-    public ArrayList<ArticleVo> getArticleList(){
+    public ArrayList<ArticleVo> getArticleList(String query){
         BoardDAO dao = BoardDAO.getInstance();
         Connection con = getConnection();
         dao.setConnection(con);
 
-        ArrayList<ArticleVo> list = dao.getArticleList();
+        ArrayList<ArticleVo> list = dao.getArticleList(query);
         close(con);
 
         return list;

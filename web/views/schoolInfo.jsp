@@ -1,8 +1,11 @@
 <%@ page import="com.bee.www.common.LoginManager" %>
+<%@ page import="com.bee.www.vo.ArticleVo" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     LoginManager lm = LoginManager.getInstance();
     String id = lm.getMemberId(session);
+    ArrayList<ArticleVo> list = (ArrayList<ArticleVo>) request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <head>
@@ -12,6 +15,11 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/index_header.css">
     <link rel="stylesheet" href="css/schoolInfo.css">
+    <script>
+        function showDetail(num){
+            location.href="/schDetail.do?num="+num;
+        }
+    </script>
 </head>
 <body>
 <header>
@@ -86,7 +94,7 @@
                                         </select>
                                     </form>
                                     <div class="control">
-                                        <a href="schBoardWrite.do" class="searchADNcontrol">글쓰기</a>
+                                        <a href="/schBoardWrite.do" class="searchADNcontrol">글쓰기</a>
                                     </div>
                                 </div>
                             </div>
@@ -102,22 +110,18 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <%
+                                        for(int i=0;i<list.size();i++) {
+                                    %>
                                     <tr>
-                                        <td name="" id="" class="num"></td>
-                                        <td name="title" id="title" class="title"><a href="schoolInfo-detail.html"></a></td>
-                                        <td name="" id="" class="user"></td>
-                                        <td name="writeDate" id="writeDate" class="date"></td>
-                                        <td name="hit" id="hit" class="view"></td>
+                                        <td class="num"><%=list.get(i).getB_sq()%></td>
+                                        <td onclick="showDetail(<%=list.get(i).getB_sq()%>)" class="title"><%=list.get(i).getTitle()%></td>
+                                        <td class="user"><%=list.get(i).getNickname()%></td>
+                                        <td class="date"><%=list.get(i).getWriteDate()%></td>
+                                        <td class="view"><%=list.get(i).getHit()%></td>
                                     </tr>
-                                    <!-- 지워도되는 테스트 -->
-                                    <tr>
-                                        <td class="num">1</td>
-                                        <td class="title"><a href="schoolInfo-detail.html">테스트 제목입니다.</a></td>
-                                        <td class="user">kim</td>
-                                        <td class="date">2020-10-05</td>
-                                        <td class="view">10</td>
-                                    </tr>
-                                    <!-- 지워도되는 테스트 -->
+                                    <% } %>
+
                                     </tbody>
                                 </table>
                             </div>

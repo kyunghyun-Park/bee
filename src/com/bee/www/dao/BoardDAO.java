@@ -161,7 +161,7 @@ public class BoardDAO {
     }
 
     //글 목록 띄우기
-    public ArrayList<ArticleVo> getArticleList() {
+    public ArrayList<ArticleVo> getArticleList(String query) {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         ArrayList<ArticleVo> list = new ArrayList<>();
@@ -170,8 +170,8 @@ public class BoardDAO {
            pstmt = con.prepareStatement("select b.b_sq, m.nickname, " +
                                            "b.title,b.content," +
                                            "b.hit,b.writeDate " +
-                                           "from board b inner join member m on b.m_sq = m.sq " +
-                                            "order by b_sq desc");
+                                           "from board b inner join member m on b.m_sq = m.sq where "+query
+                                            +" order by b_sq desc");
            rs=pstmt.executeQuery();
            while(rs.next()){
                ArticleVo vo = new ArticleVo();
