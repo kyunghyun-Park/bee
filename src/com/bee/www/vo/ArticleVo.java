@@ -3,13 +3,23 @@ package com.bee.www.vo;
 public class ArticleVo {
     private int b_sq;
     private int m_sq;
+    private int c_sq;
     private String title;
     private String content;
     private int hit;
     private String writeDate;
 
     private String id; //member id
-    private String nickname;
+    private String nickname;    //member nickname
+    private String cate_name;   //category name
+
+    public int getC_sq() {
+        return c_sq;
+    }
+
+    public void setC_sq(int c_sq) {
+        this.c_sq = c_sq;
+    }
 
     public String getNickname() {
         return nickname;

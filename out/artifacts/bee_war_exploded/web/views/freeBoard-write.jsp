@@ -21,7 +21,7 @@
                 return false;
             }
             if(!content){
-                alert("제목을 입력하세요");
+                alert("내용을 입력하세요");
                 $('#content').focus();
                 return false;
             }
@@ -39,6 +39,7 @@
 <section class="container-section">
     <article class="write-container">
         <form action="/freeRegister.do" method="post" onsubmit="return checkData()">
+
             <div class="post-title">
                 <textarea name="title" id="title" placeholder="제목을 입력하세요"></textarea>
             </div>

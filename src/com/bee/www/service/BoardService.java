@@ -2,6 +2,7 @@ package com.bee.www.service;
 
 import com.bee.www.dao.BoardDAO;
 import com.bee.www.vo.ArticleVo;
+import com.bee.www.vo.CategoryVo;
 import com.bee.www.vo.MemberVo;
 
 import java.sql.Connection;
@@ -83,13 +84,23 @@ public class BoardService {
         close(con);
         return count;
     }
-    //글 등록할 때 로그인 되어있는 id 시퀀스 찾는 메소드
+    //자유게시판 글 등록할 때 로그인 되어있는 id 시퀀스 찾는 메소드
     public int getMemberSequence(String id){
         BoardDAO dao = BoardDAO.getInstance();
         Connection con = getConnection();
         dao.setConnection(con);
 
         int sq = dao.getMemberSequence(id);
+        close(con);
+        return sq;
+    }
+    //학원정보 글 등록할 때 선택된 지역으로 카테고리번호 찾는 메소드
+    public int getCateSequence(String job){
+        BoardDAO dao = BoardDAO.getInstance();
+        Connection con = getConnection();
+        dao.setConnection(con);
+
+        int sq = dao.getCateSequence(job);
         close(con);
         return sq;
     }
@@ -112,6 +123,7 @@ public class BoardService {
         close(con);
         return isSucess;
     }
+
     public ArrayList<ArticleVo> getArticleList(){
         BoardDAO dao = BoardDAO.getInstance();
         Connection con = getConnection();

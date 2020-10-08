@@ -225,6 +225,7 @@
         <p><%=vo.getContent()%></p>
     </div>
 </div>
+
 <div class="detail-button">
     <%
         if(id.equals(vo.getId())) {

@@ -1125,100 +1125,133 @@
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
     <table id="283" parent="3" name="board"/>
-    <table id="284" parent="3" name="member"/>
-    <column id="285" parent="283" name="b_sq">
+    <table id="284" parent="3" name="category"/>
+    <table id="285" parent="3" name="member"/>
+    <column id="286" parent="283" name="b_sq">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="286" parent="283" name="title">
+    <column id="287" parent="283" name="title">
       <Position>2</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="287" parent="283" name="content">
+    <column id="288" parent="283" name="content">
       <Position>3</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="283" name="hit">
+    <column id="289" parent="283" name="hit">
       <Position>4</Position>
       <DataType>int|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="289" parent="283" name="writeDate">
+    <column id="290" parent="283" name="writeDate">
       <Position>5</Position>
       <DataType>datetime|0s</DataType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="290" parent="283" name="m_sq">
+    <column id="291" parent="283" name="m_sq">
       <Position>6</Position>
       <DataType>int|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="291" parent="283" name="board_member_sq_fk">
+    <column id="292" parent="283" name="c_sq">
+      <Position>7</Position>
+      <DataType>int|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="293" parent="283" name="board_member_sq_fk">
       <ColNames>m_sq</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="292" parent="283" name="PRIMARY">
+    <index id="294" parent="283" name="board_category_sq_fk">
+      <ColNames>c_sq</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="295" parent="283" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>b_sq</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="293" parent="283" name="board_member_sq_fk">
+    <foreign-key id="296" parent="283" name="board_member_sq_fk">
       <ColNames>m_sq</ColNames>
       <RefSchemaName>bee</RefSchemaName>
       <RefTableName>member</RefTableName>
-      <RefColNames>mem_sq</RefColNames>
+      <RefColNames>sq</RefColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>set-null</OnDelete>
     </foreign-key>
-    <column id="294" parent="284" name="mem_sq">
+    <foreign-key id="297" parent="283" name="board_category_sq_fk">
+      <ColNames>c_sq</ColNames>
+      <RefSchemaName>bee</RefSchemaName>
+      <RefTableName>category</RefTableName>
+      <RefColNames>cate_num</RefColNames>
+    </foreign-key>
+    <column id="298" parent="284" name="cate_num">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="299" parent="284" name="cate_name">
+      <Position>2</Position>
+      <DataType>varchar(30)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="300" parent="284" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>cate_num</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="301" parent="285" name="sq">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="295" parent="284" name="id">
+    <column id="302" parent="285" name="id">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="296" parent="284" name="pwd">
+    <column id="303" parent="285" name="pwd">
       <Position>3</Position>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="297" parent="284" name="nickname">
+    <column id="304" parent="285" name="nickname">
       <Position>4</Position>
       <DataType>varchar(80)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="298" parent="284" name="email">
+    <column id="305" parent="285" name="email">
       <Position>5</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="299" parent="284" name="lgn_fl">
+    <column id="306" parent="285" name="lgn_fl">
       <Position>6</Position>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="300" parent="284" name="PRIMARY">
+    <key id="307" parent="285" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>mem_sq</ColNames>
+      <ColNames>sq</ColNames>
       <Primary>1</Primary>
     </key>
   </database-model>

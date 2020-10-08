@@ -1,6 +1,7 @@
 package com.bee.www.dao;
 
 import com.bee.www.vo.ArticleVo;
+import com.bee.www.vo.CategoryVo;
 import com.bee.www.vo.MemberVo;
 
 import java.sql.Array;
@@ -137,6 +138,28 @@ public class BoardDAO {
         return sq;
     }
 
+    //지역이름으로 카테고리 번호 찾기
+    public int getCateSequence(String job){
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        int cate_num = 0;
+        try{
+            //현재 로그인된 id에 해당하는 고유번호 조회
+            pstmt = con.prepareStatement("select cate_num from category where cate_name=?");
+            pstmt.setString(1,job);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                cate_num=rs.getInt("cate_num");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(rs);
+            close(pstmt);
+        }
+        return cate_num;
+    }
+
     //글 목록 띄우기
     public ArrayList<ArticleVo> getArticleList() {
         PreparedStatement pstmt = null;
@@ -174,10 +197,11 @@ public class BoardDAO {
         int count = 0;
         try{
             //현재 로그인된 id에 해당하는 고유번호 조회
-            pstmt = con.prepareStatement("insert into board(m_sq, title, content) value(?, ?, ?)");
+            pstmt = con.prepareStatement("insert into board(m_sq, c_sq, title, content) value(?, ?, ?, ?)");
             pstmt.setInt(1,vo.getM_sq());
-            pstmt.setString(2,vo.getTitle());
-            pstmt.setString(3,vo.getContent());
+            pstmt.setInt(2,vo.getC_sq());
+            pstmt.setString(3,vo.getTitle());
+            pstmt.setString(4,vo.getContent());
             count=pstmt.executeUpdate();
         }catch (Exception e){
             e.printStackTrace();

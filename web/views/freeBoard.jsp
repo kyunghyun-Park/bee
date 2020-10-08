@@ -141,7 +141,7 @@
                                         <option value="title">제목</option>
                                         <option value="username">작성자</option>
                                     </select>
-                                    <input type="text"></input>
+                                    <input type="text"/>
                                     <button type="submit" class="searchADNcontrol">검색</button>
                                 </form>
                             </div>

@@ -6,53 +6,26 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f2cfc39-0d71-4b7c-9b22-9843f5f4c396" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/bee/www/action/Member/ProfileAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/bee/www/action/Member/ProfileUpdateAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/bee/www/action/review/ReviewsAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/css/detail.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/css/profile.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/css/reviews.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/views/freeBoard-detail.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/views/freeBoard-update.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/views/profile-info.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/views/profile-update.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/views/reviews.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/views/schoolInfo-detail.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/views/schoolInfo-update.jsp" afterDir="false" />
+    <list default="true" id="9f2cfc39-0d71-4b7c-9b22-9843f5f4c396" name="Default Changelist" comment="미완성">
+      <change afterPath="$PROJECT_DIR$/src/com/bee/www/action/schoolinfo/SchoolRegisterAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/bee/www/vo/CategoryVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/01e382c3-fcfd-4c30-8a73-0e04729535c5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/01e382c3-fcfd-4c30-8a73-0e04729535c5.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/bee_war_exploded/web/css/index_header.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/bee_war_exploded/web/css/index_header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/bee_war_exploded/web/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/bee_war_exploded/web/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/bee_war_exploded/web/css/write.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/bee_war_exploded/web/css/write.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/bee_war_exploded/web/views/freeBoard-write.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/bee_war_exploded/web/views/freeBoard-write.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/bee_war_exploded/web/views/freeBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/bee_war_exploded/web/views/freeBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/bee_war_exploded/web/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/bee_war_exploded/web/views/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/bee_war_exploded/web/views/join.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/bee_war_exploded/web/views/join.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/bee_war_exploded/web/views/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/bee_war_exploded/web/views/login.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/bee_war_exploded/web/views/schoolInfo-write.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/bee_war_exploded/web/views/schoolInfo-write.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/bee_war_exploded/web/views/schoolInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/bee_war_exploded/web/views/schoolInfo.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bee/www/action/FreeBoardAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bee/www/action/freeboard/FreeBoardAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bee/www/action/FreeBoardWriteAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bee/www/action/freeboard/FreeBoardWriteAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bee/www/action/MemberCheckIdAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bee/www/action/Member/MemberCheckIdAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bee/www/action/MemberJoinAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bee/www/action/Member/MemberJoinAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bee/www/action/MemberJoinProcAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bee/www/action/Member/MemberJoinProcAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bee/www/action/MemberLoginAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bee/www/action/Member/MemberLoginAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bee/www/action/MemberLoginProcAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bee/www/action/Member/MemberLoginProcAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bee/www/action/MemberLogoutAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bee/www/action/Member/MemberLogoutAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bee/www/action/SchoolInfoAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bee/www/action/schoolinfo/SchoolInfoAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bee/www/action/SchoolInfoWriteAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bee/www/action/schoolinfo/SchoolWriteAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bee/www/common/LoginManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bee/www/common/LoginManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bee/www/action/schoolinfo/SchoolWriteAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bee/www/action/schoolinfo/SchoolWriteAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/bee/www/controller/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bee/www/controller/BoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/css/index_header.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/index_header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/css/write.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/write.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bee/www/dao/BoardDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bee/www/dao/BoardDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bee/www/service/BoardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bee/www/service/BoardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/bee/www/vo/ArticleVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bee/www/vo/ArticleVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/views/freeBoard-detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/freeBoard-detail.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/views/freeBoard-write.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/freeBoard-write.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/views/freeBoard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/freeBoard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/views/join.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/join.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/views/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/login.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/views/schoolInfo-write.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/schoolInfo-write.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/views/schoolInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/schoolInfo.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/views/test.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/views/test.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -100,6 +73,13 @@
         <item name="bee@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="bee: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="category: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="bee@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="bee: schema" type="76f4a085:MysqlImplModel$Schema" />
         <item name="member: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
     </expand>
@@ -108,28 +88,94 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/views/schoolInfo-detail.jsp">
+        <entry file="file://$PROJECT_DIR$/src/com/bee/www/action/freeboard/FreeRegisterAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="46" column="40" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/views/index.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="864">
-              <caret line="63" column="32" selection-start-line="63" selection-start-column="32" selection-end-line="63" selection-end-column="32" />
+            <state relative-caret-position="254">
+              <caret line="48" column="35" lean-forward="true" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/views/schoolInfo.jsp">
+        <entry file="file://$PROJECT_DIR$/src/com/bee/www/action/schoolinfo/SchoolRegisterAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="63" column="46" selection-start-line="63" selection-start-column="46" selection-end-line="63" selection-end-column="46" />
+            <state relative-caret-position="-57">
+              <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/views/schoolInfo-write.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="249">
+              <caret line="47" column="50" lean-forward="true" selection-start-line="47" selection-start-column="50" selection-end-line="47" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bee/www/service/BoardService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="329">
+              <caret line="92" column="27" selection-start-line="92" selection-start-column="27" selection-end-line="92" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bee/www/dao/BoardDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="185">
+              <caret line="193" column="10" lean-forward="true" selection-start-line="193" selection-start-column="10" selection-end-line="193" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://01e382c3-fcfd-4c30-8a73-0e04729535c5/schema/bee/table/member">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bee/www/vo/CategoryVo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+              <folding>
+                <element signature="e#168#169#0" expanded="true" />
+                <element signature="e#213#214#0" expanded="true" />
+                <element signature="e#253#254#0" expanded="true" />
+                <element signature="e#289#290#0" expanded="true" />
+                <element signature="e#321#322#0" expanded="true" />
+                <element signature="e#371#372#0" expanded="true" />
+                <element signature="e#413#414#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://01e382c3-fcfd-4c30-8a73-0e04729535c5/schema/bee/table/member.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="24">
+              <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://01e382c3-fcfd-4c30-8a73-0e04729535c5/schema/bee/table/category.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -139,8 +185,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -159,11 +205,9 @@
         <option value="$PROJECT_DIR$/src/com/bee/www/common/ActionForward.java" />
         <option value="$PROJECT_DIR$/src/com/bee/www/common/JdbcUtil.java" />
         <option value="$PROJECT_DIR$/src/com/bee/www/action/MemberJoinAction.java" />
-        <option value="$PROJECT_DIR$/src/com/bee/www/vo/ArticleVo.java" />
         <option value="$PROJECT_DIR$/src/com/bee/www/vo/memberVo.java" />
         <option value="$PROJECT_DIR$/src/com/bee/www/action/HomeAction.java" />
         <option value="$PROJECT_DIR$/src/com/bee/www/action/MemberLoginAction.java" />
-        <option value="$PROJECT_DIR$/src/com/bee/www/dao/BoardDAO.java" />
         <option value="$PROJECT_DIR$/web/META-INF/context.xml" />
         <option value="$PROJECT_DIR$/src/com/bee/www/common/RegExp.java" />
         <option value="$PROJECT_DIR$/web/views/idCheckForm.jsp" />
@@ -173,33 +217,42 @@
         <option value="$PROJECT_DIR$/web/views/idCheckProc.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/web/views/userReg.jsp" />
-        <option value="$PROJECT_DIR$/src/com/bee/www/service/BoardService.java" />
         <option value="$PROJECT_DIR$/web/views/AjaxCheckId.jsp" />
         <option value="$PROJECT_DIR$/src/com/bee/www/action/JoinIdCheckProcAction.java" />
         <option value="$PROJECT_DIR$/src/com/bee/www/action/MemberCheckIdAction.java" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/01e382c3-fcfd-4c30-8a73-0e04729535c5/console.sql" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
-        <option value="$PROJECT_DIR$/web/views/join.jsp" />
         <option value="$PROJECT_DIR$/web/views/login.jsp" />
         <option value="$PROJECT_DIR$/web/views/freeBoard-update.jsp" />
-        <option value="$PROJECT_DIR$/web/views/freeBoard-detail.jsp" />
         <option value="$PROJECT_DIR$/web/views/profile.jsp" />
         <option value="$PROJECT_DIR$/src/com/bee/www/action/Member/MemberJoinProcAction.java" />
         <option value="$PROJECT_DIR$/web/views/schoolInfo-update.jsp" />
-        <option value="$PROJECT_DIR$/web/views/freeBoard-write.jsp" />
         <option value="$PROJECT_DIR$/src/com/bee/www/action/Member/MyPageAction.java" />
         <option value="$PROJECT_DIR$/src/com/bee/www/action/review/ReviewsdAction.java" />
         <option value="$PROJECT_DIR$/src/com/bee/www/action/Member/ProfileAction.java" />
         <option value="$PROJECT_DIR$/src/com/bee/www/action/Member/ProfileUpdateAction.java" />
         <option value="$PROJECT_DIR$/web/views/profile-info.jsp" />
-        <option value="$PROJECT_DIR$/src/com/bee/www/controller/BoardController.java" />
         <option value="$PROJECT_DIR$/src/com/bee/www/action/freeboard/FreeBoardWriteAction.java" />
         <option value="$PROJECT_DIR$/web/views/schoolInfo-detail.jsp" />
         <option value="$PROJECT_DIR$/web/views/index.jsp" />
-        <option value="$PROJECT_DIR$/web/views/schoolInfo-write.jsp" />
-        <option value="$PROJECT_DIR$/web/views/freeBoard.jsp" />
         <option value="$PROJECT_DIR$/web/views/reviews.jsp" />
         <option value="$PROJECT_DIR$/web/views/schoolInfo.jsp" />
+        <option value="01e382c3-fcfd-4c30-8a73-0e04729535c5/schema/bee/table/board_free.sql" />
+        <option value="$PROJECT_DIR$/web/views/freeBoard.jsp" />
+        <option value="$PROJECT_DIR$/web/views/freeBoard-detail.jsp" />
+        <option value="$PROJECT_DIR$/web/views/test.jsp" />
+        <option value="$PROJECT_DIR$/web/views/freeBoard-write.jsp" />
+        <option value="$PROJECT_DIR$/src/com/bee/www/vo/CategoryVo.java" />
+        <option value="$PROJECT_DIR$/src/com/bee/www/action/schoolinfo/FreeRegisterAction.java" />
+        <option value="$PROJECT_DIR$/src/com/bee/www/controller/BoardController.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/01e382c3-fcfd-4c30-8a73-0e04729535c5/console.sql" />
+        <option value="$PROJECT_DIR$/web/views/join.jsp" />
+        <option value="$PROJECT_DIR$/src/com/bee/www/action/freeboard/FreeRegisterAction.java" />
+        <option value="$PROJECT_DIR$/src/com/bee/www/service/BoardService.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
+        <option value="$PROJECT_DIR$/src/com/bee/www/action/schoolinfo/SchoolWriteAction.java" />
+        <option value="$PROJECT_DIR$/src/com/bee/www/vo/ArticleVo.java" />
+        <option value="$PROJECT_DIR$/src/com/bee/www/dao/BoardDAO.java" />
+        <option value="$PROJECT_DIR$/web/views/schoolInfo-write.jsp" />
+        <option value="$PROJECT_DIR$/src/com/bee/www/action/schoolinfo/SchoolRegisterAction.java" />
       </list>
     </option>
   </component>
@@ -211,9 +264,9 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="22" />
-    <option name="y" value="10" />
-    <option name="width" value="1936" />
+    <option name="x" value="369" />
+    <option name="y" value="54" />
+    <option name="width" value="1556" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -285,6 +338,36 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="bee" type="462c0819:PsiDirectoryNode" />
               <item name="www" type="462c0819:PsiDirectoryNode" />
+              <item name="action" type="462c0819:PsiDirectoryNode" />
+              <item name="Member" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bee" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bee" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="bee" type="462c0819:PsiDirectoryNode" />
+              <item name="www" type="462c0819:PsiDirectoryNode" />
+              <item name="action" type="462c0819:PsiDirectoryNode" />
+              <item name="review" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bee" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bee" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="bee" type="462c0819:PsiDirectoryNode" />
+              <item name="www" type="462c0819:PsiDirectoryNode" />
+              <item name="action" type="462c0819:PsiDirectoryNode" />
+              <item name="schoolinfo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bee" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bee" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="bee" type="462c0819:PsiDirectoryNode" />
+              <item name="www" type="462c0819:PsiDirectoryNode" />
               <item name="common" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -295,6 +378,15 @@
               <item name="bee" type="462c0819:PsiDirectoryNode" />
               <item name="www" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bee" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bee" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="bee" type="462c0819:PsiDirectoryNode" />
+              <item name="www" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="bee" type="b2602c69:ProjectViewProjectNode" />
@@ -336,21 +428,23 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="PluginDummyText.Genre" value="cookery" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1602040264429" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1602139446452" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../board" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/board" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="reference.idesettings.emmet.xml" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.bee.www.action.schoolinfo" />
       <recent name="com.bee.www.action.Member" />
       <recent name="com.bee.www.action.review" />
       <recent name="com.bee.www.common" />
@@ -513,7 +607,9 @@
       <workItem from="1601873613480" duration="41000" />
       <workItem from="1601873684446" duration="10052000" />
       <workItem from="1601943357709" duration="22693000" />
-      <workItem from="1602030186597" duration="9446000" />
+      <workItem from="1602030186597" duration="17112000" />
+      <workItem from="1602120005003" duration="1489000" />
+      <workItem from="1602122559175" duration="13577000" />
     </task>
     <task id="LOCAL-00001" summary="join">
       <created>1601883722990</created>
@@ -529,17 +625,31 @@
       <option name="project" value="LOCAL" />
       <updated>1601969929402</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="글 매핑 완료">
+      <created>1602040326304</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1602040326304</updated>
+    </task>
+    <task id="LOCAL-00004" summary="미완성">
+      <created>1602056356739</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1602056356739</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42232000" />
+    <option name="totallyTimeSpent" value="64964000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.59773827" visible="true" weight="0.1776" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.59773827" visible="true" weight="0.16426666" />
       <window_info id="Structure" order="1" sideWeight="0.4022617" side_tool="true" weight="0.1641791" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -549,8 +659,8 @@
       <window_info id="Web" order="7" sideWeight="0.2523474" side_tool="true" weight="0.1641791" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3373102" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.38069415" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.18221258" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.23861171" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.34924078" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -558,24 +668,24 @@
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.329718" />
-      <window_info anchor="bottom" id="Java Enterprise" order="11" />
+      <window_info anchor="bottom" id="Java Enterprise" order="11" weight="0.2407809" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="13" weight="0.07592191" />
+      <window_info anchor="bottom" id="Version Control" order="13" weight="0.18438178" />
       <window_info anchor="bottom" id="Application Servers" order="14" weight="0.20607375" />
-      <window_info anchor="bottom" id="Database Console" order="15" weight="0.3286334" />
+      <window_info anchor="bottom" id="Database Console" order="15" weight="0.13557483" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Maven" order="3" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="Database" order="6" weight="0.26293334" />
+      <window_info anchor="right" id="Database" order="6" visible="true" weight="0.208" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info anchor="right" id="Key Promoter X" order="9" weight="0.3296" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.59773827" visible="true" weight="0.1776" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.59773827" visible="true" weight="0.20602007" />
       <window_info id="Structure" order="1" sideWeight="0.4022617" side_tool="true" weight="0.1641791" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -585,7 +695,7 @@
       <window_info id="Web" order="7" sideWeight="0.2523474" side_tool="true" weight="0.1641791" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3373102" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.38069415" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.14967462" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.18221258" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -596,16 +706,16 @@
       <window_info anchor="bottom" id="Messages" order="10" weight="0.329718" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="13" weight="0.07592191" />
+      <window_info anchor="bottom" id="Version Control" order="13" weight="0.18438178" />
       <window_info anchor="bottom" id="Application Servers" order="14" weight="0.20607375" />
-      <window_info anchor="bottom" id="Database Console" order="15" weight="0.3286334" />
+      <window_info anchor="bottom" id="Database Console" order="15" visible="true" weight="0.13557483" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Maven" order="3" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="Database" order="6" weight="0.26293334" />
+      <window_info anchor="right" id="Database" order="6" weight="0.20735785" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info anchor="right" id="Key Promoter X" order="9" weight="0.3296" />
@@ -617,161 +727,30 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="join" />
     <MESSAGE value="ajax 아이디 중복검사 완료" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajax 아이디 중복검사 완료" />
+    <MESSAGE value="글 매핑 완료" />
+    <MESSAGE value="미완성" />
+    <option name="LAST_COMMIT_MESSAGE" value="미완성" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/bee/www/action/schoolinfo/SchoolRegisterAction.java</url>
+          <line>56</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/bee/www/dao/BoardDAO.java</url>
+          <line>200</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/bee/www/common/JdbcUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="59" column="23" selection-start-line="59" selection-start-column="23" selection-end-line="59" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/META-INF/context.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/index_header.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="17" lean-forward="true" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/login.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="218" column="32" selection-start-line="218" selection-start-column="26" selection-end-line="218" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2226">
-          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/views/idCheckProc.jsp" />
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/views/idCheckForm.jsp" />
-    <entry file="file://$PROJECT_DIR$/src/com/bee/www/action/MemberJoinIdCheckAction.java" />
-    <entry file="file://$PROJECT_DIR$/web/views/userReg.jsp" />
-    <entry file="file://$PROJECT_DIR$/src/com/bee/www/action/JoinIdCheckProcAction.java" />
-    <entry file="file://$PROJECT_DIR$/web/views/AjaxCheckId.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bee/www/dao/BoardDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1992">
-          <caret line="91" column="15" selection-start-line="91" selection-start-column="15" selection-end-line="91" selection-end-column="15" />
-          <folding>
-            <element signature="e#399#400#0" expanded="true" />
-            <element signature="e#441#442#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bee/www/service/BoardService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1680">
-          <caret line="75" column="15" selection-start-line="75" selection-start-column="15" selection-end-line="75" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/detail.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="696">
-          <caret line="29" column="1" lean-forward="true" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/01e382c3-fcfd-4c30-8a73-0e04729535c5/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://01e382c3-fcfd-4c30-8a73-0e04729535c5/schema/bee/table/member">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/views/test.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="13" column="43" lean-forward="true" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/views/join.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="13" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/views/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="17" column="12" lean-forward="true" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bee/www/action/Member/MemberJoinProcAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bee/www/action/Member/MemberCheckIdAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bee/www/action/Member/MemberLoginProcAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-343">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bee/www/action/Member/MemberLoginAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bee/www/action/Member/MemberJoinAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
@@ -785,57 +764,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bee/www/vo/ArticleVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
-          <folding>
-            <element signature="e#288#289#0" expanded="true" />
-            <element signature="e#325#326#0" expanded="true" />
-            <element signature="e#357#358#0" expanded="true" />
-            <element signature="e#385#386#0" expanded="true" />
-            <element signature="e#412#413#0" expanded="true" />
-            <element signature="e#449#450#0" expanded="true" />
-            <element signature="e#481#482#0" expanded="true" />
-            <element signature="e#513#514#0" expanded="true" />
-            <element signature="e#541#542#0" expanded="true" />
-            <element signature="e#583#584#0" expanded="true" />
-            <element signature="e#617#618#0" expanded="true" />
-            <element signature="e#651#652#0" expanded="true" />
-            <element signature="e#681#682#0" expanded="true" />
-            <element signature="e#727#728#0" expanded="true" />
-            <element signature="e#765#766#0" expanded="true" />
-            <element signature="e#792#793#0" expanded="true" />
-            <element signature="e#818#819#0" expanded="true" />
-            <element signature="e#853#854#0" expanded="true" />
-            <element signature="e#883#884#0" expanded="true" />
-            <element signature="e#919#920#0" expanded="true" />
-            <element signature="e#951#952#0" expanded="true" />
-            <element signature="e#1001#1002#0" expanded="true" />
-            <element signature="e#1043#1044#0" expanded="true" />
-            <element signature="e#1072#1073#0" expanded="true" />
-            <element signature="e#1097#1098#0" expanded="true" />
-            <element signature="e#1133#1134#0" expanded="true" />
-            <element signature="e#1161#1162#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bee/www/action/schoolinfo/SchoolInfoAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bee/www/action/schoolinfo/SchoolWriteAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bee/www/action/freeboard/FreeBoardAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
@@ -891,13 +820,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bee/www/common/RegExp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="20" column="130" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="130" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bee/www/action/HomeAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
@@ -922,59 +844,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/views/freeBoard-detail.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1289">
-          <caret line="95" column="7" selection-start-line="95" selection-start-column="7" selection-end-line="95" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/views/freeBoard-write.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="65" selection-start-column="65" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bee/www/action/freeboard/FreeBoardWriteAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bee/www/controller/BoardController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-192">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/views/schoolInfo-detail.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="46" column="40" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/views/schoolInfo-write.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="33" column="46" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/views/freeBoard.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="46" column="46" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/views/reviews.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="46" column="80" selection-start-line="46" selection-start-column="80" selection-end-line="46" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/views/AjaxCheckId.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -985,10 +865,265 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web/views/schoolInfo-detail.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="46" column="40" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bee/www/action/freeboard/FreeBoardAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="5047" column="4" selection-start-line="5047" selection-start-column="4" selection-end-line="5047" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://01e382c3-fcfd-4c30-8a73-0e04729535c5/schema/bee/table/board_free.sql" />
+    <entry file="file://$PROJECT_DIR$/src/com/bee/www/action/Member/MemberLoginProcAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="43" column="24" lean-forward="true" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://01e382c3-fcfd-4c30-8a73-0e04729535c5/schema/bee/table/board_free" />
+    <entry file="file://$PROJECT_DIR$/web/views/test.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="13" column="112" selection-start-line="13" selection-start-column="112" selection-end-line="13" selection-end-column="112" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/views/freeBoard-detail.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4776">
+          <caret line="199" column="136" lean-forward="true" selection-start-line="199" selection-end-line="200" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://01e382c3-fcfd-4c30-8a73-0e04729535c5/schema/bee/table/board/index/board_member_sq_fk">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://DATABASE/01e382c3-fcfd-4c30-8a73-0e04729535c5.SCHEMA:bee">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>DATABASE</ID>
+          <OriginalElement>01e382c3-fcfd-4c30-8a73-0e04729535c5.SCHEMA:bee</OriginalElement>
+          <nodes>
+            <node x="" y="">01e382c3-fcfd-4c30-8a73-0e04729535c5.TABLE:bee.category</node>
+            <node x="" y="">01e382c3-fcfd-4c30-8a73-0e04729535c5.TABLE:bee.member</node>
+            <node x="" y="">01e382c3-fcfd-4c30-8a73-0e04729535c5.TABLE:bee.board</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="185.5" y="205.5" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Key columns</Category>
+            <Category>Columns</Category>
+          </Categories>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/01e382c3-fcfd-4c30-8a73-0e04729535c5/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="24" column="38" lean-forward="true" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bee/www/common/RegExp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="20" column="130" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="130" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/views/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/views/join.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="191" column="75" lean-forward="true" selection-start-line="191" selection-start-column="75" selection-end-line="191" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/views/freeBoard.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1536">
+          <caret line="143" column="55" selection-start-line="143" selection-start-column="55" selection-end-line="143" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web/views/schoolInfo.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="63" column="46" selection-start-line="63" selection-start-column="46" selection-end-line="63" selection-end-column="46" />
+        <state relative-caret-position="-336">
+          <caret line="64" column="28" selection-start-line="64" selection-start-column="28" selection-end-line="64" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bee/www/action/freeboard/FreeBoardWriteAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="25" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bee/www/action/Member/MemberJoinProcAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-408">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bee/www/action/Member/MemberJoinAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bee/www/vo/ArticleVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="13" column="47" lean-forward="true" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bee/www/action/schoolinfo/SchoolWriteAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/views/freeBoard-write.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="22" column="25" lean-forward="true" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://01e382c3-fcfd-4c30-8a73-0e04729535c5/schema/bee/table/board">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bee/www/controller/BoardController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-13">
+          <caret line="104" column="59" lean-forward="true" selection-start-line="104" selection-start-column="59" selection-end-line="104" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://01e382c3-fcfd-4c30-8a73-0e04729535c5/schema/bee/table/board.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://01e382c3-fcfd-4c30-8a73-0e04729535c5/schema/bee/table/member.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://01e382c3-fcfd-4c30-8a73-0e04729535c5/schema/bee/table/category.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bee/www/vo/CategoryVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+          <folding>
+            <element signature="e#168#169#0" expanded="true" />
+            <element signature="e#213#214#0" expanded="true" />
+            <element signature="e#253#254#0" expanded="true" />
+            <element signature="e#289#290#0" expanded="true" />
+            <element signature="e#321#322#0" expanded="true" />
+            <element signature="e#371#372#0" expanded="true" />
+            <element signature="e#413#414#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bee/www/action/freeboard/FreeRegisterAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="48" column="35" lean-forward="true" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bee/www/service/BoardService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="92" column="27" selection-start-line="92" selection-start-column="27" selection-end-line="92" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://01e382c3-fcfd-4c30-8a73-0e04729535c5/schema/bee/table/member">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bee/www/dao/BoardDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="193" column="10" lean-forward="true" selection-start-line="193" selection-start-column="10" selection-end-line="193" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://01e382c3-fcfd-4c30-8a73-0e04729535c5/schema/bee/table/category">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/views/schoolInfo-write.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="47" column="50" lean-forward="true" selection-start-line="47" selection-start-column="50" selection-end-line="47" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bee/www/action/schoolinfo/SchoolRegisterAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-57">
+          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
         </state>
       </provider>
     </entry>
