@@ -111,6 +111,10 @@
     width: 80px;
     text-align: center;
 }
+.location{
+    width: 110px;
+    text-align: center;
+}
 .board-list table .num{
     width: 55px;
     text-align: center;

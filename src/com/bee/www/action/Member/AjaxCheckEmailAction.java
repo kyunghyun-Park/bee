@@ -18,7 +18,7 @@ public class AjaxCheckEmailAction implements Action {
     public ActionForward execute
             (HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        String email = request.getParameter("email"); //join.jsp에서 id받아옴
+        String email = request.getParameter("email"); //join or profile jsp에서 id받아옴
 
         //id 유효성 검사
         if(email==null||email.equals("")||!RegExp.checkString(MEMBER_EMAIL,email)){

@@ -48,7 +48,6 @@ public class SchoolDetailAction implements Action {
         ActionForward forward = new ActionForward();
         request.setAttribute("vo", vo);
         forward.setPath("/views/schoolInfo-detail.jsp");
-
         return forward;
     }
 }

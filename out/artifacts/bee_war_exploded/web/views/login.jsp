@@ -78,6 +78,7 @@
                                             <div class="submit-wrap">
                                                 <input type="submit" value="로그인" class="submit"/>
                                             </div>
+
                                         </form>
                                     </section>
                                 </div>

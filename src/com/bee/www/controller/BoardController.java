@@ -150,14 +150,22 @@ public class BoardController extends HttpServlet {
             }catch (Exception e){
                 e.printStackTrace();
             }
-        }else if(command.equals("/profileUpdate.do")){
+        }else if(command.equals("/ProfileUpdate.do")){
             action = new ProfileUpdateAction();
             try{
                 forward = action.execute(request,response);
             }catch (Exception e){
                 e.printStackTrace();
             }
+        }else if(command.equals("/profilePasswd.do")){
+            action = new ProfilePasswdAction();
+            try{
+                forward = action.execute(request,response);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
+
         if (forward != null) {
             if (forward.isRedirect()) {
                 response.sendRedirect(forward.getPath());

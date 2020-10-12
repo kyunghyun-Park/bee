@@ -1,9 +1,11 @@
 <%@ page import="com.bee.www.common.LoginManager" %>
+<%@ page import="com.bee.www.vo.ArticleVo" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%
     LoginManager lm = LoginManager.getInstance();
     String id = lm.getMemberId(session);
+
 %>
 <!DOCTYPE html>
 <html>
@@ -15,6 +17,13 @@
     <link rel="stylesheet" type="text/css" href="/css/index_header.css">
     <link rel="stylesheet" type="text/css" href="/css/chat.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <script>
+        function showInfo(id){
+            location.href="/profile.do?id="+id;
+            console.log(id);
+        }
+    </script>
 </head>
 <body>
 <header>
@@ -38,7 +47,7 @@
                     <h3>로그인</h3></a>
                 <% } //로그아웃 상태
                 else { %>
-                <a href="/profile.do">
+                <a onclick="showInfo(<%=id%>)" >
                     <h3 class="join">회원정보</h3>
                 </a>
                 <a href="/logout.do">

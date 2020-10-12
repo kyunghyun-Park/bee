@@ -151,7 +151,23 @@ public class BoardService {
         close(con);
         return isSucess;
     }
+    public boolean profileUpdate(MemberVo vo){
+        BoardDAO dao = BoardDAO.getInstance();
+        Connection con = getConnection();
+        dao.setConnection(con);
+        //그냥 count넘겨도 되지만 boolean으로 함
+        boolean isSucess = false;
 
+        int count = dao.profileUpdate(vo);
+        if (count > 0) {    //성공
+            commit(con);
+            isSucess = true;
+        } else {          //실패
+            rollback(con);
+        }
+        close(con);
+        return isSucess;
+    }
     public ArrayList<ArticleVo> getArticleList(String query){
         BoardDAO dao = BoardDAO.getInstance();
         Connection con = getConnection();
@@ -182,4 +198,5 @@ public class BoardService {
 
         return vo;
     }
+
 }

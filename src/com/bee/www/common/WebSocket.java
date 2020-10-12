@@ -1,5 +1,7 @@
+/*
 package com.bee.www.common;
 
+import javax.jms.Session;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 import javax.websocket.*;
@@ -86,3 +88,4 @@ public class WebSocket extends HttpServlet {
         t.printStackTrace();
     }
 }
+*/

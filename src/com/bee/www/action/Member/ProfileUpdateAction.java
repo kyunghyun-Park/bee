@@ -2,16 +2,41 @@ package com.bee.www.action.Member;
 
 import com.bee.www.common.Action;
 import com.bee.www.common.ActionForward;
+import com.bee.www.common.LoginManager;
+import com.bee.www.service.BoardService;
+import com.bee.www.vo.ArticleVo;
+import com.bee.www.vo.MemberVo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class ProfileUpdateAction implements Action {
     @Override
-    public ActionForward execute
-            (HttpServletRequest request, HttpServletResponse response) {
+    public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        LoginManager lm = LoginManager.getInstance();
+        String id = lm.getMemberId(request.getSession());
+
+        String email = request.getParameter("email");
+        String nick = request.getParameter("nick");
+
+        BoardService service = new BoardService();
+        //vo에 담음
+        MemberVo vo = new MemberVo();
+        vo.setEmail(email);
+        vo.setNickname(nick);
+        vo.setId(id);
+
+        if(!service.profileUpdate(vo)){
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('회원정보 수정에 실패했습니다.');history.back();</script>");
+            out.close();
+            return null;
+        }
         ActionForward forward = new ActionForward();
-        forward.setPath("/views/profile-update.jsp");
+        forward.setPath("/");
         return forward;
     }
 }

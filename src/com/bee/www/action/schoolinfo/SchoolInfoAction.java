@@ -15,6 +15,7 @@ public class SchoolInfoAction implements Action {
             (HttpServletRequest request, HttpServletResponse response) {
         BoardService service = new BoardService();
         ActionForward forward = new ActionForward();
+
         String query="c_sq BETWEEN 1 AND 6";
 
         ArrayList<ArticleVo> articleList = service.getArticleList(query);
