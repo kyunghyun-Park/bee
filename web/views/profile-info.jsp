@@ -26,9 +26,9 @@
             </div>
             <div class="header-login">
                 <a href="#">
-                    <h3 class="join">회원정보</h3>
+                    <h3 class="/profile.do">회원정보</h3>
                 </a>
-                <a href="index.html">
+                <a href="/logout.do">
                     <h3>로그아웃</h3>
                 </a>
             </div>

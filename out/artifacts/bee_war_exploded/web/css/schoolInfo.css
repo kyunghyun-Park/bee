@@ -32,12 +32,14 @@
 .entry-content{
     margin: 1em 0 0;
     line-height: 20px;
+    text-align: center;
 }
 .content-list{
     display: inline-block;
     zoom: 1;
     margin: 0;
     width: 100%;
+    max-width: 860px;
 }
 .list-header{
     float: left;
@@ -46,7 +48,17 @@
     width: 100%;
 }
 .board-sort{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.list-header2{
+    padding-bottom: 15px;
+    width: 100%;
     text-align: right;
+}
+.board-sort2{
+    width: 100%;
 }
 .board-sort form{
     display: inline;

@@ -14,9 +14,10 @@
     border-radius: 0.5rem;
     margin-top: 30px;
     padding: 0 10px 0 10px;
+    max-width: 860px;
 }
 .body-header textarea {
-    width: 80%;
+    width: 90%;
     border: none;
     outline: none;
     resize: none;
@@ -41,13 +42,16 @@
     background-color: #8bd6f1;
     color: #fff;
 }
+.board-container{
+    text-align: -webkit-center;
+}
 
 
 /* table section*/
 .board-list{
-    float: left;
     width: 90%;
-    margin: 15px 15px 15px 15px;
+    margin: 15px 30px 15px 45px;
+    max-width: 860px;
 }
 .board-list table{
     display: table;

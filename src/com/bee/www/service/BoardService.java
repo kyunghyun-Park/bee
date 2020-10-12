@@ -84,6 +84,15 @@ public class BoardService {
         close(con);
         return count;
     }
+    //아이디 중복검사 메소드
+    public int emailCheck(String email){
+        BoardDAO dao = BoardDAO.getInstance();
+        Connection con = getConnection();
+        dao.setConnection(con);
+        int count=dao.checkEmail(email); //dao호출
+        close(con);
+        return count;
+    }
     //자유게시판 글 등록할 때 로그인 되어있는 id 시퀀스 찾는 메소드
     public int getMemberSequence(String id){
         BoardDAO dao = BoardDAO.getInstance();

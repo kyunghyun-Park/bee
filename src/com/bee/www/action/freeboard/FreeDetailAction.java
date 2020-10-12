@@ -2,6 +2,7 @@ package com.bee.www.action.freeboard;
 
 import com.bee.www.common.Action;
 import com.bee.www.common.ActionForward;
+import com.bee.www.common.Parser;
 import com.bee.www.common.RegExp;
 import com.bee.www.service.BoardService;
 import com.bee.www.vo.ArticleVo;
@@ -35,6 +36,7 @@ public class FreeDetailAction implements Action {
             return null;
         }
         BoardService service = new BoardService();
+
         ArticleVo vo = service.getArticleDetail(numInt);    //detail service 호출
         if(vo==null){
             response.setContentType("text/html;charset=UTF-8");
@@ -43,6 +45,8 @@ public class FreeDetailAction implements Action {
             out.close();
             return null;
         }
+
+        vo.setContent(Parser.strToHTML(vo.getContent()));
         
         ActionForward forward = new ActionForward();
         request.setAttribute("vo", vo);

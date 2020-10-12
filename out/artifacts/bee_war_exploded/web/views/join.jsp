@@ -14,8 +14,50 @@
             crossorigin="anonymous"></script>
 
     <script>
-        var result = 1;
+        var resultId = 1;
+        var resultEmail = 1;
 
+        function checkEmail() {
+            var email=$('#email').val();
+
+            if(email==''){     //이메일 미입력
+                $('#email_check').html('이메일을 입력해 주세요!').css('color', 'red');
+                $('#email').focus();
+                return;
+            }
+            var regExpEmail = new RegExp("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$", "g");
+            if (regExpEmail.exec(email) == null) {
+                alert("잘못된 이메일 형식입니다.");
+                $('#email').val("");
+                $('#email').focus();
+                return false;
+            }
+
+            $.ajax({
+                url:"/checkEmail.ajax"
+                , type:"post"
+                , data: {email: email}
+                , datatype:"json"
+                , error: function () {
+                    console.log("서버 통신 실패");
+            }
+                , success: function() {
+                    console.log("서버 통신 성공");
+
+                    if (data.count == 0) {      //0 email미중복
+                        resultEmail = 0;
+                        console.log("success if resultEmail = "+resultEmail);
+                        $('#email_check').html('사용 가능한 이메일').css('color', 'blue');
+                    } else {                    //1 중복
+                        resultEmail = 1;
+                        console.log("success else resultEmail = "+resultEmail);
+                        $('#email_check').html('사용 불가능한 이메일').css('color', 'red');
+                        $('#email').val('');
+                        $('#email').focus();
+                    }
+                }
+            })
+        }
         function checkId() {
             var id = $('#id').val();
             if(id==''){     //아이디 미입력
@@ -41,7 +83,7 @@
 
             //아이디 중복확인
             $.ajax({
-                url: "/checkId.do",
+                url: "/checkId.ajax",
                 type: "post",
                 data: {id: id},
                 dataType: "json",
@@ -52,12 +94,12 @@
                     console.log("서버 통신 성공");
 
                     if (data.count == 0) {      //0 id미중복
-                        result = 0;
-                        console.log("success if result = "+result);
+                        resultId = 0;
+                        console.log("success if result = "+resultId);
                         $('#id_check').html('사용 가능한 아이디').css('color', 'blue');
                     } else {                    //1 중복
-                        result = 1;
-                        console.log("success else result = "+result);
+                        resultId = 1;
+                        console.log("success else result = "+resultId);
                         $('#id_check').html('사용 불가능한 아이디').css('color', 'red');
                         $('#id').val('');
                         $('#id').focus();
@@ -66,11 +108,18 @@
             });
         }
 
-        $('#id').keyup(function (){
-            result = 1;  //id 칸에 다시 입력할 때 count 1로 초기화
-            console.log("keyup result = "+result);
+        //Init
+        function initCheckId() {
+            resultId = 1;  //id 칸에 다시 입력할 때 count 1로 초기화
+            console.log("keyup result = "+resultId);
             $('#id_check').html('20자 이내의 아이디 입력').css('color', '#9aa8d0');
-        });
+
+        }
+        function initCheckEmail() {
+            resultEmail = 1;  //id 칸에 다시 입력할 때 count 1로 초기화
+            console.log("keyup result = "+resultEmail);
+            $('#email_check').html('이메일 입력').css('color', '#9aa8d0');
+        }
 
         //form submit시
         function joinSubmit() {
@@ -80,13 +129,28 @@
             var email = $('#email').val();
             var nick = $('#nick').val();
 
-            if(count==1){
+           /* if(resultId==1 && resultEmail==1){
+                alert('아이디와 이메일을 중복체크 하세요');
+                if($('#id').val()==''){
+                    $('#id').focus();
+                }
+                return false;
+            }*/
+            if(resultId==1){
                 alert('아이디 중복체크 하세요');
                 if($('#id').val()==''){
                     $('#id').focus();
                 }
                 return false;
             }
+
+           /* if(resultEmail==1){
+                alert('이메일 중복체크 하세요');
+                if($('#email').val()==''){
+                    $('#email').focus();
+                }
+                return false;
+            }*/
 
             if (!id) {
                 alert("아이디를 입력해 주세요.");
@@ -145,6 +209,7 @@
                 $('#nick').focus();
                 return false;
             }
+
             var regExpEmail = new RegExp("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$", "g");
             if (regExpEmail.exec(email) == null) {
                 alert("잘못된 이메일 형식입니다.");
@@ -193,15 +258,17 @@
                                             <!-- <p>가능한 아이디입니다.</p> -->
                                             <div class="checkBlock">
                                                 <input id="id" name="id" type="text" class="inpt" minlength="4"
-                                                       maxlength="20" placeholder="아이디 입력"/>
+                                                       maxlength="20" placeholder="아이디 입력" oninput="initCheckId()"/>
                                                 <button class="checkButton" type="button" value="ID중복확인"
                                                         name="confirmId" id="confirmId" onclick="checkId()">중복확인</button>
                                             </div>
-                                            <p id="">이메일 중복확인 텍스트 자리</p>
+                                            <p id="email_check">이메일 중복확인 텍스트 자리</p>
                                             <!-- <p>가능한 이메일입니다.</p> -->
                                             <div class="checkBlock">
-                                                <input id="email" name="email" type="email" class="inpt" placeholder="이메일 입력"/>
-                                                <button class="checkButton">중복확인</button>
+                                                <input id="email" name="email" type="email" class="inpt"
+                                                       placeholder="이메일 입력" oninput="initCheckEmail()"/>
+                                                <button type="button" onclick="checkEmail()" class="checkButton"
+                                                        name="confirmEmail" id="confirmEmail">중복확인</button>
                                             </div>
                                             <div class="otherinput">
                                                 <input name="pwd" id="pwd" minlength="4" maxlength="30" type="password" class="inpt2"

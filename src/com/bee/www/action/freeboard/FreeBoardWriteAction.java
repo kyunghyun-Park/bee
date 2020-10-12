@@ -26,7 +26,8 @@ public class FreeBoardWriteAction implements Action {
         }
 
         ActionForward forward = new ActionForward();
-        forward.setPath("/views/freeBoard-write.jsp");
+//        forward.setPath("/views/freeBoard-write.jsp");
+        forward.setPath("/views/testWrite.jsp");
         return forward;
     }
 }

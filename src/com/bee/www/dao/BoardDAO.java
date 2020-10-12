@@ -101,7 +101,7 @@ public class BoardDAO {
         int count=0;
 
         try{
-            pstmt=con.prepareStatement("select count(id) as cnt from member where id=?");
+            pstmt=con.prepareStatement("select count(id) as cnt from member where binary(id)=?");
             pstmt.setString(1,id);
             rs=pstmt.executeQuery();
             while(rs.next()){
@@ -115,7 +115,27 @@ public class BoardDAO {
         }
         return count;
     }
+    //이메일 중복검사
+    public int checkEmail(String email){
+        PreparedStatement pstmt=null;
+        ResultSet rs = null;
+        int count=0;
 
+        try{
+            pstmt=con.prepareStatement("select count(email) as cnt from member where binary(email)=?");
+            pstmt.setString(1,email);
+            rs=pstmt.executeQuery();
+            while(rs.next()){
+                count=rs.getInt("cnt"); //0이면 미중복
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(rs);
+            close(pstmt);
+        }
+        return count;
+    }
     //로그인 된 유저 시퀀스 조회
     public int getMemberSequence(String id){
         PreparedStatement pstmt = null;

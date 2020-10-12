@@ -103,7 +103,7 @@
                                     <thead>
                                     <tr>
                                         <th class="num">번호</th>
-                                        <th class="num">지역번호</th> <!--임시로 제가 추가한 부분-->
+                                        <th class="num">지역</th> <!--임시로 제가 추가한 부분-->
                                         <th class="title" style="min-width: 120px;">제목</th>
                                         <th class="user">작성자</th>
                                         <th class="date">작성일</th>
@@ -116,6 +116,7 @@
                                     %>
                                     <tr>
                                         <td class="num"><%=list.get(i).getB_sq()%></td>
+                                        <td></td>
                                         <td onclick="showDetail(<%=list.get(i).getB_sq()%>)" class="title"><%=list.get(i).getTitle()%></td>
                                         <td class="user"><%=list.get(i).getNickname()%></td>
                                         <td class="date"><%=list.get(i).getWriteDate().substring(0, 11)%></td>

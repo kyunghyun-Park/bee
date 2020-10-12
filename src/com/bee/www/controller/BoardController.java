@@ -73,13 +73,6 @@ public class BoardController extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else if(command.equals("/checkId.do")){
-            action = new MemberCheckIdAction();
-            try{
-                forward = action.execute(request,response);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
         }else if(command.equals("/schBoard.do")){
             action = new SchoolInfoAction();
             try{
@@ -165,7 +158,6 @@ public class BoardController extends HttpServlet {
                 e.printStackTrace();
             }
         }
-
         if (forward != null) {
             if (forward.isRedirect()) {
                 response.sendRedirect(forward.getPath());

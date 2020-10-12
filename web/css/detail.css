@@ -1,22 +1,22 @@
 .detail-container{
     padding: 20px;
     margin-bottom: 20px;
-    background-color: #f8f8f8;
+    /* background-color: #f8f8f8; */
     border-bottom: 1px solid rgba(128, 127, 127, 0.534);
     margin: 10px 10px 10px 10px;
+    max-width: 860px;
+    text-align: start;
 }
 .detail-title{
     max-height: 100px;
     background-color: #fff;
 }
 .title-h2{
-    text-align: center;
     font-size: 22px;
     margin-top: 25px;
 }
 hr{
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 5px;
     border: 0;
     border-top: 1px solid #eee;
 }
@@ -36,16 +36,15 @@ hr{
     margin-top: 0;
     margin-bottom: 3px;
     display: block;
-    color: #ccc;
     font-size: 12px;
 }
 .detail-userInfo svg{
     width: 22px;
-    height: 22px;
+    height: 15px;
 }
 .pull-right{
-    text-align: right;
-    float: right !important;
+    display: flex;
+    justify-content: space-between;
     background-color: #fff;
 }
 .content-count{
@@ -71,6 +70,7 @@ hr{
     align-items: center;
     -webkit-box-pack: justify;
     justify-content: space-between;
+    max-width: 860px;
 }
 .detail-button button{
     position: relative;
@@ -94,4 +94,10 @@ hr{
     box-shadow: none;
     transition-duration: 0.3s;
     box-sizing: content-box;
+}
+.detail-auto{
+    text-align: -webkit-center;
+}
+.detail-auto{
+    text-align: -webkit-center;
 }

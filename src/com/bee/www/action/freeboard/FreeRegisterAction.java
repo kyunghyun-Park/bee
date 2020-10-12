@@ -1,9 +1,7 @@
 package com.bee.www.action.freeboard;
 
-import com.bee.www.common.Action;
-import com.bee.www.common.ActionForward;
-import com.bee.www.common.LoginManager;
-import com.bee.www.common.RegExp;
+import com.bee.www.common.*;
+
 import static com.bee.www.common.RegExp.*;
 
 import com.bee.www.service.BoardService;
@@ -31,6 +29,7 @@ public class FreeRegisterAction implements Action {
         //write에서 데이터받아오기
         String title = request.getParameter("title");
         String content = request.getParameter("content");
+
         //글 번호 유효성검사,RegExp = 글 번호 유효성 검사
         if (title == null || content == null
                 || title.equals("") || content.equals("")
@@ -41,11 +40,12 @@ public class FreeRegisterAction implements Action {
             out.close();
             return null;
         }
+
         BoardService service = new BoardService();
         //vo에 담음
         ArticleVo vo = new ArticleVo();
         vo.setTitle(title);
-        vo.setContent(content);
+        vo.setContent(Parser.chgToStr(content));
         vo.setM_sq(service.getMemberSequence(id));
         vo.setC_sq(7);
 
@@ -62,4 +62,6 @@ public class FreeRegisterAction implements Action {
         forward.setRedirect(true);
         return forward;
     }
+
+
 }

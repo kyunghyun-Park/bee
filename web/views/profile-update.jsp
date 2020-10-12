@@ -39,8 +39,8 @@
             <h2>회원정보 수정</h2>
         </div>
         <div class="tabs">
-            <span class="tab signin"><a href="profile-info.html">내 정보</a></span>
-            <span class="tab signup active"><a href="profile.html">비밀번호 변경</a></span>
+            <span class="tab signin"><a href="/profile.do">내 정보</a></span>
+            <span class="tab signup active"><a href="/profileUpdate.do">비밀번호 변경</a></span>
         </div>
         <div class="profile-body">
             <form>
