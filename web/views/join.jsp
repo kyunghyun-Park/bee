@@ -18,9 +18,9 @@
         var resultEmail = 1;
 
         function checkEmail() {
-            var email=$('#email').val();
+            var email = $('#email').val();
 
-            if(email==''){     //이메일 미입력
+            if (email == '') {     //이메일 미입력
                 $('#email_check').html('이메일을 입력해 주세요!').css('color', 'red');
                 $('#email').focus();
                 return;
@@ -34,23 +34,24 @@
             }
 
             $.ajax({
-                url:"/checkEmail.ajax"
-                , type:"post"
+                url: "/checkEmail.ajax"
+                , type: "post"
                 , data: {email: email}
-                , datatype:"json"
+                , dataType: "json"
                 , error: function () {
                     console.log("서버 통신 실패");
-            }
-                , success: function(data) {
+                }
+                , success: function (data) {
                     console.log("서버 통신 성공");
+                    console.log(data.count);
 
-                    if (data.count == 0) {      //0 email미중복
+                    if (data.count == "0") {      //0 email미중복
                         resultEmail = 0;
-                        console.log("success if resultEmail = "+resultEmail);
+                        console.log("success if resultEmail = " + resultEmail);
                         $('#email_check').html('사용 가능한 이메일').css('color', 'blue');
                     } else {                    //1 중복
                         resultEmail = 1;
-                        console.log("success else resultEmail = "+resultEmail);
+                        console.log("success else resultEmail = " + resultEmail);
                         $('#email_check').html('사용 불가능한 이메일').css('color', 'red');
                         $('#email').val('');
                         $('#email').focus();
@@ -58,15 +59,16 @@
                 }
             })
         }
+
         function checkId() {
             var id = $('#id').val();
-            if(id==''){     //아이디 미입력
+            if (id == '') {     //아이디 미입력
                 $('#id_check').html('아이디를 입력해 주세요!').css('color', 'red');
                 $('#id').focus();
                 return;
             }
 
-            if(id.length>20){       //아이디 길이 초과
+            if (id.length > 20) {       //아이디 길이 초과
                 $('#id_check').html('20자 이내로 작성해 주세요.').css('color', 'red');
                 $('#id').val("");
                 $('#id').focus();
@@ -92,14 +94,14 @@
                 },
                 success: function (data) {
                     console.log("서버 통신 성공");
-
+                    console.log(data.count);
                     if (data.count == 0) {      //0 id미중복
                         resultId = 0;
-                        console.log("success if result = "+resultId);
+                        console.log("success if result = " + resultId);
                         $('#id_check').html('사용 가능한 아이디').css('color', 'blue');
                     } else {                    //1 중복
                         resultId = 1;
-                        console.log("success else result = "+resultId);
+                        console.log("success else result = " + resultId);
                         $('#id_check').html('사용 불가능한 아이디').css('color', 'red');
                         $('#id').val('');
                         $('#id').focus();
@@ -111,13 +113,14 @@
         //Init
         function initCheckId() {
             resultId = 1;  //id 칸에 다시 입력할 때 count 1로 초기화
-            console.log("keyup result = "+resultId);
+            console.log("keyup result = " + resultId);
             $('#id_check').html('20자 이내의 아이디 입력').css('color', '#9aa8d0');
 
         }
+
         function initCheckEmail() {
             resultEmail = 1;  //id 칸에 다시 입력할 때 count 1로 초기화
-            console.log("keyup result = "+resultEmail);
+            console.log("keyup result = " + resultEmail);
             $('#email_check').html('이메일 입력').css('color', '#9aa8d0');
         }
 
@@ -129,28 +132,27 @@
             var email = $('#email').val();
             var nick = $('#nick').val();
 
-           /* if(resultId==1 && resultEmail==1){
+            if (resultId == 1 && resultEmail == 1) {
                 alert('아이디와 이메일을 중복체크 하세요');
-                if($('#id').val()==''){
-                    $('#id').focus();
-                }
-                return false;
-            }*/
-            if(resultId==1){
-                alert('아이디 중복체크 하세요');
-                if($('#id').val()==''){
+                if ($('#id').val() == '') {
                     $('#id').focus();
                 }
                 return false;
             }
-
-           /* if(resultEmail==1){
+            if (resultId == 1) {
+                alert('아이디 중복체크 하세요');
+                if ($('#id').val() == '') {
+                    $('#id').focus();
+                }
+                return false;
+            }
+            if (resultEmail == 1) {
                 alert('이메일 중복체크 하세요');
-                if($('#email').val()==''){
+                if ($('#email').val() == '') {
                     $('#email').focus();
                 }
                 return false;
-            }*/
+            }
 
             if (!id) {
                 alert("아이디를 입력해 주세요.");
@@ -241,11 +243,15 @@
                     <div class="main-section">
                         <section class="container">
                             <article class="modal">
-                                <a href="index.html"><div class="exit-wrapper">
-                                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" tabindex="1" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
-                                    </svg>
-                                </div></a>
+                                <a href="index.html">
+                                    <div class="exit-wrapper">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                                             viewBox="0 0 24 24" tabindex="1" height="1em" width="1em"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+                                        </svg>
+                                    </div>
+                                </a>
                                 <div class="tabs">
                                     <span class="tab signin"><a href="/login.do">로그인</a></span>
                                     <span class="tab signup active"><a href="#">회원가입</a></span>
@@ -260,7 +266,8 @@
                                                 <input id="id" name="id" type="text" class="inpt" minlength="4"
                                                        maxlength="20" placeholder="아이디 입력" oninput="initCheckId()"/>
                                                 <button class="checkButton" type="button" value="ID중복확인"
-                                                        name="confirmId" id="confirmId" onclick="checkId()">중복확인</button>
+                                                        name="confirmId" id="confirmId" onclick="checkId()">중복확인
+                                                </button>
                                             </div>
                                             <p id="email_check">이메일 중복확인 텍스트 자리</p>
                                             <!-- <p>가능한 이메일입니다.</p> -->
@@ -268,10 +275,12 @@
                                                 <input id="email" name="email" type="email" class="inpt"
                                                        placeholder="이메일 입력" oninput="initCheckEmail()"/>
                                                 <button type="button" onclick="checkEmail()" class="checkButton"
-                                                        name="confirmEmail" id="confirmEmail">중복확인</button>
+                                                        name="confirmEmail" id="confirmEmail">중복확인
+                                                </button>
                                             </div>
                                             <div class="otherinput">
-                                                <input name="pwd" id="pwd" minlength="4" maxlength="30" type="password" class="inpt2"
+                                                <input name="pwd" id="pwd" minlength="4" maxlength="30" type="password"
+                                                       class="inpt2"
                                                        placeholder="비밀번호 입력"/>
                                                 <input name="pwd_confirm" id="pwd_confirm" minlength="4" maxlength="30"
                                                        type="password" class="inpt2" placeholder="비밀번호 확인"/>

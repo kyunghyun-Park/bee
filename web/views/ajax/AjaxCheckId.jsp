@@ -1,17 +1,5 @@
-<%@ page contentType="text/plain;charset=UTF-8" language="java" %>
-
+<%@ page language="java" contentType="text/plain; charset=UTF-8"
+         pageEncoding="UTF-8" %>
 {
     "count" : "<%=(int) request.getAttribute("count")%>"
 }
-
-<%--
-<%
-    int count = (int) request.getAttribute("count");
-%>
-
-<% if (count>0) { %>
-    {"id" : 0 }
-<% } else } %>
-    {"id" : 1 }
-<% } %>
---%>

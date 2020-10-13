@@ -67,7 +67,15 @@ public class BoardController extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else if(command.equals("/schBoard.do")){
+        }else if (command.equals("/deleteMember.do")) {
+            action = new MemberDeleteAction();
+            try {
+                forward = action.execute(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else if(command.equals("/schBoard.do")){
             action = new SchoolInfoAction();
             try{
                 forward = action.execute(request,response);

@@ -15,7 +15,10 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/index_header.css">
     <link rel="stylesheet" href="css/profile.css">
-
+    <!--jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
     <script>
         var resultEmail = 1;
 
@@ -39,11 +42,11 @@
                 url: "/checkEmail.ajax"
                 , type: "post"
                 , data: {email: email}
-                , datatype: "json"
+                , dataType: "json"
                 , error: function () {
                     console.log("서버 통신 실패");
                 }
-                , success: function () {
+                , success: function (data) {
                     console.log("서버 통신 성공");
 
                     if (data.count == 0) {      //0 email미중복
@@ -71,13 +74,13 @@
             var email = $('#email').val();
             var nick = $('#nick').val();
 
-           /* if (resultEmail == 1) {
+            if (resultEmail == 1) {
                 alert('이메일 중복체크 하세요');
                 if ($('#email').val() == '') {
                     $('#email').focus();
                 }
                 return false;
-            }*/
+            }
 
             if (!email) {
                 alert("이메일을 입력해 주세요");
@@ -102,6 +105,15 @@
                 $('#email').val("");
                 $('#email').focus();
                 return false;
+            }
+        }
+
+        function deleteMember() {
+            if(confirm('탈퇴하시겠습니까?')==true) {
+                location.href='/deleteMember.do';
+
+            }else{
+                return;
             }
         }
     </script>
@@ -163,10 +175,12 @@
                 <div class="checkBlock">
                     <input id="email" name="email" type="email"
                            value="<%=vo.getEmail()%>" oninput="initCheckEmail()"/>
-                    <button class="checkButton" onclick="checkEmail()">중복확인</button>
+                    <button class="checkButton" onclick="checkEmail()" type="button">중복확인</button>
                 </div>
+                <p id="email_check">이메일 중복확인 텍스트 자리</p>
                 <div class="profile-footer">
                     <button>수정</button>
+                    <button type="button" onclick="deleteMember()">탈퇴</button>
                     <button type="button" onclick="location.href='/'">나가기</button>
                     <!-- 나가기 버튼 안되는데 나중에 수정 -->
                 </div>
@@ -176,11 +190,11 @@
     </div>
 </section>
 
-<script text="text/javascript">
+<%--<script text="text/javascript">
     document.getElementById('go-back').addEventListener('click', () => {
         console.log("??")
         window.history.back();
     });
-</script>
+</script>--%>
 </body>
 </html>

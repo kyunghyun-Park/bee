@@ -150,11 +150,11 @@ public class BoardDAO {
         int count=0;
 
         try{
-            pstmt=con.prepareStatement("select count(email) as cnt from member where binary(email)=?");
+            pstmt=con.prepareStatement("select count(*) from member where binary(email)=?");
             pstmt.setString(1,email);
             rs=pstmt.executeQuery();
             while(rs.next()){
-                count=rs.getInt("cnt"); //0이면 미중복
+                count=rs.getInt(1); //0이면 미중복
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -185,6 +185,23 @@ public class BoardDAO {
             close(pstmt);
         }
         return sq;
+    }
+
+    //회원 탈퇴
+    public int deleteMember(String id){
+        PreparedStatement pstmt = null;
+        int count = 0;
+        try{
+            //현재 로그인된 id에 해당하는 고유번호 조회
+            pstmt = con.prepareStatement("delete from member where id=?");
+            pstmt.setString(1,id);
+            count=pstmt.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(pstmt);
+        }
+        return count;
     }
 
     //지역이름으로 카테고리 번호 찾기
