@@ -263,7 +263,7 @@ public class BoardDAO {
                 vo.setNickname(rs.getString("nickname"));
                 vo.setTitle(rs.getString("title"));
                 vo.setContent(rs.getString("content"));
-                vo.setHit(10);
+                vo.setHit(rs.getInt("hit"));
                 vo.setWriteDate(rs.getString("writeDate"));
                 list.add(vo);
             }
@@ -415,7 +415,7 @@ public class BoardDAO {
                 vo.setC_sq(rs.getInt("c_sq"));
                 vo.setTitle(rs.getString("title"));
                 vo.setContent(rs.getString("content"));
-                vo.setHit(10);
+                vo.setHit(rs.getInt("hit"));
                 vo.setWriteDate(rs.getString("writeDate"));
                 vo.setNickname(rs.getString("nickname"));
             }
@@ -426,5 +426,21 @@ public class BoardDAO {
             close(pstmt);
         }
         return vo;
+    }
+
+    //조회수 증가
+    public int updateHitCount(int num){
+        PreparedStatement pstmt=null;
+        int count= 0;
+        try{
+            pstmt=con.prepareStatement("update board set hit=hit+1 where b_sq=?");
+            pstmt.setInt(1,num);
+            count=pstmt.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(pstmt);
+        }
+        return count;
     }
 }
