@@ -15,6 +15,9 @@ import java.util.ArrayList;
 public class ProfileUpdateAction implements Action {
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+
         LoginManager lm = LoginManager.getInstance();
         String id = lm.getMemberId(request.getSession());
 
@@ -29,14 +32,15 @@ public class ProfileUpdateAction implements Action {
         vo.setId(id);
 
         if(!service.profileUpdate(vo)){
-            response.setContentType("text/html;charset=UTF-8");
-            PrintWriter out = response.getWriter();
             out.println("<script>alert('회원정보 수정에 실패했습니다.');history.back();</script>");
             out.close();
             return null;
         }
+
+        out.println("<script>alert('회원정보 수정 성공');history.back();</script>");
+        out.close();
         ActionForward forward = new ActionForward();
-        forward.setPath("/");
+        forward.setPath("/profile.do?id="+id);
         return forward;
     }
 }

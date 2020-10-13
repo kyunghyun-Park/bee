@@ -39,7 +39,19 @@ public class BoardService {
         close(con);
         return vo;
     }
-    
+
+    //작성자 id구하는 메소드
+    public String getWriterId(int num){
+        BoardDAO dao = BoardDAO.getInstance();
+        Connection con = getConnection();
+        dao.setConnection(con);
+
+        String id=dao.getWriterId(num); //dao에서 구함
+
+        close(con);
+        return id;
+    }
+
     //로그인 메소드
     public boolean loginMember(MemberVo memberVo){
         BoardDAO dao = BoardDAO.getInstance();
@@ -132,6 +144,42 @@ public class BoardService {
         close(con);
         return isSucess;
     }
+    //글수정 메소드
+    public boolean updateArticle(ArticleVo vo) {
+        //세팅
+        BoardDAO dao = BoardDAO.getInstance();
+        Connection con = getConnection();
+        dao.setConnection(con);
+        boolean isSucess = false;
+
+        int count = dao.updateArticle(vo);
+        if (count > 0) {    //성공
+            commit(con);
+            isSucess = true;
+        } else {          //실패
+            rollback(con);
+        }
+        close(con);
+        return isSucess;
+    }
+    //글삭제 메소드
+    public boolean deleteArticle(int num) {
+        //세팅
+        BoardDAO dao = BoardDAO.getInstance();
+        Connection con = getConnection();
+        dao.setConnection(con);
+        boolean isSucess = false;
+
+        int count = dao.deleteArticle(num);
+        if (count > 0) {    //성공
+            commit(con);
+            isSucess = true;
+        } else {          //실패
+            rollback(con);
+        }
+        close(con);
+        return isSucess;
+    }
     //리뷰쓰기 메소드
     public boolean insertReviews(ArticleVo vo) {
         //세팅
@@ -162,6 +210,7 @@ public class BoardService {
         if (count > 0) {    //성공
             commit(con);
             isSucess = true;
+
         } else {          //실패
             rollback(con);
         }

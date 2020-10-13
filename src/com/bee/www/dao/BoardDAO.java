@@ -96,6 +96,31 @@ public class BoardDAO {
         return count;
     }
 
+    //글 수정,삭제할 때 작성자 id가져오기
+    public String getWriterId(int num){
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String id = null;
+
+        try {
+            pstmt=con.prepareStatement("select m.id " +
+                                            "from board b " +
+                                            "inner join member m on b.m_sq = m.sq " +
+                                            "where b_sq=?");
+            pstmt.setInt(1,num);
+            rs=pstmt.executeQuery();
+            while(rs.next()){
+                id=rs.getString("id");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(rs);
+            close(pstmt);
+        }
+        return id;
+    }
+
     //아이디 중복검사
     public int checkId(String id){
         PreparedStatement pstmt=null;
@@ -261,7 +286,41 @@ public class BoardDAO {
         }
         return count;
     }
-    
+    //글 수정
+    public int updateArticle(ArticleVo vo){
+        PreparedStatement pstmt = null;
+        int count = 0;
+        try{
+            //현재 로그인된 id에 해당하는 고유번호 조회
+            pstmt = con.prepareStatement("update board set c_sq=?, title=?, content=? where b_sq=?");
+            pstmt.setInt(1,vo.getC_sq());
+            pstmt.setString(2,vo.getTitle());
+            pstmt.setString(3,vo.getContent());
+            pstmt.setInt(4,vo.getB_sq());
+            count=pstmt.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(pstmt);
+        }
+        return count;
+    }
+    //글 삭제
+    public int deleteArticle(int num){
+        PreparedStatement pstmt = null;
+        int count = 0;
+        try{
+            //현재 로그인된 id에 해당하는 고유번호 조회
+            pstmt = con.prepareStatement("delete from board where b_sq=?");
+            pstmt.setInt(1,num);
+            count=pstmt.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(pstmt);
+        }
+        return count;
+    }
     //리뷰 등록
     public int insertReviews(ArticleVo vo){
         PreparedStatement pstmt = null;

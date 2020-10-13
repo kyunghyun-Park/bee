@@ -41,7 +41,7 @@
                     <h3>로그인</h3></a>
                 <% } //로그아웃 상태
                 else { %>
-                <a href="/profile.do">
+                <a href="/profile.do?id=<%=id%>">
                     <h3 class="join">회원정보</h3>
                 </a>
                 <a href="/logout.do">
@@ -231,8 +231,8 @@
         if(id.equals(vo.getId())) {
     %>
     <div class="left-button">
-        <button>수정</button>
-        <button>삭제</button>
+        <button onclick="location.href='/freeUpdate.do?num=<%=vo.getB_sq()%>'">수정</button>
+        <button onclick="location.href='/freeDelete.do?num=<%=vo.getB_sq()%>'">삭제</button>
     </div>
     <% } %>
     <div class="right-button">

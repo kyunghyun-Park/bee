@@ -1,4 +1,3 @@
-/*
 package com.bee.www.config;
 
 import javax.servlet.ServletContext;
@@ -17,4 +16,3 @@ public class HttpSessionConfigurator extends ServerEndpointConfig.Configurator {
         config.getUserProperties().put(ServletContext.class.getName(), ctx);
     }
 }
-*/

@@ -1,16 +1,10 @@
 package com.bee.www.controller;
 
 import com.bee.www.action.Member.*;
-import com.bee.www.action.freeboard.FreeBoardAction;
-import com.bee.www.action.freeboard.FreeBoardWriteAction;
-import com.bee.www.action.freeboard.FreeDetailAction;
-import com.bee.www.action.freeboard.FreeRegisterAction;
+import com.bee.www.action.freeboard.*;
 import com.bee.www.action.review.ReviewsAction;
 import com.bee.www.action.review.ReviewsRegisterAction;
-import com.bee.www.action.schoolinfo.SchoolDetailAction;
-import com.bee.www.action.schoolinfo.SchoolInfoAction;
-import com.bee.www.action.schoolinfo.SchoolRegisterAction;
-import com.bee.www.action.schoolinfo.SchoolWriteAction;
+import com.bee.www.action.schoolinfo.*;
 import com.bee.www.common.Action;
 import com.bee.www.common.ActionForward;
 
@@ -101,6 +95,27 @@ public class BoardController extends HttpServlet {
             }catch (Exception e){
                 e.printStackTrace();
             }
+        }else if(command.equals("/schUpdate.do")){
+            action = new SchoolUpdateAction();
+            try{
+                forward = action.execute(request,response);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }else if(command.equals("/schUpdateProc.do")){
+            action = new SchoolUpdateProcAction();
+            try{
+                forward = action.execute(request,response);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }else if(command.equals("/schDelete.do")){
+            action = new SchoolDeleteAction();
+            try{
+                forward = action.execute(request,response);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }else if(command.equals("/freeBoard.do")){
             action = new FreeBoardAction();
             try{
@@ -129,7 +144,28 @@ public class BoardController extends HttpServlet {
             }catch (Exception e) {
                 e.printStackTrace();
             }
-        } else if(command.equals("/reviews.do")){
+        }else if(command.equals("/freeUpdate.do")){
+            action = new FreeUpdateAction();
+            try{
+                forward = action.execute(request,response);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }else if(command.equals("/freeUpdateProc.do")){
+            action = new FreeUpdateProcAction();
+            try{
+                forward = action.execute(request,response);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }else if(command.equals("/freeDelete.do")){
+            action = new FreeDeleteAction();
+            try{
+                forward = action.execute(request,response);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }else if(command.equals("/reviews.do")){
             action = new ReviewsAction();
             try{
                 forward = action.execute(request,response);

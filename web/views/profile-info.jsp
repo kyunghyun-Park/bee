@@ -130,7 +130,7 @@
                     <h3>로그인</h3></a>
                 <% } //로그아웃 상태
                 else { %>
-                <a href="/profile.do">
+                <a href="/profile.do?id=<%=id%>">
                     <h3 class="join">회원정보</h3>
                 </a>
                 <a href="/logout.do">
@@ -167,7 +167,7 @@
                 </div>
                 <div class="profile-footer">
                     <button>수정</button>
-                    <button onclick="location.href='/'">나가기</button>
+                    <button type="button" onclick="location.href='/'">나가기</button>
                     <!-- 나가기 버튼 안되는데 나중에 수정 -->
                 </div>
             </form>

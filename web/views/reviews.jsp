@@ -54,7 +54,7 @@
                     <h3>로그인</h3></a>
                 <% } //로그아웃 상태
                 else { %>
-                <a href="/profile.do">
+                <a href="/profile.do?id=<%=id%>">
                     <h3 class="join">회원정보</h3>
                 </a>
                 <a href="/logout.do">
@@ -85,34 +85,38 @@
         </nav>
     </section>
 </div>
+<div class="board-container">
+    <div class="body-header">
+        <form action="/reviewsRegister.do" method="post" onsubmit="validateCheck()">
+            <textarea name="content" id="content" type="text" placeholder="내용을 입력하세요."></textarea>
+            <button type="submit">글쓰기</button>
+        </form>
+    </div>
 
-<div class="body-header">
-    <form action="/reviewsRegister.do" method="post" onsubmit="validateCheck()">
-        <textarea name="content" id="content" type="text" placeholder="내용을 입력하세요."></textarea>
-        <button type="submit">글쓰기</button>
-    </form>
-</div>
+    <div class="board-list">
+        <table>
+            <tbody>
 
-<div class="board-list">
-    <table>
-        <tbody>
-
-        <tr>
-            <td name="title" id="title" class="title"></td>
-            <td name="" id="" class="user"></td>
-            <td name="writeDate" id="writeDate" class="date"></td>
-        </tr>
-        <%
-            for (int i = 0; i < list.size(); i++) {
-        %>
-        <tr>
-            <td class="title"><%=list.get(i).getContent()%></td>
-            <td class="user"><%=list.get(i).getNickname()%></td>
-            <td class="date"><%=list.get(i).getWriteDate().substring(0, 11)%></td>
-        </tr>
-        <% } %>
-        </tbody>
-    </table>
+            <tr>
+                <td name="title" id="title" class="title"></td>
+                <td name="" id="" class="user"></td>
+                <td name="writeDate" id="writeDate" class="date"></td>
+            </tr>
+            <%
+                for (int i = 0; i < list.size(); i++) {
+            %>
+            <tr>
+                <td class="title"><%=list.get(i).getContent()%>
+                </td>
+                <td class="user"><%=list.get(i).getNickname()%>
+                </td>
+                <td class="date"><%=list.get(i).getWriteDate().substring(0, 11)%>
+                </td>
+            </tr>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>

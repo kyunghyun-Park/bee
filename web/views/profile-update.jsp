@@ -1,4 +1,10 @@
+<%@ page import="com.bee.www.common.LoginManager" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    LoginManager lm = LoginManager.getInstance();
+    String id = lm.getMemberId(session);
+
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,10 +26,10 @@
                 <input type="text" placeholder="검색할 내용.."/>
             </div>
             <div class="header-login">
-                <a href="#">
+                <a href="/profile.do?id=<%=id%>">
                     <h3 class="join">회원정보</h3>
                 </a>
-                <a href="index.html">
+                <a href="/logout.do">
                     <h3>로그아웃</h3>
                 </a>
             </div>
@@ -39,7 +45,7 @@
             <h2>회원정보 수정</h2>
         </div>
         <div class="tabs">
-            <span class="tab signin"><a href="/profile.do">내 정보</a></span>
+            <span class="tab signin"><a href="/profile.do?id=<%=id%>">내 정보</a></span>
             <span class="tab signup active"><a href="/profileUpdate.do">비밀번호 변경</a></span>
         </div>
         <div class="profile-body">
@@ -55,7 +61,7 @@
                 <input name="pwd_confirm" id="pwd_confirm" minlength="4" maxlength="30" type="password"/>
                 <div class="profile-footer">
                     <a><button>수정</button></a>
-                    <button id="go-back">나가기</button>
+                    <button onclick="location.href='/'">나가기</button>
                     <!-- 나가기 버튼 안되는데 나중에 수정 -->
                 </div>
             </form>

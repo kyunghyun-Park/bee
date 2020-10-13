@@ -41,7 +41,7 @@
                 , error: function () {
                     console.log("서버 통신 실패");
             }
-                , success: function() {
+                , success: function(data) {
                     console.log("서버 통신 성공");
 
                     if (data.count == 0) {      //0 email미중복
