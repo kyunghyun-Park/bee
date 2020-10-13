@@ -6,12 +6,10 @@ import com.bee.www.common.LoginManager;
 import com.bee.www.common.RegExp;
 import com.bee.www.service.BoardService;
 import com.bee.www.vo.ArticleVo;
-import com.bee.www.vo.CategoryVo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
-import java.util.logging.Logger;
 
 import static com.bee.www.common.RegExp.ARTICLE_CONTENT;
 import static com.bee.www.common.RegExp.ARTICLE_TITLE;

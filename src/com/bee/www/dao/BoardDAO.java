@@ -1,13 +1,11 @@
 package com.bee.www.dao;
 
 import com.bee.www.vo.ArticleVo;
-import com.bee.www.vo.CategoryVo;
 import com.bee.www.vo.MemberVo;
 
-import java.sql.Array;
-import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import static com.bee.www.common.JdbcUtil.close;
@@ -120,7 +118,26 @@ public class BoardDAO {
         }
         return id;
     }
+    public String getCateName(int c_sq){
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String cate_name = null;
 
+        try {
+            pstmt=con.prepareStatement("select cate_name from category where cate_num=?");
+            pstmt.setInt(1,c_sq);
+            rs=pstmt.executeQuery();
+            while(rs.next()){
+                cate_name=rs.getString("cate_name");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(rs);
+            close(pstmt);
+        }
+        return cate_name;
+    }
     //아이디 중복검사
     public int checkId(String id){
         PreparedStatement pstmt=null;
@@ -233,22 +250,23 @@ public class BoardDAO {
         ArrayList<ArticleVo> list = new ArrayList<>();
 
         try{
-           pstmt = con.prepareStatement("select b.b_sq, m.nickname, " +
-                                           "b.title,b.content," +
-                                           "b.hit,b.writeDate " +
-                                           "from board b inner join member m on b.m_sq = m.sq where "+query
-                                            +" order by b_sq desc");
-           rs=pstmt.executeQuery();
-           while(rs.next()){
-               ArticleVo vo = new ArticleVo();
-               vo.setB_sq(rs.getInt("b_sq"));
-               vo.setNickname(rs.getString("nickname"));
-               vo.setTitle(rs.getString("title"));
-               vo.setContent(rs.getString("content"));
-               vo.setHit(10);
-               vo.setWriteDate(rs.getString("writeDate"));
-               list.add(vo);
-           }
+            pstmt = con.prepareStatement("select b.b_sq, m.nickname, " +
+                    "b.title,b.content," +
+                    "b.hit,b.writeDate, b.c_sq " +
+                    "from board b inner join member m on b.m_sq = m.sq where "+query
+                    +" order by b_sq desc");
+            rs=pstmt.executeQuery();
+            while(rs.next()){
+                ArticleVo vo = new ArticleVo();
+                vo.setB_sq(rs.getInt("b_sq"));
+                vo.setC_sq(rs.getInt("c_sq"));
+                vo.setNickname(rs.getString("nickname"));
+                vo.setTitle(rs.getString("title"));
+                vo.setContent(rs.getString("content"));
+                vo.setHit(10);
+                vo.setWriteDate(rs.getString("writeDate"));
+                list.add(vo);
+            }
         }catch (Exception e){
             e.printStackTrace();
         }finally {
@@ -257,6 +275,7 @@ public class BoardDAO {
         }
         return list;
     }
+
     public ArrayList<ArticleVo> getReviewsList() {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -383,7 +402,7 @@ public class BoardDAO {
         try{
             //현재 로그인된 id에 해당하는 고유번호 조회
             pstmt = con.prepareStatement("select b.b_sq, b.m_sq, m.id, " +
-                                                "b.title, b.content, " +
+                                                "b.title, b.content, b.c_sq, " +
                                                 "b.hit, b.writeDate, m.nickname " +
                                                 "from board b inner join member m on b.m_sq = m.sq " +
                                                 "where b_sq=? ");
@@ -393,6 +412,7 @@ public class BoardDAO {
                 vo = new ArticleVo();   //글 조회 돼야 인스턴스 생성
                 vo.setB_sq(rs.getInt("b_sq"));
                 vo.setId(rs.getString("id"));
+                vo.setC_sq(rs.getInt("c_sq"));
                 vo.setTitle(rs.getString("title"));
                 vo.setContent(rs.getString("content"));
                 vo.setHit(10);

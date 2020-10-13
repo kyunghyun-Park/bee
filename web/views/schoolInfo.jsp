@@ -1,14 +1,11 @@
 <%@ page import="com.bee.www.common.LoginManager" %>
 <%@ page import="com.bee.www.vo.ArticleVo" %>
-<%@ page import="com.bee.www.vo.CategoryVo" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     LoginManager lm = LoginManager.getInstance();
     String id = lm.getMemberId(session);
     ArrayList<ArticleVo> list = (ArrayList<ArticleVo>) request.getAttribute("list");
-    ArrayList<CategoryVo> cate = (ArrayList<CategoryVo>) request.getAttribute("list");
-    //이부분 임시로cate해놨어요!
 %>
 <!DOCTYPE html>
 <head>
@@ -109,7 +106,7 @@
                                     <thead>
                                     <tr>
                                         <th class="num">번호</th>
-                                        <th class="location">지역번호</th>
+                                        <th class="location">지역</th>
                                         <th class="title" style="min-width: 120px;">제목</th>
                                         <th class="user">작성자</th>
                                         <th class="date">작성일</th>
@@ -122,7 +119,7 @@
                                     %>
                                     <tr>
                                         <td class="num"><%=list.get(i).getB_sq()%></td>
-                                        <td class="location">서울</td>
+                                        <td class="location"><%=list.get(i).getCate_name()%></td>
                                         <td onclick="showDetail(<%=list.get(i).getB_sq()%>)" class="title"><%=list.get(i).getTitle()%></td>
                                         <td class="user"><%=list.get(i).getNickname()%></td>
                                         <td class="date"><%=list.get(i).getWriteDate().substring(0, 11)%></td>

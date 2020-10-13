@@ -74,13 +74,13 @@
             var email = $('#email').val();
             var nick = $('#nick').val();
 
-            if (resultEmail == 1) {
+          /*  if (resultEmail == 1) {
                 alert('이메일 중복체크 하세요');
                 if ($('#email').val() == '') {
                     $('#email').focus();
                 }
                 return false;
-            }
+            }*/
 
             if (!email) {
                 alert("이메일을 입력해 주세요");
@@ -179,7 +179,7 @@
                 </div>
                 <p id="email_check">이메일 중복확인 텍스트 자리</p>
                 <div class="profile-footer">
-                    <button>수정</button>
+                    <button>변경</button>
                     <button type="button" onclick="deleteMember()">탈퇴</button>
                     <button type="button" onclick="location.href='/'">나가기</button>
                     <!-- 나가기 버튼 안되는데 나중에 수정 -->

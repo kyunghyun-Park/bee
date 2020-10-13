@@ -1,5 +1,4 @@
 <%@ page import="com.bee.www.common.LoginManager" %>
-<%@ page import="com.bee.www.vo.ArticleVo" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%
@@ -17,13 +16,6 @@
     <link rel="stylesheet" type="text/css" href="/css/index_header.css">
     <link rel="stylesheet" type="text/css" href="/css/chat.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
-    <script>
-        function showInfo(id){
-            location.href="/profile.do?id="+id;
-            console.log(id);
-        }
-    </script>
 </head>
 <body>
 <header>
@@ -47,7 +39,7 @@
                     <h3>로그인</h3></a>
                 <% } //로그아웃 상태
                 else { %>
-                <a onclick="showInfo(<%=id%>)" >
+                <a href="/profile.do?id=<%=id%>">
                     <h3 class="join">회원정보</h3>
                 </a>
                 <a href="/logout.do">
@@ -113,7 +105,7 @@
     </div>
 </div>
 
-<%--<div class="trend-section">
+<div class="trend-section">
     <main class="trend-main">
         <div class="main-section">
             <div class="article">
@@ -149,11 +141,11 @@
             </div>
         </div>
     </main>
-</div>--%>
+</div>
 
 <script type="text/javascript">
     // WebSocket 오브젝트 생성 (자동으로 접속 시작한다. - onopen 함수 호출)
-    var webSocket = new WebSocket("ws://localhost:8080/websocket");
+    var webSocket = new WebSocket("ws://localhost:8090/websocket");
 
     var inputMessage = document.getElementById('inputMessage');
 

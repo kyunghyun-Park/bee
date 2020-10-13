@@ -20,7 +20,7 @@ public class MemberDeleteAction implements Action {
 
         //로그인 안돼있을때
         if (id == null) {
-            out.println("<script>alert('로그인이 필요한 서비스 입니다.');location.href='/login.do';</script>");
+            out.println("<script>alert('비정상 접근입니다.');location.href='/login.do';</script>");
             out.close();
             return null;
         }
@@ -28,6 +28,7 @@ public class MemberDeleteAction implements Action {
         if (id != null) {
             lm.removeSession(id); //세션뺏음,로그아웃 처리
         }
+
         BoardService service = new BoardService();
         if (!service.deleteMember(id)) {
             out.println("<script>alert('회원탈퇴에 실패했습니다.');history.back();</script>");
@@ -37,9 +38,10 @@ public class MemberDeleteAction implements Action {
 
         out.println("<script>alert('굿바이');</script>");
         out.close();
+
         //메인페이지로 이동
         ActionForward forward = new ActionForward();
-        forward.setPath("/");
+        forward.setPath("/views/index.jsp");
         forward.setRedirect(true);
         return forward;
     }

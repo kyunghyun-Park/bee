@@ -204,7 +204,7 @@
                 return false;
 
             }
-            var regExpNick = new RegExp("^[a-z가-힣]{4,20}$", "g");
+            var regExpNick = new RegExp("^[a-z가-힣]{2,20}$", "g");
             if (regExpNick.exec(nick) == null) {
                 alert("잘못된 닉네임 형식입니다.");
                 $('#nick').val("");

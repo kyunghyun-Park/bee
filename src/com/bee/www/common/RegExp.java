@@ -17,7 +17,7 @@ public class RegExp {
     public static final String EXP_ARTICLE_CONTENT = "^.{1,65535}$"; //글 내용
     public static final String EXP_MEMBER_ID = "^[a-z0-9]{4,20}$"; //회원 ID
     public static final String EXP_MEMBER_PWD = "^.{4,30}$"; //회원 비밀번호
-    public static final String EXP_MEMBER_NICK = "^[a-z가-힣]{4,20}$";
+    public static final String EXP_MEMBER_NICK = "^[a-z가-힣]{2,20}$";
     public static final String EXP_MEMBER_EMAIL = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$";
 
 

@@ -46,7 +46,7 @@
                     <h3>로그인</h3></a>
                 <% } //로그아웃 상태
                 else { %>
-                <a href="/profile.do">
+                <a href="/profile.do?id=<%=id%>">
                     <h3 class="join">회원정보</h3>
                 </a>
                 <a href="/logout.do">

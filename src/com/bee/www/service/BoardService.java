@@ -2,7 +2,6 @@ package com.bee.www.service;
 
 import com.bee.www.dao.BoardDAO;
 import com.bee.www.vo.ArticleVo;
-import com.bee.www.vo.CategoryVo;
 import com.bee.www.vo.MemberVo;
 
 import java.sql.Connection;
@@ -52,6 +51,17 @@ public class BoardService {
         return id;
     }
 
+    //학원정보게시판에 지역이름보이게 하기
+    public String getCateName(int c_sq){
+        BoardDAO dao = BoardDAO.getInstance();
+        Connection con = getConnection();
+        dao.setConnection(con);
+
+        String cate_name=dao.getCateName(c_sq);
+
+        close(con);
+        return cate_name;
+    }
     //로그인 메소드
     public boolean loginMember(MemberVo memberVo){
         BoardDAO dao = BoardDAO.getInstance();
@@ -104,6 +114,7 @@ public class BoardService {
         close(con);
         return isSucess;
     }
+
     //아이디 중복검사 메소드
     public int idCheck(String id){
         BoardDAO dao = BoardDAO.getInstance();
@@ -123,6 +134,7 @@ public class BoardService {
         close(con);
         return count;
     }
+
     //자유게시판 글 등록할 때 로그인 되어있는 id 시퀀스 찾는 메소드
     public int getMemberSequence(String id){
         BoardDAO dao = BoardDAO.getInstance();
@@ -133,6 +145,7 @@ public class BoardService {
         close(con);
         return sq;
     }
+
     //학원정보 글 등록할 때 선택된 지역으로 카테고리번호 찾는 메소드
     public int getCateSequence(String job){
         BoardDAO dao = BoardDAO.getInstance();
@@ -143,6 +156,7 @@ public class BoardService {
         close(con);
         return sq;
     }
+
     //글쓰기 메소드
     public boolean insertArticle(ArticleVo vo) {
         //세팅
@@ -180,6 +194,7 @@ public class BoardService {
         close(con);
         return isSucess;
     }
+
     //글삭제 메소드
     public boolean deleteArticle(int num) {
         //세팅
@@ -198,6 +213,7 @@ public class BoardService {
         close(con);
         return isSucess;
     }
+
     //리뷰쓰기 메소드
     public boolean insertReviews(ArticleVo vo) {
         //세팅
@@ -217,6 +233,8 @@ public class BoardService {
         close(con);
         return isSucess;
     }
+
+    //닉네임 이메일 바꾸기
     public boolean profileUpdate(MemberVo vo){
         BoardDAO dao = BoardDAO.getInstance();
         Connection con = getConnection();
@@ -235,6 +253,8 @@ public class BoardService {
         close(con);
         return isSucess;
     }
+
+    //학원정보,자유게시판 리스트 불러오기
     public ArrayList<ArticleVo> getArticleList(String query){
         BoardDAO dao = BoardDAO.getInstance();
         Connection con = getConnection();
@@ -245,6 +265,8 @@ public class BoardService {
 
         return list;
     }
+
+    //오늘의 공부 리스트
     public ArrayList<ArticleVo> getReviewsList(){
         BoardDAO dao = BoardDAO.getInstance();
         Connection con = getConnection();
@@ -255,6 +277,8 @@ public class BoardService {
 
         return list;
     }
+    
+    //글 내용보기
     public ArticleVo getArticleDetail(int num){
         BoardDAO dao = BoardDAO.getInstance();
         Connection con = getConnection();

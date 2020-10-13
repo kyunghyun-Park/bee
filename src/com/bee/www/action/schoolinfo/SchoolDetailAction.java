@@ -37,6 +37,8 @@ public class SchoolDetailAction implements Action {
         }
         BoardService service = new BoardService();
         ArticleVo vo = service.getArticleDetail(numInt);    //detail service 호출
+        vo.setCate_name(service.getCateName(vo.getC_sq()));
+
         if(vo==null){
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();

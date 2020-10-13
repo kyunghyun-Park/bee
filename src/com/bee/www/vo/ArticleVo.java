@@ -13,6 +13,14 @@ public class ArticleVo {
     private String nickname;    //member nickname
     private String cate_name;   //category name
 
+    public String getCate_name() {
+        return cate_name;
+    }
+
+    public void setCate_name(String cate_name) {
+        this.cate_name = cate_name;
+    }
+
     public int getC_sq() {
         return c_sq;
     }

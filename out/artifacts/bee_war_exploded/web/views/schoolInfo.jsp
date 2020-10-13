@@ -25,10 +25,10 @@
 <header>
     <div class="header-area">
         <div class="header-main">
-            <svg width="17" height="17" viewBox="0 0 17 17">
-                <path fill-rule="evenodd" d="M13.66 7.36a6.3 6.3 0 1 1-12.598 0 6.3 6.3 0 0 1 12.598 0zm-1.73 5.772a7.36 7.36 0 1 1 1.201-1.201l3.636 3.635c.31.31.31.815 0 1.126l-.075.075a.796.796 0 0 1-1.126 0l-3.636-3.635z" clip-rule="evenodd"></path>
-            </svg>
             <div class="header-filter">
+                <svg width="17" height="17" viewBox="0 0 17 17">
+                    <path fill-rule="evenodd" d="M13.66 7.36a6.3 6.3 0 1 1-12.598 0 6.3 6.3 0 0 1 12.598 0zm-1.73 5.772a7.36 7.36 0 1 1 1.201-1.201l3.636 3.635c.31.31.31.815 0 1.126l-.075.075a.796.796 0 0 1-1.126 0l-3.636-3.635z" clip-rule="evenodd"></path>
+                </svg>
                 <input type="text" placeholder="검색할 내용.."/>
             </div>
             <div class="header-login">
@@ -43,7 +43,7 @@
                     <h3>로그인</h3></a>
                 <% } //로그아웃 상태
                 else { %>
-                <a href="/profile.do">
+                <a href="/profile.do?id=<%=id%>">
                     <h3 class="join">회원정보</h3>
                 </a>
                 <a href="/logout.do">
@@ -59,7 +59,7 @@
 <section class="title-section">
     <div class="title-logo">
         <a href="/">
-            <h1>Good Bee</h1>
+            <img src="../images/GoodBee.png">
         </a>
     </div>
 </section>
@@ -87,10 +87,13 @@
                             <div class="list-header">
                                 <div class="board-sort">
                                     <form>
-                                        <select class="list-sort">
-                                            <option value="newest">최신순</option>
-                                            <option value="best">추천순</option>
-                                            <option value="viewed">조회순</option>
+                                        <select name="choose_region" id="choose_region" class="list-sort">
+                                            <option value="1">서울/수도권</option>
+                                            <option value="2">부산/대구/경상도</option>
+                                            <option value="3">광주/전라도</option>
+                                            <option value="4">충청도</option>
+                                            <option value="5">강원도</option>
+                                            <option value="6">제주도</option>
                                         </select>
                                     </form>
                                     <div class="control">
@@ -103,7 +106,7 @@
                                     <thead>
                                     <tr>
                                         <th class="num">번호</th>
-                                        <th class="num">지역</th> <!--임시로 제가 추가한 부분-->
+                                        <th class="location">지역</th>
                                         <th class="title" style="min-width: 120px;">제목</th>
                                         <th class="user">작성자</th>
                                         <th class="date">작성일</th>
@@ -116,14 +119,13 @@
                                     %>
                                     <tr>
                                         <td class="num"><%=list.get(i).getB_sq()%></td>
-                                        <td></td>
+                                        <td class="location"><%=list.get(i).getCate_name()%></td>
                                         <td onclick="showDetail(<%=list.get(i).getB_sq()%>)" class="title"><%=list.get(i).getTitle()%></td>
                                         <td class="user"><%=list.get(i).getNickname()%></td>
                                         <td class="date"><%=list.get(i).getWriteDate().substring(0, 11)%></td>
                                         <td class="view"><%=list.get(i).getHit()%></td>
                                     </tr>
                                     <% } %>
-
                                     </tbody>
                                 </table>
                             </div>

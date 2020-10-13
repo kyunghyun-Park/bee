@@ -82,7 +82,7 @@
             <P><%=vo.getWriteDate()%></P>
             <div class="pull-right">
                 <div class="content-value">
-                    <p>서울/경기</p>
+                    <p><%=vo.getCate_name()%></p>
                 </div>
                 <div class="detail-content">
                     <div class="content-count">

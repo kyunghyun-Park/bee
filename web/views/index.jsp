@@ -145,7 +145,7 @@
 
 <script type="text/javascript">
     // WebSocket 오브젝트 생성 (자동으로 접속 시작한다. - onopen 함수 호출)
-    var webSocket = new WebSocket("ws://localhost:8080/websocket");
+    var webSocket = new WebSocket("ws://localhost:8090/websocket");
 
     var inputMessage = document.getElementById('inputMessage');
 

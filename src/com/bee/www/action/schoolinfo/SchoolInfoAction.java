@@ -19,7 +19,9 @@ public class SchoolInfoAction implements Action {
         String query="c_sq BETWEEN 1 AND 6";
 
         ArrayList<ArticleVo> articleList = service.getArticleList(query);
-
+        for(int i=0;i<articleList.size();i++){
+            articleList.get(i).setCate_name(service.getCateName(articleList.get(i).getC_sq()));
+        }
         request.setAttribute("list",articleList);
 
         forward.setPath("/views/schoolInfo.jsp");
