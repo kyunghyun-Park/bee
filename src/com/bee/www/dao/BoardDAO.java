@@ -276,6 +276,37 @@ public class BoardDAO {
         }
         return list;
     }
+    //댓글 목록
+    public ArrayList<CommentVo> getCommentList(int num) {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        ArrayList<CommentVo> list = new ArrayList<>();
+
+        try{
+            pstmt = con.prepareStatement("select cm.cm_sq, m.nickname, cm.content, cm.writeDate " +
+                                                "from comment cm " +
+                                                "inner join member m on cm.m_sq = m.sq " +
+                                                "where b_sq=? "+
+                                                "order by cm_sq");
+            pstmt.setInt(1,num);
+            rs=pstmt.executeQuery();
+            while(rs.next()){
+                CommentVo vo = new CommentVo();
+                vo.setCm_sq(rs.getInt("cm_sq"));
+                vo.setNickname(rs.getString("nickname"));
+                vo.setContent(rs.getString("content"));
+                vo.setB_sq(num);
+                vo.setWriteDate(rs.getString("writeDate"));
+                list.add(vo);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(rs);
+            close(pstmt);
+        }
+        return list;
+    }
     //리뷰 띄우기
     public ArrayList<ArticleVo> getReviewsList() {
         PreparedStatement pstmt = null;
@@ -283,10 +314,10 @@ public class BoardDAO {
         ArrayList<ArticleVo> list = new ArrayList<>();
 
         try{
-            pstmt = con.prepareStatement("select m.nickname, r.content, r.writeDate " +
-                                            "from board_review r " +
-                                            "inner join member m on r.m_sq = m.sq " +
-                                            "order by writeDate desc");
+            pstmt = con.prepareStatement("select r.b_sq, m.nickname, r.content, r.writeDate " +
+                                                "from board_review r " +
+                                                "inner join member m on r.m_sq = m.sq " +
+                                                "order by r.b_sq desc");
             rs=pstmt.executeQuery();
             while(rs.next()){
                 ArticleVo vo = new ArticleVo();
@@ -303,35 +334,7 @@ public class BoardDAO {
         }
         return list;
     }
-    //댓글 목록
-    public ArrayList<CommentVo> getCommentList(int num) {
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        ArrayList<CommentVo> list = new ArrayList<>();
 
-        try{
-            pstmt = con.prepareStatement("select m.nickname, cm.content, cm.writeDate " +
-                                            "from comment cm " +
-                                            "inner join member m on cm.m_sq = m.sq " +
-                                            "where cm_sq=?"+
-                                            "order by writeDate desc");
-            pstmt.setInt(1,num);
-            rs=pstmt.executeQuery();
-            while(rs.next()){
-                CommentVo vo = new CommentVo();
-                vo.setNickname(rs.getString("nickname"));
-                vo.setContent(rs.getString("content"));
-                vo.setWriteDate(rs.getString("writeDate"));
-                list.add(vo);
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
-            close(rs);
-            close(pstmt);
-        }
-        return list;
-    }
     //글 등록
     public int insertComment(CommentVo vo){
         PreparedStatement pstmt = null;
@@ -395,6 +398,22 @@ public class BoardDAO {
         try{
             //현재 로그인된 id에 해당하는 고유번호 조회
             pstmt = con.prepareStatement("delete from board where b_sq=?");
+            pstmt.setInt(1,num);
+            count=pstmt.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(pstmt);
+        }
+        return count;
+    }
+    //댓글 삭제
+    public int deleteComment(int num){
+        PreparedStatement pstmt = null;
+        int count = 0;
+        try{
+            //현재 로그인된 id에 해당하는 고유번호 조회
+            pstmt = con.prepareStatement("delete from comment where cm_sq=?");
             pstmt.setInt(1,num);
             count=pstmt.executeUpdate();
         }catch (Exception e){

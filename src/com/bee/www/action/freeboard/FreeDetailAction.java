@@ -25,7 +25,7 @@ public class FreeDetailAction implements Action {
         if (num == null || num.equals("") || !RegExp.checkString(ARTICLE_NUM, num)) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            out.println("<script>alert('잘못된 접근입니다.');history.back();</script>");
+            out.println("<script>alert('잘못된 접근입니다.(11)');history.back();</script>");
             out.close();
             return null;
         }
@@ -35,7 +35,7 @@ public class FreeDetailAction implements Action {
         if (numInt <= 0) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            out.println("<script>alert('잘못된 접근입니다.');history.back();</script>");
+            out.println("<script>alert('잘못된 접근입니다.(22)');history.back();</script>");
             out.close();
             return null;
         }
@@ -45,7 +45,7 @@ public class FreeDetailAction implements Action {
         if (vo == null) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            out.println("<script>alert('잘못된 접근입니다.');history.back();</script>");
+            out.println("<script>alert('잘못된 접근입니다.(33)');history.back();</script>");
             out.close();
             return null;
         }

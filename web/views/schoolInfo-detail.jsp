@@ -107,8 +107,8 @@
 </div>
 <div class="detail-button">
     <%
-        if (id != null) {
-            if (id.equals(vo.getId())) {
+        if (id != null) {   //id있을때
+            if (id.equals(vo.getId())) {     //글 작성자랑 로그인id랑 같을때
     %>
     <div class="left-button">
         <button onclick="location.href='/schUpdate.do?num=<%=vo.getB_sq()%>'">수정</button>
@@ -117,14 +117,14 @@
     <div class="right-button">
         <button onclick="location.href='/schBoard.do'">목록</button>
     </div>
-    <%} else {%>
+    <%--id 있는데 게시글 번호랑 다를때--%>
+    <% } else { %>
     <div class="right-button">
         <button onclick="location.href='/schBoard.do'">목록</button>
     </div>
-    <%}
-    }
-    else{
-    %>
+    <%--id==null일 때--%>
+    <% }
+    } else { %>
     <div class="right-button">
         <button onclick="location.href='/schBoard.do'">목록</button>
     </div>

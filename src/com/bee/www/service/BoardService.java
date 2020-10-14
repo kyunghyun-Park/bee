@@ -255,7 +255,24 @@ public class BoardService {
         close(con);
         return isSucess;
     }
+    //글삭제 메소드
+    public boolean deleteComment(int num) {
+        //세팅
+        BoardDAO dao = BoardDAO.getInstance();
+        Connection con = getConnection();
+        dao.setConnection(con);
+        boolean isSucess = false;
 
+        int count = dao.deleteComment(num);
+        if (count > 0) {    //성공
+            commit(con);
+            isSucess = true;
+        } else {          //실패
+            rollback(con);
+        }
+        close(con);
+        return isSucess;
+    }
     //조회수 증가
     public boolean updateHitCount(int num) {
         //세팅

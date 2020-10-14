@@ -242,8 +242,8 @@
 
 <div class="detail-button">
     <%
-        if (id != null) {
-            if (id.equals(vo.getId())) {
+        if (id != null) {   //id있을때
+            if (id.equals(vo.getId())) {    //글 작성자랑 로그인id랑 같을때
     %>
     <div class="left-button">
         <button onclick="location.href='/freeUpdate.do?num=<%=vo.getB_sq()%>'">수정</button>
@@ -252,14 +252,14 @@
     <div class="right-button">
         <button onclick="location.href='/freeBoard.do'">목록</button>
     </div>
+    <%--id 있는데 게시글 번호랑 다를때--%>
     <% } else { %>
     <div class="right-button">
         <button onclick="location.href='/freeBoard.do'">목록</button>
     </div>
-    <%
-        }
-    } else {
-    %>
+    <%--id==null일 때--%>
+    <% }
+    } else { %>
     <div class="right-button">
         <button onclick="location.href='/freeBoard.do'">목록</button>
     </div>
@@ -270,39 +270,39 @@
         <h4>Comments 0</h4>
     </div>
     <table>
-        <tbody>
         <%
             for (int i = 0; i < cList.size();i++) {
         %>
+        <tbody>
         <tr class="left-section">
             <td class="left-info-nick"><%=cList.get(i).getNickname()%></td>
-            <td class="left-info-date"><%=cList.get(i).getWriteDate()%></td>
+            <td class="left-info-date"><%=cList.get(i).getWriteDate().substring(0, 16)%></td>
         </tr>
         <tr class="right-section">
             <td class="right-info"><a href="#">답변</a></td>
             <td class="right-info"><a href="#">수정</a></td>
-            <td class="right-info"><a href="#">삭제</a></td>
+            <td class="right-info">
+                <a onclick="commentDelete(<%=cList.get(i).getCm_sq()%>,<%=cList.get(i).getB_sq()%>)">삭제</a></td>
         </tr>
         </tbody>
-        <tfoot>
         <tr>
             <td class="comment-content"><%=cList.get(i).getContent()%></td>
         </tr>
         <% } %>
-        </tfoot>
-
     </table>
-    <form action="/addComment.do?num=<%=vo.getB_sq()%>" method="post" onsubmit="commentSubmit()">
+    <%  if(id!=null) { %>
+    <form action="/commentAdd.do?num=<%=vo.getB_sq()%>" method="post" onsubmit="return commentSubmit()">
         <div>
             <div class="comment-txt">
             <textarea id="content" name="content"
                       placeholder="여러분의 소중한 댓글을 입력해주세요."></textarea>
             </div>
             <div class="comment-button">
-                <button>댓글달기</button>
+                <button id="go-bottom" name="go-bottem">댓글달기</button>
             </div>
         </div>
     </form>
+    <% } %>
 </div>
 
 <script>
@@ -313,7 +313,13 @@
             $('#content').focus();
             return false;
         }
+
     }
+    function commentDelete(num,c_num) {
+        location.href=
+            "/commentDel.do?cNum="+c_num+"&num="+num;
+    }
+
 </script>
 
 </body>

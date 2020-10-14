@@ -9,10 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
-import static com.bee.www.common.RegExp.ARTICLE_CONTENT;
-import static com.bee.www.common.RegExp.ARTICLE_TITLE;
+import static com.bee.www.common.RegExp.*;
 
-public class AddCommentAction implements Action {
+public class CommentDelAction implements Action {
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         LoginManager lm = LoginManager.getInstance();
@@ -26,47 +25,46 @@ public class AddCommentAction implements Action {
             return null;
         }
 
-        //댓글내용 받아오기
-        String content = request.getParameter("content");
-        String num = request.getParameter("num");
+        //댓글번호 받아오기
+        String cm_num = request.getParameter("cNum");
+        //글번호 받아오기
+        String num=request.getParameter("num");
 
-        //글 번호 유효성검사,RegExp = 글 번호 유효성 검사
-        if (content == null || content.equals("")
-                || !RegExp.checkString(ARTICLE_CONTENT, content)) {
+        if (num == null || cm_num==null
+                || num.equals("") || cm_num.equals("")
+                || !RegExp.checkString(ARTICLE_NUM, num)
+                || !RegExp.checkString(ARTICLE_NUM,cm_num)) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            out.println("<script>alert('잘못된 접근입니다.');history.back();</script>");
+            out.println("<script>alert('잘못된 접근입니다.(1)');location.href='/';</script>");
             out.close();
             return null;
         }
 
-        int numInt = Integer.parseInt(num);  //유효성 검사 후 글 번호 숫자로 변환
+        int b_numInt = Integer.parseInt(num);  //유효성 검사 후 글 번호 숫자로 변환
+        int cm_numInt = Integer.parseInt(cm_num);
         //글 번호 0보다 작으면 오류alert
-        if (numInt <= 0) {
+        if (b_numInt <= 0 ||  cm_numInt<=0) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            out.println("<script>alert('잘못된 접근입니다.');history.back();</script>");
+            out.println("<script>alert('잘못된 접근입니다.(2)');history.back();</script>");
             out.close();
             return null;
         }
 
         BoardService service = new BoardService();
-        //vo에 담음
-        CommentVo vo = new CommentVo();
-        vo.setContent(content);
-        vo.setM_sq(service.getMemberSequence(id));
-        vo.setB_sq(numInt);
 
-        if(!service.insertComment(vo)){
+        //service호출
+        if(!service.deleteComment(b_numInt)){ //글 수정 service 호출
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            out.println("<script>alert('댓글 저장에 실패했습니다.');history.back();</script>");
+            out.println("<script>alert('댓글 삭제에 실패했습니다.');history.back();</script>");
             out.close();
             return null;
         }
 
         ActionForward forward = new ActionForward();
-        forward.setPath("/freeDetail.do?num="+numInt);
+        forward.setPath("/freeDetail.do?num="+num);
         forward.setRedirect(true);
         return forward;
     }
