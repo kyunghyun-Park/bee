@@ -22,6 +22,7 @@ public class ProfileAction implements Action {
         ActionForward forward = new ActionForward();
 
         String id=request.getParameter("id");
+
         //값 비어있는지,형식(정규식) 검사
         if (id == null || id.equals("") || !RegExp.checkString(MEMBER_ID, id)) {
             response.setContentType("text/html;charset=UTF-8");

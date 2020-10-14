@@ -22,6 +22,7 @@ public class ProfileUpdateAction implements Action {
         String id = lm.getMemberId(request.getSession());
 
         String email = request.getParameter("email");
+//        if(email.equals())
         String nick = request.getParameter("nick");
 
         BoardService service = new BoardService();

@@ -74,13 +74,15 @@
             var email = $('#email').val();
             var nick = $('#nick').val();
 
-          /*  if (resultEmail == 1) {
-                alert('이메일 중복체크 하세요');
-                if ($('#email').val() == '') {
-                    $('#email').focus();
+            if(resultEmail==1){
+                if(email!="<%=vo.getEmail()%>"){    //현재 이메일과 다르면
+                    alert('이메일 중복체크 하세요');
+                    if ($('#email').val() == '') {
+                        $('#email').focus();
+                    }
+                    return false;
                 }
-                return false;
-            }*/
+            }
 
             if (!email) {
                 alert("이메일을 입력해 주세요");
@@ -182,7 +184,6 @@
                     <button>변경</button>
                     <button type="button" onclick="deleteMember()">탈퇴</button>
                     <button type="button" onclick="location.href='/'">나가기</button>
-                    <!-- 나가기 버튼 안되는데 나중에 수정 -->
                 </div>
             </form>
 

@@ -1,6 +1,7 @@
 package com.bee.www.controller;
 
 import com.bee.www.action.Member.*;
+import com.bee.www.action.comment.AddCommentAction;
 import com.bee.www.common.Action;
 import com.bee.www.common.ActionForward;
 

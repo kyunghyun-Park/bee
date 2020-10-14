@@ -30,19 +30,18 @@ public class MemberDeleteAction implements Action {
         }
 
         BoardService service = new BoardService();
-        if (!service.deleteMember(id)) {
+        if (service.deleteMember(id)) {
+            out.println("<script>alert('굿바이');</script>");
+            out.close();
+            //메인페이지로 이동
+            ActionForward forward = new ActionForward();
+            forward.setPath("/index.jsp");
+            forward.setRedirect(true);
+            return forward;
+        }else{
             out.println("<script>alert('회원탈퇴에 실패했습니다.');history.back();</script>");
             out.close();
             return null;
         }
-
-        out.println("<script>alert('굿바이');</script>");
-        out.close();
-
-        //메인페이지로 이동
-        ActionForward forward = new ActionForward();
-        forward.setPath("/views/index.jsp");
-        forward.setRedirect(true);
-        return forward;
     }
 }

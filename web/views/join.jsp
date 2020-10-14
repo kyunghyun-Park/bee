@@ -23,7 +23,7 @@
             if (email == '') {     //이메일 미입력
                 $('#email_check').html('이메일을 입력해 주세요!').css('color', 'red');
                 $('#email').focus();
-                return;
+                return false;
             }
             var regExpEmail = new RegExp("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$", "g");
             if (regExpEmail.exec(email) == null) {

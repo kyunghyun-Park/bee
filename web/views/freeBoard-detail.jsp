@@ -1,8 +1,12 @@
 <%@ page import="com.bee.www.vo.ArticleVo" %>
 <%@ page import="com.bee.www.common.LoginManager" %>
+<%@ page import="com.bee.www.vo.CommentVo" %>
+<%@ page import="java.lang.reflect.Array" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     ArticleVo vo = (ArticleVo) request.getAttribute("vo");
+    ArrayList<CommentVo> cList = (ArrayList<CommentVo>) request.getAttribute("comment");
     LoginManager lm = LoginManager.getInstance();
     String id = lm.getMemberId(session);
 %>
@@ -10,12 +14,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- jQuery CDN -->
+    <script
+            src="https://code.jquery.com/jquery-3.5.1.slim.js"
+            integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
+            crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/index_header.css">
     <link rel="stylesheet" href="css/detail.css">
+
 </head>
 <body>
 <header>
@@ -32,7 +42,7 @@
             <div class="header-login">
                 <%
                     //로그인 상태
-                    if(id==null){
+                    if (id == null) {
                 %>
                 <a href="/join.do">
                     <h3 class="join">회원가입</h3>
@@ -47,7 +57,7 @@
                 <a href="/logout.do">
                     <h3>로그아웃</h3>
                 </a>
-                <% }  %>
+                <% } %>
             </div>
 
         </div>
@@ -77,12 +87,15 @@
 <div class="detail-container">
     <hr>
     <div class="detail-title">
-        <h2 class="title-h2"><%=vo.getTitle()%></h2>
+        <h2 class="title-h2"><%=vo.getTitle()%>
+        </h2>
     </div>
     <hr>
     <div class="detail-userInfo">
-        <p class="userName"><%=vo.getNickname()%></p>
-        <P><%=vo.getWriteDate()%></P>
+        <p class="userName"><%=vo.getNickname()%>
+        </p>
+        <P><%=vo.getWriteDate()%>
+        </P>
         <div class="pull-right">
             <div class="content-count">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
@@ -222,22 +235,86 @@
     </div>
     <hr>
     <div class="detail-dec">
-        <p><%=vo.getContent()%></p>
+        <p><%=vo.getContent()%>
+        </p>
     </div>
 </div>
 
 <div class="detail-button">
     <%
-        if(id.equals(vo.getId())) {
+        if (id != null) {
+            if (id.equals(vo.getId())) {
     %>
     <div class="left-button">
         <button onclick="location.href='/freeUpdate.do?num=<%=vo.getB_sq()%>'">수정</button>
         <button onclick="location.href='/freeDelete.do?num=<%=vo.getB_sq()%>'">삭제</button>
     </div>
-    <% } %>
     <div class="right-button">
         <button onclick="location.href='/freeBoard.do'">목록</button>
     </div>
+    <% } else { %>
+    <div class="right-button">
+        <button onclick="location.href='/freeBoard.do'">목록</button>
+    </div>
+    <%
+        }
+    } else {
+    %>
+    <div class="right-button">
+        <button onclick="location.href='/freeBoard.do'">목록</button>
+    </div>
+    <% } %>
 </div>
+<div class="comment-container">
+    <div class="comment-count">
+        <h4>Comments 0</h4>
+    </div>
+    <table>
+        <tbody>
+        <%
+            for (int i = 0; i < cList.size();i++) {
+        %>
+        <tr class="left-section">
+            <td class="left-info-nick"><%=cList.get(i).getNickname()%></td>
+            <td class="left-info-date"><%=cList.get(i).getWriteDate()%></td>
+        </tr>
+        <tr class="right-section">
+            <td class="right-info"><a href="#">답변</a></td>
+            <td class="right-info"><a href="#">수정</a></td>
+            <td class="right-info"><a href="#">삭제</a></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td class="comment-content"><%=cList.get(i).getContent()%></td>
+        </tr>
+        <% } %>
+        </tfoot>
+
+    </table>
+    <form action="/addComment.do?num=<%=vo.getB_sq()%>" method="post" onsubmit="commentSubmit()">
+        <div>
+            <div class="comment-txt">
+            <textarea id="content" name="content"
+                      placeholder="여러분의 소중한 댓글을 입력해주세요."></textarea>
+            </div>
+            <div class="comment-button">
+                <button>댓글달기</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    function commentSubmit() {
+        var content = $('#content').val();
+        if (!content) {
+            alert("댓글을 입력하세요");
+            $('#content').focus();
+            return false;
+        }
+    }
+</script>
+
 </body>
 </html>

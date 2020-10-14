@@ -6,6 +6,7 @@ import com.bee.www.common.Parser;
 import com.bee.www.common.RegExp;
 import com.bee.www.service.BoardService;
 import com.bee.www.vo.ArticleVo;
+import com.bee.www.vo.CommentVo;
 
 import static com.bee.www.common.RegExp.*;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class FreeDetailAction implements Action {
     @Override
@@ -47,6 +49,10 @@ public class FreeDetailAction implements Action {
             out.close();
             return null;
         }
+
+        //댓글 목록 불러오기
+        ArrayList<CommentVo> commentList = service.getCommentList(numInt);
+        request.setAttribute("comment",commentList);
 
         //----------------------------------------쿠키로 조회수 중복방지
         Cookie viewCookie = null;

@@ -16,11 +16,6 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/index_header.css">
     <link rel="stylesheet" href="css/schoolInfo.css">
-    <script>
-        function showDetail(num){
-            location.href="/freeDetail.do?num="+num;
-        }
-    </script>
 </head>
 <body>
 <header>
@@ -116,7 +111,8 @@
                                     %>
                                     <tr>
                                         <td class="num"><%=list.get(i).getB_sq()%></td>
-                                        <td onclick="showDetail(<%=list.get(i).getB_sq()%>)" class="title"><%=list.get(i).getTitle()%></td>
+                                        <td onclick="location.href='/freeDetail.do?num=<%=list.get(i).getB_sq()%>'"
+                                            class="title"><%=list.get(i).getTitle()%></td>
                                         <td class="user"><%=list.get(i).getNickname()%></td>
                                         <td class="date"><%=list.get(i).getWriteDate().substring(0, 11)%></td>
                                         <td class="view"><%=list.get(i).getHit()%></td>

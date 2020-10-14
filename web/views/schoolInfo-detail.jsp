@@ -107,16 +107,28 @@
 </div>
 <div class="detail-button">
     <%
-        if(id.equals(vo.getId())) {
+        if (id != null) {
+            if (id.equals(vo.getId())) {
     %>
     <div class="left-button">
         <button onclick="location.href='/schUpdate.do?num=<%=vo.getB_sq()%>'">수정</button>
         <button onclick="location.href='/schDelete.do?num=<%=vo.getB_sq()%>'">삭제</button>
     </div>
-    <% } %>
     <div class="right-button">
         <button onclick="location.href='/schBoard.do'">목록</button>
     </div>
+    <%} else {%>
+    <div class="right-button">
+        <button onclick="location.href='/schBoard.do'">목록</button>
+    </div>
+    <%}
+    }
+    else{
+    %>
+    <div class="right-button">
+        <button onclick="location.href='/schBoard.do'">목록</button>
+    </div>
+    <% } %>
 </div>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.bee.www.dao;
 
 import com.bee.www.vo.ArticleVo;
+import com.bee.www.vo.CommentVo;
 import com.bee.www.vo.MemberVo;
 
 import java.sql.Connection;
@@ -275,7 +276,7 @@ public class BoardDAO {
         }
         return list;
     }
-
+    //리뷰 띄우기
     public ArrayList<ArticleVo> getReviewsList() {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -302,7 +303,53 @@ public class BoardDAO {
         }
         return list;
     }
+    //댓글 목록
+    public ArrayList<CommentVo> getCommentList(int num) {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        ArrayList<CommentVo> list = new ArrayList<>();
 
+        try{
+            pstmt = con.prepareStatement("select m.nickname, cm.content, cm.writeDate " +
+                                            "from comment cm " +
+                                            "inner join member m on cm.m_sq = m.sq " +
+                                            "where cm_sq=?"+
+                                            "order by writeDate desc");
+            pstmt.setInt(1,num);
+            rs=pstmt.executeQuery();
+            while(rs.next()){
+                CommentVo vo = new CommentVo();
+                vo.setNickname(rs.getString("nickname"));
+                vo.setContent(rs.getString("content"));
+                vo.setWriteDate(rs.getString("writeDate"));
+                list.add(vo);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(rs);
+            close(pstmt);
+        }
+        return list;
+    }
+    //글 등록
+    public int insertComment(CommentVo vo){
+        PreparedStatement pstmt = null;
+        int count = 0;
+        try{
+            //현재 로그인된 id에 해당하는 고유번호 조회
+            pstmt = con.prepareStatement("insert into comment(m_sq, b_sq, content) value(?, ?, ?)");
+            pstmt.setInt(1,vo.getM_sq());
+            pstmt.setInt(2,vo.getB_sq());
+            pstmt.setString(3,vo.getContent());
+            count=pstmt.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(pstmt);
+        }
+        return count;
+    }
     //글 등록
     public int insertArticle(ArticleVo vo){
         PreparedStatement pstmt = null;
