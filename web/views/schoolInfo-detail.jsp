@@ -112,7 +112,7 @@
     %>
     <div class="left-button">
         <button onclick="location.href='/schUpdate.do?num=<%=vo.getB_sq()%>'">수정</button>
-        <button onclick="location.href='/schDelete.do?num=<%=vo.getB_sq()%>'">삭제</button>
+        <button onclick="articleDelete()">삭제</button>
     </div>
     <div class="right-button">
         <button onclick="location.href='/schBoard.do'">목록</button>
@@ -130,5 +130,14 @@
     </div>
     <% } %>
 </div>
+<script>
+    function articleDelete()  {
+        if(confirm('삭제하시겠습니까?')==true) {
+            location.href='/schDelete.do?num=<%=vo.getB_sq()%>';
+        }else{
+            return;
+        }
+    }
+</script>
 </body>
 </html>

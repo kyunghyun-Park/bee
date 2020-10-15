@@ -245,7 +245,7 @@
     %>
     <div class="left-button">
         <button onclick="location.href='/freeUpdate.do?num=<%=vo.getB_sq()%>'">수정</button>
-        <button onclick="location.href='/freeDelete.do?num=<%=vo.getB_sq()%>'">삭제</button>
+        <button onclick="articleDelete()">삭제</button>
     </div>
     <div class="right-button">
         <button onclick="location.href='/freeBoard.do'">목록</button>
@@ -304,6 +304,14 @@
 </div>
 
 <script>
+    function articleDelete()  {
+        if(confirm('삭제하시겠습니까?')==true) {
+            location.href='/freeDelete.do?num=<%=vo.getB_sq()%>';
+
+        }else{
+            return;
+        }
+    }
     function commentSubmit() {
         var content = $('#content').val();
         if (!content) {
@@ -314,35 +322,42 @@
 
     }
     function commentDelete(num,commentId) {
-        console.log('<%=id%>');
         //로그인 id,댓글 id비교해야 함.
-        var id='<%=id%>';
-        console.log(commentId);
+        var id='<%=id%>';   //로그인 되어있는 id
+        console.log('login id: <%=id%>'+' | comment id: '+commentId);
 
-        if(id!=commentId){
-            alert("권한이 없습니다.");
+        if(confirm('삭제하시겠습니까?')==true) {    //확인눌렀을 때
+
+            if(id==commentId){      //작성자와 접속자다르거나 로그아웃일 때
+                $.ajax({
+                    url: "/commentDel.ajax"
+                    , type: "post"
+                    , data: {commentNum: num}
+                    , dataType: "json"
+                    , error: function (xhr,request, status) {
+                        console.log("서버 통신 실패");
+                        console.log(status);
+                    }
+                    , success: function (data) {
+                        console.log("서버 통신 성공");
+
+                        if (data.count >0) {      //0이상이면 지워짐
+                            console.log(data+"success 삭제 성공"+data.count)
+                            location.reload();  //페이지 리로드
+                        } else {
+                            console.log(data+"success else result = " + data.count);
+                        }
+                    }
+                });
+            }else{
+                alert("권한이 없습니다.");
+                return false;
+            }
+        }else{      //confirm에서 취소눌렀을 때
             return false;
         }
-        $.ajax({
-            url: "/commentDel.ajax"
-            , type: "post"
-            , data: {commentNum: num}
-            , dataType: "json"
-            , error: function (xhr,request, status) {
-                console.log("서버 통신 실패");
-                console.log(status);
-            }
-            , success: function (data) {
-                console.log("서버 통신 성공");
 
-                if (data.count >0) {      //0이상이면 지워짐
-                    console.log(data+"success 삭제 성공"+data.count)
-                    // location.reload();  //페이지 리로드
-                } else {
-                    console.log(data+"success else result = " + data.count);
-                }
-            }
-        });
+
     }
 
 </script>
