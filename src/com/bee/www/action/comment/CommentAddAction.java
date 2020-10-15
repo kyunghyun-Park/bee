@@ -2,6 +2,7 @@ package com.bee.www.action.comment;
 
 import com.bee.www.common.*;
 import com.bee.www.service.BoardService;
+import com.bee.www.service.CommentService;
 import com.bee.www.vo.ArticleVo;
 import com.bee.www.vo.CommentVo;
 
@@ -50,7 +51,7 @@ public class CommentAddAction implements Action {
             return null;
         }
 
-        BoardService service = new BoardService();
+        CommentService service = new CommentService();
         //vo에 담음
         CommentVo vo = new CommentVo();
         vo.setContent(content);

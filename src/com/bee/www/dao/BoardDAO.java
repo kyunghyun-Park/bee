@@ -276,37 +276,6 @@ public class BoardDAO {
         }
         return list;
     }
-    //댓글 목록
-    public ArrayList<CommentVo> getCommentList(int num) {
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        ArrayList<CommentVo> list = new ArrayList<>();
-
-        try{
-            pstmt = con.prepareStatement("select cm.cm_sq, m.nickname, cm.content, cm.writeDate " +
-                                                "from comment cm " +
-                                                "inner join member m on cm.m_sq = m.sq " +
-                                                "where b_sq=? "+
-                                                "order by cm_sq");
-            pstmt.setInt(1,num);
-            rs=pstmt.executeQuery();
-            while(rs.next()){
-                CommentVo vo = new CommentVo();
-                vo.setCm_sq(rs.getInt("cm_sq"));
-                vo.setNickname(rs.getString("nickname"));
-                vo.setContent(rs.getString("content"));
-                vo.setB_sq(num);
-                vo.setWriteDate(rs.getString("writeDate"));
-                list.add(vo);
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
-            close(rs);
-            close(pstmt);
-        }
-        return list;
-    }
     //리뷰 띄우기
     public ArrayList<ArticleVo> getReviewsList() {
         PreparedStatement pstmt = null;
@@ -335,7 +304,7 @@ public class BoardDAO {
         return list;
     }
 
-    //글 등록
+    /*//댓글 등록
     public int insertComment(CommentVo vo){
         PreparedStatement pstmt = null;
         int count = 0;
@@ -352,7 +321,7 @@ public class BoardDAO {
             close(pstmt);
         }
         return count;
-    }
+    }*/
     //글 등록
     public int insertArticle(ArticleVo vo){
         PreparedStatement pstmt = null;
@@ -407,7 +376,7 @@ public class BoardDAO {
         }
         return count;
     }
-    //댓글 삭제
+  /*  //댓글 삭제
     public int deleteComment(int num){
         PreparedStatement pstmt = null;
         int count = 0;
@@ -422,7 +391,7 @@ public class BoardDAO {
             close(pstmt);
         }
         return count;
-    }
+    }*/
     //리뷰 등록
     public int insertReviews(ArticleVo vo){
         PreparedStatement pstmt = null;

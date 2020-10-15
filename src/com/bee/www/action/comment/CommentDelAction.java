@@ -2,6 +2,7 @@ package com.bee.www.action.comment;
 
 import com.bee.www.common.*;
 import com.bee.www.service.BoardService;
+import com.bee.www.service.CommentService;
 import com.bee.www.vo.ArticleVo;
 import com.bee.www.vo.CommentVo;
 
@@ -52,7 +53,7 @@ public class CommentDelAction implements Action {
             return null;
         }
 
-        BoardService service = new BoardService();
+        CommentService service = new CommentService();
 
         //service호출
         if(!service.deleteComment(b_numInt)){ //글 수정 service 호출

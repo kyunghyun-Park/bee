@@ -5,6 +5,7 @@ import com.bee.www.common.ActionForward;
 import com.bee.www.common.Parser;
 import com.bee.www.common.RegExp;
 import com.bee.www.service.BoardService;
+import com.bee.www.service.CommentService;
 import com.bee.www.vo.ArticleVo;
 import com.bee.www.vo.CommentVo;
 
@@ -40,6 +41,7 @@ public class FreeDetailAction implements Action {
             return null;
         }
         BoardService service = new BoardService();
+        CommentService service2=new CommentService();
         ArticleVo vo = service.getArticleDetail(numInt);    //detail service 호출
 
         if (vo == null) {
@@ -51,7 +53,7 @@ public class FreeDetailAction implements Action {
         }
 
         //댓글 목록 불러오기
-        ArrayList<CommentVo> commentList = service.getCommentList(numInt);
+        ArrayList<CommentVo> commentList = service2.getCommentList(numInt);
         request.setAttribute("comment",commentList);
 
         //----------------------------------------쿠키로 조회수 중복방지

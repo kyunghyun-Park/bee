@@ -150,17 +150,6 @@ public class BoardService {
         return sq;
     }
 
-    //학원정보 글 등록할 때 선택된 지역으로 카테고리번호 찾는 메소드
-    public int getCateSequence(String job) {
-        BoardDAO dao = BoardDAO.getInstance();
-        Connection con = getConnection();
-        dao.setConnection(con);
-
-        int sq = dao.getCateSequence(job);
-        close(con);
-        return sq;
-    }
-
     //글쓰기 메소드
     public boolean insertArticle(ArticleVo vo) {
         //세팅
@@ -171,24 +160,6 @@ public class BoardService {
         boolean isSucess = false;
 
         int count = dao.insertArticle(vo);
-        if (count > 0) {    //성공
-            commit(con);
-            isSucess = true;
-        } else {          //실패
-            rollback(con);
-        }
-        close(con);
-        return isSucess;
-    }
-    //글쓰기 메소드
-    public boolean insertComment(CommentVo vo) {
-        //세팅
-        BoardDAO dao = BoardDAO.getInstance();
-        Connection con = getConnection();
-        dao.setConnection(con);
-        boolean isSucess = false;
-
-        int count = dao.insertComment(vo);
         if (count > 0) {    //성공
             commit(con);
             isSucess = true;
@@ -246,24 +217,6 @@ public class BoardService {
         boolean isSucess = false;
 
         int count = dao.insertReviews(vo);
-        if (count > 0) {    //성공
-            commit(con);
-            isSucess = true;
-        } else {          //실패
-            rollback(con);
-        }
-        close(con);
-        return isSucess;
-    }
-    //글삭제 메소드
-    public boolean deleteComment(int num) {
-        //세팅
-        BoardDAO dao = BoardDAO.getInstance();
-        Connection con = getConnection();
-        dao.setConnection(con);
-        boolean isSucess = false;
-
-        int count = dao.deleteComment(num);
         if (count > 0) {    //성공
             commit(con);
             isSucess = true;
@@ -332,17 +285,6 @@ public class BoardService {
         dao.setConnection(con);
 
         ArrayList<ArticleVo> list = dao.getReviewsList();
-        close(con);
-
-        return list;
-    }
-    //학원정보,자유게시판 리스트 불러오기
-    public ArrayList<CommentVo> getCommentList(int num) {
-        BoardDAO dao = BoardDAO.getInstance();
-        Connection con = getConnection();
-        dao.setConnection(con);
-
-        ArrayList<CommentVo> list = dao.getCommentList(num);
         close(con);
 
         return list;
