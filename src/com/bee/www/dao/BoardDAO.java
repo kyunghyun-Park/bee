@@ -222,28 +222,6 @@ public class BoardDAO {
         return count;
     }
 
-/*    //지역이름으로 카테고리 번호 찾기
-    public int getCateSequence(String job){
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        int cate_num = 0;
-        try{
-            //현재 로그인된 id에 해당하는 고유번호 조회
-            pstmt = con.prepareStatement("select cate_num from category where cate_name=?");
-            pstmt.setString(1,job);
-            rs = pstmt.executeQuery();
-            while (rs.next()){
-                cate_num=rs.getInt("cate_num");
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
-            close(rs);
-            close(pstmt);
-        }
-        return cate_num;
-    }*/
-
     //글 목록 띄우기
     public ArrayList<ArticleVo> getArticleList(String query) {
         PreparedStatement pstmt = null;
@@ -304,24 +282,6 @@ public class BoardDAO {
         return list;
     }
 
-    /*//댓글 등록
-    public int insertComment(CommentVo vo){
-        PreparedStatement pstmt = null;
-        int count = 0;
-        try{
-            //현재 로그인된 id에 해당하는 고유번호 조회
-            pstmt = con.prepareStatement("insert into comment(m_sq, b_sq, content) value(?, ?, ?)");
-            pstmt.setInt(1,vo.getM_sq());
-            pstmt.setInt(2,vo.getB_sq());
-            pstmt.setString(3,vo.getContent());
-            count=pstmt.executeUpdate();
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
-            close(pstmt);
-        }
-        return count;
-    }*/
     //글 등록
     public int insertArticle(ArticleVo vo){
         PreparedStatement pstmt = null;
@@ -376,22 +336,6 @@ public class BoardDAO {
         }
         return count;
     }
-  /*  //댓글 삭제
-    public int deleteComment(int num){
-        PreparedStatement pstmt = null;
-        int count = 0;
-        try{
-            //현재 로그인된 id에 해당하는 고유번호 조회
-            pstmt = con.prepareStatement("delete from comment where cm_sq=?");
-            pstmt.setInt(1,num);
-            count=pstmt.executeUpdate();
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
-            close(pstmt);
-        }
-        return count;
-    }*/
     //리뷰 등록
     public int insertReviews(ArticleVo vo){
         PreparedStatement pstmt = null;

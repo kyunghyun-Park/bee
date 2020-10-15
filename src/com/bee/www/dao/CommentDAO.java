@@ -58,7 +58,7 @@ public class CommentDAO {
         ArrayList<CommentVo> list = new ArrayList<>();
 
         try{
-            pstmt = con.prepareStatement("select cm.cm_sq, m.nickname, cm.content, cm.writeDate " +
+            pstmt = con.prepareStatement("select cm.cm_sq, m.nickname, cm.content, cm.writeDate,m.id " +
                                                 "from comment cm " +
                                                 "inner join member m on cm.m_sq = m.sq " +
                                                 "where b_sq=? "+
@@ -68,6 +68,7 @@ public class CommentDAO {
             while(rs.next()){
                 CommentVo vo = new CommentVo();
                 vo.setCm_sq(rs.getInt("cm_sq"));
+                vo.setId(rs.getString("id"));   //댓글 삭제를 위해 가져옴
                 vo.setNickname(rs.getString("nickname"));
                 vo.setContent(rs.getString("content"));
                 vo.setB_sq(num);

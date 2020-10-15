@@ -41,10 +41,10 @@ public class FreeDetailAction implements Action {
             return null;
         }
 
-        BoardService service = new BoardService();
-        CommentService service2=new CommentService();
-        ArticleVo vo = service.getArticleDetail(numInt);    //detail service 호출
-        vo.setComment_count(service2.getCommentCount(numInt));  //댓글 수 vo에 담음
+        BoardService boardService = new BoardService();
+        CommentService commentService=new CommentService();
+        ArticleVo vo = boardService.getArticleDetail(numInt);    //detail service 호출
+        vo.setComment_count(commentService.getCommentCount(numInt));  //댓글 수 vo에 담음
 
         if (vo == null) {
             response.setContentType("text/html;charset=UTF-8");
@@ -55,7 +55,7 @@ public class FreeDetailAction implements Action {
         }
 
         //댓글 목록 불러오기
-        ArrayList<CommentVo> commentList = service2.getCommentList(numInt);
+        ArrayList<CommentVo> commentList = commentService.getCommentList(numInt);
         request.setAttribute("comment",commentList);
 
         //----------------------------------------쿠키로 조회수 중복방지
@@ -86,7 +86,7 @@ public class FreeDetailAction implements Action {
                 response.addCookie(newCookie);  //쿠키 추가
 
                 //쿠키가 없으니 조회수 증가
-                if (service.updateHitCount(numInt)) {
+                if (boardService.updateHitCount(numInt)) {
                     System.out.println("조회수 증가");
                 } else {
                     System.out.println("조회수 증가 에러");
