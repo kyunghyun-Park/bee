@@ -1125,62 +1125,64 @@
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
     <table id="283" parent="3" name="board"/>
-    <table id="284" parent="3" name="category"/>
-    <table id="285" parent="3" name="member"/>
-    <column id="286" parent="283" name="b_sq">
+    <table id="284" parent="3" name="board_review"/>
+    <table id="285" parent="3" name="category"/>
+    <table id="286" parent="3" name="comment"/>
+    <table id="287" parent="3" name="member"/>
+    <column id="288" parent="283" name="b_sq">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="287" parent="283" name="title">
+    <column id="289" parent="283" name="title">
       <Position>2</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="283" name="content">
+    <column id="290" parent="283" name="content">
       <Position>3</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="289" parent="283" name="hit">
+    <column id="291" parent="283" name="hit">
       <Position>4</Position>
       <DataType>int|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="290" parent="283" name="writeDate">
+    <column id="292" parent="283" name="writeDate">
       <Position>5</Position>
       <DataType>datetime|0s</DataType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="291" parent="283" name="m_sq">
+    <column id="293" parent="283" name="m_sq">
       <Position>6</Position>
       <DataType>int|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="292" parent="283" name="c_sq">
+    <column id="294" parent="283" name="c_sq">
       <Position>7</Position>
       <DataType>int|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="293" parent="283" name="board_member_sq_fk">
+    <index id="295" parent="283" name="board_member_sq_fk">
       <ColNames>m_sq</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="294" parent="283" name="board_category_sq_fk">
+    <index id="296" parent="283" name="board_category_sq_fk">
       <ColNames>c_sq</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="295" parent="283" name="PRIMARY">
+    <key id="297" parent="283" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>b_sq</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="296" parent="283" name="board_member_sq_fk">
+    <foreign-key id="298" parent="283" name="board_member_sq_fk">
       <ColNames>m_sq</ColNames>
       <RefSchemaName>bee</RefSchemaName>
       <RefTableName>member</RefTableName>
@@ -1188,68 +1190,172 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>set-null</OnDelete>
     </foreign-key>
-    <foreign-key id="297" parent="283" name="board_category_sq_fk">
+    <foreign-key id="299" parent="283" name="board_category_sq_fk">
       <ColNames>c_sq</ColNames>
       <RefSchemaName>bee</RefSchemaName>
       <RefTableName>category</RefTableName>
       <RefColNames>cate_num</RefColNames>
     </foreign-key>
-    <column id="298" parent="284" name="cate_num">
-      <Position>1</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="299" parent="284" name="cate_name">
-      <Position>2</Position>
-      <DataType>varchar(30)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="300" parent="284" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>cate_num</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="301" parent="285" name="sq">
+    <column id="300" parent="284" name="b_sq">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="302" parent="285" name="id">
+    <column id="301" parent="284" name="content">
+      <Position>2</Position>
+      <DataType>text|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="302" parent="284" name="writeDate">
+      <Position>3</Position>
+      <DataType>datetime|0s</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="303" parent="284" name="m_sq">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="304" parent="284" name="boardrv_member_sq_fk">
+      <ColNames>m_sq</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="305" parent="284" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>b_sq</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="306" parent="284" name="boardrv_member_sq_fk">
+      <ColNames>m_sq</ColNames>
+      <RefSchemaName>bee</RefSchemaName>
+      <RefTableName>member</RefTableName>
+      <RefColNames>sq</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>set-null</OnDelete>
+    </foreign-key>
+    <column id="307" parent="285" name="cate_num">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="308" parent="285" name="cate_name">
+      <Position>2</Position>
+      <DataType>varchar(30)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="309" parent="285" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>cate_num</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="310" parent="286" name="cm_sq">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="311" parent="286" name="b_sq">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="312" parent="286" name="m_sq">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="313" parent="286" name="writeDate">
+      <Position>4</Position>
+      <DataType>datetime|0s</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="314" parent="286" name="parent_sq">
+      <Position>5</Position>
+      <DataType>int|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="315" parent="286" name="content">
+      <Position>6</Position>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="316" parent="286" name="comment_board_sq_fk">
+      <ColNames>b_sq</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="317" parent="286" name="comment_member_sq_fk">
+      <ColNames>m_sq</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="318" parent="286" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>cm_sq</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="319" parent="286" name="comment_board_sq_fk">
+      <ColNames>b_sq</ColNames>
+      <RefSchemaName>bee</RefSchemaName>
+      <RefTableName>board</RefTableName>
+      <RefColNames>b_sq</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <foreign-key id="320" parent="286" name="comment_member_sq_fk">
+      <ColNames>m_sq</ColNames>
+      <RefSchemaName>bee</RefSchemaName>
+      <RefTableName>member</RefTableName>
+      <RefColNames>sq</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="321" parent="287" name="sq">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="322" parent="287" name="id">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="303" parent="285" name="pwd">
+    <column id="323" parent="287" name="pwd">
       <Position>3</Position>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="304" parent="285" name="nickname">
+    <column id="324" parent="287" name="nickname">
       <Position>4</Position>
       <DataType>varchar(80)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="305" parent="285" name="email">
+    <column id="325" parent="287" name="email">
       <Position>5</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="306" parent="285" name="lgn_fl">
+    <column id="326" parent="287" name="lgn_fl">
       <Position>6</Position>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="307" parent="285" name="PRIMARY">
+    <key id="327" parent="287" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>sq</ColNames>
       <Primary>1</Primary>

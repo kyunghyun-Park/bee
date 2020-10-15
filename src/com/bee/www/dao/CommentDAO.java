@@ -99,5 +99,25 @@ public class CommentDAO {
         }
         return count;
     }
+    //아이디 중복검사
+    public int getCommentCount(int num){
+        PreparedStatement pstmt=null;
+        ResultSet rs = null;
+        int count=0;
 
+        try{
+            pstmt=con.prepareStatement("select count(*) from comment where b_sq=?");
+            pstmt.setInt(1,num);
+            rs=pstmt.executeQuery();
+            while(rs.next()){
+                count=rs.getInt(1); //0이면 미중복
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(rs);
+            close(pstmt);
+        }
+        return count;
+    }
 }

@@ -61,6 +61,15 @@ public class CommentService {
 
         return list;
     }
+    public int getCommentCount(int num){
+        CommentDAO dao = CommentDAO.getInstance();
+        Connection con = getConnection();
+        dao.setConnection(con);
+
+        int count=dao.getCommentCount(num);
+        close(con);
+        return count;
+    }
 
     //댓글 등록할 때 로그인 되어있는 id 시퀀스 찾는 메소드
     public int getMemberSequence(String id) {
@@ -72,5 +81,7 @@ public class CommentService {
         close(con);
         return sq;
     }
+
+
 
 }

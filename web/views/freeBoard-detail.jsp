@@ -158,7 +158,7 @@
                     <path d="m740.86 187.66c0-12.912 12.526-23.416 27.922-23.416 15.397 0 27.923 10.505 27.923 23.416 0 12.912-12.526 23.416-27.923 23.416-1.295 0-2.594-.075-3.871-.223-5.93 3.767-10.308 5.829-13.02 6.131-.094.001-.189.016-.282.016-.872 0-1.678-.434-2.159-1.163-.537-.815-.572-1.848-.094-2.692.022-.04 2.116-3.861 1.512-7.51-6.37-4.458-10.01-10.973-10.01-17.975"
                           fill="#4d4d4d" transform="matrix(.30328 0 0 .30328-222.16-46.812)"/>
                 </svg>
-                3
+                <%=vo.getComment_count()%>
             </div>
             <div class="content-count">
                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -267,7 +267,7 @@
 </div>
 <div class="comment-container">
     <div class="comment-count">
-        <h4>Comments 0</h4>
+        <h4>Comments <%=vo.getComment_count()%></h4>
     </div>
     <table>
         <%
@@ -290,7 +290,7 @@
         </tr>
         <% } %>
     </table>
-    <%  if(id!=null) { %>
+    <%  if(id!=null) {  //로그인 세션있을때만 %>
     <form action="/commentAdd.do?num=<%=vo.getB_sq()%>" method="post" onsubmit="return commentSubmit()">
         <div>
             <div class="comment-txt">

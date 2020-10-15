@@ -40,9 +40,11 @@ public class FreeDetailAction implements Action {
             out.close();
             return null;
         }
+
         BoardService service = new BoardService();
         CommentService service2=new CommentService();
         ArticleVo vo = service.getArticleDetail(numInt);    //detail service 호출
+        vo.setComment_count(service2.getCommentCount(numInt));  //댓글 수 vo에 담음
 
         if (vo == null) {
             response.setContentType("text/html;charset=UTF-8");

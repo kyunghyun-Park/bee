@@ -358,3 +358,39 @@ option {
     }
 }
 /* check bar */
+
+/* th media */
+@media all and (max-width: 490px){
+    .board-list table .num{
+        width: 25px;
+    }
+    .board-list table .view{
+        width: 32px;
+    }
+    .board-list table{
+        font-size: 10px;
+    }
+    :not(svg){
+        font-size: 10px;
+    }
+    .board-list table td{
+        font-size: 11px;
+    }
+    .location{
+        width: 90px;
+    }
+    .board-list table .date{
+        width: 58px;
+    }
+    .board-list table .user{
+        width: 65px;
+    }
+    .post-page{
+        padding: 0px;
+    }
+    .board-container{
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+}
+/* th media */

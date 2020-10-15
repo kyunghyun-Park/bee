@@ -12,6 +12,15 @@ public class ArticleVo {
     private String id; //member id
     private String nickname;    //member nickname
     private String cate_name;   //category name
+    private int comment_count;  //총 댓글 수
+
+    public int getComment_count() {
+        return comment_count;
+    }
+
+    public void setComment_count(int comment_count) {
+        this.comment_count = comment_count;
+    }
 
     public String getCate_name() {
         return cate_name;

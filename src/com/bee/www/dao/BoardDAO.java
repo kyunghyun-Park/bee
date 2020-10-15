@@ -222,7 +222,7 @@ public class BoardDAO {
         return count;
     }
 
-    //지역이름으로 카테고리 번호 찾기
+/*    //지역이름으로 카테고리 번호 찾기
     public int getCateSequence(String job){
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -242,7 +242,7 @@ public class BoardDAO {
             close(pstmt);
         }
         return cate_num;
-    }
+    }*/
 
     //글 목록 띄우기
     public ArrayList<ArticleVo> getArticleList(String query) {

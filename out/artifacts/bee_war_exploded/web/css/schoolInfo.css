@@ -278,3 +278,119 @@ option {
     text-align: right;
 }
 /* search section*/
+/* check bar */
+.checks {
+    position: relative;
+}
+.checks input[type="checkbox"] {  /* 실제 체크박스는 화면에서 숨김 */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip:rect(0,0,0,0);
+    border: 0
+}
+.checks input[type="checkbox"] + label {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+.checks input[type="checkbox"] + label:before {
+    content: ' ';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 21px;
+    margin: -2px 8px 0 0;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #cacece;
+    border-radius : 3px;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+}
+.checks.etrans input[type="checkbox"] + label {
+    padding-left: 23px;
+}
+.checks.etrans input[type="checkbox"] + label:before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-top: 0;
+    opacity: .6;
+    box-shadow: none;
+    -webkit-transition: all .12s, border-color .08s;
+    transition: all .12s, border-color .08s;
+}
+.checks.etrans input[type="checkbox"]:checked + label:before {
+    position: absolute;
+    content: "";
+    width: 10px;
+    top: -5px;
+    left: 5px;
+    border-radius: 0;
+    opacity:1;
+    background: transparent;
+    border-color:transparent #8bd6f1 #8bd6f1 transparent;
+    border-top-color:transparent;
+    border-left-color:transparent;
+    -ms-transform:rotate(45deg);
+    -webkit-transform:rotate(45deg);
+    transform:rotate(45deg);
+}
+.mobile-block{
+    text-align: -webkit-left;
+    display: contents;
+}
+@media all and (max-width: 690px) {
+    .mobile-block{
+        display: block;
+    }
+    .checks{
+        margin-bottom: 4px;
+    }
+    .control{
+        margin-top: 44px;
+    }
+}
+/* check bar */
+
+/* th media */
+@media all and (max-width: 490px){
+    .board-list table .num{
+        width: 25px;
+    }
+    .board-list table .view{
+        width: 32px;
+    }
+    .board-list table{
+        font-size: 10px;
+    }
+    :not(svg){
+        font-size: 10px;
+    }
+    .board-list table td{
+        font-size: 11px;
+    }
+    .location{
+        width: 90px;
+    }
+    .board-list table .date{
+        width: 58px;
+    }
+    .board-list table .user{
+        width: 65px;
+    }
+    .post-page{
+        padding: 0px;
+    }
+    .board-container{
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+}
+/* th media */

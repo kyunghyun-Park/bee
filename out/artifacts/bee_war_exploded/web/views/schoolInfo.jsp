@@ -81,16 +81,26 @@
                         <div class="content-list">
                             <div class="list-header">
                                 <div class="board-sort">
-                                    <form>
-                                        <select name="choose_region" id="choose_region" class="list-sort">
-                                            <option value="1">서울/수도권</option>
-                                            <option value="2">부산/대구/경상도</option>
-                                            <option value="3">광주/전라도</option>
-                                            <option value="4">충청도</option>
-                                            <option value="5">강원도</option>
-                                            <option value="6">제주도</option>
-                                        </select>
-                                    </form>
+                                    <div class="mobile-block">
+                                        <%String[] name = {"서울/수도권", "부산/대구/경상도", "광주/전라도", "충청도", "강원도", "제주도"};
+                                            for(int i=0; i<(name.length/2); i++){
+                                        %>
+                                        <div class="checks etrans">
+                                            <input type="checkbox" id="cate-<%=i%>">
+                                            <label for="cate-<%=i%>"><%=name[i]%></label>
+                                        </div>
+                                        <% } %>
+                                    </div>
+                                    <div class="mobile-block">
+                                        <%
+                                            for(int i=3; i< name.length; i++){
+                                        %>
+                                        <div class="checks etrans">
+                                            <input type="checkbox" id="cate-<%=i%>">
+                                            <label for="cate-<%=i%>"><%=name[i]%></label>
+                                        </div>
+                                        <% } %>
+                                    </div>
                                     <div class="control">
                                         <a href="/schBoardWrite.do" class="searchADNcontrol">글쓰기</a>
                                     </div>
