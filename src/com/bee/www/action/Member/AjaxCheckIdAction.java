@@ -42,7 +42,7 @@ public class AjaxCheckIdAction implements Action {
 //        }
 
         ActionForward forward = new ActionForward();
-        forward.setPath("/views/ajax/AjaxCheckId.jsp");
+        forward.setPath("/views/ajax/AjaxCheckJoin.jsp");
         return forward;
     }
 }

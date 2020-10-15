@@ -32,7 +32,7 @@ public class CommentService {
     }
 
     //글삭제 메소드
-    public boolean deleteComment(int num) {
+    public int deleteComment(int num) {
         //세팅
         CommentDAO dao = CommentDAO.getInstance();
         Connection con = getConnection();
@@ -47,7 +47,7 @@ public class CommentService {
             rollback(con);
         }
         close(con);
-        return isSucess;
+        return count;
     }
 
     //학원정보,자유게시판 리스트 불러오기

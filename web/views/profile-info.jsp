@@ -37,6 +37,11 @@
                 $('#email').focus();
                 return false;
             }
+            if(email=='<%=vo.getEmail()%>'){
+                alert('현재 이메일과 같습니다.');
+                $('#email').focus();
+                return false;
+            }
 
             $.ajax({
                 url: "/checkEmail.ajax"

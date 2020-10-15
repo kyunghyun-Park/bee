@@ -39,7 +39,7 @@ public class MemberLoginProcAction implements Action {
         if(memberVo==null||!BCrypt.checkpw(pwd,memberVo.getPwd())){
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            out.println("<script>alert('로그인 정보를 확인해 주세요.');history.back();</script>");
+            out.println("<script>alert('비밀번호를 확인해 주세요.');history.back();</script>");
             out.close();
             return null;
         }

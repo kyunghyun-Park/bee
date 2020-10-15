@@ -2,7 +2,7 @@ package com.bee.www.controller;
 
 import com.bee.www.action.Member.*;
 import com.bee.www.action.comment.CommentAddAction;
-import com.bee.www.action.comment.CommentDelAction;
+import com.bee.www.action.comment.AjaxCommentDelAction;
 import com.bee.www.action.freeboard.*;
 import com.bee.www.action.review.ReviewsAction;
 import com.bee.www.action.review.ReviewsRegisterAction;
@@ -218,7 +218,7 @@ public class BoardController extends HttpServlet {
                 e.printStackTrace();
             }
         }else if (command.equals("/commentDel.do")) {
-            action = new CommentDelAction();
+            action = new AjaxCommentDelAction();
             try{
                 forward = action.execute(request,response);
             }catch (Exception e){

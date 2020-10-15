@@ -14,18 +14,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- jQuery CDN -->
-    <script
-            src="https://code.jquery.com/jquery-3.5.1.slim.js"
-            integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
-            crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/index_header.css">
     <link rel="stylesheet" href="css/detail.css">
-
+    <!--jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
 </head>
 <body>
 <header>
@@ -282,7 +280,7 @@
             <td class="right-info"><a href="#">답변</a></td>
             <td class="right-info"><a href="#">수정</a></td>
             <td class="right-info">
-                <a onclick="commentDelete(<%=cList.get(i).getCm_sq()%>,<%=cList.get(i).getB_sq()%>)">삭제</a></td>
+                <a onclick="commentDelete(<%=cList.get(i).getCm_sq()%>,<%=cList.get(i).getM_sq()%>)">삭제</a></td>
         </tr>
         </tbody>
         <tr>
@@ -315,9 +313,34 @@
         }
 
     }
-    function commentDelete(num,c_num) {
-        location.href=
-            "/commentDel.do?cNum="+c_num+"&num="+num;
+    function commentDelete(num,id) {
+        //로그인 id,댓글 id비교해야 함.
+        var id = '<%=id%>';
+        if(id!=''){
+            alert("권한이 없습니다.");
+            return false;
+        }
+        $.ajax({
+            url: "/commentDel.ajax"
+            , type: "post"
+            , data: {commentNum: num}
+            , dataType: "json"
+            , error: function (xhr,request, status) {
+                console.log("서버 통신 실패");
+                console.log(status);
+            }
+            , success: function (data) {
+                console.log("서버 통신 성공");
+                console.log(data.count);
+
+                if (data.count >0) {      //0이상이면 지워짐
+                    console.log(data+"success 삭제 성공"+data.count)
+                    location.reload();  //페이지 리로드
+                } else {
+                    console.log(data+"success else result = " + data.count);
+                }
+            }
+        });
     }
 
 </script>

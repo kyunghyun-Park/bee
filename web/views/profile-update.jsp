@@ -61,7 +61,7 @@
                 <input name="pwd_confirm" id="pwd_confirm" minlength="4" maxlength="30" type="password"/>
                 <div class="profile-footer">
                     <a><button>수정</button></a>
-                    <button onclick="location.href='/'">나가기</button>
+                    <button type="button" onclick="location.href='/'">나가기</button>
                     <!-- 나가기 버튼 안되는데 나중에 수정 -->
                 </div>
             </form>
@@ -69,12 +69,5 @@
         </div>
     </div>
 </section>
-
-<script text="text/javascript">
-    document.getElementById('go-back').addEventListener('click', () => {
-        console.log("??")
-        window.history.back();
-    });
-</script>
 </body>
 </html>
