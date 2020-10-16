@@ -28,8 +28,6 @@ public class AjaxCommentDelAction implements Action {
 
         //댓글번호 받아오기
         String commentNum = request.getParameter("commentNum");
-        //글번호 받아오기
-//        String articleNum=request.getParameter("num");
 
         if ( commentNum==null || commentNum.equals("")
                 || !RegExp.checkString(ARTICLE_NUM,commentNum)) {
@@ -39,26 +37,9 @@ public class AjaxCommentDelAction implements Action {
             out.close();
             return null;
         }
-/*        if (articleNum == null || commentNum==null
-                || articleNum.equals("") || commentNum.equals("")
-                || !RegExp.checkString(ARTICLE_NUM, articleNum)
-                || !RegExp.checkString(ARTICLE_NUM,commentNum)) {
-            response.setContentType("text/html;charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            out.println("<script>alert('잘못된 접근입니다.(1)');location.href='/';</script>");
-            out.close();
-            return null;
-        }*/
-//        int articleNumInt = Integer.parseInt(articleNum);  //유효성 검사 후 글 번호 숫자로 변환
+
         int commentNumInt = Integer.parseInt(commentNum);
         //글 번호 0보다 작으면 오류alert
- /*       if (articleNumInt <= 0 ||  commentNumInt<=0) {
-            response.setContentType("text/html;charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            out.println("<script>alert('잘못된 접근입니다.(2)');history.back();</script>");
-            out.close();
-            return null;
-        }*/
         if (commentNumInt<=0) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
@@ -66,6 +47,7 @@ public class AjaxCommentDelAction implements Action {
             out.close();
             return null;
         }
+
         CommentService service = new CommentService();
         request.setAttribute("count",service.deleteComment(commentNumInt));
 
@@ -73,6 +55,4 @@ public class AjaxCommentDelAction implements Action {
         forward.setPath("/views/ajax/AjaxCommentDel.jsp");
         return forward;
     }
-
-
 }

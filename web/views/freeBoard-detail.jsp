@@ -24,6 +24,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
             crossorigin="anonymous"></script>
+
 </head>
 <body>
 <header>
@@ -319,7 +320,6 @@
             $('#content').focus();
             return false;
         }
-
     }
     function commentDelete(num,commentId) {
         //로그인 id,댓글 id비교해야 함.
@@ -342,7 +342,7 @@
                         console.log("서버 통신 성공");
 
                         if (data.count >0) {      //0이상이면 지워짐
-                            console.log(data+"success 삭제 성공"+data.count)
+                            console.log(data+"success 삭제 성공"+data.count);
                             location.reload();  //페이지 리로드
                         } else {
                             console.log(data+"success else result = " + data.count);

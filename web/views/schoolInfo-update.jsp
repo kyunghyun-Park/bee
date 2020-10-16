@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     ArticleVo vo = (ArticleVo) request.getAttribute("vo");
+    String nowPage = request.getParameter("pn");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +42,7 @@
 
 <section class="container-section">
     <article class="write-container">
-        <form action="/schUpdateProc.do?num=<%=vo.getB_sq()%>" method="post" onsubmit="return checkData()">
+        <form action="/schUpdateProc.do?pn=<%=nowPage%>&num=<%=vo.getB_sq()%>" method="post" onsubmit="return checkData()">
             <div>
                 <select name="choose_region" id="choose_region" class="list-sort">
                     <option value="1">서울/수도권</option>

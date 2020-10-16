@@ -17,12 +17,19 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/index_header.css">
     <link rel="stylesheet" href="css/reviews.css">
+    <!--jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+    <!-- Toastr -->
+    <link rel="stylesheet" href="toastr/toastr.min.css">
+    <script src="toastr/toastr.min.js"></script>
     <script>
         function validateCheck() {
             var content = $('#content').val();
-
             if (!content) {
                 alert("내용을 입력해 주세요.");
+                toastr.warning('Warning!','내용을 입력해 주세요.');
                 $('#content').focus();
                 return false;
             }
@@ -87,9 +94,9 @@
 </div>
 <div class="board-container">
     <div class="body-header">
-        <form action="/reviewsRegister.do" method="post" onsubmit="validateCheck()">
+        <form action="/reviewsRegister.do" method="post" onsubmit="return validateCheck()">
             <textarea name="content" id="content" type="text" placeholder="내용을 입력하세요."></textarea>
-            <button type="submit">글쓰기</button>
+            <button>글쓰기</button>
         </form>
     </div>
 

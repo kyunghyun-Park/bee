@@ -11,6 +11,7 @@ public class RegExp {
     public static final int MEMBER_PWD = 4;
     public static final int MEMBER_NICK = 5;
     public static final int MEMBER_EMAIL = 6;
+    public static final int IS_NUMBER=7;
 
     public static final String EXP_ARTICLE_NUM = "[0-9]*$"; //숫자 비교
     public static final String EXP_ARTICLE_TITLE = "^.{1,100}$"; //글 제목 100자까지 인지
@@ -19,7 +20,7 @@ public class RegExp {
     public static final String EXP_MEMBER_PWD = "^.{4,30}$"; //회원 비밀번호
     public static final String EXP_MEMBER_NICK = "^[a-z가-힣]{2,20}$";
     public static final String EXP_MEMBER_EMAIL = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$";
-
+    public static final String EXP_IS_NUMBER = "[0-9]*$";
 
     public static boolean checkString(int type, String data) { //타입,비교할 데이터
         boolean result = false;
@@ -45,6 +46,9 @@ public class RegExp {
                 break;
             case MEMBER_EMAIL:
                 result = Pattern.matches(EXP_MEMBER_EMAIL, data);
+                break;
+            case IS_NUMBER:
+                result = Pattern.matches(EXP_IS_NUMBER, data);
                 break;
         }
         return result;

@@ -68,8 +68,23 @@ public class SchoolDeleteAction implements Action {
             return null;
         }
 
+        //페이지 받아와서 다시 그 페이지로 보내기
+        String pageNum = request.getParameter("pn");  //페이지 번호 받아오기
+        if (pageNum == null     //페이지 번호 숫자 아닐때
+                || !RegExp.checkString(IS_NUMBER, pageNum)) {
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('잘못된 접근입니다zzz.');location.href='/';</script>");
+            out.close();
+            return null;
+        }
+
+        int page = Integer.parseInt(pageNum); //페이지 번호 정수형 변환
+        if (page < 1) {     //페이지 번호 1보다 작을때 오류
+            page=1;
+        }
         ActionForward forward = new ActionForward();
-        forward.setPath("/schBoard.do");
+        forward.setPath("/schBoard.do?pn="+page);
         forward.setRedirect(true);
         return forward;
     }

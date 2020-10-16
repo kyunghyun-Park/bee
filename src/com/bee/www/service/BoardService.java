@@ -1,5 +1,6 @@
 package com.bee.www.service;
 
+import com.bee.www.common.Pagenation;
 import com.bee.www.dao.BoardDAO;
 import com.bee.www.vo.ArticleVo;
 import com.bee.www.vo.CommentVo;
@@ -11,7 +12,15 @@ import java.util.ArrayList;
 import static com.bee.www.common.JdbcUtil.*;
 
 public class BoardService {
+    public int getArticleCount(String query){
+        BoardDAO dao = BoardDAO.getInstance();
+        Connection con = getConnection();
+        dao.setConnection(con);
 
+        int count=dao.getArticleCount(query);
+        close(con);
+        return count;
+    }
     //회원가입 메소드
     public boolean joinMember(MemberVo memberVo) {
         BoardDAO dao = BoardDAO.getInstance();
@@ -267,12 +276,12 @@ public class BoardService {
     }
 
     //학원정보,자유게시판 리스트 불러오기
-    public ArrayList<ArticleVo> getArticleList(String query) {
+    public ArrayList<ArticleVo> getArticleList(Pagenation pagenation,String query) {
         BoardDAO dao = BoardDAO.getInstance();
         Connection con = getConnection();
         dao.setConnection(con);
 
-        ArrayList<ArticleVo> list = dao.getArticleList(query);
+        ArrayList<ArticleVo> list = dao.getArticleList(pagenation,query);
         close(con);
 
         return list;

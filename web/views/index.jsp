@@ -65,7 +65,7 @@
     <section class="nav-section">
         <nav>
             <ul>
-                <li><a href="/schBoard.do">학원정보</a></li>
+                <li><a href="/schBoard.do?pn=1">학원정보</a></li>
                 <li><a href="/reviews.do">학원후기</a></li>
                 <li><a href="/freeBoard.do">자유게시판</a></li>
             </ul>
@@ -198,7 +198,7 @@
 
 <script type="text/javascript">
     // WebSocket 오브젝트 생성 (자동으로 접속 시작한다. - onopen 함수 호출)
-    var webSocket = new WebSocket("ws://localhost:8090/websocket");
+    var webSocket = new WebSocket("ws://localhost:8080/websocket");
 
     var inputMessage = document.getElementById('inputMessage');
 

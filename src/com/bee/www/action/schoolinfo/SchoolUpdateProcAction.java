@@ -94,8 +94,24 @@ public class SchoolUpdateProcAction implements Action {
             return null;
         }
 
+        //페이지 받아와서 디테일갈 때 페이지넘버 같이 보내기(그래야 목록눌렀을 때 해당 페이지 갈 수 있음)
+        String pageNum = request.getParameter("pn");  //페이지 번호 받아오기
+        if (pageNum == null     //페이지 번호 숫자 아닐때
+                || !RegExp.checkString(IS_NUMBER, pageNum)) {
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('잘못된 접근입니다zzz.');location.href='/';</script>");
+            out.close();
+            return null;
+        }
+
+        int page = Integer.parseInt(pageNum); //페이지 번호 정수형 변환
+        if (page < 1) {     //페이지 번호 1보다 작을때 오류
+            page=1;
+        }
+
         ActionForward forward = new ActionForward();
-        forward.setPath("/schDetail.do?num="+numInt);
+        forward.setPath("/schDetail.do?pn=" + page + "&num="+numInt);
         forward.setRedirect(true);
         return forward;
     }

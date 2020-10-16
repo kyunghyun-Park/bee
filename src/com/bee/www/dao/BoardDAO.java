@@ -1,5 +1,6 @@
 package com.bee.www.dao;
 
+import com.bee.www.common.Pagenation;
 import com.bee.www.vo.ArticleVo;
 import com.bee.www.vo.CommentVo;
 import com.bee.www.vo.MemberVo;
@@ -31,6 +32,27 @@ public class BoardDAO {
 
     public void setConnection(Connection con) {
         this.con = con;
+    }
+
+    //총 게시글 수 가져오기
+    public int getArticleCount(String query){
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        int count =0;
+        try{
+            pstmt=con.prepareStatement(
+                    "select count(*) from board where "+query);
+            rs=pstmt.executeQuery();
+            while (rs.next()){
+                count=rs.getInt(1);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(rs);
+            close(pstmt);
+        }
+        return count;
     }
 
     //회원가입
@@ -223,7 +245,7 @@ public class BoardDAO {
     }
 
     //글 목록 띄우기
-    public ArrayList<ArticleVo> getArticleList(String query) {
+    public ArrayList<ArticleVo> getArticleList(Pagenation pagenation, String query) {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         ArrayList<ArticleVo> list = new ArrayList<>();
@@ -233,7 +255,11 @@ public class BoardDAO {
                     "b.title,b.content," +
                     "b.hit,b.writeDate, b.c_sq " +
                     "from board b inner join member m on b.m_sq = m.sq where "+query
-                    +" order by b_sq desc");
+                    +" order by b_sq desc" +
+                    " limit ?, ?");
+            //limit (1,가져올 글 개수)
+            pstmt.setInt(1,pagenation.getStartArticleNumber());
+            pstmt.setInt(2,pagenation.getSHOW_ARTICLE_COUNT());
             rs=pstmt.executeQuery();
             while(rs.next()){
                 ArticleVo vo = new ArticleVo();

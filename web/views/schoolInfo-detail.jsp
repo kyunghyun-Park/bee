@@ -5,6 +5,7 @@
     ArticleVo vo = (ArticleVo) request.getAttribute("vo");
     LoginManager lm=LoginManager.getInstance();
     String id=lm.getMemberId(session);
+    String nowPage=request.getParameter("pn");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +64,7 @@
     <section class="nav-section">
         <nav>
             <ul>
-                <li><a href="/schBoard.do" style="color: rgb(12, 167, 179);">학원정보</a></li>
+                <li><a href="/schBoard.do?pn=1" style="color: rgb(12, 167, 179);">학원정보</a></li>
                 <li><a href="/reviews.do">학원후기</a></li>
                 <li><a href="/freeBoard.do">자유게시판</a></li>
             </ul>
@@ -111,29 +112,29 @@
             if (id.equals(vo.getId())) {     //글 작성자랑 로그인id랑 같을때
     %>
     <div class="left-button">
-        <button onclick="location.href='/schUpdate.do?num=<%=vo.getB_sq()%>'">수정</button>
+        <button onclick="location.href='/schUpdate.do?pn=<%=nowPage%>&num=<%=vo.getB_sq()%>'">수정</button>
         <button onclick="articleDelete()">삭제</button>
     </div>
     <div class="right-button">
-        <button onclick="location.href='/schBoard.do'">목록</button>
+        <button onclick="location.href='/schBoard.do?pn=<%=nowPage%>'">목록</button>
     </div>
     <%--id 있는데 게시글 번호랑 다를때--%>
     <% } else { %>
     <div class="right-button">
-        <button onclick="location.href='/schBoard.do'">목록</button>
+        <button onclick="location.href='/schBoard.do?pn=<%=nowPage%>'">목록</button>
     </div>
     <%--id==null일 때--%>
     <% }
     } else { %>
     <div class="right-button">
-        <button onclick="location.href='/schBoard.do'">목록</button>
+        <button onclick="location.href='/schBoard.do?pn=<%=nowPage%>'">목록</button>
     </div>
     <% } %>
 </div>
 <script>
     function articleDelete()  {
         if(confirm('삭제하시겠습니까?')==true) {
-            location.href='/schDelete.do?num=<%=vo.getB_sq()%>';
+            location.href='/schDelete.do?pn=<%=nowPage%>&num=<%=vo.getB_sq()%>';
         }else{
             return;
         }
