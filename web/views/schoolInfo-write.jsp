@@ -20,11 +20,12 @@
                 $('#title').focus();
                 return false;
             }
-            if (!content) {
+            saveContent();
+           /* if (!content) {
                 alert("내용을 입력하세요");
                 $('#content').focus();
                 return false;
-            }
+            }*/
         }
     </script>
 </head>
@@ -37,7 +38,7 @@
 
 <section class="container-section">
     <article class="write-container">
-        <form action="/schoolRegister.do" method="post" onsubmit="return checkData()">
+        <form id="editorForm" action="/schoolRegister.do" method="post" >
             <div>
                 <select name="choose_region" id="choose_region" class="list-sort">
                     <option value="1">서울/수도권</option>
@@ -51,19 +52,20 @@
             <div class="post-title">
                 <input type="text" name="title" id="title" placeholder="제목을 입력하세요"/>
             </div>
-            <div class="file-">
+           <%-- <div class="file-">
                 <button class="upButton">
                     <label htmlFor="file" class="img-up">
                         <input type="file" id="file" accept=".jpg, .png, .jpeg, .gif"/>이미지 업로드
                     </label>
                 </button>
-            </div>
+            </div>--%>
             <div class="post-contents">
-                <textarea name="content" id="content" class="post-textarea" placeholder="내용을 입력하세요"></textarea>
+                <jsp:include page="/editor/editorSkinForRegister.jsp" flush="false"/>
+                <%--<textarea name="content" id="content" class="post-textarea" placeholder="내용을 입력하세요"></textarea>--%>
             </div>
             <footer class="post-comment">
-                <a class="exit-btn transparent-btn" href="/schBoard.do">✔ 나가기</a>
-                <button class="transparent-btn">등록</button>
+                <a class="exit-btn transparent-btn" href="/schBoard.do?pn=1">✔ 나가기</a>
+                <button class="transparent-btn" onclick="checkData()">등록</button>
             </footer>
         </form>
     </article>

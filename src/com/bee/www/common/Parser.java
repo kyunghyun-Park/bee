@@ -10,7 +10,7 @@ public class Parser {
         str=str.replaceAll("\"","&quot");
         return str;
     }
-    public static String strToHTML(String str){
+    public static String chgToHTML(String str){
         str=str.replaceAll("&amp;","&");
         str=str.replaceAll("&lt;","<");
         str=str.replaceAll("&gt;",">");

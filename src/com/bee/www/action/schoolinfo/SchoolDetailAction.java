@@ -2,6 +2,7 @@ package com.bee.www.action.schoolinfo;
 
 import com.bee.www.common.Action;
 import com.bee.www.common.ActionForward;
+import com.bee.www.common.Parser;
 import com.bee.www.common.RegExp;
 import com.bee.www.service.BoardService;
 import com.bee.www.vo.ArticleVo;
@@ -90,6 +91,7 @@ public class SchoolDetailAction implements Action {
         }else{  //만들어진 쿠키 있을때 증가로직 진행X
             System.out.println("쿠키 있음 값:"+viewCookie.getValue());
         }
+        vo.setContent(Parser.chgToHTML(vo.getContent()));
 
         ActionForward forward = new ActionForward();
         request.setAttribute("vo", vo);

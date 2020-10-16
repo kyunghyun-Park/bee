@@ -1,9 +1,6 @@
 package com.bee.www.action.schoolinfo;
 
-import com.bee.www.common.Action;
-import com.bee.www.common.ActionForward;
-import com.bee.www.common.LoginManager;
-import com.bee.www.common.RegExp;
+import com.bee.www.common.*;
 import com.bee.www.service.BoardService;
 import com.bee.www.vo.ArticleVo;
 
@@ -41,7 +38,8 @@ public class SchoolRegisterAction implements Action {
         //글 번호 유효성검사,RegExp = 글 번호 유효성 검사
         if (title == null || content == null
                 || title.equals("") || content.equals("")
-                || !RegExp.checkString(ARTICLE_TITLE, title) || !RegExp.checkString(ARTICLE_CONTENT, content)) {
+                || !RegExp.checkString(ARTICLE_TITLE, title)
+                || !RegExp.checkString(ARTICLE_CONTENT, content)) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
             out.println("<script>alert('잘못된 접근입니다.');history.back();</script>");
@@ -52,8 +50,9 @@ public class SchoolRegisterAction implements Action {
         BoardService service = new BoardService();
         //vo에 담음
         ArticleVo vo = new ArticleVo();
-        vo.setTitle(title);
-        vo.setContent(content);
+        vo.setTitle(Parser.chgToStr(title));
+        vo.setContent(Parser.chgToStr(content));
+
         vo.setC_sq(Integer.parseInt(job));   //서울이면 1들어옴
         vo.setM_sq(service.getMemberSequence(id));
 
@@ -66,7 +65,7 @@ public class SchoolRegisterAction implements Action {
         }
 
         ActionForward forward = new ActionForward();
-        forward.setPath("/schBoard.do");
+        forward.setPath("/schBoard.do?pn=1");
         forward.setRedirect(true);
         return forward;
     }
