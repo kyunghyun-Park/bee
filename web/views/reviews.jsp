@@ -22,18 +22,23 @@
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
             crossorigin="anonymous"></script>
     <!-- Toastr -->
-    <link rel="stylesheet" href="toastr/toastr.min.css">
-    <script src="toastr/toastr.min.js"></script>
+    <link rel="stylesheet" href="../toastr/toastr.css">
+    <script src="../toastr/toastr.min.js"></script>
     <script>
         function validateCheck() {
             var content = $('#content').val();
-            if (!content) {
-                alert("내용을 입력해 주세요.");
-                toastr.warning('Warning!','내용을 입력해 주세요.');
+            toastr.options = {
+                "closeButton": true,
+                "positionClass": "toast-top-center",
+                "timeOut": 1000
+            }
+            if (content) {
+                toastr.success('글 등록 성공!'); //페이지 리로딩되서 안보임
+            } else {
+                toastr.error('내용을 입력해 주세요!');
                 $('#content').focus();
                 return false;
             }
-
         }
     </script>
 </head>
@@ -85,7 +90,7 @@
     <section class="nav-section">
         <nav>
             <ul>
-                <li><a href="/schBoard.do">학원정보</a></li>
+                <li><a href="/schBoard.do?pn=1">학원정보</a></li>
                 <li><a href="/reviews.do" style="color: rgb(12, 167, 179);">학원후기</a></li>
                 <li><a href="/freeBoard.do">자유게시판</a></li>
             </ul>

@@ -12,6 +12,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
             crossorigin="anonymous"></script>
+    <!-- Toastr -->
+    <link rel="stylesheet" href="../toastr/toastr.css">
+    <script src="../toastr/toastr.min.js"></script>
 </head>
 <body>
 <header>
@@ -93,6 +96,11 @@
     </div>
 </main>
 <script>
+    toastr.options = {
+        "closeButton": true,
+        "positionClass": "toast-top-center",
+        "timeOut": 1000
+    }
     var resultId = 1;
     var resultEmail = 1;
 
@@ -106,7 +114,7 @@
         }
         var regExpEmail = new RegExp("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$", "g");
         if (regExpEmail.exec(email) == null) {
-            alert("잘못된 이메일 형식입니다.");
+            toastr.error("잘못된 이메일 형식입니다.");
             $('#email').val("");
             $('#email').focus();
             return false;
@@ -212,21 +220,21 @@
         var nick = $('#nick').val();
 
         if (resultId == 1 && resultEmail == 1) {
-            alert('아이디와 이메일을 중복체크 하세요');
+            toastr.error('아이디와 이메일을 중복체크 하세요');
             if ($('#id').val() == '') {
                 $('#id').focus();
             }
             return false;
         }
         if (resultId == 1) {
-            alert('아이디 중복체크 하세요');
+            toastr.error('아이디 중복체크 하세요');
             if ($('#id').val() == '') {
                 $('#id').focus();
             }
             return false;
         }
         if (resultEmail == 1) {
-            alert('이메일 중복체크 하세요');
+            toastr.error('이메일 중복체크 하세요');
             if ($('#email').val() == '') {
                 $('#email').focus();
             }
@@ -234,41 +242,41 @@
         }
 
         if (!id) {
-            alert("아이디를 입력해 주세요.");
+            toastr.error("아이디를 입력해 주세요.");
             $('#id').focus();
             return false;
         }
         if (!pwd) {
-            alert("비밀번호를 입력해 주세요.");
+            toastr.error("비밀번호를 입력해 주세요.");
             $('#pwd').focus();
             return false;
         }
         if (!pwd_confirm) {
-            alert("비밀번호확인을 입력해 주세요.");
+            toastr.error("비밀번호확인을 입력해 주세요.");
             $('#pwd_confirm').focus();
             return false;
         }
         if (pwd != pwd_confirm) {
-            alert("비밀번호가 일치하지 않습니다.");
+            toastr.error("비밀번호가 일치하지 않습니다.");
             $('#pwd').val("");
             $('#pwd_confirm').val("");
             $('#pwd').focus();
             return false;
         }
         if (!email) {
-            alert("이메일을 입력해 주세요");
+            toastr.error("이메일을 입력해 주세요");
             $('#email').focus();
             return false;
         }
         if (!nick) {
-            alert("닉네임을 입력해 주세요");
+            toastr.error("닉네임을 입력해 주세요");
             $('#nick').focus();
             return false;
         }
 
         var regExpId = new RegExp("^[a-z0-9]{4,20}$", "g");
         if (regExpId.exec(id) == null) {
-            alert("잘못된 아이디 형식입니다.");
+            toastr.error("잘못된 아이디 형식입니다.");
             $('#id').val("");
             $('#id').focus();
             return false;
@@ -276,7 +284,7 @@
 
         var regExpPwd = new RegExp("^.{4,30}$", "g");
         if (regExpPwd.exec(pwd) == null) {
-            alert("잘못된 비밀번호 형식입니다.");
+            toastr.error("잘못된 비밀번호 형식입니다.");
             $('#pwd').val("");
             $('#pwd_confirm').val("");
             $('#pwd').focus();
@@ -285,7 +293,7 @@
         }
         var regExpNick = new RegExp("^[a-z가-힣]{2,20}$", "g");
         if (regExpNick.exec(nick) == null) {
-            alert("잘못된 닉네임 형식입니다.");
+            toastr.error("잘못된 닉네임 형식입니다.");
             $('#nick').val("");
             $('#nick').focus();
             return false;
@@ -293,7 +301,7 @@
 
         var regExpEmail = new RegExp("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$", "g");
         if (regExpEmail.exec(email) == null) {
-            alert("잘못된 이메일 형식입니다.");
+            toastr.error("잘못된 이메일 형식입니다.");
             $('#email').val("");
             $('#email').focus();
             return false;
