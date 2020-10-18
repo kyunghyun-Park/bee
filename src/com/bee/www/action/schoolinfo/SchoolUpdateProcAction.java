@@ -1,9 +1,6 @@
 package com.bee.www.action.schoolinfo;
 
-import com.bee.www.common.Action;
-import com.bee.www.common.ActionForward;
-import com.bee.www.common.LoginManager;
-import com.bee.www.common.RegExp;
+import com.bee.www.common.*;
 import com.bee.www.service.BoardService;
 import com.bee.www.vo.ArticleVo;
 
@@ -82,8 +79,8 @@ public class SchoolUpdateProcAction implements Action {
         //vo에 담음
         ArticleVo vo = new ArticleVo();
         vo.setB_sq(numInt);
-        vo.setTitle(title);
-        vo.setContent(content);
+        vo.setTitle(Parser.chgToStr(title));
+        vo.setContent(Parser.chgToStr(content));
         vo.setC_sq(Integer.parseInt(job));   //서울이면 1들어옴
 
         if(!service.updateArticle(vo)){ //글 수정 service 호출
@@ -100,7 +97,7 @@ public class SchoolUpdateProcAction implements Action {
                 || !RegExp.checkString(IS_NUMBER, pageNum)) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            out.println("<script>alert('잘못된 접근입니다zzz.');location.href='/';</script>");
+            out.println("<script>alert('잘못된 접근입니다.');location.href='/';</script>");
             out.close();
             return null;
         }

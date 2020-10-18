@@ -1,9 +1,6 @@
 package com.bee.www.action.freeboard;
 
-import com.bee.www.common.Action;
-import com.bee.www.common.ActionForward;
-import com.bee.www.common.LoginManager;
-import com.bee.www.common.RegExp;
+import com.bee.www.common.*;
 import com.bee.www.service.BoardService;
 import com.bee.www.vo.ArticleVo;
 
@@ -59,7 +56,7 @@ public class FreeUpdateAction implements Action {
             out.close();
             return null;
         }
-
+        vo.setContent(Parser.chgToHTML(vo.getContent()));   //에디터
         ActionForward forward = new ActionForward();
         request.setAttribute("vo",vo); //view에게 vo넘김
         forward.setPath("/views/freeBoard-update.jsp");

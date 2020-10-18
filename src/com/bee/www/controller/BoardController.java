@@ -1,8 +1,9 @@
 package com.bee.www.controller;
 
 import com.bee.www.action.Member.*;
-import com.bee.www.action.comment.CommentAddAction;
+import com.bee.www.action.comment.FreeCommentAddAction;
 import com.bee.www.action.comment.AjaxCommentDelAction;
+import com.bee.www.action.comment.SchCommentAddAction;
 import com.bee.www.action.freeboard.*;
 import com.bee.www.action.review.ReviewsAction;
 import com.bee.www.action.review.ReviewsRegisterAction;
@@ -210,8 +211,15 @@ public class BoardController extends HttpServlet {
             }catch (Exception e){
                 e.printStackTrace();
             }
-        }else if (command.equals("/commentAdd.do")) {
-            action = new CommentAddAction();
+        }else if (command.equals("/freeCommentAdd.do")) {
+            action = new FreeCommentAddAction();
+            try{
+                forward = action.execute(request,response);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }else if (command.equals("/schCommentAdd.do")) {
+            action = new SchCommentAddAction();
             try{
                 forward = action.execute(request,response);
             }catch (Exception e){

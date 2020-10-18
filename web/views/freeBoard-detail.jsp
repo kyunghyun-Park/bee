@@ -9,6 +9,7 @@
     ArrayList<CommentVo> cList = (ArrayList<CommentVo>) request.getAttribute("comment");
     LoginManager lm = LoginManager.getInstance();
     String id = lm.getMemberId(session);
+    String nowPage=request.getParameter("pn");
 %>
 
 <!DOCTYPE html>
@@ -24,7 +25,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
             crossorigin="anonymous"></script>
-
+    <!-- Toastr -->
+    <link rel="stylesheet" href="../toastr/toastr.css">
+    <script src="../toastr/toastr.min.js"></script>
 </head>
 <body>
 <header>
@@ -75,9 +78,9 @@
     <section class="nav-section">
         <nav>
             <ul>
-                <li><a href="/schBoard.do">학원정보</a></li>
+                <li><a href="/schBoard.do?pn=1">학원정보</a></li>
                 <li><a href="/reviews.do">학원후기</a></li>
-                <li><a href="/freeBoard.do" style="color: rgb(12, 167, 179);">자유게시판</a></li>
+                <li><a href="/freeBoard.do?pn=1" style="color: rgb(12, 167, 179);">자유게시판</a></li>
             </ul>
         </nav>
     </section>
@@ -245,22 +248,22 @@
             if (id.equals(vo.getId())) {    //글 작성자랑 로그인id랑 같을때
     %>
     <div class="left-button">
-        <button onclick="location.href='/freeUpdate.do?num=<%=vo.getB_sq()%>'">수정</button>
+        <button onclick="location.href='/freeUpdate.do?pn=<%=nowPage%>&num=<%=vo.getB_sq()%>'">수정</button>
         <button onclick="articleDelete()">삭제</button>
     </div>
     <div class="right-button">
-        <button onclick="location.href='/freeBoard.do'">목록</button>
+        <button onclick="location.href='/freeBoard.do?pn=<%=nowPage%>'">목록</button>
     </div>
     <%--id 있는데 게시글 번호랑 다를때--%>
     <% } else { %>
     <div class="right-button">
-        <button onclick="location.href='/freeBoard.do'">목록</button>
+        <button onclick="location.href='/freeBoard.do?pn=<%=nowPage%>'">목록</button>
     </div>
     <%--id==null일 때--%>
     <% }
     } else { %>
     <div class="right-button">
-        <button onclick="location.href='/freeBoard.do'">목록</button>
+        <button onclick="location.href='/freeBoard.do?pn=<%=nowPage%>'">목록</button>
     </div>
     <% } %>
 </div>
@@ -305,10 +308,14 @@
 </div>
 
 <script>
+    toastr.options = {
+        "closeButton": true,
+        "positionClass": "toast-top-center",
+        "timeOut": 1000
+    }
     function articleDelete()  {
         if(confirm('삭제하시겠습니까?')==true) {
-            location.href='/freeDelete.do?num=<%=vo.getB_sq()%>';
-
+            location.href='/freeDelete.do?pn=<%=nowPage%>&num=<%=vo.getB_sq()%>';
         }else{
             return;
         }
@@ -316,7 +323,7 @@
     function commentSubmit() {
         var content = $('#content').val();
         if (!content) {
-            alert("댓글을 입력하세요");
+            toastr.error("댓글을 입력하세요");
             $('#content').focus();
             return false;
         }
@@ -328,7 +335,7 @@
 
         if(confirm('삭제하시겠습니까?')==true) {    //확인눌렀을 때
 
-            if(id==commentId){      //작성자와 접속자다르거나 로그아웃일 때
+            if(id==commentId){
                 $.ajax({
                     url: "/commentDel.ajax"
                     , type: "post"
@@ -349,15 +356,13 @@
                         }
                     }
                 });
-            }else{
-                alert("권한이 없습니다.");
+            }else{  //작성자와 접속자다르거나 로그아웃일 때
+                toastr.error("권한이 없습니다.");
                 return false;
             }
         }else{      //confirm에서 취소눌렀을 때
             return false;
         }
-
-
     }
 
 </script>

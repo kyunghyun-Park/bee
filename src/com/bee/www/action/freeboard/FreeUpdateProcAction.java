@@ -53,7 +53,7 @@ public class FreeUpdateProcAction implements Action {
 
         int numInt = Integer.parseInt(num);  //유효성 검사 후 글 번호 숫자로 변환
         //글 번호 유효성검사(2)-형변환 후,글 번호 0보다 작으면 오류alert
-        if(numInt<=0){
+        if (numInt <= 0) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
             out.println("<script>alert('잘못된 접근입니다.(2)');history.back();</script>");
@@ -75,11 +75,11 @@ public class FreeUpdateProcAction implements Action {
         //vo에 수정한 컬럼들 내용넣기
         ArticleVo vo = new ArticleVo();
         vo.setB_sq(numInt);
-        vo.setTitle(title);
-        vo.setContent(content);
+        vo.setTitle(Parser.chgToStr(title));
+        vo.setContent(Parser.chgToStr(content));
         vo.setC_sq(7);
 
-        if(!service.updateArticle(vo)){ //글 저장 service 호출
+        if (!service.updateArticle(vo)) { //글 저장 service 호출
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
             out.println("<script>alert('글 수정에 실패했습니다.');history.back();</script>");
@@ -87,8 +87,22 @@ public class FreeUpdateProcAction implements Action {
             return null;
         }
 
+        //페이지 받아와서 디테일갈 때 페이지넘버 같이 보내기(그래야 목록눌렀을 때 해당 페이지 갈 수 있음)
+        String pageNum = request.getParameter("pn");  //페이지 번호 받아오기
+        if (pageNum == null     //페이지 번호 숫자 아닐때
+                || !RegExp.checkString(IS_NUMBER, pageNum)) {
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('잘못된 접근입니다.');location.href='/';</script>");
+            out.close();
+            return null;
+        }
+        int page = Integer.parseInt(pageNum); //페이지 번호 정수형 변환
+        if (page < 1) {     //페이지 번호 1보다 작을때 오류
+            page=1;
+        }
         ActionForward forward = new ActionForward();
-        forward.setPath("/freeDetail.do?num="+numInt);
+        forward.setPath("/freeDetail.do?pn=" + page + "&num=" + numInt);
         forward.setRedirect(true);
         return forward;
     }

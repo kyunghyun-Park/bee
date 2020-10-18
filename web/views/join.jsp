@@ -301,7 +301,7 @@
 
         var regExpEmail = new RegExp("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$", "g");
         if (regExpEmail.exec(email) == null) {
-            toastr.error("잘못된 이메일 형식입니다.");
+            toastr.error ("잘못된 이메일 형식입니다.");
             $('#email').val("");
             $('#email').focus();
             return false;

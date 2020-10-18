@@ -1,11 +1,14 @@
 <%@ page import="com.bee.www.common.LoginManager" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.bee.www.vo.ArticleVo" %>
+<%@ page import="com.bee.www.common.Pagenation" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     LoginManager lm = LoginManager.getInstance();
     String id = lm.getMemberId(session);
     ArrayList<ArticleVo> list = (ArrayList<ArticleVo>) request.getAttribute("list");
+    Pagenation pagenation = (Pagenation) request.getAttribute("pagenation");
+    String nowPage = request.getParameter("pn");
 %>
 <html>
 <head>
@@ -65,9 +68,9 @@
     <section class="nav-section">
         <nav>
             <ul>
-                <li><a href="/schBoard.do">학원정보</a></li>
+                <li><a href="/schBoard.do?pn=1">학원정보</a></li>
                 <li><a href="/reviews.do">학원후기</a></li>
-                <li><a href="/freeBoard.do" style="color: rgb(12, 167, 179);">자유게시판</a></li>
+                <li><a href="#" style="color: rgb(12, 167, 179);">자유게시판</a></li>
             </ul>
         </nav>
     </section>
@@ -111,7 +114,7 @@
                                     %>
                                     <tr>
                                         <td class="num"><%=list.get(i).getB_sq()%></td>
-                                        <td onclick="location.href='/freeDetail.do?num=<%=list.get(i).getB_sq()%>'"
+                                        <td onclick="goDetail(<%=list.get(i).getB_sq()%>)"
                                             class="title"><%=list.get(i).getTitle()%></td>
                                         <td class="user"><%=list.get(i).getNickname()%></td>
                                         <td class="date"><%=list.get(i).getWriteDate().substring(0, 11)%></td>
@@ -122,13 +125,24 @@
                                 </table>
                             </div>
                             <div class="pagination">
+                                <%
+                                    System.out.println("첫번째 페이지 넘버: "+pagenation.getStartPage());
+                                    System.out.println("현재 페이지 : "+nowPage);
+                                %>
+                                <a href="/freeBoard.do?pn=<%=pagenation.getStartPage()-1%>">이전</a>
                                 <ul>
-                                    <li class="active"><a href="#">1</a></li>
+                                    <% for(int i=pagenation.getStartPage();i<=pagenation.getEndPage();i++) { %>
+                                    <li><a href="/freeBoard.do?pn=<%=i%>">
+                                        <%=i%></a>
+                                    </li>
+                                    <%--<li class="active"><a href="#">1</a></li>
                                     <li><a href="#">2</a></li>
                                     <li><a href="#">3</a></li>
                                     <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
+                                    <li><a href="#">5</a></li>--%>
+                                    <% } %>
                                 </ul>
+                                <a href="/freeBoard.do?pn=<%=pagenation.getEndPage()+1%>">다음</a>
                             </div>
                             <div class="search">
                                 <form>
@@ -151,6 +165,9 @@
 
 <script src="http://code.jquery.com/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
 <script>
+    function goDetail(num){
+        location.href="/freeDetail.do?pn=" + <%=nowPage%> + "&num="+num;
+    }
     $(function () {
         var sBtn = $(".pagination ul > li");    //  ul > li 이를 sBtn으로 칭한다. (클릭이벤트는 li에 적용 된다.)
         sBtn.find("a").click(function () {   // sBtn에 속해 있는  a 찾아 클릭 하면.

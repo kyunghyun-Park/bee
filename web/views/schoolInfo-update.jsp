@@ -15,23 +15,10 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
             crossorigin="anonymous"></script>
-    <script>
-        function checkData() {
-            var title = $('#title').val();
-            var content = $('#content').val();
+    <!-- Toastr -->
+    <link rel="stylesheet" href="../toastr/toastr.css">
+    <script src="../toastr/toastr.min.js"></script>
 
-            if (!title) {
-                alert("제목을 입력하세요");
-                $('#title').focus();
-                return false;
-            }
-            if (!content) {
-                alert("내용을 입력하세요");
-                $('#content').focus();
-                return false;
-            }
-        }
-    </script>
 </head>
 <body>
 <header>
@@ -42,7 +29,7 @@
 
 <section class="container-section">
     <article class="write-container">
-        <form action="/schUpdateProc.do?pn=<%=nowPage%>&num=<%=vo.getB_sq()%>" method="post" onsubmit="return checkData()">
+        <form id="editorForm" action="/schUpdateProc.do?pn=<%=nowPage%>&num=<%=vo.getB_sq()%>" method="post">
             <div>
                 <select name="choose_region" id="choose_region" class="list-sort">
                     <option value="1">서울/수도권</option>
@@ -56,22 +43,28 @@
             <div class="post-title">
                 <input type="text" name="title" id="title" value="<%=vo.getTitle()%>"/>
             </div>
-            <div class="file-">
-                <button class="upButton">
-                    <label htmlFor="file" class="img-up">
-                        <input type="file" id="file" accept=".jpg, .png, .jpeg, .gif"/>이미지 업로드
-                    </label>
-                </button>
-            </div>
             <div class="post-contents">
-                <textarea name="content" id="content" class="post-textarea"><%=vo.getContent()%></textarea>
+                <jsp:include page="/editor/editorSkinForModify.jsp" flush="false"/>
             </div>
             <footer class="post-comment">
-                <a class="exit-btn transparent-btn" href="/schBoard.do">✔ 나가기</a>
-                <button class="transparent-btn">수정</button>
+                <a class="exit-btn transparent-btn" href="/schBoard.do?pn=<%=nowPage%>">✔ 나가기</a>
+                <button type="submit" class="transparent-btn" onclick="checkData()">수정</button>
             </footer>
         </form>
     </article>
 </section>
+<script>
+    var content='<%=vo.getContent()%>';
+    function checkData() {
+        var title = $('#title').val();
+
+        if (!title) {
+            toastr.error("제목을 입력하세요");
+            $('#title').focus();
+            return false;
+        }
+        saveContent();
+    }
+</script>
 </body>
 </html>

@@ -1,9 +1,10 @@
 package com.bee.www.action.comment;
 
-import com.bee.www.common.*;
-import com.bee.www.service.BoardService;
+import com.bee.www.common.Action;
+import com.bee.www.common.ActionForward;
+import com.bee.www.common.LoginManager;
+import com.bee.www.common.RegExp;
 import com.bee.www.service.CommentService;
-import com.bee.www.vo.ArticleVo;
 import com.bee.www.vo.CommentVo;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,9 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
 import static com.bee.www.common.RegExp.ARTICLE_CONTENT;
-import static com.bee.www.common.RegExp.ARTICLE_TITLE;
 
-public class CommentAddAction implements Action {
+public class SchCommentAddAction implements Action {
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         LoginManager lm = LoginManager.getInstance();
@@ -67,7 +67,7 @@ public class CommentAddAction implements Action {
         }
 
         ActionForward forward = new ActionForward();
-        forward.setPath("/freeDetail.do?num="+numInt);
+        forward.setPath("/schDetail.do?num="+numInt);
         forward.setRedirect(true);
         return forward;
     }

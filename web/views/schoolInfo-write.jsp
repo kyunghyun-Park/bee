@@ -10,22 +10,19 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
             crossorigin="anonymous"></script>
+    <!-- Toastr -->
+    <link rel="stylesheet" href="../toastr/toastr.css">
+    <script src="../toastr/toastr.min.js"></script>
     <script>
         function checkData() {
             var title = $('#title').val();
-            var content = $('#content').val();
 
             if (!title) {
-                alert("제목을 입력하세요");
+                toastr.error("제목을 입력하세요");
                 $('#title').focus();
                 return false;
             }
             saveContent();
-           /* if (!content) {
-                alert("내용을 입력하세요");
-                $('#content').focus();
-                return false;
-            }*/
         }
     </script>
 </head>
@@ -38,7 +35,7 @@
 
 <section class="container-section">
     <article class="write-container">
-        <form id="editorForm" action="/schoolRegister.do" method="post" >
+        <form id="editorForm" action="/schoolRegister.do" method="post">
             <div>
                 <select name="choose_region" id="choose_region" class="list-sort">
                     <option value="1">서울/수도권</option>
@@ -52,16 +49,8 @@
             <div class="post-title">
                 <input type="text" name="title" id="title" placeholder="제목을 입력하세요"/>
             </div>
-           <%-- <div class="file-">
-                <button class="upButton">
-                    <label htmlFor="file" class="img-up">
-                        <input type="file" id="file" accept=".jpg, .png, .jpeg, .gif"/>이미지 업로드
-                    </label>
-                </button>
-            </div>--%>
             <div class="post-contents">
                 <jsp:include page="/editor/editorSkinForRegister.jsp" flush="false"/>
-                <%--<textarea name="content" id="content" class="post-textarea" placeholder="내용을 입력하세요"></textarea>--%>
             </div>
             <footer class="post-comment">
                 <a class="exit-btn transparent-btn" href="/schBoard.do?pn=1">✔ 나가기</a>

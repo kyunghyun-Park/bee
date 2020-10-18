@@ -68,9 +68,9 @@
     <section class="nav-section">
         <nav>
             <ul>
-                <li><a href="/schBoard.do?pn=1" style="color: rgb(12, 167, 179);">학원정보</a></li>
+                <li><a href="#" style="color: rgb(12, 167, 179);">학원정보</a></li>
                 <li><a href="/reviews.do">학원후기</a></li>
-                <li><a href="/freeBoard.do">자유게시판</a></li>
+                <li><a href="/freeBoard.do?pn=1">자유게시판</a></li>
             </ul>
         </nav>
     </section>

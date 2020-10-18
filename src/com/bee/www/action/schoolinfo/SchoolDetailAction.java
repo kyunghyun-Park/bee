@@ -5,12 +5,15 @@ import com.bee.www.common.ActionForward;
 import com.bee.www.common.Parser;
 import com.bee.www.common.RegExp;
 import com.bee.www.service.BoardService;
+import com.bee.www.service.CommentService;
 import com.bee.www.vo.ArticleVo;
+import com.bee.www.vo.CommentVo;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import static com.bee.www.common.RegExp.ARTICLE_NUM;
 
@@ -38,8 +41,10 @@ public class SchoolDetailAction implements Action {
             return null;
         }
         BoardService service = new BoardService();
+        CommentService commentService=  new CommentService();
         ArticleVo vo = service.getArticleDetail(numInt);    //detail service 호출
         vo.setCate_name(service.getCateName(vo.getC_sq()));
+        vo.setComment_count(commentService.getCommentCount(numInt));  //댓글 수 vo에 담음
 
         if (vo == null) {
             response.setContentType("text/html;charset=UTF-8");
@@ -48,7 +53,9 @@ public class SchoolDetailAction implements Action {
             out.close();
             return null;
         }
-
+        //댓글 목록 불러오기
+        ArrayList<CommentVo> commentList=commentService.getCommentList(numInt);
+        request.setAttribute("comment",commentList);
         //----------------------------------------쿠키로 조회수 중복방지
         Cookie viewCookie = null;
         Cookie[] cookies = request.getCookies();
