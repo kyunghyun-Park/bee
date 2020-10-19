@@ -9,6 +9,8 @@
     ArrayList<ArticleVo> list = (ArrayList<ArticleVo>) request.getAttribute("list");
     Pagenation pagenation = (Pagenation) request.getAttribute("pagenation");
     String nowPage = request.getParameter("pn");
+    String filter = request.getParameter("filter");
+    String keyword = request.getParameter("keyword");
 %>
 <!DOCTYPE html>
 <head>
@@ -18,6 +20,13 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/index_header.css">
     <link rel="stylesheet" href="css/schoolInfo.css">
+    <!--jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+    <!-- Toastr -->
+    <link rel="stylesheet" href="../toastr/toastr.css">
+    <script src="../toastr/toastr.min.js"></script>
 </head>
 <body>
 <header>
@@ -68,7 +77,7 @@
     <section class="nav-section">
         <nav>
             <ul>
-                <li><a href="#" style="color: rgb(12, 167, 179);">학원정보</a></li>
+                <li><a href="/schBoard.do?pn=1" style="color: rgb(12, 167, 179);">학원정보</a></li>
                 <li><a href="/reviews.do">학원후기</a></li>
                 <li><a href="/freeBoard.do?pn=1">자유게시판</a></li>
             </ul>
@@ -151,38 +160,40 @@
                             </div>
                             <div class="pagination">
                                 <%
-                                    System.out.println("첫번째 페이지 넘버: "+pagenation.getStartPage());
-                                    System.out.println("현재 페이지 : "+nowPage);
-                                    if(pagenation.getNowPageNumber()!=1) {
+                                    System.out.println("첫번째 페이지 넘버: " + pagenation.getStartPage());
+                                    System.out.println("현재 페이지 : " + nowPage);
+                                    if (pagenation.getNowPageNumber() != 1) {
                                 %>
-                                <a href="/schBoard.do?pn=<%=pagenation.getStartPage()-1%>">이전</a>
+                                <a href="/schBoard.do?pn=<%=pagenation.getStartPage()-1%>&filter=<%=filter%>&keyword=<%=keyword%>">이전</a>
                                 <% } %>
                                 <ul>
-                                    <% for(int i=pagenation.getStartPage(); i<=pagenation.getEndPage();i++) { %>
-                                    <li class=""><a href="/schBoard.do?pn=<%=i%>">
-                                        <%=i%></a>
+                                    <% for (int i = pagenation.getStartPage(); i <= pagenation.getEndPage(); i++) { %>
+                                    <li class=""><a href="/schBoard.do?pn=<%=i%>&filter=<%=filter%>&keyword=<%=keyword%>">
+                                        <%=i%>
+                                    </a>
                                     </li>
-                                  <%--  <li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>--%>
+                                    <%--  <li class="active"><a href="#">1</a></li>
+                                      <li><a href="#">2</a></li>
+                                      <li><a href="#">3</a></li>
+                                      <li><a href="#">4</a></li>
+                                      <li><a href="#">5</a></li>--%>
                                     <% } %>
                                 </ul>
-                                <% if(pagenation.getNowPageNumber()!=pagenation.getTotalPageCount()) {%>
-                                <a href="/schBoard.do?pn=<%=pagenation.getEndPage()+1%>">다음</a>
+                                <% if (pagenation.getNowPageNumber() != pagenation.getTotalPageCount()) {%>
+                                <a href="/schBoard.do?pn=<%=pagenation.getEndPage()+1%>&filter=<%=filter%>&keyword=<%=keyword%>">다음</a>
                                 <% } %>
                             </div>
                             <div class="search">
-                                <form>
-                                    <select>
-                                        <option>전체</option>
-                                        <option value="title">제목</option>
-                                        <option value="username">작성자</option>
-                                    </select>
-                                    <input type="text"/>
-                                    <button type="submit" class="searchADNcontrol">검색</button>
-                                </form>
+                                <select name="filter" id="filter">
+                                    <option value="all" selected>전체</option>
+                                    <option value="title">제목</option>
+                                    <option value="content">내용</option>
+                                </select>
+                                <input type="text" name="keyword" id="keyword"/>
+                                <button onclick="return searchArticle()" id="btnSearch"
+                                        class="searchADNcontrol">검색</button>
+                                <button onclick="location.href='/schBoard.do?pn=1'"
+                                        type="button" class="searchADNcontrol">초기화</button>
                             </div>
                         </div>
                     </div>
@@ -191,13 +202,29 @@
         </div>
     </div>
 </div>
-
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"
-        type="text/javascript" charset="utf-8"></script>
 <script>
+    $("#btnSearch").keyup(function(e){if(e.keyCode == 13)  searchArticle(); });
+
+    toastr.options = {
+        "closeButton": true,
+        "positionClass": "toast-top-center",
+        "timeOut": 1000
+    }
     function goDetail(num) {
         location.href =
             "/schDetail.do?pn=" + <%=nowPage%> +"&num=" + num;
+    }
+
+    function searchArticle() {
+        var filter = $('#filter option:selected').val();
+        var keyword = $('#keyword').val();
+        if(!keyword){
+            toastr.error("검색할 내용을 입력하세요.");
+            $('#keyword').focus();
+            return false;
+        }
+        location.href =
+            "/schBoard.do?pn=1&filter=" + filter + "&keyword=" + keyword;
     }
 
     $(function () {

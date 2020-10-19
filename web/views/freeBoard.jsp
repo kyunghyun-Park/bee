@@ -15,10 +15,17 @@
     <title>Title</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/index_header.css">
     <link rel="stylesheet" href="css/schoolInfo.css">
+    <!--jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+    <!-- Toastr -->
+    <link rel="stylesheet" href="../toastr/toastr.css">
+    <script src="../toastr/toastr.min.js"></script>
+
 </head>
 <body>
 <header>
@@ -35,7 +42,7 @@
             <div class="header-login">
                 <%
                     //로그인 상태
-                    if(id==null){
+                    if (id == null) {
                 %>
                 <a href="/join.do">
                     <h3 class="join">회원가입</h3>
@@ -50,7 +57,7 @@
                 <a href="/logout.do">
                     <h3>로그아웃</h3>
                 </a>
-                <% }  %>
+                <% } %>
             </div>
         </div>
     </div>
@@ -70,7 +77,7 @@
             <ul>
                 <li><a href="/schBoard.do?pn=1">학원정보</a></li>
                 <li><a href="/reviews.do">학원후기</a></li>
-                <li><a href="#" style="color: rgb(12, 167, 179);">자유게시판</a></li>
+                <li><a href="/freeBoard.do?pn=1" style="color: rgb(12, 167, 179);">자유게시판</a></li>
             </ul>
         </nav>
     </section>
@@ -85,13 +92,13 @@
                         <div class="content-list">
                             <div class="list-header">
                                 <div class="board-sort">
-                                <%--    <form>
-                                        <select class="list-sort">
-                                            <option value="newest">최신순</option>
-                                            <option value="best">추천순</option>
-                                            <option value="viewed">조회순</option>
-                                        </select>
-                                    </form>--%>
+                                    <%--    <form>
+                                            <select class="list-sort">
+                                                <option value="newest">최신순</option>
+                                                <option value="best">추천순</option>
+                                                <option value="viewed">조회순</option>
+                                            </select>
+                                        </form>--%>
                                     <div class="control">
                                         <a href="/freeBoardWrite.do" class="searchADNcontrol">글쓰기</a>
                                     </div>
@@ -110,15 +117,20 @@
                                     </thead>
                                     <tbody>
                                     <%
-                                        for(int i=0;i<list.size();i++) {
+                                        for (int i = 0; i < list.size(); i++) {
                                     %>
                                     <tr>
-                                        <td class="num"><%=list.get(i).getB_sq()%></td>
+                                        <td class="num"><%=list.get(i).getB_sq()%>
+                                        </td>
                                         <td onclick="goDetail(<%=list.get(i).getB_sq()%>)"
-                                            class="title"><%=list.get(i).getTitle()%></td>
-                                        <td class="user"><%=list.get(i).getNickname()%></td>
-                                        <td class="date"><%=list.get(i).getWriteDate().substring(0, 11)%></td>
-                                        <td class="view"><%=list.get(i).getHit()%></td>
+                                            class="title"><%=list.get(i).getTitle()%>
+                                        </td>
+                                        <td class="user"><%=list.get(i).getNickname()%>
+                                        </td>
+                                        <td class="date"><%=list.get(i).getWriteDate().substring(0, 11)%>
+                                        </td>
+                                        <td class="view"><%=list.get(i).getHit()%>
+                                        </td>
                                     </tr>
                                     <% } %>
                                     </tbody>
@@ -126,16 +138,17 @@
                             </div>
                             <div class="pagination">
                                 <%
-                                    System.out.println("첫번째 페이지 넘버: "+pagenation.getStartPage());
-                                    System.out.println("현재 페이지 : "+nowPage);
-                                    if(pagenation.getNowPageNumber()!=pagenation.getStartPage()) {
+                                    System.out.println("첫번째 페이지 넘버: " + pagenation.getStartPage());
+                                    System.out.println("현재 페이지 : " + nowPage);
+                                    if (pagenation.getNowPageNumber() != pagenation.getStartPage()) {
                                 %>
                                 <a href="/freeBoard.do?pn=<%=pagenation.getStartPage()-1%>">이전</a>
                                 <% } %>
                                 <ul>
-                                    <% for(int i=pagenation.getStartPage();i<=pagenation.getEndPage();i++) { %>
+                                    <% for (int i = pagenation.getStartPage(); i <= pagenation.getEndPage(); i++) { %>
                                     <li class=""><a href="/freeBoard.do?pn=<%=i%>">
-                                        <%=i%></a>
+                                        <%=i%>
+                                    </a>
                                     </li>
                                     <%--<li class="active"><a href="#">1</a></li>
                                     <li><a href="#">2</a></li>
@@ -145,20 +158,18 @@
                                     <% } %>
                                 </ul>
                                 <% //마지막 페이지에선 다음버튼 안보이게
-                                    if(pagenation.getNowPageNumber()!=pagenation.getTotalPageCount()) {%>
+                                    if (pagenation.getNowPageNumber() != pagenation.getTotalPageCount()) {%>
                                 <a href="/freeBoard.do?pn=<%=pagenation.getEndPage()+1%>">다음</a>
                                 <% } %>
                             </div>
                             <div class="search">
-                                <form>
-                                    <select>
-                                        <option>전체</option>
-                                        <option value="title">제목</option>
-                                        <option value="username">작성자</option>
-                                    </select>
-                                    <input type="text"/>
-                                    <button type="submit" class="searchADNcontrol">검색</button>
-                                </form>
+                                <select name="filter" id="filter">
+                                    <option>전체</option>
+                                    <option value="title">제목</option>
+                                    <option value="content">내용</option>
+                                </select>
+                                <input type="text" name="keyword" id="keyword"/>
+                                <button onclick="searchArticle()" class="searchADNcontrol">검색</button>
                             </div>
                         </div>
                     </div>
@@ -170,8 +181,25 @@
 
 <script src="http://code.jquery.com/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
 <script>
-    function goDetail(num){
-        location.href="/freeDetail.do?pn=" + <%=nowPage%> + "&num="+num;
+    toastr.options = {
+        "closeButton": true,
+        "positionClass": "toast-top-center",
+        "timeOut": 1000
+    }
+    function goDetail(num) {
+        location.href = "/freeDetail.do?pn=" + <%=nowPage%> +"&num=" + num;
+    }
+
+    function searchArticle() {
+        var filter = $('#filter option:selected').val();
+        var keyword = $('#keyword').val();
+        location.href =
+            "/list.do?pn=1&filter=" + filter + "&keyword=" + keyword;
+        if(!keyword){
+            toastr.error("검색할 내용을 입력하세요.");
+            $('#keyword').focus();
+            return false;
+        }
     }
     $(function () {
         var sBtn = $(".pagination ul > li");    //  ul > li 이를 sBtn으로 칭한다. (클릭이벤트는 li에 적용 된다.)
@@ -181,7 +209,5 @@
         })
     })
 </script>
-<!-- 1.  sBtn.removeClass("active");     // sBtn 속에 (active) 클래스를 삭제 한다.
-2.  $(this).parent().addClass("active"); // 클릭한 a에 (active)클래스를 넣는다. -->
 </body>
 </html>
