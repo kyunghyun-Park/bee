@@ -183,6 +183,7 @@
                                 <a href="/schBoard.do?pn=<%=pagenation.getEndPage()+1%>&filter=<%=filter%>&keyword=<%=keyword%>">다음</a>
                                 <% } %>
                             </div>
+                            <input type="hidden" name="searchflag" value="true"/>   <!--검색 요청시 플래그값을 true로 넘김-->
                             <div class="search">
                                 <select name="filter" id="filter">
                                     <option value="all" selected>전체</option>
