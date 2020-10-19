@@ -19,9 +19,17 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
             crossorigin="anonymous"></script>
-    <script>
-        var resultEmail = 1;
+    <!-- Toastr -->
+    <link rel="stylesheet" href="../toastr/toastr.css">
+    <script src="../toastr/toastr.min.js"></script>
 
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "positionClass": "toast-top-center",
+            "timeOut": 1000
+        }
+        var resultEmail = 1;
         function checkEmail() {
             var email = $('#email').val();
 
@@ -32,13 +40,13 @@
             }
             var regExpEmail = new RegExp("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$", "g");
             if (regExpEmail.exec(email) == null) {
-                alert("잘못된 이메일 형식입니다.");
+                toastr.error("잘못된 이메일 형식입니다.");
                 $('#email').val("");
                 $('#email').focus();
                 return false;
             }
             if(email=='<%=vo.getEmail()%>'){
-                alert('현재 이메일과 같습니다.');
+                toastr.error('현재 이메일과 같습니다.');
                 $('#email').focus();
                 return false;
             }
@@ -81,7 +89,7 @@
 
             if(resultEmail==1){
                 if(email!="<%=vo.getEmail()%>"){    //현재 이메일과 다르면
-                    alert('이메일 중복체크 하세요');
+                    toastr.error('이메일 중복체크 하세요');
                     if ($('#email').val() == '') {
                         $('#email').focus();
                     }
@@ -90,25 +98,25 @@
             }
 
             if (!email) {
-                alert("이메일을 입력해 주세요");
+                toastr.error("이메일을 입력해 주세요");
                 $('#email').focus();
                 return false;
             }
             if (!nick) {
-                alert("닉네임을 입력해 주세요");
+                toastr.error("닉네임을 입력해 주세요");
                 $('#nick').focus();
                 return false;
             }
             var regExpNick = new RegExp("^[a-z가-힣]{3,20}$", "g");
             if (regExpNick.exec(nick) == null) {
-                alert("잘못된 닉네임 형식입니다.");
+                toastr.error("잘못된 닉네임 형식입니다.");
                 $('#nick').val("");
                 $('#nick').focus();
                 return false;
             }
             var regExpEmail = new RegExp("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$", "g");
             if (regExpEmail.exec(email) == null) {
-                alert("잘못된 이메일 형식입니다.");
+                toastr.error("잘못된 이메일 형식입니다.");
                 $('#email').val("");
                 $('#email').focus();
                 return false;

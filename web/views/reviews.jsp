@@ -25,13 +25,14 @@
     <link rel="stylesheet" href="../toastr/toastr.css">
     <script src="../toastr/toastr.min.js"></script>
     <script>
+        toastr.options = {
+            "closeButton": true,
+            "positionClass": "toast-top-center",
+            "timeOut": 1000
+        }
         function validateCheck() {
             var content = $('#content').val();
-            toastr.options = {
-                "closeButton": true,
-                "positionClass": "toast-top-center",
-                "timeOut": 1000
-            }
+
             if (content) {
                 toastr.success('글 등록 성공!'); //페이지 리로딩되서 안보임
             } else {

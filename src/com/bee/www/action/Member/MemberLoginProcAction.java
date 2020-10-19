@@ -1,14 +1,15 @@
 package com.bee.www.action.Member;
 
 import com.bee.www.common.*;
-import com.bee.www.service.BoardService;
+import com.bee.www.service.MemberService;
 import com.bee.www.vo.MemberVo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
-import static com.bee.www.common.RegExp.*;
+import static com.bee.www.common.RegExp.MEMBER_ID;
+import static com.bee.www.common.RegExp.MEMBER_PWD;
 
 public class MemberLoginProcAction implements Action {
     @Override
@@ -29,8 +30,8 @@ public class MemberLoginProcAction implements Action {
             out.close();
             return null;
         }
-        
-        BoardService service = new BoardService();
+
+        MemberService service = new MemberService();
         
         //memberVo에 값 set
         MemberVo memberVo = service.getMember(id); //service에서 sq,id,pwd가져오기

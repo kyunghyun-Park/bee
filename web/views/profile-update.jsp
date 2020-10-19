@@ -1,9 +1,10 @@
 <%@ page import="com.bee.www.common.LoginManager" %>
+<%@ page import="com.bee.www.vo.MemberVo" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     LoginManager lm = LoginManager.getInstance();
     String id = lm.getMemberId(session);
-
+    MemberVo vo = (MemberVo) request.getAttribute("vo");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +15,13 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/index_header.css">
     <link rel="stylesheet" href="css/profile.css">
+    <!--jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+    <!-- Toastr -->
+    <link rel="stylesheet" href="../toastr/toastr.css">
+    <script src="../toastr/toastr.min.js"></script>
 </head>
 <body>
 <header>
@@ -26,7 +34,7 @@
                 <input type="text" placeholder="검색할 내용.."/>
             </div>
             <div class="header-login">
-                <a href="/profile.do?id=<%=id%>">
+                <a href="#">
                     <h3 class="join">회원정보</h3>
                 </a>
                 <a href="/logout.do">
@@ -49,11 +57,10 @@
             <span class="tab signup active"><a href="/profileUpdate.do">비밀번호 변경</a></span>
         </div>
         <div class="profile-body">
-            <form>
+            <form action="/profilePasswdProc.do" method="post" onsubmit="return validateCheck()">
                 아이디
                 <div class="checkBlock">
-                    <input name="id" id="id" type="text" minlength="4" maxlength="30"/>
-                    <button class="checkButton">중복확인</button>
+                    <input name="id" id="id" type="text" value="<%=vo.getId()%>" readonly/>
                 </div>
                 비밀번호
                 <input name="pwd" id="pwd" type="password" minlength="4" maxlength="30"/>
@@ -62,12 +69,46 @@
                 <div class="profile-footer">
                     <a><button>수정</button></a>
                     <button type="button" onclick="location.href='/'">나가기</button>
-                    <!-- 나가기 버튼 안되는데 나중에 수정 -->
                 </div>
             </form>
-
         </div>
     </div>
 </section>
+<script>
+    toastr.options = {
+        "closeButton": true,
+        "positionClass": "toast-top-center",
+        "timeOut": 1000
+    }
+    function validateCheck(){
+        var pwd=$('#pwd').val();
+        var pwd_confirm=$('#pwd_confirm').val();
+
+        if(!pwd){
+            toastr.error('비밀번호를 입력해 주세요.');
+            $('#pwd').focus();
+            return false;
+        }
+        if(!pwd_confirm){
+            toastr.error('비밀번호 확인을 입력해 주세요.')
+            $('#pwd_confirm').focus();
+            return false;
+        }
+        if(pwd!=pwd_confirm){
+            toastr.error("비밀번호가 일치하지 않습니다.");
+            $('#pwd_confirm').val("");
+            $('#pwd_confirm').focus();
+            return false;
+        }
+        var regExpPwd=new RegExp("^.{4,30}$","g");
+        if(regExpPwd.exec(pwd)==null){
+            toastr.error('잘못된 비밀번호 형식입니다.');
+            $('#pwd').val("");
+            $('#pwd_confirm').val("");
+            $('#pwd').focus();
+            return false;
+        }
+    }
+</script>
 </body>
 </html>

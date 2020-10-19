@@ -54,6 +54,11 @@
     </article>
 </section>
 <script>
+    toastr.options = {
+        "closeButton": true,
+        "positionClass": "toast-top-center",
+        "timeOut": 1000
+    }
     var content='<%=vo.getContent()%>';
     function checkData() {
         var title = $('#title').val();

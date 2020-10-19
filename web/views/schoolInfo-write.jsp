@@ -14,6 +14,12 @@
     <link rel="stylesheet" href="../toastr/toastr.css">
     <script src="../toastr/toastr.min.js"></script>
     <script>
+        toastr.options = {
+            "closeButton": true,
+            "newestOnTop": true,
+            "positionClass": "toast-top-center",
+            "timeOut": 1000
+        }
         function checkData() {
             var title = $('#title').val();
 

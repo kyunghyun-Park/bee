@@ -3,7 +3,7 @@ package com.bee.www.action.Member;
 import com.bee.www.common.Action;
 import com.bee.www.common.ActionForward;
 import com.bee.www.common.RegExp;
-import com.bee.www.service.BoardService;
+import com.bee.www.service.MemberService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import static com.bee.www.common.RegExp.MEMBER_EMAIL;
-import static com.bee.www.common.RegExp.MEMBER_ID;
 
 public class AjaxCheckEmailAction implements Action {
     @Override
@@ -29,7 +28,7 @@ public class AjaxCheckEmailAction implements Action {
             return null;
         }
 
-        BoardService service = new BoardService();
+        MemberService service = new MemberService();
         //0이면 미중복 1이면 중복
         request.setAttribute("count", service.emailCheck(email));
 

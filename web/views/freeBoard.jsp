@@ -128,11 +128,13 @@
                                 <%
                                     System.out.println("첫번째 페이지 넘버: "+pagenation.getStartPage());
                                     System.out.println("현재 페이지 : "+nowPage);
+                                    if(pagenation.getNowPageNumber()!=pagenation.getStartPage()) {
                                 %>
                                 <a href="/freeBoard.do?pn=<%=pagenation.getStartPage()-1%>">이전</a>
+                                <% } %>
                                 <ul>
                                     <% for(int i=pagenation.getStartPage();i<=pagenation.getEndPage();i++) { %>
-                                    <li><a href="/freeBoard.do?pn=<%=i%>">
+                                    <li class=""><a href="/freeBoard.do?pn=<%=i%>">
                                         <%=i%></a>
                                     </li>
                                     <%--<li class="active"><a href="#">1</a></li>
@@ -142,7 +144,10 @@
                                     <li><a href="#">5</a></li>--%>
                                     <% } %>
                                 </ul>
+                                <% //마지막 페이지에선 다음버튼 안보이게
+                                    if(pagenation.getNowPageNumber()!=pagenation.getTotalPageCount()) {%>
                                 <a href="/freeBoard.do?pn=<%=pagenation.getEndPage()+1%>">다음</a>
+                                <% } %>
                             </div>
                             <div class="search">
                                 <form>

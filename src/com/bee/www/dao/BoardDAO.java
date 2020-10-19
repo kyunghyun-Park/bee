@@ -55,68 +55,6 @@ public class BoardDAO {
         return count;
     }
 
-    //회원가입
-    public int insertMember(MemberVo vo) {
-        PreparedStatement pstmt = null;
-        int count = 0;
-        try {
-            pstmt = con.prepareStatement("insert into member(id,pwd,nickname,email) value (?,?,?,?)");
-            pstmt.setString(1,vo.getId());
-            pstmt.setString(2,vo.getPwd());
-            pstmt.setString(3,vo.getNickname());
-            pstmt.setString(4,vo.getEmail());
-            count = pstmt.executeUpdate();
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
-            close(pstmt);
-        }
-        return count;
-    }
-    //로그인할 때 입력한 아이디에 해당하는 비번 갖고오기
-    public MemberVo getMember(String id){
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        MemberVo vo = null;
-
-        try{
-            pstmt=con.prepareStatement("select sq,id,pwd,nickname,email from member where binary(id)=?");
-            pstmt.setString(1,id);
-            rs=pstmt.executeQuery();
-            while (rs.next()){
-                vo=new MemberVo();
-                vo.setMem_sq(rs.getInt("sq"));
-                vo.setId(rs.getString("id"));
-                vo.setPwd(rs.getString("pwd"));
-                vo.setNickname(rs.getString("nickname"));
-                vo.setEmail(rs.getString("email"));
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
-            close(rs);
-            close(pstmt);
-        }
-        return vo;
-    }
-
-    //getMember메소드에서 받은 mem_sq번호로 로그인상태로 변경
-    public int updateLoginState(MemberVo vo){
-        PreparedStatement pstmt=null;
-        int count=0;
-        try{
-            pstmt = con.prepareStatement("update member set lgn_fl=? where sq=?");
-            pstmt.setBoolean(1,vo.isLgn_fl());
-            pstmt.setInt(2,vo.getMem_sq());
-            count=pstmt.executeUpdate();
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
-            close(pstmt);
-        }
-        return count;
-    }
-
     //글 수정,삭제할 때 작성자 id가져오기
     public String getWriterId(int num){
         PreparedStatement pstmt = null;
@@ -161,49 +99,6 @@ public class BoardDAO {
         }
         return cate_name;
     }
-    //아이디 중복검사
-    public int checkId(String id){
-        PreparedStatement pstmt=null;
-        ResultSet rs = null;
-        int count=0;
-
-        try{
-            pstmt=con.prepareStatement("select count(id) as cnt from member where binary(id)=?");
-            pstmt.setString(1,id);
-            rs=pstmt.executeQuery();
-            while(rs.next()){
-                count=rs.getInt("cnt"); //0이면 미중복
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
-            close(rs);
-            close(pstmt);
-        }
-        return count;
-    }
-
-    //이메일 중복검사
-    public int checkEmail(String email){
-        PreparedStatement pstmt=null;
-        ResultSet rs = null;
-        int count=0;
-
-        try{
-            pstmt=con.prepareStatement("select count(*) from member where binary(email)=?");
-            pstmt.setString(1,email);
-            rs=pstmt.executeQuery();
-            while(rs.next()){
-                count=rs.getInt(1); //0이면 미중복
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
-            close(rs);
-            close(pstmt);
-        }
-        return count;
-    }
 
     //로그인 된 유저 시퀀스 조회
     public int getMemberSequence(String id){
@@ -227,22 +122,6 @@ public class BoardDAO {
         return sq;
     }
 
-    //회원 탈퇴
-    public int deleteMember(String id){
-        PreparedStatement pstmt = null;
-        int count = 0;
-        try{
-            //현재 로그인된 id에 해당하는 고유번호 조회
-            pstmt = con.prepareStatement("delete from member where id=?");
-            pstmt.setString(1,id);
-            count=pstmt.executeUpdate();
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
-            close(pstmt);
-        }
-        return count;
-    }
 
     //글 목록 띄우기
     public ArrayList<ArticleVo> getArticleList(Pagenation pagenation, String query) {
@@ -371,24 +250,6 @@ public class BoardDAO {
             pstmt = con.prepareStatement("insert into board_review(m_sq, content) value(?, ?)");
             pstmt.setInt(1,vo.getM_sq());
             pstmt.setString(2,vo.getContent());
-            count=pstmt.executeUpdate();
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
-            close(pstmt);
-        }
-        return count;
-    }
-    //리뷰 등록
-    public int profileUpdate(MemberVo vo){
-        PreparedStatement pstmt = null;
-        int count = 0;
-        try{
-            //현재 로그인된 id에 해당하는 고유번호 조회
-            pstmt = con.prepareStatement("update member set nickname=?,email=? where id=?");
-            pstmt.setString(1,vo.getNickname());
-            pstmt.setString(2,vo.getEmail());
-            pstmt.setString(3,vo.getId());
             count=pstmt.executeUpdate();
         }catch (Exception e){
             e.printStackTrace();

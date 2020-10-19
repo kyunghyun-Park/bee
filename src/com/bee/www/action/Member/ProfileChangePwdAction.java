@@ -14,12 +14,12 @@ import java.io.PrintWriter;
 
 import static com.bee.www.common.RegExp.MEMBER_ID;
 
-public class ProfileAction implements Action {
+public class ProfileChangePwdAction implements Action {
     @Override
     public ActionForward execute
             (HttpServletRequest request, HttpServletResponse response) throws IOException {
         LoginManager lm = LoginManager.getInstance();
-        String id = lm.getMemberId(request.getSession());
+        String id=lm.getMemberId(request.getSession()); //id
 
         //값 비어있는지,형식(정규식) 검사
         if (id == null || id.equals("") || !RegExp.checkString(MEMBER_ID, id)) {
@@ -31,7 +31,7 @@ public class ProfileAction implements Action {
         }
 
         MemberService service = new MemberService();
-        MemberVo vo = service.getMember(id);
+        MemberVo vo = service.getMember(id);    //vo에 id담기
         if (vo == null) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
@@ -39,9 +39,9 @@ public class ProfileAction implements Action {
             out.close();
             return null;
         }
-        ActionForward forward = new ActionForward();
         request.setAttribute("vo",vo);
-        forward.setPath("/views/profile-info.jsp");
+        ActionForward forward = new ActionForward();
+        forward.setPath("/views/profile-update.jsp");
         return forward;
     }
 }

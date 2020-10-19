@@ -43,7 +43,7 @@ public class FreeBoardAction implements Action {
         if(page>pagenation.getTotalPageCount()) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            out.println("<script>location.href='/schBoard.do?pn=" + pagenation.getTotalPageCount() +"';</script>");
+            out.println("<script>location.href='/freeBoard.do?pn=" + pagenation.getTotalPageCount() +"';</script>");
             out.close();
             return null;
         }

@@ -3,7 +3,7 @@ package com.bee.www.action.Member;
 import com.bee.www.common.Action;
 import com.bee.www.common.ActionForward;
 import com.bee.www.common.LoginManager;
-import com.bee.www.service.BoardService;
+import com.bee.www.service.MemberService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +29,7 @@ public class MemberDeleteAction implements Action {
             lm.removeSession(id); //세션뺏음,로그아웃 처리
         }
 
-        BoardService service = new BoardService();
+        MemberService service = new MemberService();
         if (service.deleteMember(id)) {
             out.println("<script>alert('굿바이');</script>");
             out.close();

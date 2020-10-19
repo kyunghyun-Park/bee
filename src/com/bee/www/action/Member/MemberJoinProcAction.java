@@ -4,7 +4,7 @@ import com.bee.www.common.Action;
 import com.bee.www.common.ActionForward;
 import com.bee.www.common.BCrypt;
 import com.bee.www.common.RegExp;
-import com.bee.www.service.BoardService;
+import com.bee.www.service.MemberService;
 import com.bee.www.vo.MemberVo;
 
 import javax.servlet.http.HttpServletRequest;
@@ -55,7 +55,7 @@ public class MemberJoinProcAction implements Action {
         memberVo.setNickname(nick);
 
         //service 호출
-        BoardService service = new BoardService();
+        MemberService service = new MemberService();
         if (!service.joinMember(memberVo)) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();

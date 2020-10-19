@@ -4,6 +4,7 @@ import com.bee.www.common.Action;
 import com.bee.www.common.ActionForward;
 import com.bee.www.common.LoginManager;
 import com.bee.www.service.BoardService;
+import com.bee.www.service.MemberService;
 import com.bee.www.vo.ArticleVo;
 import com.bee.www.vo.MemberVo;
 
@@ -25,7 +26,7 @@ public class ProfileUpdateAction implements Action {
 //        if(email.equals())
         String nick = request.getParameter("nick");
 
-        BoardService service = new BoardService();
+        MemberService service = new MemberService();
         //vo에 담음
         MemberVo vo = new MemberVo();
         vo.setEmail(email);
@@ -38,7 +39,7 @@ public class ProfileUpdateAction implements Action {
             return null;
         }
 
-        out.println("<script>alert('회원정보 수정 성공');history.back();</script>");
+        out.println("<script>alert('회원정보 수정 성공');location.href='/';</script>");
         out.close();
         ActionForward forward = new ActionForward();
         forward.setPath("/profile.do?id="+id);

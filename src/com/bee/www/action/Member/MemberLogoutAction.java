@@ -1,16 +1,14 @@
 package com.bee.www.action.Member;
 
-import com.bee.www.common.*;
-import com.bee.www.service.BoardService;
+import com.bee.www.common.Action;
+import com.bee.www.common.ActionForward;
+import com.bee.www.common.LoginManager;
+import com.bee.www.service.MemberService;
 import com.bee.www.vo.MemberVo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.PrintWriter;
-
-import static com.bee.www.common.RegExp.MEMBER_ID;
-import static com.bee.www.common.RegExp.MEMBER_PWD;
 
 public class MemberLogoutAction implements Action {
     @Override
@@ -38,7 +36,7 @@ public class MemberLogoutAction implements Action {
         memberVo.setId(id);     //vo에 로그아웃할 id담음
         memberVo.setLgn_fl(false);  //vo에 로그아웃 상태로 변경
 
-        BoardService service = new BoardService();
+        MemberService service = new MemberService();
         if(!service.logoutMember(memberVo)){
             System.out.println(id + "회원의 로그아웃 처리에 실패하였습니다.");
         }
