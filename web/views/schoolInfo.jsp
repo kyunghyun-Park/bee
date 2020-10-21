@@ -29,6 +29,7 @@
     <script src="../toastr/toastr.min.js"></script>
 </head>
 <body>
+<%--
 <header>
     <div class="header-area">
         <div class="header-main">
@@ -78,14 +79,15 @@
         <nav>
             <ul>
                 <li><a href="/schBoard.do?pn=1&filter=&keyword=&" style="color: rgb(12, 167, 179);">학원정보</a></li>
-                <li><a href="/reviews.do">학원후기</a></li>
+                <li><a href="/reviews.do">투데이로그</a></li>
                 <li><a href="/freeBoard.do?pn=1&filter=&keyword=&">자유게시판</a></li>
             </ul>
         </nav>
     </section>
 </div>
+--%>
 
-
+<jsp:include page="header.jsp" ></jsp:include>
 <div class="board-container">
     <div class="content-left">
         <div class="head">

@@ -99,6 +99,7 @@ public class FreeDetailAction implements Action {
         } else {  //만들어진 쿠키 있을때 증가로직 진행X
             System.out.println("쿠키 있음 값:" + viewCookie.getValue());
         }
+
         vo.setContent(Parser.chgToHTML(vo.getContent()));
         ActionForward forward = new ActionForward();
         request.setAttribute("vo", vo);
