@@ -67,7 +67,7 @@
                     <h3>로그인</h3></a>
                 <% } //로그아웃 상태
                 else { %>
-                <a href="/profile.do?id=<%=id%>">
+                <a href="/profile.do?">
                     <h3 class="join">회원정보</h3>
                 </a>
                 <a href="/logout.do">
@@ -91,9 +91,9 @@
     <section class="nav-section">
         <nav>
             <ul>
-                <li><a href="/schBoard.do?pn=1">학원정보</a></li>
+                <li><a href="/schBoard.do?pn=1&filter=&keyword=&">학원정보</a></li>
                 <li><a href="/reviews.do" style="color: rgb(12, 167, 179);">학원후기</a></li>
-                <li><a href="/freeBoard.do?pn=1">자유게시판</a></li>
+                <li><a href="/freeBoard.do?pn=1&filter=&keyword=&">자유게시판</a></li>
             </ul>
         </nav>
     </section>

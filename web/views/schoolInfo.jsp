@@ -52,7 +52,7 @@
                     <h3>로그인</h3></a>
                 <% } //로그아웃 상태
                 else { %>
-                <a href="/profile.do?id=<%=id%>">
+                <a href="/profile.do">
                     <h3 class="join">회원정보</h3>
                 </a>
                 <a href="/logout.do">
@@ -77,9 +77,9 @@
     <section class="nav-section">
         <nav>
             <ul>
-                <li><a href="/schBoard.do?pn=1" style="color: rgb(12, 167, 179);">학원정보</a></li>
+                <li><a href="/schBoard.do?pn=1&filter=&keyword=&" style="color: rgb(12, 167, 179);">학원정보</a></li>
                 <li><a href="/reviews.do">학원후기</a></li>
-                <li><a href="/freeBoard.do?pn=1">자유게시판</a></li>
+                <li><a href="/freeBoard.do?pn=1&filter=&keyword=&">자유게시판</a></li>
             </ul>
         </nav>
     </section>
@@ -167,10 +167,12 @@
                                 <a href="/schBoard.do?pn=<%=pagenation.getStartPage()-1%>&filter=<%=filter%>&keyword=<%=keyword%>">이전</a>
                                 <% } %>
                                 <ul>
-                                    <% for (int i = pagenation.getStartPage(); i <= pagenation.getEndPage(); i++) { %>
-                                    <li class=""><a href="/schBoard.do?pn=<%=i%>&filter=<%=filter%>&keyword=<%=keyword%>">
-                                        <%=i%>
-                                    </a>
+                                    <% //페이지네이션
+                                        for (int i = pagenation.getStartPage(); i <= pagenation.getEndPage(); i++) { %>
+                                    <li class="">
+                                        <a href="/schBoard.do?pn=<%=i%>&filter=<%=filter%>&keyword=<%=keyword%>">
+                                            <%=i%>
+                                        </a>
                                     </li>
                                     <%--  <li class="active"><a href="#">1</a></li>
                                       <li><a href="#">2</a></li>
@@ -183,7 +185,6 @@
                                 <a href="/schBoard.do?pn=<%=pagenation.getEndPage()+1%>&filter=<%=filter%>&keyword=<%=keyword%>">다음</a>
                                 <% } %>
                             </div>
-                            <input type="hidden" name="searchflag" value="true"/>   <!--검색 요청시 플래그값을 true로 넘김-->
                             <div class="search">
                                 <select name="filter" id="filter">
                                     <option value="all" selected>전체</option>
@@ -192,9 +193,11 @@
                                 </select>
                                 <input type="text" name="keyword" id="keyword"/>
                                 <button onclick="return searchArticle()" id="btnSearch"
-                                        class="searchADNcontrol">검색</button>
-                                <button onclick="location.href='/schBoard.do?pn=1'"
-                                        type="button" class="searchADNcontrol">초기화</button>
+                                        class="searchADNcontrol">검색
+                                </button>
+                                <button onclick="location.href='/schBoard.do?pn=1&filter=&keyword=&'"
+                                        type="button" class="searchADNcontrol">초기화
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -204,22 +207,26 @@
     </div>
 </div>
 <script>
-    $("#btnSearch").keyup(function(e){if(e.keyCode == 13)  searchArticle(); });
+    $("#btnSearch").keyup(function (e) {
+        if (e.keyCode == 13) searchArticle();
+    });
 
     toastr.options = {
         "closeButton": true,
         "positionClass": "toast-top-center",
         "timeOut": 1000
     }
+
     function goDetail(num) {
         location.href =
-            "/schDetail.do?pn=" + <%=nowPage%> +"&num=" + num;
+            "/schDetail.do?pn=" + <%=nowPage%> +"&num=" + num
+            + "&filter=" + '<%=filter%>' +"&keyword=" + '<%=keyword%>';
     }
 
     function searchArticle() {
         var filter = $('#filter option:selected').val();
         var keyword = $('#keyword').val();
-        if(!keyword){
+        if (!keyword) {
             toastr.error("검색할 내용을 입력하세요.");
             $('#keyword').focus();
             return false;

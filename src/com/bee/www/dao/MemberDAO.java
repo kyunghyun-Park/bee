@@ -51,6 +51,27 @@ public class MemberDAO {
         }
         return count;
     }
+    //로그인 된 유저 시퀀스 조회
+    public int getMemberSequence(String id){
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        int sq = 0;
+        try{
+            //현재 로그인된 id에 해당하는 고유번호 조회
+            pstmt = con.prepareStatement("select sq from member where id=?");
+            pstmt.setString(1,id);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                sq=rs.getInt("sq");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(rs);
+            close(pstmt);
+        }
+        return sq;
+    }
     //로그인할 때 입력한 아이디에 해당하는 비번 갖고오기
     public MemberVo getMember(String id){
         PreparedStatement pstmt = null;

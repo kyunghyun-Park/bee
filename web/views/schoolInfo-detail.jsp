@@ -10,6 +10,8 @@
     LoginManager lm = LoginManager.getInstance();
     String id = lm.getMemberId(session);
     String nowPage = request.getParameter("pn");
+    String filter = request.getParameter("filter");
+    String keyword = request.getParameter("keyword");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +54,7 @@
                     <h3>로그인</h3></a>
                 <% } //로그아웃 상태
                 else { %>
-                <a href="/profile.do?id=<%=id%>">
+                <a href="/profile.do">
                     <h3 class="join">회원정보</h3>
                 </a>
                 <a href="/logout.do">
@@ -77,7 +79,7 @@
     <section class="nav-section">
         <nav>
             <ul>
-                <li><a href="/schBoard.do?pn=1" style="color: rgb(12, 167, 179);">학원정보</a></li>
+                <li><a href="/schBoard.do?pn=1&filter=&keyword=&" style="color: rgb(12, 167, 179);">학원정보</a></li>
                 <li><a href="/reviews.do">학원후기</a></li>
                 <li><a href="/freeBoard.do?pn=1">자유게시판</a></li>
             </ul>
@@ -164,7 +166,7 @@
                             <path d="m740.86 187.66c0-12.912 12.526-23.416 27.922-23.416 15.397 0 27.923 10.505 27.923 23.416 0 12.912-12.526 23.416-27.923 23.416-1.295 0-2.594-.075-3.871-.223-5.93 3.767-10.308 5.829-13.02 6.131-.094.001-.189.016-.282.016-.872 0-1.678-.434-2.159-1.163-.537-.815-.572-1.848-.094-2.692.022-.04 2.116-3.861 1.512-7.51-6.37-4.458-10.01-10.973-10.01-17.975"
                                   fill="#4d4d4d" transform="matrix(.30328 0 0 .30328-222.16-46.812)"/>
                         </svg>
-                        3
+                        <%=vo.getComment_count()%>
                     </div>
                     <div class="content-count">
                         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -258,18 +260,18 @@
         <button onclick="articleDelete()">삭제</button>
     </div>
     <div class="right-button">
-        <button onclick="location.href='/schBoard.do?pn=<%=nowPage%>'">목록</button>
+        <button onclick="location.href='/schBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>'">목록</button>
     </div>
     <%--id 있는데 게시글 번호랑 다를때--%>
     <% } else { %>
     <div class="right-button">
-        <button onclick="location.href='/schBoard.do?pn=<%=nowPage%>'">목록</button>
+        <button onclick="location.href='/schBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>'">목록</button>
     </div>
     <%--id==null일 때--%>
     <% }
     } else { %>
     <div class="right-button">
-        <button onclick="location.href='/schBoard.do?pn=<%=nowPage%>'">목록</button>
+        <button onclick="location.href='/schBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>'">목록</button>
     </div>
     <% } %>
 </div>

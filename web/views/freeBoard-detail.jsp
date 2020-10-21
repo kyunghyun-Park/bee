@@ -10,6 +10,8 @@
     LoginManager lm = LoginManager.getInstance();
     String id = lm.getMemberId(session);
     String nowPage=request.getParameter("pn");
+    String filter=request.getParameter("filter");
+    String keyword=request.getParameter("keyword");
 %>
 
 <!DOCTYPE html>
@@ -53,7 +55,7 @@
                     <h3>로그인</h3></a>
                 <% } //로그아웃 상태
                 else { %>
-                <a href="/profile.do?id=<%=id%>">
+                <a href="/profile.do?">
                     <h3 class="join">회원정보</h3>
                 </a>
                 <a href="/logout.do">
@@ -78,9 +80,9 @@
     <section class="nav-section">
         <nav>
             <ul>
-                <li><a href="/schBoard.do?pn=1">학원정보</a></li>
+                <li><a href="/schBoard.do?pn=1&filter=&keyword=&">학원정보</a></li>
                 <li><a href="/reviews.do">학원후기</a></li>
-                <li><a href="/freeBoard.do?pn=1" style="color: rgb(12, 167, 179);">자유게시판</a></li>
+                <li><a href="/freeBoard.do?pn=1&filter=&keyword=&" style="color: rgb(12, 167, 179);">자유게시판</a></li>
             </ul>
         </nav>
     </section>
@@ -252,18 +254,18 @@
         <button onclick="articleDelete()">삭제</button>
     </div>
     <div class="right-button">
-        <button onclick="location.href='/freeBoard.do?pn=<%=nowPage%>'">목록</button>
+        <button onclick="location.href='/freeBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>'">목록</button>
     </div>
     <%--id 있는데 게시글 번호랑 다를때--%>
     <% } else { %>
     <div class="right-button">
-        <button onclick="location.href='/freeBoard.do?pn=<%=nowPage%>'">목록</button>
+        <button onclick="location.href='/freeBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>'">목록</button>
     </div>
     <%--id==null일 때--%>
     <% }
     } else { %>
     <div class="right-button">
-        <button onclick="location.href='/freeBoard.do?pn=<%=nowPage%>'">목록</button>
+        <button onclick="location.href='/freeBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>'">목록</button>
     </div>
     <% } %>
 </div>

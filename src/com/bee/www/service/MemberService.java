@@ -75,7 +75,7 @@ public class MemberService {
         Connection con = getConnection();
         dao.setConnection(con);
         boolean isSucess = false;
-
+        memberVo.setMem_sq(dao.getMemberSequence(memberVo.getId()));
         int result = dao.updateLoginState(memberVo);
         if (result > 0) {
             commit(con);

@@ -2,7 +2,7 @@ package com.bee.www.common;
 
 public class Pagenation {
     private final int SHOW_ARTICLE_COUNT = 10;    //한 페이지에 보여줄 글 개수
-    private final int PAGE_GROUP = 10;            //페이지 번호 묶음
+    private final int PAGE_GROUP = 5;            //페이지 번호 묶음
     private int nowPageNumber;                  //현재 페이지 번호
     private int totalArticleCount;              //글 총 개수
     private int startArticleNumber;             //시작 글 번호

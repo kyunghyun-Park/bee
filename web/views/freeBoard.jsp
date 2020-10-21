@@ -9,6 +9,8 @@
     ArrayList<ArticleVo> list = (ArrayList<ArticleVo>) request.getAttribute("list");
     Pagenation pagenation = (Pagenation) request.getAttribute("pagenation");
     String nowPage = request.getParameter("pn");
+    String filter = request.getParameter("filter");
+    String keyword = request.getParameter("keyword");
 %>
 <html>
 <head>
@@ -51,7 +53,7 @@
                     <h3>로그인</h3></a>
                 <% } //로그아웃 상태
                 else { %>
-                <a href="/profile.do?id=<%=id%>">
+                <a href="/profile.do?">
                     <h3 class="join">회원정보</h3>
                 </a>
                 <a href="/logout.do">
@@ -75,9 +77,9 @@
     <section class="nav-section">
         <nav>
             <ul>
-                <li><a href="/schBoard.do?pn=1">학원정보</a></li>
+                <li><a href="/schBoard.do?pn=1&filter=&keyword=&">학원정보</a></li>
                 <li><a href="/reviews.do">학원후기</a></li>
-                <li><a href="/freeBoard.do?pn=1" style="color: rgb(12, 167, 179);">자유게시판</a></li>
+                <li><a href="/freeBoard.do?pn=1&filter=&keyword=&" style="color: rgb(12, 167, 179);">자유게시판</a></li>
             </ul>
         </nav>
     </section>
@@ -142,13 +144,14 @@
                                     System.out.println("현재 페이지 : " + nowPage);
                                     if (pagenation.getNowPageNumber() != pagenation.getStartPage()) {
                                 %>
-                                <a href="/freeBoard.do?pn=<%=pagenation.getStartPage()-1%>">이전</a>
+                                <a href="/freeBoard.do?pn=<%=pagenation.getStartPage()-1%>&filter=<%=filter%>&keyword=<%=keyword%>">이전</a>
                                 <% } %>
                                 <ul>
                                     <% for (int i = pagenation.getStartPage(); i <= pagenation.getEndPage(); i++) { %>
-                                    <li class=""><a href="/freeBoard.do?pn=<%=i%>">
-                                        <%=i%>
-                                    </a>
+                                    <li class="">
+                                        <a href="/freeBoard.do?pn=<%=i%>&filter=<%=filter%>&keyword=<%=keyword%>">
+                                            <%=i%>
+                                        </a>
                                     </li>
                                     <%--<li class="active"><a href="#">1</a></li>
                                     <li><a href="#">2</a></li>
@@ -159,17 +162,22 @@
                                 </ul>
                                 <% //마지막 페이지에선 다음버튼 안보이게
                                     if (pagenation.getNowPageNumber() != pagenation.getTotalPageCount()) {%>
-                                <a href="/freeBoard.do?pn=<%=pagenation.getEndPage()+1%>">다음</a>
+                                <a href="/freeBoard.do?pn=<%=pagenation.getEndPage()+1%>&filter=<%=filter%>&keyword=<%=keyword%>">다음</a>
                                 <% } %>
                             </div>
                             <div class="search">
                                 <select name="filter" id="filter">
-                                    <option>전체</option>
+                                    <option value="all" selected>전체</option>
                                     <option value="title">제목</option>
                                     <option value="content">내용</option>
                                 </select>
                                 <input type="text" name="keyword" id="keyword"/>
-                                <button onclick="searchArticle()" class="searchADNcontrol">검색</button>
+                                <button onclick="return searchArticle()" class="searchADNcontrol"
+                                        id="btnSearch">검색
+                                </button>
+                                <button onclick="location.href='/freeBoard.do?pn=1&filter=&keyword=&'"
+                                        type="button" class="searchADNcontrol">초기화
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -186,21 +194,24 @@
         "positionClass": "toast-top-center",
         "timeOut": 1000
     }
+
     function goDetail(num) {
-        location.href = "/freeDetail.do?pn=" + <%=nowPage%> +"&num=" + num;
+        location.href = "/freeDetail.do?pn=" + <%=nowPage%> +"&num=" + num
+            + "&filter=" + '<%=filter%>' + "&keyword=" + '<%=keyword%>';
     }
 
     function searchArticle() {
         var filter = $('#filter option:selected').val();
         var keyword = $('#keyword').val();
-        location.href =
-            "/list.do?pn=1&filter=" + filter + "&keyword=" + keyword;
-        if(!keyword){
+        if (!keyword) {
             toastr.error("검색할 내용을 입력하세요.");
             $('#keyword').focus();
             return false;
         }
+        location.href =
+            "/freeBoard.do?pn=1&filter=" + filter + "&keyword=" + keyword;
     }
+
     $(function () {
         var sBtn = $(".pagination ul > li");    //  ul > li 이를 sBtn으로 칭한다. (클릭이벤트는 li에 적용 된다.)
         sBtn.find("a").click(function () {   // sBtn에 속해 있는  a 찾아 클릭 하면.

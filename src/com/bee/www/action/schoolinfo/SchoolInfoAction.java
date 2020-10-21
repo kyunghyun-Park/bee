@@ -19,7 +19,7 @@ public class SchoolInfoAction implements Action {
     @Override
     public ActionForward execute
             (HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String query = "c_sq BETWEEN 1 AND 6";  //지역번호 있는 카테고리만
+        String query = "c_sq BETWEEN 1 AND 6";  //지역번호 카테고리 번호 쿼리에 미리 저장
 
         String pageNum = request.getParameter("pn");  //페이지 번호 받아오기
         if (pageNum == null     //페이지 번호 숫자 아닐때
@@ -35,13 +35,13 @@ public class SchoolInfoAction implements Action {
         if (page < 1) {     //페이지 번호 1보다 작을때 오류
             page = 1;
         }
+        //검색,필터 받아와서 쿼리 생성
         String filter = request.getParameter("filter");
         String keyword = request.getParameter("keyword");
-        //필터 값 없을 시 전체로 대입
-        if (filter == null || filter.equals("")) {
+        if (filter == null || filter.equals("")) {      //필터 값 없을 시 전체로 대입
             filter = "all";
         }
-        if (keyword != null && !keyword.equals("")) {
+        if (keyword != null && !keyword.equals("")) {   //검색값에 뭔가가 들어와있으면 쿼리 생성
             query += makeSearchQuery(filter, keyword);
         }
         BoardService service = new BoardService();
@@ -53,7 +53,6 @@ public class SchoolInfoAction implements Action {
         if (page > pagenation.getTotalPageCount()) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-//            out.println("<script>location.href='/schBoard.do?pn=" + pagenation.getTotalPageCount() + "';</script>");
             out.println("<script>location.href='/schBoard.do?pn=" + pagenation.getTotalPageCount() +
                         "&filter=" + filter + "&keyword=" + keyword + "';</script>");
             out.close();
