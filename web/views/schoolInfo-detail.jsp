@@ -275,7 +275,15 @@
     </div>
     <% } %>
 </div>
-<div class="comment-container">
+<!------------------------Comments--------------------------->
+<div class="commenet-container">
+    <div class="comment-count">
+        <h4>Comments <%=vo.getComment_count()%>
+        </h4>
+    </div>
+    <div id="replyList"></div>
+</div>
+<%--<div class="comment-container">
     <div class="comment-count">
         <h4>Comments <%=vo.getComment_count()%>
         </h4>
@@ -302,9 +310,9 @@
             <td class="comment-content"><%=cList.get(i).getContent()%></td>
         </tr>
         <% } %>
-    </table>
+    </table> >--%>
     <% if (id != null) { //로그인 세션있을때만 %>
-    <form action="/schCommentAdd.do?num=<%=vo.getB_sq()%>" method="post" onsubmit="return commentSubmit()">
+    <form  method="post" >
         <div>
             <div class="comment-txt">
                 <textarea id="content" name="content"
@@ -316,8 +324,31 @@
         </div>
     </form>
     <% } %>
-</div>
+</div
 <script>
+    $(document).ready(function (){
+        showReplyList();
+    });
+    function showReplyList() {
+        var content = $('#content').val();
+        console.log(content);
+
+        $.ajax({
+            url: "/commentAdd.ajax"
+            , type: "post"
+            , data: {"num":'<%=vo.getB_sq()%>',"content":content}
+            , dataType: "json"
+            , error: function (xhr,request, status) {
+                console.log("서버 통신 실패");
+                console.log(status);
+            }
+            , success: function (data) {
+                console.log("서버 통신 성공");
+                
+
+            }
+        });
+    }
     toastr.options = {
         "closeButton": true,
         "positionClass": "toast-top-center",
@@ -345,7 +376,6 @@
         console.log('login id: <%=id%>'+' | comment id: '+commentId);
 
         if(confirm('삭제하시겠습니까?')==true) {    //확인눌렀을 때
-
             if(id==commentId){
                 $.ajax({
                     url: "/commentDel.ajax"
