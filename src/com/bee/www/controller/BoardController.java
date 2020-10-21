@@ -197,8 +197,15 @@ public class BoardController extends HttpServlet {
             }catch (Exception e){
                 e.printStackTrace();
             }
-        }else if(command.equals("/ProfileUpdate.do")){
+        }else if(command.equals("/profileUpdate.do")){
             action = new ProfileUpdateAction();
+            try{
+                forward = action.execute(request,response);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }else if(command.equals("/profileImgUpdate.do")){
+            action = new ProfileImgUpdateAction();
             try{
                 forward = action.execute(request,response);
             }catch (Exception e){

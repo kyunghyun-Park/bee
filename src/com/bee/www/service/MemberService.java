@@ -145,4 +145,22 @@ public class MemberService {
         close(con);
         return isSucess;
     }
+    public boolean profileImgUpdate(MemberVo vo){
+        MemberDAO dao = MemberDAO.getInstance();
+        Connection con = getConnection();
+        dao.setConnection(con);
+        //그냥 count넘겨도 되지만 boolean으로 함
+        boolean isSucess = false;
+
+        int count = dao.profileImgUpdate(vo);
+        if (count > 0) {    //성공
+            commit(con);
+            isSucess = true;
+
+        } else {          //실패
+            rollback(con);
+        }
+        close(con);
+        return isSucess;
+    }
 }

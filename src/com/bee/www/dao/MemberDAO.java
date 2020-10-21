@@ -196,7 +196,23 @@ public class MemberDAO {
         }
         return count;
     }
-
+    //프로필 이미지 추가
+    public int profileImgUpdate(MemberVo vo){
+        PreparedStatement pstmt = null;
+        int count = 0;
+        try{
+            //현재 로그인된 id에 해당하는 고유번호 조회
+            pstmt = con.prepareStatement("update member set image=? where id=?");
+            pstmt.setString(1,vo.getNewFileName());
+            pstmt.setString(2,vo.getId());
+            count=pstmt.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(pstmt);
+        }
+        return count;
+    }
     //비밀번호 변경
     public int changePwd(MemberVo vo){
         PreparedStatement pstmt=null;
