@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
 import static com.bee.www.common.RegExp.ARTICLE_NUM;
+import static com.bee.www.common.RegExp.IS_NUMBER;
 
 public class FreeDeleteAction implements Action {
     @Override
@@ -39,7 +40,7 @@ public class FreeDeleteAction implements Action {
 
         int numInt = Integer.parseInt(num);  //유효성 검사 후 글 번호 숫자로 변환
         //글 번호 유효성검사(2)-형변환 후,글 번호 0보다 작으면 오류alert
-        if(numInt<=0){
+        if (numInt <= 0) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
             out.println("<script>alert('잘못된 접근입니다.(2)');history.back();</script>");
@@ -59,7 +60,7 @@ public class FreeDeleteAction implements Action {
         }
 
         //service호출
-        if(!service.deleteArticle(numInt)){ //글 수정 service 호출
+        if (!service.deleteArticle(numInt)) { //글 수정 service 호출
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
             out.println("<script>alert('글 삭제에 실패했습니다.');history.back();</script>");
@@ -67,8 +68,23 @@ public class FreeDeleteAction implements Action {
             return null;
         }
 
+        //페이지 받아와서 다시 그 페이지로 보내기
+        String pageNum = request.getParameter("pn");  //페이지 번호 받아오기
+        if (pageNum == null     //페이지 번호 숫자 아닐때
+                || !RegExp.checkString(IS_NUMBER, pageNum)) {
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('잘못된 접근입니다.');location.href='/';</script>");
+            out.close();
+            return null;
+        }
+
+        int page = Integer.parseInt(pageNum); //페이지 번호 정수형 변환
+        if (page < 1) {     //페이지 번호 1보다 작을때 오류
+            page = 1;
+        }
         ActionForward forward = new ActionForward();
-        forward.setPath("/freeBoard.do");
+        forward.setPath("/freeBoard.do?pn=" + page);
         forward.setRedirect(true);
         return forward;
     }

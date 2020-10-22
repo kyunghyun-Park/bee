@@ -30,61 +30,7 @@
 
 </head>
 <body>
-<header>
-    <div class="header-area">
-        <div class="header-main">
-            <svg width="17" height="17" viewBox="0 0 17 17">
-                <path fill-rule="evenodd"
-                      d="M13.66 7.36a6.3 6.3 0 1 1-12.598 0 6.3 6.3 0 0 1 12.598 0zm-1.73 5.772a7.36 7.36 0 1 1 1.201-1.201l3.636 3.635c.31.31.31.815 0 1.126l-.075.075a.796.796 0 0 1-1.126 0l-3.636-3.635z"
-                      clip-rule="evenodd"></path>
-            </svg>
-            <div class="header-filter">
-                <input type="text" placeholder="검색할 내용.."/>
-            </div>
-            <div class="header-login">
-                <%
-                    //로그인 상태
-                    if (id == null) {
-                %>
-                <a href="/join.do">
-                    <h3 class="join">회원가입</h3>
-                </a>
-                <a href="/login.do">
-                    <h3>로그인</h3></a>
-                <% } //로그아웃 상태
-                else { %>
-                <a href="/profile.do?">
-                    <h3 class="join">회원정보</h3>
-                </a>
-                <a href="/logout.do">
-                    <h3>로그아웃</h3>
-                </a>
-                <% } %>
-            </div>
-        </div>
-    </div>
-</header>
-
-<section class="title-section">
-    <div class="title-logo">
-        <a href="/">
-            <h1>Good Bee</h1>
-        </a>
-    </div>
-</section>
-
-<div class="main-margin">
-    <section class="nav-section">
-        <nav>
-            <ul>
-                <li><a href="/schBoard.do?pn=1&filter=&keyword=&">학원정보</a></li>
-                <li><a href="/reviews.do">투데이로그</a></li>
-                <li><a href="/freeBoard.do?pn=1&filter=&keyword=&" style="color: rgb(12, 167, 179);">자유게시판</a></li>
-            </ul>
-        </nav>
-    </section>
-</div>
-
+<jsp:include page="header.jsp"/>
 <div class="board-container">
     <div class="content-left">
         <div class="head">
@@ -142,28 +88,26 @@
                                 <%
                                     System.out.println("첫번째 페이지 넘버: " + pagenation.getStartPage());
                                     System.out.println("현재 페이지 : " + nowPage);
-                                    if (pagenation.getNowPageNumber() != pagenation.getStartPage()) {
                                 %>
-                                <a href="/freeBoard.do?pn=<%=pagenation.getStartPage()-1%>&filter=<%=filter%>&keyword=<%=keyword%>">이전</a>
-                                <% } %>
                                 <ul>
+                                    <li>
+                                        <% if (pagenation.getNowPageNumber() != 1) { %>
+                                        <a href="/freeBoard.do?pn=<%=pagenation.getStartPage()-1%>&filter=<%=filter%>&keyword=<%=keyword%>">«</a>
+                                        <% } %>
+                                    </li>
                                     <% for (int i = pagenation.getStartPage(); i <= pagenation.getEndPage(); i++) { %>
-                                    <li class="">
+                                    <li class="active">
                                         <a href="/freeBoard.do?pn=<%=i%>&filter=<%=filter%>&keyword=<%=keyword%>">
                                             <%=i%>
                                         </a>
                                     </li>
-                                    <%--<li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>--%>
                                     <% } %>
+                                    <li>
+                                        <% if (pagenation.getNowPageNumber() != pagenation.getTotalPageCount()) { %>
+                                        <a href="/freeBoard.do?pn=<%=pagenation.getEndPage()+1%>&filter=<%=filter%>&keyword=<%=keyword%>">»</a>
+                                        <% } %>
+                                    </li>
                                 </ul>
-                                <% //마지막 페이지에선 다음버튼 안보이게
-                                    if (pagenation.getNowPageNumber() != pagenation.getTotalPageCount()) {%>
-                                <a href="/freeBoard.do?pn=<%=pagenation.getEndPage()+1%>&filter=<%=filter%>&keyword=<%=keyword%>">다음</a>
-                                <% } %>
                             </div>
                             <div class="search">
                                 <select name="filter" id="filter">
@@ -186,7 +130,7 @@
         </div>
     </div>
 </div>
-
+<script>$('#freeInfo').css('color', 'rgb(12, 167, 179)');</script>  <!--현재 게시판 색 변경-->
 <script src="http://code.jquery.com/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
 <script>
     toastr.options = {

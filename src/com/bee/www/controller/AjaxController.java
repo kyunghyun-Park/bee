@@ -51,7 +51,6 @@ public class AjaxController extends HttpServlet {
                 e.printStackTrace();
             }
         }
-
         if (forward != null) {
             if (forward.isRedirect()) {
                 response.sendRedirect(forward.getPath());

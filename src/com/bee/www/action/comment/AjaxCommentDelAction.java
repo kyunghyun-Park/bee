@@ -37,7 +37,6 @@ public class AjaxCommentDelAction implements Action {
             out.close();
             return null;
         }
-
         int commentNumInt = Integer.parseInt(commentNum);
         //글 번호 0보다 작으면 오류alert
         if (commentNumInt<=0) {

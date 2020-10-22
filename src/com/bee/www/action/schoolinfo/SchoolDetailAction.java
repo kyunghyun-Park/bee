@@ -56,6 +56,7 @@ public class SchoolDetailAction implements Action {
         //댓글 목록 불러오기
         ArrayList<CommentVo> commentList=commentService.getCommentList(numInt);
         request.setAttribute("comment",commentList);
+
         //----------------------------------------쿠키로 조회수 중복방지
         Cookie viewCookie = null;
         Cookie[] cookies = request.getCookies();

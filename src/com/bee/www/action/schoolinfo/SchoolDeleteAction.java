@@ -74,7 +74,7 @@ public class SchoolDeleteAction implements Action {
                 || !RegExp.checkString(IS_NUMBER, pageNum)) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            out.println("<script>alert('잘못된 접근입니다zzz.');location.href='/';</script>");
+            out.println("<script>alert('잘못된 접근입니다.');location.href='/';</script>");
             out.close();
             return null;
         }

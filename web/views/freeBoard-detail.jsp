@@ -32,61 +32,7 @@
     <script src="../toastr/toastr.min.js"></script>
 </head>
 <body>
-<header>
-    <div class="header-area">
-        <div class="header-main">
-            <svg width="17" height="17" viewBox="0 0 17 17">
-                <path fill-rule="evenodd"
-                      d="M13.66 7.36a6.3 6.3 0 1 1-12.598 0 6.3 6.3 0 0 1 12.598 0zm-1.73 5.772a7.36 7.36 0 1 1 1.201-1.201l3.636 3.635c.31.31.31.815 0 1.126l-.075.075a.796.796 0 0 1-1.126 0l-3.636-3.635z"
-                      clip-rule="evenodd"></path>
-            </svg>
-            <div class="header-filter">
-                <input type="text" placeholder="검색할 내용.."/>
-            </div>
-            <div class="header-login">
-                <%
-                    //로그인 상태
-                    if (id == null) {
-                %>
-                <a href="/join.do">
-                    <h3 class="join">회원가입</h3>
-                </a>
-                <a href="/login.do">
-                    <h3>로그인</h3></a>
-                <% } //로그아웃 상태
-                else { %>
-                <a href="/profile.do?">
-                    <h3 class="join">회원정보</h3>
-                </a>
-                <a href="/logout.do">
-                    <h3>로그아웃</h3>
-                </a>
-                <% } %>
-            </div>
-
-        </div>
-    </div>
-</header>
-
-<section class="title-section">
-    <div class="title-logo">
-        <a href="/">
-            <h1>Good Bee</h1>
-        </a>
-    </div>
-</section>
-
-<div class="main-margin">
-    <section class="nav-section">
-        <nav>
-            <ul>
-                <li><a href="/schBoard.do?pn=1&filter=&keyword=&">학원정보</a></li>
-                <li><a href="/reviews.do">투데이로그</a></li>
-                <li><a href="/freeBoard.do?pn=1&filter=&keyword=&" style="color: rgb(12, 167, 179);">자유게시판</a></li>
-            </ul>
-        </nav>
-    </section>
-</div>
+<jsp:include page="header.jsp"/>
 
 <div class="detail-container">
     <hr>
@@ -250,22 +196,26 @@
             if (id.equals(vo.getId())) {    //글 작성자랑 로그인id랑 같을때
     %>
     <div class="left-button">
-        <button onclick="location.href='/freeUpdate.do?pn=<%=nowPage%>&num=<%=vo.getB_sq()%>'">수정</button>
+        <button onclick="
+                location.href='/freeUpdate.do?pn=<%=nowPage%>&num=<%=vo.getB_sq()%>&filter=<%=filter%>&keyword=<%=keyword%>'">수정</button>
         <button onclick="articleDelete()">삭제</button>
     </div>
     <div class="right-button">
-        <button onclick="location.href='/freeBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>'">목록</button>
+        <button onclick="
+                location.href='/freeBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>'">목록</button>
     </div>
     <%--id 있는데 게시글 번호랑 다를때--%>
     <% } else { %>
     <div class="right-button">
-        <button onclick="location.href='/freeBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>'">목록</button>
+        <button onclick="
+                location.href='/freeBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>'">목록</button>
     </div>
     <%--id==null일 때--%>
     <% }
     } else { %>
     <div class="right-button">
-        <button onclick="location.href='/freeBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>'">목록</button>
+        <button onclick="
+                location.href='/freeBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>'">목록</button>
     </div>
     <% } %>
 </div>
@@ -295,7 +245,7 @@
         <% } %>
     </table>
     <%  if(id!=null) {  //로그인 세션있을때만 %>
-    <form action="/commentAdd.do?num=<%=vo.getB_sq()%>" method="post" onsubmit="return commentSubmit()">
+    <form action="/freeCommentAdd.do?num=<%=vo.getB_sq()%>" method="post" onsubmit="return commentSubmit()">
         <div>
             <div class="comment-txt">
             <textarea id="content" name="content"
@@ -308,7 +258,7 @@
     </form>
     <% } %>
 </div>
-
+<script>$('#freeInfo').css('color', 'rgb(12, 167, 179)');</script>  <!--현재 게시판 색 변경-->
 <script>
     toastr.options = {
         "closeButton": true,
@@ -317,7 +267,7 @@
     }
     function articleDelete()  {
         if(confirm('삭제하시겠습니까?')==true) {
-            location.href='/freeDelete.do?pn=<%=nowPage%>&num=<%=vo.getB_sq()%>';
+            location.href='/freeDelete.do?pn=<%=nowPage%>&num=<%=vo.getB_sq()%>&filter=<%=filter%>&keyword=<%=keyword%>';
         }else{
             return;
         }
