@@ -47,7 +47,7 @@
                                                 System.out.println("name.length : " + name.length + "|| i : " + i);
                                         %>
                                         <div class="checks etrans">
-                                            <input type="checkbox" value="<%=name[i]%>" name="region" id="cate-<%=i%>">
+                                            <input type="checkbox" value="<%=i+1%>" onclick="getValue()" name="region" id="cate-<%=i%>">
                                             <label for="cate-<%=i%>"><%=name[i]%>
                                             </label>
                                         </div>
@@ -59,7 +59,7 @@
                                                 System.out.println(i);
                                         %>
                                         <div class="checks etrans">
-                                            <input type="checkbox" value="<%=name[i]%>" onclick="getValue()" name="region" id="cate-<%=i%>">
+                                            <input type="checkbox" value="<%=i+1%>" onclick="getValue()" name="region" id="cate-<%=i%>">
                                             <label for="cate-<%=i%>"><%=name[i]%>
                                             </label>
                                         </div>
@@ -152,23 +152,32 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    //엔터키 누르면 검색
+    $(function () {
+        $('#btnSearch').keydown(function (key) {
+            if (key.keyCode == 13) {
+                searchArticle();
+                $('#keyword').focus();
+            }
+        });
+    })
+</script>
 <script>
     toastr.options = {
         "closeButton": true,
         "positionClass": "toast-top-center",
         "timeOut": 1000
     }
+
+    //지역 체크박스 클릭 될 때마다
     function getValue() {
         $("input[name=region]:checked").each(function () {
-            console.log($(this).val());
+            var region=$(this).val();
+            console.log(region);
+            location.href="/schBoard.do?pn=1&filter=&keyword=&region=" + region;
         });
     }
-
-
-    $("#btnSearch").keyup(function (e) {
-        if (e.keyCode == 13) searchArticle();
-    });
-
 
     function goDetail(num) {
         location.href =

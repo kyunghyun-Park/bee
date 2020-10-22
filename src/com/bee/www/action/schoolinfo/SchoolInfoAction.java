@@ -36,14 +36,20 @@ public class SchoolInfoAction implements Action {
             page = 1;
         }
         //검색,필터 받아와서 쿼리 생성
-        String filter = request.getParameter("filter");
-        String keyword = request.getParameter("keyword");
+        String filter = request.getParameter("filter");     //전체 or 제목 or 내용
+        String keyword = request.getParameter("keyword");   //검색 키워드
+        String region = request.getParameter("region");     //지역 체크박스 값
+
         if (filter == null || filter.equals("")) {      //필터 값 없을 시 전체로 대입
             filter = "all";
         }
         if (keyword != null && !keyword.equals("")) {   //검색값에 뭔가가 들어와있으면 쿼리 생성
             query += makeSearchQuery(filter, keyword);
         }
+        if(region!=null&&!region.equals("")){
+            query= " c_sq ="+region;
+        }
+
         BoardService service = new BoardService();
 
         //-------------------------페이징-------------------------------------
