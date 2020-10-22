@@ -76,9 +76,7 @@
         var reviewURL = 'http://localhost:8080/reviews.do';
 
         var para = document.location.href.split("?");
-   /*     var link = document.location.href;
-        console.log(para);
-        console.log(link);*/
+        // console.log(para);
 
         if (para[0] == freeBoardURL ||para[0] == freeBoardURL2 ){
             $('#freeInfo').css('color', 'rgb(12, 167, 179)');

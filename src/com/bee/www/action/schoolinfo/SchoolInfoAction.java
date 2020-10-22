@@ -5,6 +5,7 @@ import com.bee.www.common.ActionForward;
 import com.bee.www.common.Pagenation;
 import com.bee.www.common.RegExp;
 import com.bee.www.service.BoardService;
+import com.bee.www.service.CommentService;
 import com.bee.www.vo.ArticleVo;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,6 +52,7 @@ public class SchoolInfoAction implements Action {
         }
 
         BoardService service = new BoardService();
+        CommentService commentService=  new CommentService();
 
         //-------------------------페이징-------------------------------------
         //현재 페이지번호,총 글 개수구해서 계산하기
@@ -69,6 +71,7 @@ public class SchoolInfoAction implements Action {
         //리스트에 지역이름 set하기
         for (int i = 0; i < articleList.size(); i++) {
             articleList.get(i).setCate_name(service.getCateName(articleList.get(i).getC_sq()));
+            articleList.get(i).setComment_count(commentService.getCommentCount(articleList.get(i).getB_sq()));
         }
 
         //schoolInfo에 보내기

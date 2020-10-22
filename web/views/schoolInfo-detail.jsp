@@ -220,7 +220,7 @@
             <td class="right-info"><a href="#">답변</a></td>
             <td class="right-info"><a href="#">수정</a></td>
             <td class="right-info">
-                <a onclick="commentDelete(<%=cList.get(i).getCm_sq()%>,'<%=cList.get(i).getId()%>')">삭제</a></td>
+                <a style="cursor: pointer" onclick="commentDelete(<%=cList.get(i).getCm_sq()%>,'<%=cList.get(i).getId()%>')">삭제</a></td>
         </tr>
         </tbody>
         <tr>
@@ -231,19 +231,19 @@
     </table>
     <% if (id != null) { //로그인 세션있을때만 %>
     <%--<form action="/schCommentAdd.do?num=<%=vo.getB_sq()%>" method="post" onsubmit="return commentSubmit()">--%>
-        <div>
-            <div class="comment-txt">
+    <div>
+        <div class="comment-txt">
                 <textarea id="content" name="content"
                           placeholder="여러분의 소중한 댓글을 입력해주세요."></textarea>
-            </div>
-            <div class="comment-button">
-                <button id="go-bottom" name="go-bottom" onclick="commentSubmit()">댓글달기</button>
-            </div>
         </div>
+        <div class="comment-button">
+            <button id="go-bottom" name="go-bottom" onclick="commentSubmit()">댓글달기</button>
+        </div>
+    </div>
     <%--</form>--%>
     <% } %>
 </div>
-<script>
+<script type="text/javascript">
     toastr.options = {
         "closeButton": true,
         "positionClass": "toast-top-center",
@@ -267,9 +267,9 @@
         }
 
         $.ajax({
-            url: "/commentAdd.ajax"
-            , type: "post"
-            , data: {num: '<%=vo.getB_sq()%>',
+              url: "/commentAdd.ajax"
+              , type: "post"
+              , data: {num: '<%=vo.getB_sq()%>',
                      content:content}
             , dataType: "json"
             , error: function (xhr, request, status) {

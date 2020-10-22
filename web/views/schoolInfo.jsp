@@ -30,7 +30,7 @@
 
 </head>
 <body>
-<jsp:include page="header.jsp" />
+<jsp:include page="header.jsp"/>
 <div class="board-container">
     <div class="content-left">
         <div class="head">
@@ -47,8 +47,9 @@
                                                 System.out.println("name.length : " + name.length + "|| i : " + i);
                                         %>
                                         <div class="checks etrans">
-                                            <input type="checkbox" value="<%=i+1%>" onclick="getValue()" name="region" id="cate-<%=i%>">
-                                            <label for="cate-<%=i%>"><%=name[i]%>
+                                            <input type="checkbox" value="<%=i+1%>" onclick="getValue()" name="region"
+                                                   id="<%=i+1%>">
+                                            <label for="<%=i+1%>"><%=name[i]%>
                                             </label>
                                         </div>
                                         <% } %>
@@ -59,8 +60,9 @@
                                                 System.out.println(i);
                                         %>
                                         <div class="checks etrans">
-                                            <input type="checkbox" value="<%=i+1%>" onclick="getValue()" name="region" id="cate-<%=i%>">
-                                            <label for="cate-<%=i%>"><%=name[i]%>
+                                            <input type="checkbox" value="<%=i+1%>" onclick="getValue()" name="region"
+                                                   id="<%=i+1%>">
+                                            <label for="<%=i+1%>"><%=name[i]%>
                                             </label>
                                         </div>
                                         <% } %>
@@ -92,8 +94,8 @@
                                         </td>
                                         <td class="location"><%=list.get(i).getCate_name()%>
                                         </td>
-                                        <td onclick="goDetail(<%=list.get(i).getB_sq()%>)"
-                                            class="title"><%=list.get(i).getTitle()%>
+                                        <td style="cursor: pointer" onclick="goDetail(<%=list.get(i).getB_sq()%>)"
+                                            class="title"><%=list.get(i).getTitle()%> (<%=list.get(i).getComment_count()%>)
                                         </td>
                                         <td class="user"><%=list.get(i).getNickname()%>
                                         </td>
@@ -108,7 +110,7 @@
                             </div>
                             <div class="pagination">
                                 <%
-                                  //  System.out.println("첫번째 페이지 넘버: " + pagenation.getStartPage());
+                                    //  System.out.println("첫번째 페이지 넘버: " + pagenation.getStartPage());
                                     //System.out.println("현재 페이지 : " + nowPage);
                                 %>
                                 <ul>
@@ -164,6 +166,18 @@
     })
 </script>
 <script>
+    $(function () {
+        var link = document.location.href.split("region="); //현재 링크에 지역값뒤로 짜르기
+        console.log('link = ' + link[1]);   //1~6까지 담김
+
+        //해당 값에 대한 checkbox 체크
+        if (link[1] == '') {
+            $("input:checkbox[name='region']").prop("checked", false);
+        } else {
+            $("input:checkbox[id=" + link[1] + "]").prop("checked", true);
+        }
+
+    })
     toastr.options = {
         "closeButton": true,
         "positionClass": "toast-top-center",
@@ -173,16 +187,17 @@
     //지역 체크박스 클릭 될 때마다
     function getValue() {
         $("input[name=region]:checked").each(function () {
-            var region=$(this).val();
+            $("input:checkbox[name='region']").prop("checked", false);
+            var region = $(this).val();
             console.log(region);
-            location.href="/schBoard.do?pn=1&filter=&keyword=&region=" + region;
+            location.href = "/schBoard.do?pn=1&filter=&keyword=&region=" + region;
         });
     }
 
     function goDetail(num) {
         location.href =
             "/schDetail.do?pn=" + <%=nowPage%> +"&num=" + num
-            + "&filter=" + '<%=filter%>' +"&keyword=" + '<%=keyword%>';
+            + "&filter=" + '<%=filter%>' + "&keyword=" + '<%=keyword%>';
     }
 
     function searchArticle() {
