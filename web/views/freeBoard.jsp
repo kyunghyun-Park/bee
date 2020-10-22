@@ -130,7 +130,6 @@
         </div>
     </div>
 </div>
-<script>$('#freeInfo').css('color', 'rgb(12, 167, 179)');</script>  <!--현재 게시판 색 변경-->
 <script src="http://code.jquery.com/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
 <script>
     toastr.options = {

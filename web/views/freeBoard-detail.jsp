@@ -9,9 +9,9 @@
     ArrayList<CommentVo> cList = (ArrayList<CommentVo>) request.getAttribute("comment");
     LoginManager lm = LoginManager.getInstance();
     String id = lm.getMemberId(session);
-    String nowPage=request.getParameter("pn");
-    String filter=request.getParameter("filter");
-    String keyword=request.getParameter("keyword");
+    String nowPage = request.getParameter("pn");
+    String filter = request.getParameter("filter");
+    String keyword = request.getParameter("keyword");
 %>
 
 <!DOCTYPE html>
@@ -111,74 +111,46 @@
                 <%=vo.getComment_count()%>
             </div>
             <div class="content-count">
-                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
-                     style="enable-background:new 0 0 512 512;" xml:space="preserve"><g transform="translate(1 1)">
-                    <g>
-                        <path style="fill:#E2E3E5;"
-                              d="M262.253,511c-5.12,0-8.533-3.413-8.533-8.533v-85.333c0-5.12,3.413-8.533,8.533-8.533		s8.533,3.413,8.533,8.533v85.333C270.787,507.587,267.373,511,262.253,511z"/>
-                        <path style="fill:#E2E3E5;"
-                              d="M228.12,459.8c-2.56,0-4.267-0.853-5.973-2.56c-3.413-3.413-3.413-8.533,0-11.947l34.133-34.133		c3.413-3.413,8.533-3.413,11.947,0c3.413,3.413,3.413,8.533,0,11.947l-34.133,34.133C232.387,458.947,230.68,459.8,228.12,459.8z"/>
-                        <path style="fill:#E2E3E5;"
-                              d="M296.387,459.8c-2.56,0-4.267-0.853-5.973-2.56l-34.133-34.133c-3.413-3.413-3.413-8.533,0-11.947		c3.413-3.413,8.533-3.413,11.947,0l34.133,34.133c3.413,3.413,3.413,8.533,0,11.947C300.653,458.947,298.947,459.8,296.387,459.8z		"/>
-                        <path style="fill:#E2E3E5;"
-                              d="M262.253,101.4c-5.12,0-8.533-3.413-8.533-8.533V7.533c0-5.12,3.413-8.533,8.533-8.533		s8.533,3.413,8.533,8.533v85.333C270.787,97.987,267.373,101.4,262.253,101.4z"/>
-                        <path style="fill:#E2E3E5;"
-                              d="M262.253,101.4c-2.56,0-4.267-0.853-5.973-2.56c-3.413-3.413-3.413-8.533,0-11.947l34.133-34.133		c3.413-3.413,8.533-3.413,11.947,0c3.413,3.413,3.413,8.533,0,11.947L268.227,98.84C266.52,100.547,264.813,101.4,262.253,101.4z"/>
-                        <path style="fill:#E2E3E5;"
-                              d="M262.253,101.4c-2.56,0-4.267-0.853-5.973-2.56l-34.133-34.133c-3.413-3.413-3.413-8.533,0-11.947		c3.413-3.413,8.533-3.413,11.947,0l34.133,34.133c3.413,3.413,3.413,8.533,0,11.947C266.52,100.547,264.813,101.4,262.253,101.4z"/>
+                <svg version="1.1" fill-rule="evenodd" stroke-linejoin="bevel" viewBox="0 0 600 300" stroke-width=".501"
+                     overflow="visible">
+                    <g id="Document" font-size="16" transform="scale(1 -1)" stroke="black" font-family="Times New Roman"
+                       fill="none">
+                        <g id="Spread" transform="translate(0 -300)">
+                            <g id="Layer 1">
+                                <g id="Group" stroke="none" stroke-miterlimit="79.84">
+                                    <g id="Group_1">
+                                        <path stroke-linejoin="miter"
+                                              d="m157.58 264.21c65.49 0 118.64-53.15 118.64-118.64 0-65.485-53.15-118.64-118.64-118.64-65.486 0.004-118.64 53.155-118.64 118.64 0.003 65.49 53.154 118.64 118.64 118.64z"
+                                              stroke-width="8" fill="#ffffff"/>
+                                        <path d="m157.58 18.753c-70.006 0-126.82 56.812-126.82 126.82 0.003 70.01 56.814 126.82 126.82 126.82 70 0 126.82-56.81 126.82-126.82 0-70.005-56.82-126.82-126.82-126.82zm0 16.361c60.97 0 110.46 49.488 110.46 110.46 0 60.97-49.49 110.46-110.46 110.46-60.969 0-110.46-49.49-110.46-110.46 0.003-60.968 49.491-110.46 110.46-110.46z"
+                                              fill-rule="evenodd" stroke-width=".5" fill="#000000"/>
+                                        <g id="Group_2" stroke-linejoin="miter" stroke-width=".5">
+                                            <path d="m200.39 196.72c26.81 0 48.57-21.76 48.57-48.56 0-26.81-21.76-48.565-48.57-48.565-26.8 0-48.56 21.755-48.56 48.565 0 26.8 21.76 48.56 48.56 48.56z"
+                                                  fill="#000000"/>
+                                            <g id="Group_3" fill="#ffffff">
+                                                <path d="m221.62 175.92c-6.82 0-12.36-5.54-12.36-12.37 0-6.82 5.54-12.36 12.36-12.36s12.36 5.54 12.36 12.36c0 6.83-5.54 12.37-12.36 12.37z"/>
+                                            </g>
+                                        </g>
+                                    </g>
+                                    <g id="Group_4">
+                                        <path stroke-linejoin="miter"
+                                              d="m433.47 263.17c65.49 0 118.64-53.15 118.64-118.63 0-65.492-53.15-118.64-118.64-118.64-65.48-0.003-118.63 53.148-118.63 118.64 0 65.48 53.15 118.63 118.63 118.63z"
+                                              stroke-width="8" fill="#ffffff"/>
+                                        <path d="m433.47 17.716c-70 0-126.81 56.812-126.81 126.82 0 70 56.81 126.81 126.81 126.81 70.01 0 126.82-56.81 126.82-126.81 0-70.012-56.81-126.82-126.82-126.82zm0 16.361c60.97 0 110.46 49.488 110.46 110.46 0 60.96-49.49 110.45-110.46 110.45s-110.45-49.49-110.45-110.45c0-60.975 49.48-110.46 110.45-110.46z"
+                                              fill-rule="evenodd" stroke-width=".5" fill="#000000"/>
+                                        <g id="Group_5" stroke-linejoin="miter" stroke-width=".5">
+                                            <path d="m476.28 195.69c26.81 0 48.57-21.76 48.57-48.57 0-26.8-21.76-48.562-48.57-48.562-26.8 0-48.56 21.762-48.56 48.562 0 26.81 21.76 48.57 48.56 48.57z"
+                                                  fill="#000000"/>
+                                            <g id="Group_6" fill="#ffffff">
+                                                <path d="m497.51 174.88c-6.82 0-12.36-5.54-12.36-12.36 0-6.83 5.54-12.37 12.36-12.37 6.83 0 12.37 5.54 12.37 12.37 0 6.82-5.54 12.36-12.37 12.36z"/>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
                     </g>
-                    <path style="fill:#FFFFFF;"
-                          d="M252.867,387.267c-64.853,0-128.853-24.747-178.347-73.387l-59.733-59.733l61.44-61.44	c49.493-49.493,113.493-74.24,177.493-75.093L252.867,387.267z"/>
-                    <path style="fill:#CCCCCC;"
-                          d="M254.573,118.467c64.853,0,128.853,24.747,178.347,73.387l59.733,59.733l-61.44,61.44	c-49.493,49.493-113.493,74.24-177.493,74.24L254.573,118.467z"/>
-                    <path style="fill:#E2E3E5;"
-                          d="M458.52,251.587l-61.44,61.44c-98.133,98.133-192,98.133-290.133,0l-59.733-59.733l61.44-61.44	c98.133-98.133,192-98.133,290.133,0L458.52,251.587z"/>
-                    <path style="fill:#E0E0E0;"
-                          d="M352.707,253.293c0,55.467-45.227,100.693-100.693,100.693S151.32,308.76,151.32,253.293	S196.547,152.6,252.013,152.6S352.707,197.827,352.707,253.293"/>
-                    <path style="fill:#F0F0F0;"
-                          d="M234.947,155.16c-1.707,1.707-3.413,2.56-6.827,2.56c-0.853,0-1.707,0-2.56-0.853	c-1.707,1.707-3.413,2.56-5.973,2.56c-0.853,0-2.56,0-3.413-0.853c-0.853,1.707-2.56,3.413-5.12,4.267	C159,180.76,146.2,225.987,154.733,275.48c2.56,13.653,4.267,24.747,8.533,33.28c3.413,5.12,7.68,9.387,11.947,14.507	c5.12,5.12,10.24,5.973,16.213,8.533c2.56,1.707,4.267,3.413,4.267,5.973c9.387,4.267,19.627,6.827,29.013,12.8	c0.853,0.853,0.853,0.853,1.707,1.707c0,0,0,0,0.853,0c2.56,0,5.12,0.853,6.827,2.56c49.493-6.827,87.893-48.64,87.893-99.84	S284.44,161.987,234.947,155.16"/>
-                    <g>
-                        <path style="fill:#B6B6B6;"
-                              d="M252.013,362.52c-60.587,0-109.227-48.64-109.227-109.227s48.64-109.227,109.227-109.227		s109.227,48.64,109.227,109.227S312.6,362.52,252.013,362.52z M252.013,161.133c-51.2,0-92.16,41.813-92.16,92.16		s41.813,92.16,92.16,92.16s92.16-41.813,92.16-92.16S303.213,161.133,252.013,161.133z"/>
-                        <path style="fill:#B6B6B6;"
-                              d="M253.72,101.4c-5.12,0-8.533-3.413-8.533-8.533V7.533c0-5.12,3.413-8.533,8.533-8.533	c5.12,0,8.533,3.413,8.533,8.533v85.333C262.253,97.987,258.84,101.4,253.72,101.4z"/>
-                        <path style="fill:#B6B6B6;"
-                              d="M253.72,101.4c-2.56,0-4.267-0.853-5.973-2.56c-3.413-3.413-3.413-8.533,0-11.947L281.88,52.76	c3.413-3.413,8.533-3.413,11.947,0c3.413,3.413,3.413,8.533,0,11.947L259.693,98.84C257.987,100.547,256.28,101.4,253.72,101.4z"/>
-                        <path style="fill:#B6B6B6;"
-                              d="M253.72,101.4c-2.56,0-4.267-0.853-5.973-2.56l-34.133-34.133c-3.413-3.413-3.413-8.533,0-11.947	c3.413-3.413,8.533-3.413,11.947,0l34.133,34.133c3.413,3.413,3.413,8.533,0,11.947C257.987,100.547,256.28,101.4,253.72,101.4z"/>
-                        <path style="fill:#B6B6B6;"
-                              d="M253.72,511c-5.12,0-8.533-3.413-8.533-8.533v-85.333c0-5.12,3.413-8.533,8.533-8.533	c5.12,0,8.533,3.413,8.533,8.533v85.333C262.253,507.587,258.84,511,253.72,511z"/>
-                        <path style="fill:#B6B6B6;"
-                              d="M219.587,459.8c-2.56,0-4.267-0.853-5.973-2.56c-3.413-3.413-3.413-8.533,0-11.947l34.133-34.133	c3.413-3.413,8.533-3.413,11.947,0c3.413,3.413,3.413,8.533,0,11.947L225.56,457.24C223.853,458.947,222.147,459.8,219.587,459.8z	"/>
-                        <path style="fill:#B6B6B6;"
-                              d="M287.853,459.8c-2.56,0-4.267-0.853-5.973-2.56l-34.133-34.133c-3.413-3.413-3.413-8.533,0-11.947	c3.413-3.413,8.533-3.413,11.947,0l34.133,34.133c3.413,3.413,3.413,8.533,0,11.947C292.12,458.947,290.413,459.8,287.853,459.8z"/>
-                        <path style="fill:#B6B6B6;"
-                              d="M255.427,400.067c-67.413,0-133.12-26.453-183.467-76.8L8.813,260.12	c-1.707-1.707-2.56-4.267-2.56-5.973c0-1.707,0.853-4.267,2.56-5.973l61.44-61.44c8.533-8.533,17.92-16.213,27.307-23.893	c3.413-2.56,9.387-1.707,11.947,1.707c2.56,3.413,1.707,9.387-1.707,11.947C99.267,183.32,89.88,191,82.2,198.68l-55.467,55.467	l57.173,57.173C155.587,383,261.4,402.627,353.56,361.667c4.267-1.707,9.387,0,11.093,4.267c1.707,4.267,0,9.387-4.267,11.093			C327.107,392.387,291.267,400.067,255.427,400.067z"/>
-                        <path style="fill:#B6B6B6;"
-                              d="M408.173,348.013c-2.56,0-5.12-0.853-6.827-3.413c-2.56-3.413-1.707-9.387,1.707-11.947			c8.533-6.827,17.067-13.653,24.747-21.333l55.467-55.467l-57.173-57.173c-69.12-69.12-171.52-89.6-261.973-53.76			c-2.56,0.853-5.12,2.56-8.533,3.413c-4.267,1.707-9.387,0-11.093-4.267c-1.707-4.267,0-9.387,4.267-11.093			c2.56-1.707,5.973-2.56,8.533-3.413c96.427-38.4,206.507-16.213,280.747,58.027l63.147,63.147c3.413,3.413,3.413,8.533,0,11.947			l-61.44,60.587c-8.533,8.533-17.067,16.213-26.453,23.04C411.587,348.013,409.88,348.013,408.173,348.013z"/>
-                        <path style="fill:#B6B6B6;"
-                              d="M135.96,151.747c0,5.12-3.413,8.533-8.533,8.533c-5.12,0-8.533-3.413-8.533-8.533			c0-5.12,3.413-8.533,8.533-8.533C132.547,143.213,135.96,147.48,135.96,151.747"/>
-                        <path style="fill:#B6B6B6;"
-                              d="M391.96,356.547c0,5.12-3.413,8.533-8.533,8.533s-8.533-3.413-8.533-8.533s3.413-8.533,8.533-8.533			C387.693,348.013,391.96,352.28,391.96,356.547"/>
-                    </g>
-                </g>
-                    <g></g>
-                    <g></g>
-                    <g></g>
-                    <g></g>
-                    <g></g>
-                    <g></g>
-                    <g></g>
-                    <g></g>
-                    <g></g>
-                    <g></g>
-                    <g></g>
-                    <g></g>
-                    <g></g>
-                    <g></g>
-                    <g></g>
-                    </svg>
+                </svg>
                 <%=vo.getHit()%>
             </div>
         </div>
@@ -197,40 +169,48 @@
     %>
     <div class="left-button">
         <button onclick="
-                location.href='/freeUpdate.do?pn=<%=nowPage%>&num=<%=vo.getB_sq()%>&filter=<%=filter%>&keyword=<%=keyword%>'">수정</button>
+                location.href='/freeUpdate.do?pn=<%=nowPage%>&num=<%=vo.getB_sq()%>&filter=<%=filter%>&keyword=<%=keyword%>'">
+            수정
+        </button>
         <button onclick="articleDelete()">삭제</button>
     </div>
     <div class="right-button">
         <button onclick="
-                location.href='/freeBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>'">목록</button>
+                location.href='/freeBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>'">목록
+        </button>
     </div>
     <%--id 있는데 게시글 번호랑 다를때--%>
     <% } else { %>
     <div class="right-button">
         <button onclick="
-                location.href='/freeBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>'">목록</button>
+                location.href='/freeBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>'">목록
+        </button>
     </div>
     <%--id==null일 때--%>
     <% }
     } else { %>
     <div class="right-button">
         <button onclick="
-                location.href='/freeBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>'">목록</button>
+                location.href='/freeBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>'">목록
+        </button>
     </div>
     <% } %>
 </div>
 <div class="comment-container">
     <div class="comment-count">
-        <h4>Comments <%=vo.getComment_count()%></h4>
+        <h4>Comments <%=vo.getComment_count()%>
+        </h4>
     </div>
     <table>
         <%
-            for (int i = 0; i < cList.size();i++) {
+            for (int i = 0; i < cList.size(); i++) {
         %>
         <tbody>
         <tr class="left-section">
-            <td class="left-info-nick"><%=cList.get(i).getNickname()%></td>
-            <td class="left-info-date"><%=cList.get(i).getWriteDate().substring(0, 16)%></td>
+            <td class="left-info-nick"><%=cList.get(i).getNickname()%>
+            </td>
+            <td class="left-info-date"><%=cList.get(i).getWriteDate().substring(0, 16)%>
+            </td>
         </tr>
         <tr class="right-section">
             <td class="right-info"><a href="#">답변</a></td>
@@ -240,38 +220,38 @@
         </tr>
         </tbody>
         <tr>
-            <td class="comment-content"><%=cList.get(i).getContent()%></td>
+            <td class="comment-content"><%=cList.get(i).getContent()%>
+            </td>
         </tr>
         <% } %>
     </table>
-    <%  if(id!=null) {  //로그인 세션있을때만 %>
-    <form action="/freeCommentAdd.do?num=<%=vo.getB_sq()%>" method="post" onsubmit="return commentSubmit()">
+    <% if (id != null) {  //로그인 세션있을때만 %>
         <div>
             <div class="comment-txt">
             <textarea id="content" name="content"
                       placeholder="여러분의 소중한 댓글을 입력해주세요."></textarea>
             </div>
             <div class="comment-button">
-                <button id="go-bottom" name="go-bottem">댓글달기</button>
+                <button id="go-bottom" name="go-bottem" onclick="commentSubmit()">댓글달기</button>
             </div>
         </div>
-    </form>
     <% } %>
 </div>
-<script>$('#freeInfo').css('color', 'rgb(12, 167, 179)');</script>  <!--현재 게시판 색 변경-->
 <script>
     toastr.options = {
         "closeButton": true,
         "positionClass": "toast-top-center",
         "timeOut": 1000
     }
-    function articleDelete()  {
-        if(confirm('삭제하시겠습니까?')==true) {
-            location.href='/freeDelete.do?pn=<%=nowPage%>&num=<%=vo.getB_sq()%>&filter=<%=filter%>&keyword=<%=keyword%>';
-        }else{
+
+    function articleDelete() {
+        if (confirm('삭제하시겠습니까?') == true) {
+            location.href = '/freeDelete.do?pn=<%=nowPage%>&num=<%=vo.getB_sq()%>&filter=<%=filter%>&keyword=<%=keyword%>';
+        } else {
             return;
         }
     }
+
     function commentSubmit() {
         var content = $('#content').val();
         if (!content) {
@@ -279,45 +259,77 @@
             $('#content').focus();
             return false;
         }
+
+        $.ajax({
+            url: "/commentAdd.ajax"
+            , type: "post"
+            , data: {num: '<%=vo.getB_sq()%>',
+                content:content}
+            , dataType: "json"
+            , error: function (xhr, request, status) {
+                console.log("서버 통신 실패");
+                console.log(status);
+            }
+            , success: function (data) {
+                console.log("서버 통신 성공");
+                if (data.count > 0) {      //0이상이면 지워짐
+                    console.log(data + "success 등록 성공" + data.count);
+                    location.reload();  //페이지 리로드
+                } else {
+                    console.log(data + "success else result = " + data.count);
+                }
+            }
+        });
     }
-    function commentDelete(num,commentId) {
+
+    function commentDelete(num, commentId) {
         //로그인 id,댓글 id비교해야 함.
-        var id='<%=id%>';   //로그인 되어있는 id
-        console.log('login id: <%=id%>'+' | comment id: '+commentId);
+        var id = '<%=id%>';   //로그인 되어있는 id
+        console.log('login id: <%=id%>' + ' | comment id: ' + commentId);
 
-        if(confirm('삭제하시겠습니까?')==true) {    //확인눌렀을 때
+        if (confirm('삭제하시겠습니까?') == true) {    //확인눌렀을 때
 
-            if(id==commentId){
+            if (id == commentId) {
                 $.ajax({
                     url: "/commentDel.ajax"
                     , type: "post"
                     , data: {commentNum: num}
                     , dataType: "json"
-                    , error: function (xhr,request, status) {
+                    , error: function (xhr, request, status) {
                         console.log("서버 통신 실패");
                         console.log(status);
                     }
                     , success: function (data) {
                         console.log("서버 통신 성공");
 
-                        if (data.count >0) {      //0이상이면 지워짐
-                            console.log(data+"success 삭제 성공"+data.count);
+                        if (data.count > 0) {      //0이상이면 지워짐
+                            console.log(data + "success 삭제 성공" + data.count);
                             location.reload();  //페이지 리로드
                         } else {
-                            console.log(data+"success else result = " + data.count);
+                            console.log(data + "success else result = " + data.count);
                         }
                     }
                 });
-            }else{  //작성자와 접속자다르거나 로그아웃일 때
+            } else {  //작성자와 접속자다르거나 로그아웃일 때
                 toastr.error("권한이 없습니다.");
                 return false;
             }
-        }else{      //confirm에서 취소눌렀을 때
+        } else {      //confirm에서 취소눌렀을 때
             return false;
         }
     }
 
 </script>
+<script type="text/javascript">
+    $(function () {
+        $('#content').keydown(function (key) {
+            if (key.keyCode == 13) {
+                commentSubmit();
+                $('#content').focus();
+            }
+        });
 
+    })
+</script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.bee.www.controller;
 
 import com.bee.www.action.Member.*;
+import com.bee.www.action.comment.AjaxCommentAddAction;
 import com.bee.www.action.comment.AjaxCommentDelAction;
 import com.bee.www.common.Action;
 import com.bee.www.common.ActionForward;
@@ -45,6 +46,13 @@ public class AjaxController extends HttpServlet {
             }
         }else if (command.equals("/commentDel.ajax")) {
             action = new AjaxCommentDelAction();
+            try{
+                forward = action.execute(request,response);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }else if (command.equals("/commentAdd.ajax")) {
+            action = new AjaxCommentAddAction();
             try{
                 forward = action.execute(request,response);
             }catch (Exception e){

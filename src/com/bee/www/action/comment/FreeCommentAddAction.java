@@ -58,7 +58,7 @@ public class FreeCommentAddAction implements Action {
         vo.setM_sq(service.getMemberSequence(id));
         vo.setB_sq(numInt);
 
-        if(!service.insertComment(vo)){
+        if(service.insertComment(vo)<=0){
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
             out.println("<script>alert('댓글 저장에 실패했습니다.');history.back();</script>");

@@ -44,9 +44,10 @@
                                         <%
                                             String[] name = {"서울/수도권", "부산/대구/경상도", "광주/전라도", "충청도", "강원도", "제주도"};
                                             for (int i = 0; i < (name.length / 2); i++) {
+                                                System.out.println("name.length : " + name.length + "|| i : " + i);
                                         %>
                                         <div class="checks etrans">
-                                            <input type="checkbox" id="cate-<%=i%>">
+                                            <input type="checkbox" value="<%=name[i]%>" name="region" id="cate-<%=i%>">
                                             <label for="cate-<%=i%>"><%=name[i]%>
                                             </label>
                                         </div>
@@ -55,14 +56,16 @@
                                     <div class="mobile-block">
                                         <%
                                             for (int i = 3; i < name.length; i++) {
+                                                System.out.println(i);
                                         %>
                                         <div class="checks etrans">
-                                            <input type="checkbox" id="cate-<%=i%>">
+                                            <input type="checkbox" value="<%=name[i]%>" onclick="getValue()" name="region" id="cate-<%=i%>">
                                             <label for="cate-<%=i%>"><%=name[i]%>
                                             </label>
                                         </div>
                                         <% } %>
                                     </div>
+                                    <%--<button type="button" onclick="getValue()">값가져오기</button>--%>
                                     <div class="control">
                                         <a href="/schBoardWrite.do" class="searchADNcontrol">글쓰기</a>
                                     </div>
@@ -105,8 +108,8 @@
                             </div>
                             <div class="pagination">
                                 <%
-                                    System.out.println("첫번째 페이지 넘버: " + pagenation.getStartPage());
-                                    System.out.println("현재 페이지 : " + nowPage);
+                                  //  System.out.println("첫번째 페이지 넘버: " + pagenation.getStartPage());
+                                    //System.out.println("현재 페이지 : " + nowPage);
                                 %>
                                 <ul>
                                     <li>
@@ -149,17 +152,23 @@
         </div>
     </div>
 </div>
-<script>$('#schInfo').css('color', 'rgb(12, 167, 179)');</script>  <!--현재 게시판 색 변경-->
 <script>
-    $("#btnSearch").keyup(function (e) {
-        if (e.keyCode == 13) searchArticle();
-    });
-
     toastr.options = {
         "closeButton": true,
         "positionClass": "toast-top-center",
         "timeOut": 1000
     }
+    function getValue() {
+        $("input[name=region]:checked").each(function () {
+            console.log($(this).val());
+        });
+    }
+
+
+    $("#btnSearch").keyup(function (e) {
+        if (e.keyCode == 13) searchArticle();
+    });
+
 
     function goDetail(num) {
         location.href =
@@ -187,7 +196,5 @@
         })
     })
 </script>
-<!-- 1.  sBtn.removeClass("active");     // sBtn 속에 (active) 클래스를 삭제 한다.
-2.  $(this).parent().addClass("active"); // 클릭한 a에 (active)클래스를 넣는다. -->
 </body>
 </html>

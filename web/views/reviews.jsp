@@ -81,6 +81,5 @@
 </div>
 
 </body>
-<script>$('#reviewInfo').css('color', 'rgb(12, 167, 179)');</script>  <!--현재 게시판 색 변경-->
 
 </html>

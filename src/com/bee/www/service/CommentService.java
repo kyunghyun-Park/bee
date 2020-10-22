@@ -13,22 +13,20 @@ import static com.bee.www.common.JdbcUtil.*;
 
 public class CommentService {
     //글쓰기 메소드
-    public boolean insertComment(CommentVo vo) {
+    public int insertComment(CommentVo vo) {
         //세팅
         CommentDAO dao = CommentDAO.getInstance();
         Connection con = getConnection();
         dao.setConnection(con);
-        boolean isSucess = false;
 
         int count = dao.insertComment(vo);
         if (count > 0) {    //성공
             commit(con);
-            isSucess = true;
         } else {          //실패
             rollback(con);
         }
         close(con);
-        return isSucess;
+        return count;
     }
 
     //글삭제 메소드
@@ -37,12 +35,10 @@ public class CommentService {
         CommentDAO dao = CommentDAO.getInstance();
         Connection con = getConnection();
         dao.setConnection(con);
-        boolean isSucess = false;
 
         int count = dao.deleteComment(num);
         if (count > 0) {    //성공
             commit(con);
-            isSucess = true;
         } else {          //실패
             rollback(con);
         }

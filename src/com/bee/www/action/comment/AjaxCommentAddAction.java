@@ -1,18 +1,19 @@
 package com.bee.www.action.comment;
 
-import com.bee.www.common.*;
-import com.bee.www.service.BoardService;
+import com.bee.www.common.Action;
+import com.bee.www.common.ActionForward;
+import com.bee.www.common.LoginManager;
+import com.bee.www.common.RegExp;
 import com.bee.www.service.CommentService;
-import com.bee.www.vo.ArticleVo;
 import com.bee.www.vo.CommentVo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
-import static com.bee.www.common.RegExp.*;
+import static com.bee.www.common.RegExp.ARTICLE_CONTENT;
 
-public class AjaxCommentDelAction implements Action {
+public class AjaxCommentAddAction implements Action {
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         LoginManager lm = LoginManager.getInstance();
@@ -26,29 +27,37 @@ public class AjaxCommentDelAction implements Action {
             return null;
         }
 
-        //댓글번호 받아오기
-        String commentNum = request.getParameter("commentNum");
+        String num=request.getParameter("num"); //글 번호
+        String content=request.getParameter("content"); //댓글 내용
 
-        if ( commentNum==null || commentNum.equals("")
-                || !RegExp.checkString(ARTICLE_NUM,commentNum)) {
+        //글 번호 유효성검사,RegExp = 글 번호 유효성 검사
+        if (content == null || content.equals("")
+                || !RegExp.checkString(ARTICLE_CONTENT, content)) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            out.println("<script>alert('잘못된 접근입니다.(1)');location.href='/';</script>");
+            out.println("<script>alert('잘못된 접근입니다.');history.back();</script>");
             out.close();
             return null;
         }
-        int commentNumInt = Integer.parseInt(commentNum);
+
+        int numInt = Integer.parseInt(num);  //유효성 검사 후 글 번호 숫자로 변환
         //글 번호 0보다 작으면 오류alert
-        if (commentNumInt<=0) {
+        if (numInt <= 0) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            out.println("<script>alert('잘못된 접근입니다.(2)');history.back();</script>");
+            out.println("<script>alert('잘못된 접근입니다.');history.back();</script>");
             out.close();
             return null;
         }
 
         CommentService service = new CommentService();
-        request.setAttribute("count",service.deleteComment(commentNumInt));
+        //vo에 담음
+        CommentVo vo = new CommentVo();
+        vo.setContent(content);
+        vo.setM_sq(service.getMemberSequence(id));
+        vo.setB_sq(numInt);
+
+        request.setAttribute("count",service.insertComment(vo));
 
         ActionForward forward = new ActionForward();
         forward.setPath("/views/ajax/AjaxComment.jsp");

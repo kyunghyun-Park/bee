@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/index_header.css">
     <link rel="stylesheet" href="css/schoolInfo.css">
+    <!--jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
 </head>
 <body>
 <header>
@@ -62,4 +66,27 @@
 </div>
 
 </body>
+
+<script type="text/javascript">
+    $(function (){
+        var freeBoardURL = 'http://localhost:8080/freeBoard.do';
+        var freeBoardURL2 = 'http://localhost:8080/freeDetail.do';
+        var schBoardURL = 'http://localhost:8080/schBoard.do';
+        var schBoardURL2 = 'http://localhost:8080/schDetail.do';
+        var reviewURL = 'http://localhost:8080/reviews.do';
+
+        var para = document.location.href.split("?");
+   /*     var link = document.location.href;
+        console.log(para);
+        console.log(link);*/
+
+        if (para[0] == freeBoardURL ||para[0] == freeBoardURL2 ){
+            $('#freeInfo').css('color', 'rgb(12, 167, 179)');
+        }else if (para[0] == schBoardURL || para[0] == schBoardURL2){
+            $('#schInfo').css('color', 'rgb(12, 167, 179)');
+        }else if (para[0] == reviewURL){
+            $('#reviewInfo').css('color', 'rgb(12, 167, 179)');
+        }
+    })
+</script>
 </html>

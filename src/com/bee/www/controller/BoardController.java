@@ -226,27 +226,12 @@ public class BoardController extends HttpServlet {
             }
         }else if (command.equals("/freeCommentAdd.do")) {
             action = new FreeCommentAddAction();
-            try{
-                forward = action.execute(request,response);
-            }catch (Exception e){
+            try {
+                forward = action.execute(request, response);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else if (command.equals("/schCommentAdd.do")) {
-            action = new SchCommentAddAction();
-            try{
-                forward = action.execute(request,response);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }/*else if (command.equals("/commentDel.do")) {
-            action = new AjaxCommentDelAction();
-            try{
-                forward = action.execute(request,response);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }*/
-
+        }
 
         if (forward != null) {
             if (forward.isRedirect()) {
