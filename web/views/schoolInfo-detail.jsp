@@ -11,6 +11,7 @@
     String nowPage = request.getParameter("pn");
     String filter = request.getParameter("filter");
     String keyword = request.getParameter("keyword");
+    String region=request.getParameter("region");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -172,20 +173,20 @@
             if (id.equals(vo.getId())) {     //글 작성자랑 로그인id랑 같을때
     %>
     <div class="left-button">
-        <button onclick="location.href='/schUpdate.do?pn=<%=nowPage%>&num=<%=vo.getB_sq()%>&filter=<%=filter%>&keyword=<%=keyword%>'">
+        <button onclick="location.href='/schUpdate.do?pn=<%=nowPage%>&num=<%=vo.getB_sq()%>&filter=<%=filter%>&keyword=<%=keyword%>'+ '&region=' + <%=region%>">
             수정
         </button>
         <button onclick="articleDelete()">삭제</button>
     </div>
     <div class="right-button">
-        <button onclick="location.href='/schBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>'">
+        <button onclick="location.href='/schBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>'+ '&region=' + <%=region%>">
             목록
         </button>
     </div>
     <%--id 있는데 게시글 번호랑 다를때--%>
     <% } else { %>
     <div class="right-button">
-        <button onclick="location.href='/schBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>'">
+        <button onclick="location.href='/schBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>'+ '&region=' + <%=region%>">
             목록
         </button>
     </div>
@@ -193,7 +194,7 @@
     <% }
     } else { %>
     <div class="right-button">
-        <button onclick="location.href='/schBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>'">
+        <button onclick="location.href='/schBoard.do?pn=<%=nowPage%>&filter=' + '<%=filter%>' + '&keyword=' + '<%=keyword%>' + '&region=' + <%=region%>">
             목록
         </button>
     </div>
@@ -252,7 +253,7 @@
 
     function articleDelete() {
         if (confirm('삭제하시겠습니까?') == true) {
-            location.href = '/schDelete.do?pn=<%=nowPage%>&num=<%=vo.getB_sq()%>&filter=<%=filter%>&keyword=<%=keyword%>';
+            location.href = '/schDelete.do?pn=<%=nowPage%>&num=<%=vo.getB_sq()%>&filter=<%=filter%>&keyword=<%=keyword%>&region=<%=region%>';
         } else {
             return;
         }

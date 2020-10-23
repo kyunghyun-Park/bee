@@ -66,12 +66,15 @@
                                     <tbody>
                                     <%
                                         for (int i = 0; i < list.size(); i++) {
+                                            //댓글 있으면 제목 옆에 댓글 표시
+                                            String cc = " [" + list.get(i).getComment_count() + "]";
+                                            if(cc.equals(" [0]")){ cc=""; }
                                     %>
                                     <tr>
                                         <td class="num"><%=list.get(i).getB_sq()%>
                                         </td>
-                                        <td onclick="goDetail(<%=list.get(i).getB_sq()%>)"
-                                            class="title"><%=list.get(i).getTitle()%>
+                                        <td onclick="goDetail(<%=list.get(i).getB_sq()%>)" style="cursor: pointer"
+                                            class="title"><%=list.get(i).getTitle()%><span style="color: #2F96B4"><%=cc%></span>
                                         </td>
                                         <td class="user"><%=list.get(i).getNickname()%>
                                         </td>
@@ -86,8 +89,8 @@
                             </div>
                             <div class="pagination">
                                 <%
-                                    System.out.println("첫번째 페이지 넘버: " + pagenation.getStartPage());
-                                    System.out.println("현재 페이지 : " + nowPage);
+                                   /* System.out.println("첫번째 페이지 넘버: " + pagenation.getStartPage());
+                                    System.out.println("현재 페이지 : " + nowPage);*/
                                 %>
                                 <ul>
                                     <li>

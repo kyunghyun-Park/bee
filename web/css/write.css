@@ -263,4 +263,7 @@ article > div.post-title > textarea {
         width: 320px;
     }
 }
+.post-contents{
+    height: 600px;
+}
 /* 추가된부분 */

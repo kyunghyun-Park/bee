@@ -39,10 +39,10 @@ public class ProfileUpdateAction implements Action {
             return null;
         }
 
-        out.println("<script>alert('회원정보 수정 성공');location.href='/';</script>");
+        out.println("<script>alert('회원정보 수정 성공');history.back();</script>");
         out.close();
         ActionForward forward = new ActionForward();
-        forward.setPath("/profile.do?id="+id);
+        forward.setPath("/profile.do");
         return forward;
     }
 }

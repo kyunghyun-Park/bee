@@ -26,6 +26,8 @@ hr{
 }
 
 .detail-userInfo{
+    display: flex;
+    justify-content: space-between;
     color: #333;
     border-color: #ddd;
     padding: 10px 15px;
@@ -60,11 +62,12 @@ hr{
 .content-count p{
     text-align: center;
 }
-.detail-dec{
+.detail-dec {
     padding: 15px;
     width: 100%;
     margin: 0;
     background-color: #fff;
+    max-width: 840px;
 }
 .detail-button{
     padding: 10px;
@@ -177,3 +180,35 @@ hr{
     font-size: 1rem;
 }
 /*comment*/
+
+/*추가*/
+.comment-fixTxt textarea{
+    resize: none;
+    padding: 1rem 1rem 1.5rem;
+    outline: none;
+    border: 1px solid rgb(233, 236, 239);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    border-radius: 4px;
+    min-height: 6.125rem;
+    font-size: 1rem;
+    color: rgb(33, 37, 41);
+    line-height: 1.75;
+    max-width: 840px;
+}
+.comment-fixTxt button{
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: #8bd6f1;
+    color: white;
+    border-radius: 4px;
+    padding: 0 7px;
+    height: 2rem;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+/*추가*/

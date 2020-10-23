@@ -216,7 +216,7 @@
                 <div class="leave">
                     <div class="wrapper">
                         <div class="title-wrapper">
-                            <h3>회원탈퇴</h3>
+                            <h3></h3>
                         </div>
                         <div class="content-wrapper">
                             <div class="contents">

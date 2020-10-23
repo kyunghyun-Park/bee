@@ -5,66 +5,81 @@
     font-weight: normal;
     font-style: normal;
 }
-body,p{
+
+body, p {
     margin: 0 0 0 0;
     font-family: 'JSDongkang-Regular', 'Source Sans Pro', sans-serif;
     font-weight: normal;
     font-style: normal;
     font-size: 16px;
 }
-input::placeholder,textarea::placeholder{
+
+input::placeholder, textarea::placeholder {
     margin: 0 0 0 0;
     font-family: 'JSDongkang-Regular', 'Source Sans Pro', sans-serif;
     font-weight: normal;
     font-style: normal;
-    font-size: 18px;
+    font-size: 16px;
 }
+
 *, *::after, *::before {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+
 html * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
 div {
     display: block;
 }
+
 a {
     outline: medium none;
     color: black;
     text-decoration: none;
 }
+
 ul {
     margin: 0px;
     padding: 0px;
 }
+
 li {
     float: left;
     list-style: none;
 }
-main{
+
+main {
     margin: 0 0 0 0;
 }
+
 /* 공통 css*/
 
 
-
 /*body css*/
-.main-margin{
+.main-margin {
     display: block;
     margin: 30px 20px 10px 20px;
     padding: 0 5%;
+
 }
-.title-logo{
+.title-section {
+    padding-right: 120px;
+}
+
+.title-logo {
     text-align: center;
     margin-top: 90px;
     font-size: x-large;
     font-weight: bold;
     color: #8bd6f1;
 }
-.nav-section{
+
+.nav-section {
     display: flex;
     height: 40px;
     background-color: rgb(188, 234, 115);
@@ -73,25 +88,30 @@ main{
     justify-content: center;
     border-radius: 11px;
 }
-.nav-section nav ul li{
+
+.nav-section nav ul li {
     justify-content: space-between;
     margin: 8px 5px 0px 5px;
 }
-.nav-section nav ul li a{
-    font-size: 15px;
+
+.nav-section nav ul li a {
+    font-size: 17px;
     color: #fff;
 }
-.nav-section nav ul li:hover a{
+
+.nav-section nav ul li:hover a {
     color: #8bd6f1;
 }
-.mainImg-section{
+
+.mainImg-section {
     display: block;
     margin: 0 auto 0 auto;
     padding: 0 20px 0 20px;
     height: 280px;
     width: 100%;
 }
-.mainImg-header{
+
+.mainImg-header {
     display: block;
     margin: 30px auto 0 auto;
     height: 30px;
@@ -100,14 +120,16 @@ main{
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
-.mainImg-header ul li .circle{
+
+.mainImg-header ul li .circle {
     border: 1px solid rgb(188, 234, 115);
     border-radius: 4rem;
     height: 18px;
     width: 18px;
     margin: 6px 0 0 6px;
 }
-.mainImg-body{
+
+.mainImg-body {
     display: block;
     margin: 0 auto 0 auto;
     height: 280px;
@@ -117,44 +139,52 @@ main{
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }
-.mainImg-body h2{
+
+.mainImg-body h2 {
     margin: 0;
     color: #fff;
 }
-.mainImg-body svg{
+
+.mainImg-body svg {
     width: 100px;
     height: 135px;
     margin-top: 30px;
 }
+
 @media all and (max-width: 525px) {
-    .mainImg-header{
+    .mainImg-header {
         max-width: 90%;
     }
-    .mainImg-body{
+
+    .mainImg-body {
         max-width: 90%;
     }
-    .title-logo img{
+
+    .title-logo img {
         max-width: 320px;
     }
 }
+
 /*body css*/
 
 
-
 /*footer css*/
-.trend-section{
+.trend-section {
     display: flex;
     margin-top: 2rem;
     padding: 0 40px;
 }
-.trend-main{
+
+.trend-main {
     flex: 1 1 0%;
 }
-.trend-main .main-section{
+
+.trend-main .main-section {
     display: flex;
     flex-wrap: wrap;
 }
-.article{
+
+.article {
     width: 44%;
     background: white;
     border-radius: 4px;
@@ -165,12 +195,14 @@ main{
     flex-direction: column;
     background: rgb(248, 249, 250);
 }
-.arcticle-img{
+
+.arcticle-img {
     width: 100%;
     position: relative;
     padding-top: 52.1921%;
 }
-.arcticle-img img{
+
+.arcticle-img img {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -179,13 +211,15 @@ main{
     display: block;
     object-fit: cover;
 }
-.article-content{
+
+.article-content {
     padding: 1rem;
     display: flex;
     flex: 1 1 0%;
     flex-direction: column;
 }
-.article-content a h4{
+
+.article-content a h4 {
     font-size: 1rem;
     margin: 0px 0px 0.25rem;
     line-height: 1.5;
@@ -194,10 +228,12 @@ main{
     overflow: hidden;
     color: rgb(33, 37, 41);
 }
-.desc-wrapper{
+
+.desc-wrapper {
     flex: 1 1 0%;
 }
-.desc-wrapper p{
+
+.desc-wrapper p {
     margin: 0px 0px 1.5rem;
     word-break: break-word;
     overflow-wrap: break-word;
@@ -211,10 +247,12 @@ main{
     text-overflow: ellipsis;
     color: rgb(73, 80, 87);
 }
+
 @media all and (max-width: 1024px) {
-    .article{
+    .article {
         width: 93%;
         margin-top: 30px;
     }
 }
+
 /*footer css*/

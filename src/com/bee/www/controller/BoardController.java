@@ -1,8 +1,6 @@
 package com.bee.www.controller;
 
 import com.bee.www.action.Member.*;
-import com.bee.www.action.comment.FreeCommentAddAction;
-import com.bee.www.action.comment.SchCommentAddAction;
 import com.bee.www.action.freeboard.*;
 import com.bee.www.action.review.ReviewsAction;
 import com.bee.www.action.review.ReviewsRegisterAction;
@@ -224,7 +222,15 @@ public class BoardController extends HttpServlet {
             }catch (Exception e){
                 e.printStackTrace();
             }
+        }else if (command.equals("/findPwd.do")) {
+            action = new FindPwdAction();
+            try{
+                forward = action.execute(request,response);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
+
 
         if (forward != null) {
             if (forward.isRedirect()) {

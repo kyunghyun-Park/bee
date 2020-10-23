@@ -11,6 +11,7 @@
     String nowPage = request.getParameter("pn");
     String filter = request.getParameter("filter");
     String keyword = request.getParameter("keyword");
+    String region = request.getParameter("region");
 %>
 <!DOCTYPE html>
 <head>
@@ -88,6 +89,11 @@
                                     <tbody>
                                     <%
                                         for (int i = 0; i < list.size(); i++) {
+                                            //댓글 있으면 제목 옆에 댓글 표시
+                                            String cc = " [" + list.get(i).getComment_count() + "]";
+                                            if (cc.equals(" [0]")) {
+                                                cc = "";
+                                            }
                                     %>
                                     <tr>
                                         <td class="num"><%=list.get(i).getB_sq()%>
@@ -95,7 +101,8 @@
                                         <td class="location"><%=list.get(i).getCate_name()%>
                                         </td>
                                         <td style="cursor: pointer" onclick="goDetail(<%=list.get(i).getB_sq()%>)"
-                                            class="title"><%=list.get(i).getTitle()%> (<%=list.get(i).getComment_count()%>)
+                                            class="title"><%=list.get(i).getTitle()%><span
+                                                style="color: #2F96B4"><%=cc%></span>
                                         </td>
                                         <td class="user"><%=list.get(i).getNickname()%>
                                         </td>
@@ -104,7 +111,8 @@
                                         <td class="view"><%=list.get(i).getHit()%>
                                         </td>
                                     </tr>
-                                    <% } %>
+                                    <%
+                                        }%>
                                     </tbody>
                                 </table>
                             </div>
@@ -116,19 +124,24 @@
                                 <ul>
                                     <li>
                                         <% if (pagenation.getNowPageNumber() != 1) { %>
-                                        <a href="/schBoard.do?pn=<%=pagenation.getStartPage()-1%>&filter=<%=filter%>&keyword=<%=keyword%>">«</a>
+                                        <a href="/schBoard.do?pn=<%=pagenation.getStartPage()-1%>&filter=<%=filter%>&keyword=<%=keyword%>&region=<%=region%>">«</a>
                                         <% } %>
                                     </li>
+                                    <%--<li class="page1 active">--%>
+                                    <%--<a href="/schBoard.do?pn=1&filter=<%=filter%>&keyword=<%=keyword%>">--%>
+                                    <%--1--%>
+                                    <%--</a>--%>
+                                    <%--</li>--%>
                                     <% for (int i = pagenation.getStartPage(); i <= pagenation.getEndPage(); i++) { %>
-                                    <li class="active">
-                                        <a href="/schBoard.do?pn=<%=i%>&filter=<%=filter%>&keyword=<%=keyword%>">
+                                    <li class="page<%=i%> ">
+                                        <a href="/schBoard.do?pn=<%=i%>&filter=<%=filter%>&keyword=<%=keyword%>&region=<%=region%>">
                                             <%=i%>
                                         </a>
                                     </li>
                                     <% } %>
                                     <li>
                                         <% if (pagenation.getNowPageNumber() != pagenation.getTotalPageCount()) { %>
-                                        <a href="/schBoard.do?pn=<%=pagenation.getEndPage()+1%>&filter=<%=filter%>&keyword=<%=keyword%>">»</a>
+                                        <a href="/schBoard.do?pn=<%=pagenation.getEndPage()+1%>&filter=<%=filter%>&keyword=<%=keyword%>&region=<%=region%>">»</a>
                                         <% } %>
                                     </li>
                                 </ul>
@@ -143,7 +156,7 @@
                                 <button onclick="return searchArticle()" id="btnSearch"
                                         class="searchADNcontrol">검색
                                 </button>
-                                <button onclick="location.href='/schBoard.do?pn=1&filter=&keyword=&'"
+                                <button onclick="location.href='/schBoard.do?pn=1&filter=&keyword=&region='"
                                         type="button" class="searchADNcontrol">초기화
                                 </button>
                             </div>
@@ -168,7 +181,7 @@
 <script>
     $(function () {
         var link = document.location.href.split("region="); //현재 링크에 지역값뒤로 짜르기
-        console.log('link = ' + link[1]);   //1~6까지 담김
+        // console.log('link = ' + link[1]);   //1~6까지 담김
 
         //해당 값에 대한 checkbox 체크
         if (link[1] == '') {
@@ -177,7 +190,7 @@
             $("input:checkbox[id=" + link[1] + "]").prop("checked", true);
         }
 
-    })
+    });
     toastr.options = {
         "closeButton": true,
         "positionClass": "toast-top-center",
@@ -197,7 +210,7 @@
     function goDetail(num) {
         location.href =
             "/schDetail.do?pn=" + <%=nowPage%> +"&num=" + num
-            + "&filter=" + '<%=filter%>' + "&keyword=" + '<%=keyword%>';
+            + "&filter=" + '<%=filter%>' + "&keyword=" + '<%=keyword%>' + "&region=" + '<%=region%>';
     }
 
     function searchArticle() {
@@ -212,13 +225,29 @@
             "/schBoard.do?pn=1&filter=" + filter + "&keyword=" + keyword;
     }
 
+    //페이지 active event
     $(function () {
-        var sBtn = $(".pagination ul > li");    //  ul > li 이를 sBtn으로 칭한다. (클릭이벤트는 li에 적용 된다.)
-        sBtn.find("a").click(function () {   // sBtn에 속해 있는  a 찾아 클릭 하면.
-            sBtn.removeClass("active");     // sBtn 속에 (active) 클래스를 삭제 한다.
-            $(this).parent().addClass("active"); // 클릭한 a에 (active)클래스를 넣는다.
-        })
-    })
+            //페이지 넘버만 숫자로 짤라오기
+            <% if(pagenation.getNowPageNumber() > 0 && pagenation.getNowPageNumber() <=9 ) { %>
+            var para = (parseInt(document.location.href.substring(37, 38)));
+            console.log("if : " + para);
+
+            <% } else if(pagenation.getNowPageNumber() > 9) { %>
+            var para = (parseInt(document.location.href.substring(37, 39)));
+            console.log("else if : " + para);
+            <% } %>
+
+            //페이지 넘버만큼 값과 현재 페이지 숫자를 비교해서 각 클래스에 active 부여
+            <% for (int i = pagenation.getStartPage() ; i <= pagenation.getEndPage(); i++) { %>
+            var i = <%=i%>;
+            if (i == para) {
+                console.log(<%=i%>)
+                // $('.page1').removeClass('active')
+                $('.page<%=i%>').addClass('active');
+            }
+            <% } %>
+        }
+    )
 </script>
 </body>
 </html>

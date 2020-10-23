@@ -5,6 +5,7 @@ import com.bee.www.common.ActionForward;
 import com.bee.www.common.Pagenation;
 import com.bee.www.common.RegExp;
 import com.bee.www.service.BoardService;
+import com.bee.www.service.CommentService;
 import com.bee.www.vo.ArticleVo;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,6 +45,8 @@ public class FreeBoardAction implements Action {
             query += makeSearchQuery(filter, keyword);
         }
         BoardService service = new BoardService();
+        CommentService commentService=  new CommentService();
+
         //-------------------------페이징-------------------------------------
         //현재 페이지번호,총 글 개수구해서 계산하기
         Pagenation pagenation = new Pagenation(page, service.getArticleCount(query));
@@ -56,8 +59,11 @@ public class FreeBoardAction implements Action {
             out.close();
             return null;
         }
+        //serviceg호출 리스트에 담기
         ArrayList<ArticleVo> articleList = service.getArticleList(pagenation, query);
-
+        for (int i = 0; i < articleList.size(); i++) {  //댓글 수 담기
+            articleList.get(i).setComment_count(commentService.getCommentCount(articleList.get(i).getB_sq()));
+        }
         request.setAttribute("pagenation", pagenation);
         request.setAttribute("list", articleList);
 

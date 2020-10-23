@@ -21,8 +21,8 @@
     <div class="header-area">
         <div class="header-main">
             <div class="header-login">
-                <a href="/">
-                    <h3>Good Bee</h3>
+                <a style="" href="/">
+                    <h1>Good Bee</h1>
                 </a>
             </div>
         </div>
@@ -63,7 +63,7 @@
                                                         name="confirmId" id="confirmId" onclick="checkId()">중복확인
                                                 </button>
                                             </div>
-                                            <p id="email_check">이메일 중복확인 텍스트 자리</p>
+                                            <p id="email_check"></p>
                                             <!-- <p>가능한 이메일입니다.</p> -->
                                             <div class="checkBlock">
                                                 <input id="email" name="email" type="email" class="inpt"

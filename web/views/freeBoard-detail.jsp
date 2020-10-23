@@ -42,10 +42,12 @@
     </div>
     <hr>
     <div class="detail-userInfo">
-        <p class="userName"><%=vo.getNickname()%>
-        </p>
-        <P><%=vo.getWriteDate()%>
-        </P>
+        <div class="pull-left-info">
+            <p class="userName"><%=vo.getNickname()%>
+            </p>
+            <P><%=vo.getWriteDate()%>
+            </P>
+        </div>
         <div class="pull-right">
             <div class="content-count">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
@@ -155,11 +157,11 @@
             </div>
         </div>
     </div>
-    <hr>
-    <div class="detail-dec">
-        <p><%=vo.getContent()%>
-        </p>
-    </div>
+</div>
+<div class="detail-dec">
+    <p><%=vo.getContent()%>
+    </p>
+</div>
 </div>
 
 <div class="detail-button">
@@ -205,7 +207,8 @@
         <%
             for (int i = 0; i < cList.size(); i++) {
         %>
-        <tbody>
+        <%--댓글 내용 부분--%>
+        <tbody class="comment-info<%=cList.get(i).getCm_sq()%>">
         <tr class="left-section">
             <td class="left-info-nick"><%=cList.get(i).getNickname()%>
             </td>
@@ -214,27 +217,46 @@
         </tr>
         <tr class="right-section">
             <td class="right-info"><a href="#">답변</a></td>
-            <td class="right-info"><a href="#">수정</a></td>
+            <td class="right-info commentTab<%=cList.get(i).getCm_sq()%>" style="cursor: pointer"
+                onclick="commentModify(<%=cList.get(i).getCm_sq()%>,'<%=cList.get(i).getId()%>')"><a>수정</a></td>
             <td class="right-info">
-                <a onclick="commentDelete(<%=cList.get(i).getCm_sq()%>,'<%=cList.get(i).getId()%>')">삭제</a></td>
+                <a onclick="commentDelete(<%=cList.get(i).getCm_sq()%>,'<%=cList.get(i).getId()%>')">삭제</a>
+            </td>
         </tr>
         </tbody>
+        <tbody class="comment-info<%=cList.get(i).getCm_sq()%>">
         <tr>
             <td class="comment-content"><%=cList.get(i).getContent()%>
             </td>
         </tr>
+        </tbody>
+        <%----------------%>
+        <%--댓글 수정 부분--%>
+        <tbody class="comment-fixTxt fixTxt<%=cList.get(i).getCm_sq()%>" style="display: none">
+        <tr style="width: 100%">
+            <td style="width: 94%;">
+                <textarea id="fixContent" name="content"
+                          placeholder="여러분의 소중한 댓글을 입력해주세요."><%=cList.get(i).getContent()%></textarea>
+            </td>
+            <td>
+                <button>취소</button>
+                <button id="fixGo-bottom" name="fixGo-bottom" class="fix-button commentTab<%=cList.get(i).getCm_sq()%>">완료</button>
+            </td>
+        </tr>
+        </tbody>
+        <%----------------%>
         <% } %>
     </table>
     <% if (id != null) {  //로그인 세션있을때만 %>
-        <div>
-            <div class="comment-txt">
+    <div>
+        <div class="comment-txt">
             <textarea id="content" name="content"
                       placeholder="여러분의 소중한 댓글을 입력해주세요."></textarea>
-            </div>
-            <div class="comment-button">
-                <button id="go-bottom" name="go-bottem" onclick="commentSubmit()">댓글달기</button>
-            </div>
         </div>
+        <div class="comment-button">
+            <button id="go-bottom" name="go-bottem" onclick="commentSubmit()">댓글달기</button>
+        </div>
+    </div>
     <% } %>
 </div>
 <script>
@@ -243,6 +265,7 @@
         "positionClass": "toast-top-center",
         "timeOut": 1000
     }
+
 
     function articleDelete() {
         if (confirm('삭제하시겠습니까?') == true) {
@@ -263,8 +286,10 @@
         $.ajax({
             url: "/commentAdd.ajax"
             , type: "post"
-            , data: {num: '<%=vo.getB_sq()%>',
-                content:content}
+            , data: {
+                num: '<%=vo.getB_sq()%>',
+                content: content
+            }
             , dataType: "json"
             , error: function (xhr, request, status) {
                 console.log("서버 통신 실패");
@@ -319,6 +344,23 @@
         }
     }
 
+    function commentModify(num, commentId) {
+        var id = '<%=id%>';   //로그인 되어있는 id
+        <%--console.log('login id: <%=id%>' + ' | comment id: ' + commentId)--%>
+        console.log("gggggg"+$('.commentTab'+num).get(0));
+
+        if ($('.commentTab'+num).get(0).hasClass('right-info')) {   //댓글내용일 때
+
+            console.log('있음');
+            $('.comment-info' + num).hide();
+            $('.fixTxt' + num).show();          //수정창 뜨게
+        }
+        if ($('.commentTab'+num).get(0).hasClass('fix-button')) {   //수정창일때
+            console.log('없음');
+            $('.fixTxt' + num).hide();
+            $('.comment-info' + num).show();    //댓글내용 뜨게
+        }
+    }
 </script>
 <script type="text/javascript">
     $(function () {

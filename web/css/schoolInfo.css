@@ -87,7 +87,6 @@
 
 /* table section*/
 .board-list{
-    float: left;
     width: 100%;
 }
 .board-list table{
@@ -159,6 +158,7 @@
     width: 100%;
 }
 .pagination ul{
+    display: flex;
     padding: 0;
     width: 160px;
     list-style: none;

@@ -47,7 +47,7 @@ public class SchoolInfoAction implements Action {
         if (keyword != null && !keyword.equals("")) {   //검색값에 뭔가가 들어와있으면 쿼리 생성
             query += makeSearchQuery(filter, keyword);
         }
-        if(region!=null&&!region.equals("")){
+        if(region!=null&&!region.equals("")){           //지역 클릭 시 쿼리에 지역번호만 넣음
             query= " c_sq ="+region;
         }
 
@@ -62,7 +62,7 @@ public class SchoolInfoAction implements Action {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
             out.println("<script>location.href='/schBoard.do?pn=" + pagenation.getTotalPageCount() +
-                        "&filter=" + filter + "&keyword=" + keyword + "';</script>");
+                        "&filter=" + filter + "&keyword=" + keyword + "&region=" + region +"';</script>");
             out.close();
             return null;
         }

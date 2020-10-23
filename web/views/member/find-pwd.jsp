@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인</title>
+    <title>비밀번호 찾기</title>
     <!-- css -->
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     <link rel="stylesheet" type="text/css" href="/css/index_header.css">
@@ -25,7 +25,7 @@
         }
         function validateCheck() {
             var id = $('#id').val();
-            var pwd = $('#pwd').val();
+            var email = $('#email').val();
 
             if (!id) {
                 toastr.error("아이디를 입력해 주세요.");
@@ -33,9 +33,9 @@
                 return false;
             }
 
-            if (!pwd) {
-                toastr.error("비밀번호를 입력해 주세요.");
-                $('#pwd').focus();
+            if (!email) {
+                toastr.error("이메일을 입력해 주세요.");
+                $('#email').focus();
                 return false;
             }
         }
@@ -68,22 +68,17 @@
                                     </svg>
                                 </div></a>
                                 <div class="tabs">
-                                    <span class="tab signin active"><a href="#">로그인</a></span>
-                                    <span class="tab signup"><a href="/join.do">회원가입</a></span>
+                                    <span class="tab signin active"><a href="/findPwd.do">비밀번호 찾기</a></span>
                                 </div>
                                 <div class="content">
                                     <section class="signin-cont cont">
-                                        <form action="/loginProc.do" method="post" onsubmit="validateCheck()">
+                                        <form action="" method="post" onsubmit="validateCheck()">
                                             <div class="otherinput">
                                                 <input id="id" name="id" type="text" class="inpt2" placeholder="아이디 입력" style="margin-bottom: 25px;"/>
-                                                <input id="pwd" name="pwd" type="password" class="inpt2" placeholder="패스워드 입력" style="margin-bottom: 25px;"/>
+                                                <input id="email" name="email" type="email" class="inpt2" placeholder="인증받을 이메일 입력" style="margin-bottom: 25px;"/>
                                             </div>
-
-                                            <h4>forgat your Password?
-                                                <br/><a href="/findPwd.do">클릭</a>
-                                            </h4>
                                             <div class="submit-wrap">
-                                                <input type="submit" value="로그인" class="submit"/>
+                                                <input type="submit" value="완료" class="submit"/>
                                             </div>
 
                                         </form>

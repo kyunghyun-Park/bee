@@ -168,7 +168,7 @@ public class BoardDAO {
         try{
             pstmt = con.prepareStatement("select r.b_sq, m.nickname, r.content, r.writeDate " +
                                                 "from board_review r " +
-                                                "inner join member m on r.m_sq = m.sq " +
+                                                "left outer join member m on r.m_sq = m.sq " +
                                                 "order by r.b_sq desc");
             rs=pstmt.executeQuery();
             while(rs.next()){

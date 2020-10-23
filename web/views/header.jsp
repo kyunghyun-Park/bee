@@ -57,7 +57,7 @@
     <section class="nav-section">
         <nav>
             <ul>
-                <li><a href="/schBoard.do?pn=1&filter=&keyword=&" id="schInfo">학원정보</a></li>
+                <li><a href="/schBoard.do?pn=1&filter=&keyword=&region=" id="schInfo">학원정보</a></li>
                 <li><a href="/reviews.do" id="reviewInfo">투데이로그</a></li>
                 <li><a href="/freeBoard.do?pn=1&filter=&keyword=&" id="freeInfo">자유게시판</a></li>
             </ul>
