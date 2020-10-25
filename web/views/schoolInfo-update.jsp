@@ -47,7 +47,7 @@
                 <jsp:include page="/editor/editorSkinForModify.jsp" flush="false"/>
             </div>
             <footer class="post-comment">
-                <a class="exit-btn transparent-btn" href="/schBoard.do?pn=<%=nowPage%>">✔ 나가기</a>
+                <a class="exit-btn transparent-btn" href="javascript:window.history.back();">✔ 나가기</a>
                 <button type="submit" class="transparent-btn" onclick="checkData()">수정</button>
             </footer>
         </form>

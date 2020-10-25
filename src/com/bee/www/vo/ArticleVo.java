@@ -14,6 +14,34 @@ public class ArticleVo {
     private String cate_name;   //category name
     private int comment_count;  //총 댓글 수
 
+    private String filename;
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getNewFileName() {
+        return newFileName;
+    }
+
+    public void setNewFileName(String newFileName) {
+        this.newFileName = newFileName;
+    }
+
+    private String address;
+    private String newFileName;
     public int getComment_count() {
         return comment_count;
     }

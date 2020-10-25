@@ -32,6 +32,9 @@ public class ProfileAction implements Action {
 
         MemberService service = new MemberService();
         MemberVo vo = service.getMember(id);
+        if(vo.getNewFileName()==null){
+            vo.setNewFileName("basic.jpg");
+        }
         if (vo == null) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();

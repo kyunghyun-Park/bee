@@ -26,6 +26,7 @@ public class LoginManager implements HttpSessionBindingListener {
     }
 
     //구현 객체가 세션에 바인딩 될때 호출됨
+    //Hashtable에 세션과 접속자 아이디를 저장
     @Override
     public void valueBound(HttpSessionBindingEvent event) {
         loginUsers.put(event.getSession(), event.getName());
