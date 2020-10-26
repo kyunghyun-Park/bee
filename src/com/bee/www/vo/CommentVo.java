@@ -12,6 +12,35 @@ public class CommentVo {
     private String id; //member id
     private String nickname;    //member nickname
 
+    private String filename;
+    private String address;
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getNewFileName() {
+        return newFileName;
+    }
+
+    public void setNewFileName(String newFileName) {
+        this.newFileName = newFileName;
+    }
+
+    private String newFileName; //사용자 이미지
+
     public String getId() {
         return id;
     }

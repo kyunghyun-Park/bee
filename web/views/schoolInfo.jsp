@@ -127,11 +127,6 @@
                                         <a href="/schBoard.do?pn=<%=pagenation.getStartPage()-1%>&filter=<%=filter%>&keyword=<%=keyword%>&region=<%=region%>">«</a>
                                         <% } %>
                                     </li>
-                                    <%--<li class="page1 active">--%>
-                                    <%--<a href="/schBoard.do?pn=1&filter=<%=filter%>&keyword=<%=keyword%>">--%>
-                                    <%--1--%>
-                                    <%--</a>--%>
-                                    <%--</li>--%>
                                     <% for (int i = pagenation.getStartPage(); i <= pagenation.getEndPage(); i++) { %>
                                     <li class="page<%=i%> ">
                                         <a href="/schBoard.do?pn=<%=i%>&filter=<%=filter%>&keyword=<%=keyword%>&region=<%=region%>">

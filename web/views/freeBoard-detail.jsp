@@ -42,11 +42,16 @@
     </div>
     <hr>
     <div class="detail-userInfo">
-        <div class="pull-left-info">
-            <p class="userName"><%=vo.getNickname()%>
-            </p>
-            <P><%=vo.getWriteDate()%>
-            </P>
+        <div class="pull-left">
+            <div class="board-profileImg-section">
+                <img class="board-profileImg" src="../resources/img/<%=vo.getNewFileName()%>" alt=""/>
+            </div>
+            <div class="pull-left-right">
+                <p class="userName"><%=vo.getNickname()%>
+                </p>
+                <P><%=vo.getWriteDate().substring(0, 16)%>
+                </P>
+            </div>
         </div>
         <div class="pull-right">
             <div class="content-count">
@@ -210,17 +215,28 @@
         <%--댓글 내용 부분--%>
         <tbody class="comment-info<%=cList.get(i).getCm_sq()%>">
         <tr class="left-section">
+            <td class="left-info-img">
+                <img class="board-profileImg" src="../resources/img/<%=cList.get(i).getNewFileName()%>" alt=""/>
+            </td>
             <td class="left-info-nick"><%=cList.get(i).getNickname()%>
             </td>
             <td class="left-info-date"><%=cList.get(i).getWriteDate().substring(0, 16)%>
             </td>
         </tr>
         <tr class="right-section">
+            <%
+                if (id != null) {
+            %>
             <td class="right-info"><a href="#">답변</a></td>
+            <%
+                if (id.equals(cList.get(i).getId())) {
+            %>
             <td class="right-info commentTab<%=cList.get(i).getCm_sq()%>" style="cursor: pointer"
                 onclick="commentModify(<%=cList.get(i).getCm_sq()%>,'<%=cList.get(i).getId()%>')"><a>수정</a></td>
             <td class="right-info">
                 <a onclick="commentDelete(<%=cList.get(i).getCm_sq()%>,'<%=cList.get(i).getId()%>')">삭제</a>
+                <% }
+                } %>
             </td>
         </tr>
         </tbody>

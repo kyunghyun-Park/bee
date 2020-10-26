@@ -269,7 +269,7 @@ public class BoardDAO {
             //현재 로그인된 id에 해당하는 고유번호 조회
             pstmt = con.prepareStatement("select b.b_sq, b.m_sq, m.id, " +
                                                 "b.title, b.content, b.c_sq, " +
-                                                "b.hit, b.writeDate, m.nickname " +
+                                                "b.hit, b.writeDate, m.nickname,m.image " +
                                                 "from board b inner join member m on b.m_sq = m.sq " +
                                                 "where b_sq=? ");
             pstmt.setInt(1,num);
@@ -284,6 +284,7 @@ public class BoardDAO {
                 vo.setHit(rs.getInt("hit"));
                 vo.setWriteDate(rs.getString("writeDate"));
                 vo.setNickname(rs.getString("nickname"));
+                vo.setNewFileName(rs.getString("image"));
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -305,6 +306,75 @@ public class BoardDAO {
         }catch (Exception e){
             e.printStackTrace();
         }finally {
+            close(pstmt);
+        }
+        return count;
+    }
+
+    //좋아요 여부
+    public int recCheck(int num,String id){
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        int result = 0;
+        try{
+            pstmt = con.prepareStatement("select count(*) from heart where b_sq = ? and m_id = ?");
+            pstmt.setInt(1,num);
+            pstmt.setString(2,id);
+            rs = pstmt.executeQuery();
+            while(rs.next()){
+                result=rs.getInt("count(*)");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(rs);
+            close(pstmt);
+        }
+        return result;
+    }
+    //좋아요 갱신
+    public void recUpdate(int num,String id){
+        PreparedStatement pstmt = null;
+        try{
+            pstmt = con.prepareStatement("insert into heart(b_sq, m_id) value(?, ?)");
+            pstmt.setInt(1,num);
+            pstmt.setString(2,id);
+            pstmt.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(pstmt);
+        }
+    }
+    public void recDelete(int num,String id){
+        PreparedStatement pstmt = null;
+        try{
+            pstmt = con.prepareStatement("delete from heart where b_sq = ? and m_id = ?");
+            pstmt.setInt(1,num);
+            pstmt.setString(2,id);
+            pstmt.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(pstmt);
+        }
+    }
+    // 게시글 추천수
+    public int recCount(int num){
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        int count = 0;
+        try{
+            pstmt = con.prepareStatement("select count(*) from heart where b_sq = ?");
+            pstmt.setInt(1,num);
+            rs = pstmt.executeQuery();
+            while(rs.next()){
+                count=rs.getInt("count(*)");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close(rs);
             close(pstmt);
         }
         return count;

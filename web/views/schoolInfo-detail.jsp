@@ -11,7 +11,7 @@
     String nowPage = request.getParameter("pn");
     String filter = request.getParameter("filter");
     String keyword = request.getParameter("keyword");
-    String region=request.getParameter("region");
+    String region = request.getParameter("region");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +34,16 @@
 <jsp:include page="header.jsp"/>
 <div class="detail-auto">
     <div class="detail-container">
+        <aside>
+            <div class="aside-container">
+                <div class="svg-circle btnLike" id="btnLike">
+                    <svg class="like-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"></path></svg>
+                </div>
+                <div class="like-count">
+                    <span class="likeCt"></span>
+                </div>
+            </div>
+        </aside>
         <hr>
         <div class="detail-title">
             <h2 class="title-h2"><%=vo.getTitle()%>
@@ -41,11 +51,27 @@
         </div>
         <hr>
         <div class="detail-userInfo">
-            <p class="userName"><%=vo.getNickname()%>
-            </p>
-            <P><%=vo.getWriteDate()%>
-            </P>
+            <div class="pull-left">
+                <div class="board-profileImg-section">
+                    <img class="board-profileImg" src="../resources/img/<%=vo.getNewFileName()%>" alt=""/>
+                </div>
+                <div class="pull-left-right">
+                    <p class="userName"><%=vo.getNickname()%>
+                    </p>
+                    <P><%=vo.getWriteDate().substring(0, 16)%>
+                    </P>
+                </div>
+            </div>
             <div class="pull-right">
+                <%--모바일 좋아요--%>
+                <div class="detail-content">
+                    <div class="mobile-like-count">
+                        <button id="like-btn" class="mobile-like-button btnLike">
+                            <svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"></path></svg>
+                            <span class="likeCt"></span>
+                        </button>
+                    </div>
+                </div>
                 <div class="content-value">
                     <p><%=vo.getCate_name()%>
                     </p>
@@ -214,28 +240,41 @@
         <%
             for (int i = 0; i < cList.size(); i++) {
         %>
-        <tbody>
+        <tbody class="cmt-content">
         <tr class="left-section">
+            <td class="left-info-img">
+                <img class="board-profileImg" src="../resources/img/<%=cList.get(i).getNewFileName()%>" alt=""/>
+            </td>
             <td class="left-info-nick"><%=cList.get(i).getNickname()%>
             </td>
             <td class="left-info-date"><%=cList.get(i).getWriteDate().substring(0, 16)%>
             </td>
         </tr>
         <tr class="right-section">
+            <%
+                if (id != null) {
+            %>
             <td class="right-info"><a href="#">답변</a></td>
+            <%
+                if (id.equals(cList.get(i).getId())) {
+            %>
             <td class="right-info"><a href="#">수정</a></td>
             <td class="right-info">
-                <a style="cursor: pointer" onclick="commentDelete(<%=cList.get(i).getCm_sq()%>,'<%=cList.get(i).getId()%>')">삭제</a></td>
+                <a style="cursor: pointer"
+                   onclick="commentDelete(<%=cList.get(i).getCm_sq()%>,'<%=cList.get(i).getId()%>')">삭제</a></td>
+            <% }
+            } %>
         </tr>
         </tbody>
+        <tbody>
         <tr>
-            <td class="comment-content"><%=cList.get(i).getContent()%>
+            <td class="cmt-content"><%=cList.get(i).getContent()%>
             </td>
         </tr>
+        </tbody>
         <% } %>
     </table>
     <% if (id != null) { //로그인 세션있을때만 %>
-    <%--<form action="/schCommentAdd.do?num=<%=vo.getB_sq()%>" method="post" onsubmit="return commentSubmit()">--%>
     <div>
         <div class="comment-txt">
                 <textarea id="content" name="content"
@@ -245,7 +284,6 @@
             <button id="go-bottom" name="go-bottom" onclick="commentSubmit()">댓글달기</button>
         </div>
     </div>
-    <%--</form>--%>
     <% } %>
 </div>
 <script type="text/javascript">
@@ -255,6 +293,64 @@
         "timeOut": 1000
     }
 
+    $(function(){
+        //좋아요 클릭 시 이전 좋아요 기록 여부 확인
+        $(".btnLike").click(function(){
+            <%
+                if (id==null){
+            %>
+            toastr.error("로그인이 필요합니다.");
+            location.href='/login.do';
+            <%
+                }else {
+            %>
+            $.ajax({
+                url: "/recUpdate.ajax",
+                type: "post",
+                data: {
+                    num: '<%=vo.getB_sq()%>'
+                },
+                error: function () {
+                    console.log("서버 통신 실패1");
+                },
+                success: function () {
+                    console.log("서버 통신 성공1");
+                    recCount();
+                },
+            })
+            <% }  %>
+        });
+
+        // 게시글 추천수
+        function recCount() {
+            $.ajax({
+                url: "/recCount.ajax"
+                , type: "post"
+                , data: {
+                    num: '<%=vo.getB_sq()%>'
+                }
+                , error: function () {
+                    console.log("서버 통신 실패2");
+                }
+                , success: function (data) {
+                    console.log("서버 통신 성공2");
+
+                    let JsonData = JSON.parse(data);
+                    console.log(JsonData);
+
+                    $(".likeCt").html(JsonData.count);  //총 추천수 보이게
+                    if(JsonData.onOff == 0){ //전달받은 0은 아직 추천하지 않았을경우
+                        $(".btnLike svg").css("color" , "rgb(134, 142, 150)")
+                    }else {//내가 추천해 놓은 경우
+                        $(".btnLike svg").css("color" , "#8bd6f1")
+                    }
+                },
+            })
+        };
+        recCount();
+    })
+
+    //글 삭제
     function articleDelete() {
         if (confirm('삭제하시겠습니까?') == true) {
             location.href = '/schDelete.do?pn=<%=nowPage%>&num=<%=vo.getB_sq()%>&filter=<%=filter%>&keyword=<%=keyword%>&region=<%=region%>';
@@ -263,6 +359,7 @@
         }
     }
 
+    //댓글 등록
     function commentSubmit() {
         var content = $('#content').val();
         if (!content) {
@@ -272,10 +369,12 @@
         }
 
         $.ajax({
-              url: "/commentAdd.ajax"
-              , type: "post"
-              , data: {num: '<%=vo.getB_sq()%>',
-                     content:content}
+            url: "/commentAdd.ajax"
+            , type: "post"
+            , data: {
+                num: '<%=vo.getB_sq()%>',
+                content: content
+            }
             , dataType: "json"
             , error: function (xhr, request, status) {
                 console.log("서버 통신 실패");
@@ -293,6 +392,7 @@
         });
     }
 
+    //댓글 삭제
     function commentDelete(num, commentId) {
         //로그인 id,댓글 id비교해야 함.
         var id = '<%=id%>';   //로그인 되어있는 id
@@ -337,7 +437,6 @@
                 $('#content').focus();
             }
         });
-
     })
 </script>
 </body>

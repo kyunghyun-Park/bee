@@ -99,7 +99,7 @@
                                         <% } %>
                                     </li>
                                     <% for (int i = pagenation.getStartPage(); i <= pagenation.getEndPage(); i++) { %>
-                                    <li class="active">
+                                    <li class="page<%=i%> ">
                                         <a href="/freeBoard.do?pn=<%=i%>&filter=<%=filter%>&keyword=<%=keyword%>">
                                             <%=i%>
                                         </a>
@@ -159,12 +159,27 @@
     }
 
     $(function () {
-        var sBtn = $(".pagination ul > li");    //  ul > li 이를 sBtn으로 칭한다. (클릭이벤트는 li에 적용 된다.)
-        sBtn.find("a").click(function () {   // sBtn에 속해 있는  a 찾아 클릭 하면.
-            sBtn.removeClass("active");     // sBtn 속에 (active) 클래스를 삭제 한다.
-            $(this).parent().addClass("active"); // 클릭한 a에 (active)클래스를 넣는다.
-        })
-    })
+            //페이지 넘버만 숫자로 짤라오기
+            <% if(pagenation.getNowPageNumber() > 0 && pagenation.getNowPageNumber() <=9 ) { %>
+            var para = (parseInt(document.location.href.substring(38, 39)));
+            console.log("if : " + para);
+
+            <% } else if(pagenation.getNowPageNumber() > 9) { %>
+            var para = (parseInt(document.location.href.substring(38, 40)));
+            console.log("else if : " + para);
+            <% } %>
+
+            //페이지 넘버만큼 값과 현재 페이지 숫자를 비교해서 각 클래스에 active 부여
+            <% for (int i = pagenation.getStartPage() ; i <= pagenation.getEndPage(); i++) { %>
+            var i = <%=i%>;
+            if (i == para) {
+                console.log(<%=i%>)
+                // $('.page1').removeClass('active')
+                $('.page<%=i%>').addClass('active');
+            }
+            <% } %>
+        }
+    )
 </script>
 </body>
 </html>

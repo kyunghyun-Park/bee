@@ -187,5 +187,53 @@ public class BoardService {
         return vo;
     }
 
+    //좋아요 여부
+    public boolean recCheck(int num, String id){
+        BoardDAO dao = BoardDAO.getInstance();
+        Connection con = getConnection();
+        dao.setConnection(con);
+        boolean isSucess = false;
 
+        int count = dao.recCheck(num, id);
+        if (count == 0) {    //아직 좋아요안 함
+            commit(con);
+            isSucess = true;
+
+        } else {          //이미 좋아요 함
+            rollback(con);
+        }
+        close(con);
+        return isSucess;
+    }
+    //좋아요 하기
+    public void recUpdate(int num, String id) {
+        BoardDAO dao = BoardDAO.getInstance();
+        Connection con = getConnection();
+        dao.setConnection(con);
+
+        dao.recUpdate(num, id);
+        commit(con);
+        close(con);
+    }
+    //좋아요 지우기
+    public void recDelete(int num, String id) {
+        BoardDAO dao = BoardDAO.getInstance();
+        Connection con = getConnection();
+        dao.setConnection(con);
+
+        dao.recDelete(num, id);
+        commit(con);
+        close(con);
+    }
+    //좋아요 개수 불러오기
+    public int recCount(int num){
+        BoardDAO dao = BoardDAO.getInstance();
+        Connection con = getConnection();
+        dao.setConnection(con);
+
+        int count=dao.recCount(num); //dao호출
+        close(con);
+
+        return count;
+    }
 }

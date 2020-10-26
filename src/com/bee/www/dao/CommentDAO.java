@@ -58,7 +58,7 @@ public class CommentDAO {
         ArrayList<CommentVo> list = new ArrayList<>();
 
         try{
-            pstmt = con.prepareStatement("select cm.cm_sq, m.nickname, cm.content, cm.writeDate,m.id " +
+            pstmt = con.prepareStatement("select cm.cm_sq, m.nickname, cm.content, cm.writeDate,m.id,m.image " +
                                                 "from comment cm " +
                                                 "inner join member m on cm.m_sq = m.sq " +
                                                 "where b_sq=? "+
@@ -73,6 +73,7 @@ public class CommentDAO {
                 vo.setContent(rs.getString("content"));
                 vo.setB_sq(num);
                 vo.setWriteDate(rs.getString("writeDate"));
+                vo.setNewFileName(rs.getString("image"));
                 list.add(vo);
             }
         }catch (Exception e){
