@@ -167,6 +167,7 @@
         <form action="/profileImgUpdate.do" method="post" enctype="multipart/form-data">
             <div class="img-section">
                 <div class="img-area">
+                    <%=vo.getNewFileName()%>
                     <img id="image_section" src="../resources/img/<%=vo.getNewFileName()%>" alt=""/>
                     <label for="imgFile" class="del-button img-up">
                         <input type="file" id="imgFile" name="imgFile" accept=".jpg, .png, .jpeg, .gif" value=""/>업로드

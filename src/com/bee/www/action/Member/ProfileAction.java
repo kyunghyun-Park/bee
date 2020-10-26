@@ -39,6 +39,11 @@ public class ProfileAction implements Action {
             out.close();
             return null;
         }
+
+        if(vo.getNewFileName()==null){
+            vo.setNewFileName("basic.jpg");
+        }
+
         ActionForward forward = new ActionForward();
         request.setAttribute("vo",vo);
         forward.setPath("/views/profile-info.jsp");
