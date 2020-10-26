@@ -233,9 +233,9 @@ public class BoardController extends HttpServlet {
 
 
         if (forward != null) {
-            if (forward.isRedirect()) {
+            if (forward.isRedirect()) { //isRedirect가 true일 때(정보 처리) sendRedirect로 이동
                 response.sendRedirect(forward.getPath());
-            } else {
+            } else {                    //isRedirect가 false일 때(화면 이동) forward로 이동
                 RequestDispatcher dispatcher
                         = request.getRequestDispatcher(forward.getPath());
                 dispatcher.forward(request, response);

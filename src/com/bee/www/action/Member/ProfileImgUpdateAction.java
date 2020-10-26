@@ -29,6 +29,7 @@ public class ProfileImgUpdateAction implements Action {
         MemberService service = new MemberService();
         MemberVo vo = new MemberVo();
 
+        //서버 측에 저장될 경로
         String saveDirectory = request.getServletContext().getRealPath("/resources/img");
         System.out.println(saveDirectory);
 
@@ -38,6 +39,7 @@ public class ProfileImgUpdateAction implements Action {
         int maxPostSize = 1024 * 1024 * 10;
         String encoding = "UTF-8";
 
+        //파일명이 중복된 경우 파일명 (1)(2) 붙여 재정의하도록 FileRenamePolicy 객체 얻기
         FileRenamePolicy policy = new DefaultFileRenamePolicy();
         MultipartRequest mrequest
                 = new MultipartRequest(request //MultipartRequest를 만들기 위한 request
@@ -68,6 +70,7 @@ public class ProfileImgUpdateAction implements Action {
 
         ActionForward forward = new ActionForward();
         forward.setPath("/profile.do?id=" + id);
+        forward.setRedirect(true);
         return forward;
     }
 }

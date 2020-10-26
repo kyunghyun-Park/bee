@@ -55,7 +55,6 @@
                                         <form name="joinForm" id="joinForm" action="/joinProc.do" method="post"
                                               onsubmit="return joinSubmit()">
                                             <p id="id_check"></p>
-                                            <!-- <p>가능한 아이디입니다.</p> -->
                                             <div class="checkBlock">
                                                 <input id="id" name="id" type="text" class="inpt" minlength="4"
                                                        maxlength="20" placeholder="아이디 입력" oninput="initCheckId()"/>
@@ -64,7 +63,6 @@
                                                 </button>
                                             </div>
                                             <p id="email_check"></p>
-                                            <!-- <p>가능한 이메일입니다.</p> -->
                                             <div class="checkBlock">
                                                 <input id="email" name="email" type="email" class="inpt"
                                                        placeholder="이메일 입력" oninput="initCheckEmail()"/>
