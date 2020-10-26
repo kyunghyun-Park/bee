@@ -1,6 +1,7 @@
 package com.bee.www.common;
 
 //import javax.jms.Session;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 import javax.websocket.*;
@@ -18,14 +19,14 @@ import java.util.Map;
 // WebSocket의 호스트 주소 설정
 @ServerEndpoint(value = "/websocket", configurator = HttpSessionConfigurator.class)
 public class WebSocket extends HttpServlet {
-    private static Map<Session,MemberVo> users = Collections.synchronizedMap(new HashMap<Session, MemberVo>());
+    private static Map<Session, MemberVo> users = Collections.synchronizedMap(new HashMap<Session, MemberVo>());
     private Map<Session, EndpointConfig> configs = Collections.synchronizedMap(new HashMap<>());
 
     LoginManager lm = LoginManager.getInstance();
 
     // WebSocket으로 브라우저가 접속하면 요청되는 함수
     @OnOpen
-    public void onOpen(Session session, EndpointConfig config){
+    public void onOpen(Session session, EndpointConfig config) {
         String id = lm.getMemberId((HttpSession) config.getUserProperties().get(HttpSession.class.getName()));
 
         MemberVo client = new MemberVo();
@@ -33,16 +34,18 @@ public class WebSocket extends HttpServlet {
         client.setId(id);
 
         users.put(session, client);
-        if(id!=null) {
+        if (id != null) {
             sendNotice(id + "님이 입장하셨습니다.");
         }
     }
-    public void sendNotice(String message){
+
+    //입장,퇴장 알림
+    public void sendNotice(String message) {
         String userName = "server";
 
         synchronized (users) {
             Iterator<Session> it = users.keySet().iterator();
-            while(it.hasNext()){
+            while (it.hasNext()) {
                 Session currentSession = it.next();
                 try {
                     currentSession.getBasicRemote().sendText(userName + " : " + message);
@@ -55,15 +58,16 @@ public class WebSocket extends HttpServlet {
 
     // WebSocket으로 메시지가 오면 요청되는 함수
     @OnMessage
-    public void onMsg(String message, Session session) throws IOException{
+    public void onMsg(String message, Session session) throws IOException {
         String userName = users.get(session).getId();
         System.out.println(userName + " : " + message);
 
         synchronized (users) {
             Iterator<Session> it = users.keySet().iterator();
-            while(it.hasNext()){
+            while (it.hasNext()) {
                 Session currentSession = it.next();
-                if(!currentSession.equals(session)){
+                //메세지를 보낸 유저의 세션을 취득, 보낸유저를 제외한 유저에게만 메세지를 전송
+                if (!currentSession.equals(session)) {
                     currentSession.getBasicRemote().sendText(userName + " : " + message);
                 }
             }
@@ -75,7 +79,7 @@ public class WebSocket extends HttpServlet {
     public void onClose(Session session) {
         String userName = users.get(session).getId();
         users.remove(session);
-        if(userName!=null){
+        if (userName != null) {
             sendNotice(userName + "님이 퇴장하셨습니다");
         }
     }
@@ -83,7 +87,7 @@ public class WebSocket extends HttpServlet {
     // WebSocket과 브라우저 간에 통신 에러가 발생하면 요청되는 함수.
     @OnError
     public void handleError(Throwable t) {
-// 콘솔에 에러를 표시한다.
+        // 콘솔에 에러를 표시한다.
         t.printStackTrace();
     }
 }
