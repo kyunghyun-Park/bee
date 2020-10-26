@@ -79,7 +79,7 @@ public class MemberDAO {
         MemberVo vo = null;
 
         try{
-            pstmt=con.prepareStatement("select sq,id,pwd,nickname,email from member where binary(id)=?");
+            pstmt=con.prepareStatement("select sq,id,pwd,nickname,email,image from member where binary(id)=?");
             pstmt.setString(1,id);
             rs=pstmt.executeQuery();
             while (rs.next()){
@@ -89,6 +89,7 @@ public class MemberDAO {
                 vo.setPwd(rs.getString("pwd"));
                 vo.setNickname(rs.getString("nickname"));
                 vo.setEmail(rs.getString("email"));
+                vo.setNewFileName(rs.getString("image"));
             }
         }catch (Exception e){
             e.printStackTrace();
