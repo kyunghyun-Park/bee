@@ -28,7 +28,7 @@ public class BoardRecCountAction implements Action {
         }
 
         ActionForward forward = new ActionForward();
-        forward.setPath("/views/Ajax/AjaxCheckRec.jsp");
+        forward.setPath("/views/ajax/AjaxCheckRec.jsp");
         return forward;
     }
 }

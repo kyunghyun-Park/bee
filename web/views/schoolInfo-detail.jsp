@@ -342,7 +342,7 @@
                     if(JsonData.onOff == 0){ //전달받은 0은 아직 추천하지 않았을경우
                         $(".btnLike svg").css("color" , "rgb(134, 142, 150)")
                     }else {//내가 추천해 놓은 경우
-                        $(".btnLike svg").css("color" , "#8bd6f1")
+                        $(".btnLike svg").css("color" , "#FFA7A7")
                     }
                 },
             })
