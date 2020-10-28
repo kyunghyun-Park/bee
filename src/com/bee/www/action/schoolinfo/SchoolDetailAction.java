@@ -64,21 +64,21 @@ public class SchoolDetailAction implements Action {
 
         if (cookies != null) {
             for (int i = 0; i < cookies.length; i++) {
-                System.out.println("쿠키 이름: " + cookies[i].getName());
+//                System.out.println("쿠키 이름: " + cookies[i].getName());
                 //만들어진 쿠키들을 확인,만약 들어온 적 있다면 생성됐을 쿠키가 있는지 화긴
                 if (cookies[i].getName().equals("|" + numInt + "|")) {
-                    System.out.println("if문 쿠키 이름:" + cookies[i].getName());
+//                    System.out.println("if문 쿠키 이름:" + cookies[i].getName());
                     //찾은 쿠키를 변수에 저장
                     viewCookie = cookies[i];
                 }
             }
         } else {
-            System.out.println("cookie 확인 로직:쿠키가 없습니다.");
+//            System.out.println("cookie 확인 로직:쿠키가 없습니다.");
         }
 
         //만들어진 쿠키 없음을 확인
         if(viewCookie==null){
-            System.out.println("쿠키없당");
+//            System.out.println("쿠키없당");
             try{
                 //이 페이지에 왔다는 증거 쿠키 생성
                 Cookie newCookie =  new Cookie("|"+numInt+"|","readCount");
@@ -97,7 +97,7 @@ public class SchoolDetailAction implements Action {
                 e.printStackTrace();
             }
         }else{  //만들어진 쿠키 있을때 증가로직 진행X
-            System.out.println("쿠키 있음 값:"+viewCookie.getValue());
+//            System.out.println("쿠키 있음 값:"+viewCookie.getValue());
         }
         vo.setContent(Parser.chgToHTML(vo.getContent()));
 

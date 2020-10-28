@@ -2,7 +2,7 @@ package com.bee.www.common;
 
 public class Pagenation {
     private final int SHOW_ARTICLE_COUNT = 10;    //한 페이지에 보여줄 글 개수
-    private final int PAGE_GROUP = 5;            //페이지 번호 묶음
+    private final int PAGE_GROUP = 5;            //페이지 그룹 개수
     private int nowPageNumber;                  //현재 페이지 번호
     private int totalArticleCount;              //글 총 개수
     private int startArticleNumber;             //시작 글 번호
@@ -17,7 +17,7 @@ public class Pagenation {
         this.totalArticleCount = totalArticleCount;
         //시작 글 번호=(현재 페이지 번호-1)*10
         this.startArticleNumber=(nowPageNumber-1)*SHOW_ARTICLE_COUNT;   //
-        //총 페이지 개수=double(총페이지개수/10)을 Math.ceil
+        //총 페이지 개수=double(총페이지개수/10)을 Math.ceil(올림)
         this.totalPageCount=(int)Math.ceil((double)totalArticleCount/SHOW_ARTICLE_COUNT);
         //총 페이지개수가 1보다 작으면 1로
         if(this.totalPageCount<1){

@@ -37,7 +37,9 @@
         <aside>
             <div class="aside-container">
                 <div class="svg-circle btnLike" id="btnLike">
-                    <svg class="like-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"></path></svg>
+                    <svg class="like-svg" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"></path>
+                    </svg>
                 </div>
                 <div class="like-count">
                     <span class="likeCt"></span>
@@ -67,7 +69,9 @@
                 <div class="detail-content">
                     <div class="mobile-like-count">
                         <button id="like-btn" class="mobile-like-button btnLike">
-                            <svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"></path></svg>
+                            <svg width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"></path>
+                            </svg>
                             <span class="likeCt"></span>
                         </button>
                     </div>
@@ -236,11 +240,12 @@
         <h4>Comments <%=vo.getComment_count()%>
         </h4>
     </div>
+    <%
+        for (int i = 0; i < cList.size(); i++) {
+    %>
     <table>
-        <%
-            for (int i = 0; i < cList.size(); i++) {
-        %>
-        <tbody class="cmt-content">
+        <!--댓글 내용 부분 -->
+        <tbody class="cmt-content<%=cList.get(i).getCm_sq()%>">
         <tr class="left-section">
             <td class="left-info-img">
                 <img class="board-profileImg" src="../resources/img/<%=cList.get(i).getNewFileName()%>" alt=""/>
@@ -258,7 +263,8 @@
             <%
                 if (id.equals(cList.get(i).getId())) {
             %>
-            <td class="right-info"><a href="#">수정</a></td>
+            <td class="right-info" onclick="showModify(<%=cList.get(i).getCm_sq()%>)">
+                <a>수정</a></td>
             <td class="right-info">
                 <a style="cursor: pointer"
                    onclick="commentDelete(<%=cList.get(i).getCm_sq()%>,'<%=cList.get(i).getId()%>')">삭제</a></td>
@@ -267,14 +273,31 @@
         </tr>
         </tbody>
         <tbody>
-        <tr>
+        <tr class="cmt-content<%=cList.get(i).getCm_sq()%>">
             <td class="cmt-content"><%=cList.get(i).getContent()%>
             </td>
         </tr>
         </tbody>
+        <tfoot>
+        <%--댓글 수정창--%>
+        <div class="fix-comment-hidden<%=cList.get(i).getCm_sq()%>" style="display: none" >
+            <div class="fix-comment-txt">
+                <textarea id="modifyContent<%=cList.get(i).getCm_sq()%>" name="modifyContent"
+                          placeholder="여러분의 소중한 댓글을 입력해주세요."><%=cList.get(i).getContent()%></textarea>
+            </div>
+            <div class="fix-comment-button">
+                <button class="fix-CmtBtn-cancel" onclick="cancleModify(<%=cList.get(i).getCm_sq()%>)">취소</button>
+                <button class="fix-CmtBtn tabActive<%=cList.get(i).getCm_sq()%>"
+                            onclick="modifyComment(<%=cList.get(i).getCm_sq()%>)">수정하기</button>
+            </div>
+        </div>
+        <%-------------------------%>
+        </tfoot>
         <% } %>
+
     </table>
     <% if (id != null) { //로그인 세션있을때만 %>
+    <%--댓글 입력창--%>
     <div>
         <div class="comment-txt">
                 <textarea id="content" name="content"
@@ -285,6 +308,7 @@
         </div>
     </div>
     <% } %>
+    <%-----------------------%>
 </div>
 <script type="text/javascript">
     toastr.options = {
@@ -293,14 +317,14 @@
         "timeOut": 1000
     }
 
-    $(function(){
+    $(function () {
         //좋아요 클릭 시 이전 좋아요 기록 여부 확인
-        $(".btnLike").click(function(){
+        $(".btnLike").click(function () {
             <%
                 if (id==null){
             %>
             toastr.error("로그인이 필요합니다.");
-            location.href='/login.do';
+            location.href = '/login.do';
             <%
                 }else {
             %>
@@ -311,10 +335,8 @@
                     num: '<%=vo.getB_sq()%>'
                 },
                 error: function () {
-                    console.log("서버 통신 실패1");
                 },
                 success: function () {
-                    console.log("서버 통신 성공1");
                     recCount();
                 },
             })
@@ -330,19 +352,16 @@
                     num: '<%=vo.getB_sq()%>'
                 }
                 , error: function () {
-                    console.log("서버 통신 실패2");
                 }
                 , success: function (data) {
-                    console.log("서버 통신 성공2");
 
                     let JsonData = JSON.parse(data);
-                    console.log(JsonData);
 
                     $(".likeCt").html(JsonData.count);  //총 추천수 보이게
-                    if(JsonData.onOff == 0){ //전달받은 0은 아직 추천하지 않았을경우
-                        $(".btnLike svg").css("color" , "rgb(134, 142, 150)")
-                    }else {//내가 추천해 놓은 경우
-                        $(".btnLike svg").css("color" , "#FFA7A7")
+                    if (JsonData.onOff == 0) { //전달받은 0은 아직 추천하지 않았을경우
+                        $(".btnLike svg").css("color", "rgb(134, 142, 150)")
+                    } else {//내가 추천해 놓은 경우
+                        $(".btnLike svg").css("color", "#FFA7A7")
                     }
                 },
             })
@@ -369,13 +388,13 @@
         }
 
         $.ajax({
-            url: "/commentAdd.ajax"
+            url: "/addComment.ajax"
             , type: "post"
             , data: {
                 num: '<%=vo.getB_sq()%>',
                 content: content
             }
-            , dataType: "json"
+            , dataType :"json"
             , error: function (xhr, request, status) {
                 console.log("서버 통신 실패");
                 console.log(status);
@@ -401,7 +420,7 @@
         if (confirm('삭제하시겠습니까?') == true) {    //확인눌렀을 때
             if (id == commentId) {
                 $.ajax({
-                    url: "/commentDel.ajax"
+                    url: "/delComment.ajax"
                     , type: "post"
                     , data: {commentNum: num}
                     , dataType: "json"
@@ -427,6 +446,53 @@
         } else {      //confirm에서 취소눌렀을 때
             return false;
         }
+    }
+
+    //수정 창으로 변환
+    function showModify(num) {
+        $('.cmt-content' + num).hide();
+        $('.fix-comment-hidden' + num).show();
+    }
+
+    //수정 취소
+    function cancleModify(num){
+        $('.cmt-content' + num).show();
+        $('.fix-comment-hidden' + num).hide();
+    }
+
+    //댓글 수정
+    function modifyComment(num) {
+        var content = $('#modifyContent'+num).val();
+        console.log(content);
+
+        if (!content) {
+            toastr.error("수정할 내용을 입력하세요");
+            $('#modifyContent').focus();
+            return false;
+        }
+
+        $.ajax({
+            url: "/modifyComment.ajax"
+            , type: "post"
+            , data: {
+                num: num,
+                content: content
+            }
+            , dataType :"json"
+            , error: function (xhr, request, status) {
+                console.log("서버 통신 실패");
+                console.log(status);
+            }
+            , success: function (data) {
+                console.log("서버 통신 성공");
+                if (data.count > 0) {      //0이상이면 수정됨
+                    console.log(data + "success 등록 성공" + data.count);
+                    location.reload();  //페이지 리로드
+                } else {
+                    console.log(data + "success else result = " + data.count);
+                }
+            }
+        });
     }
 </script>
 <script type="text/javascript">

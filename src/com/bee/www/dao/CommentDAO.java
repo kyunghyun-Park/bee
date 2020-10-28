@@ -32,40 +32,57 @@ public class CommentDAO {
     public void setConnection(Connection con) {
         this.con = con;
     }
-   //댓글 등록
-       public int insertComment(CommentVo vo){
-           PreparedStatement pstmt = null;
-           int count = 0;
-           try{
-               //현재 로그인된 id에 해당하는 고유번호 조회
-               pstmt = con.prepareStatement("insert into comment(m_sq, b_sq, content) value(?, ?, ?)");
-               pstmt.setInt(1,vo.getM_sq());
-               pstmt.setInt(2,vo.getB_sq());
-               pstmt.setString(3,vo.getContent());
-               count=pstmt.executeUpdate();
-           }catch (Exception e){
-               e.printStackTrace();
-           }finally {
-               close(pstmt);
-           }
-           return count;
-       }
 
+    //댓글 등록
+    public int insertComment(CommentVo vo) {
+        PreparedStatement pstmt = null;
+        int count = 0;
+        try {
+            //현재 로그인된 id에 해당하는 고유번호 조회
+            pstmt = con.prepareStatement("insert into comment(m_sq, b_sq, content) value(?, ?, ?)");
+            pstmt.setInt(1, vo.getM_sq());
+            pstmt.setInt(2, vo.getB_sq());
+            pstmt.setString(3, vo.getContent());
+            count = pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close(pstmt);
+        }
+        return count;
+    }
+    //댓글 수정
+    public int modifyComment(CommentVo vo) {
+        PreparedStatement pstmt = null;
+        int count = 0;
+        try {
+            //현재 로그인된 id에 해당하는 고유번호 조회
+            pstmt = con.prepareStatement("update comment set content=? where cm_sq=?");
+            pstmt.setString(1, vo.getContent());
+            pstmt.setInt(2, vo.getCm_sq());
+            count = pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close(pstmt);
+        }
+        return count;
+    }
     //댓글 목록
     public ArrayList<CommentVo> getCommentList(int num) {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         ArrayList<CommentVo> list = new ArrayList<>();
 
-        try{
+        try {
             pstmt = con.prepareStatement("select cm.cm_sq, m.nickname, cm.content, cm.writeDate,m.id,m.image " +
-                                                "from comment cm " +
-                                                "inner join member m on cm.m_sq = m.sq " +
-                                                "where b_sq=? "+
-                                                "order by cm_sq");
-            pstmt.setInt(1,num);
-            rs=pstmt.executeQuery();
-            while(rs.next()){
+                    "from comment cm " +
+                    "inner join member m on cm.m_sq = m.sq " +
+                    "where b_sq=? " +
+                    "order by cm_sq");
+            pstmt.setInt(1, num);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
                 CommentVo vo = new CommentVo();
                 vo.setCm_sq(rs.getInt("cm_sq"));
                 vo.setId(rs.getString("id"));   //댓글 삭제를 위해 가져옴
@@ -76,9 +93,9 @@ public class CommentDAO {
                 vo.setNewFileName(rs.getString("image"));
                 list.add(vo);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             close(rs);
             close(pstmt);
         }
@@ -86,37 +103,38 @@ public class CommentDAO {
     }
 
     //댓글 삭제
-    public int deleteComment(int num){
+    public int deleteComment(int num) {
         PreparedStatement pstmt = null;
         int count = 0;
-        try{
+        try {
             //현재 로그인된 id에 해당하는 고유번호 조회
             pstmt = con.prepareStatement("delete from comment where cm_sq=?");
-            pstmt.setInt(1,num);
-            count=pstmt.executeUpdate();
-        }catch (Exception e){
+            pstmt.setInt(1, num);
+            count = pstmt.executeUpdate();
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             close(pstmt);
         }
         return count;
     }
-    //아이디 중복검사
-    public int getCommentCount(int num){
-        PreparedStatement pstmt=null;
-        ResultSet rs = null;
-        int count=0;
 
-        try{
-            pstmt=con.prepareStatement("select count(*) from comment where b_sq=?");
-            pstmt.setInt(1,num);
-            rs=pstmt.executeQuery();
-            while(rs.next()){
-                count=rs.getInt(1); //0이면 미중복
+    //아이디 중복검사
+    public int getCommentCount(int num) {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        int count = 0;
+
+        try {
+            pstmt = con.prepareStatement("select count(*) from comment where b_sq=?");
+            pstmt.setInt(1, num);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt(1); //0이면 미중복
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             close(rs);
             close(pstmt);
         }

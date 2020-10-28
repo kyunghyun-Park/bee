@@ -13,11 +13,12 @@ import java.io.PrintWriter;
 
 import static com.bee.www.common.RegExp.ARTICLE_CONTENT;
 
-public class AjaxCommentAddAction implements Action {
+public class AjaxModifyCommentAction implements Action {
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         LoginManager lm = LoginManager.getInstance();
         String id = lm.getMemberId(request.getSession());
+
         //로그인 안돼있을때
         if (id == null) {
             response.setContentType("text/html;charset=UTF-8");
@@ -27,8 +28,8 @@ public class AjaxCommentAddAction implements Action {
             return null;
         }
 
-        String num=request.getParameter("num"); //글 번호
-        String content=request.getParameter("content"); //댓글 내용
+        String num=request.getParameter("num"); //댓글 번호
+        String content=request.getParameter("content"); //수정할 댓글 내용
 
         //글 번호 유효성검사,RegExp = 글 번호 유효성 검사
         if (content == null || content.equals("")
@@ -54,10 +55,9 @@ public class AjaxCommentAddAction implements Action {
         //vo에 담음
         CommentVo vo = new CommentVo();
         vo.setContent(content);
-        vo.setM_sq(service.getMemberSequence(id));
-        vo.setB_sq(numInt);
+        vo.setCm_sq(numInt);
 
-        request.setAttribute("count",service.insertComment(vo));
+        request.setAttribute("count",service.modifyComment(vo));
 
         ActionForward forward = new ActionForward();
         forward.setPath("/views/ajax/AjaxComment.jsp");

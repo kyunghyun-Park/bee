@@ -25,5 +25,6 @@
     <orderEntry type="library" name="JAX-WS" level="project" />
     <orderEntry type="library" name="commons-io-2.6" level="project" />
     <orderEntry type="library" name="WebSocket-1.1" level="project" />
+    <orderEntry type="library" name="javax.mail-api-1.4.7" level="project" />
   </component>
 </module>

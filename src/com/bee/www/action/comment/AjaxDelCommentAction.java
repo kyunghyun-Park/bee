@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 
 import static com.bee.www.common.RegExp.*;
 
-public class AjaxCommentDelAction implements Action {
+public class AjaxDelCommentAction implements Action {
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         LoginManager lm = LoginManager.getInstance();

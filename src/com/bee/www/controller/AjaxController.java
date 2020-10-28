@@ -1,10 +1,11 @@
 package com.bee.www.controller;
 
 import com.bee.www.action.Member.*;
-import com.bee.www.action.comment.AjaxCommentAddAction;
-import com.bee.www.action.comment.AjaxCommentDelAction;
-import com.bee.www.action.schoolinfo.BoardRecCountAction;
-import com.bee.www.action.schoolinfo.BoardRecUpdateAction;
+import com.bee.www.action.comment.AjaxAddCommentAction;
+import com.bee.www.action.comment.AjaxDelCommentAction;
+import com.bee.www.action.ajax.BoardRecCountAction;
+import com.bee.www.action.ajax.BoardRecUpdateAction;
+import com.bee.www.action.comment.AjaxModifyCommentAction;
 import com.bee.www.common.Action;
 import com.bee.www.common.ActionForward;
 
@@ -46,18 +47,25 @@ public class AjaxController extends HttpServlet {
             }catch (Exception e){
                 e.printStackTrace();
             }
-        }else if (command.equals("/commentDel.ajax")) {
-            action = new AjaxCommentDelAction();
+        }else if (command.equals("/delComment.ajax")) {
+            action = new AjaxDelCommentAction();
             try{
                 forward = action.execute(request,response);
             }catch (Exception e){
                 e.printStackTrace();
             }
-        }else if (command.equals("/commentAdd.ajax")) {
-            action = new AjaxCommentAddAction();
+        }else if (command.equals("/addComment.ajax")) {
+            action = new AjaxAddCommentAction();
             try{
                 forward = action.execute(request,response);
             }catch (Exception e){
+                e.printStackTrace();
+            }
+        }else if (command.equals("/modifyComment.ajax")) {
+            action = new AjaxModifyCommentAction();
+            try {
+                forward = action.execute(request, response);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }else if (command.equals("/recUpdate.ajax")) {

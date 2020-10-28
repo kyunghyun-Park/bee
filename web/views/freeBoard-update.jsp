@@ -46,6 +46,7 @@
     </article>
 </section>
 <script>
+
     toastr.options = {
         "closeButton": true,
         "positionClass": "toast-top-center",

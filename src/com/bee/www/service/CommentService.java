@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import static com.bee.www.common.JdbcUtil.*;
 
 public class CommentService {
-    //글쓰기 메소드
+    //댓글쓰기 메소드
     public int insertComment(CommentVo vo) {
         //세팅
         CommentDAO dao = CommentDAO.getInstance();
@@ -28,8 +28,23 @@ public class CommentService {
         close(con);
         return count;
     }
+    //댓글수정 메소드
+    public int modifyComment(CommentVo vo) {
+        //세팅
+        CommentDAO dao = CommentDAO.getInstance();
+        Connection con = getConnection();
+        dao.setConnection(con);
 
-    //글삭제 메소드
+        int count = dao.modifyComment(vo);
+        if (count > 0) {    //성공
+            commit(con);
+        } else {          //실패
+            rollback(con);
+        }
+        close(con);
+        return count;
+    }
+    //댓글삭제 메소드
     public int deleteComment(int num) {
         //세팅
         CommentDAO dao = CommentDAO.getInstance();

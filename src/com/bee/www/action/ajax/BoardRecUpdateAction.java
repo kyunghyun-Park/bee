@@ -1,4 +1,4 @@
-package com.bee.www.action.schoolinfo;
+package com.bee.www.action.ajax;
 
 import com.bee.www.common.Action;
 import com.bee.www.common.ActionForward;
